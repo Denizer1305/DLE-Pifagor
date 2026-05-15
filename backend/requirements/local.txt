@@ -1,0 +1,9 @@
+-r base.txt
+
+pre-commit>=4.5,<5.0
+django-debug-toolbar>=5.0,<6.0
+ipython>=8.31,<9.0
+rich>=13.9,<14.0
+ruff>=0.8,<1.0
+black>=24.10,<25.0
+isort>=5.13,<6.0
