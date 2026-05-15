@@ -15,7 +15,6 @@ from pathlib import Path
 
 from config.api import get_bool_env, get_env, get_int_env, get_list_env
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = get_env(
@@ -177,9 +176,13 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-] if (BASE_DIR / "static").exists() else []
+STATICFILES_DIRS = (
+    [
+        BASE_DIR / "static",
+    ]
+    if (BASE_DIR / "static").exists()
+    else []
+)
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"

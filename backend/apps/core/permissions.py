@@ -1,4 +1,4 @@
-from rest_framework.permissions import BasePermission, SAFE_METHODS
+from rest_framework.permissions import SAFE_METHODS, BasePermission
 
 
 class IsAuthenticatedAndActive(BasePermission):
@@ -32,9 +32,7 @@ class IsAuthenticatedAndActive(BasePermission):
         user = request.user
 
         return bool(
-            user
-            and user.is_authenticated
-            and getattr(user, "is_active", False)
+            user and user.is_authenticated and getattr(user, "is_active", False)
         )
 
 
@@ -173,7 +171,5 @@ class IsSuperUser(BasePermission):
         user = request.user
 
         return bool(
-            user
-            and user.is_authenticated
-            and getattr(user, "is_superuser", False)
+            user and user.is_authenticated and getattr(user, "is_superuser", False)
         )

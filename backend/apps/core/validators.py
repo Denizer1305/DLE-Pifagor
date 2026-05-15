@@ -4,7 +4,6 @@ from datetime import date
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-
 PHONE_PATTERN = re.compile(r"^\+?[1-9]\d{7,14}$")
 
 
@@ -28,7 +27,9 @@ def validate_phone_number(value: str) -> None:
     if not value:
         raise ValidationError(_("Номер телефона обязателен."))
 
-    normalized_value = value.replace(" ", "").replace("-", "").replace("(", "").replace(")", "")
+    normalized_value = (
+        value.replace(" ", "").replace("-", "").replace("(", "").replace(")", "")
+    )
 
     if not PHONE_PATTERN.match(normalized_value):
         raise ValidationError(

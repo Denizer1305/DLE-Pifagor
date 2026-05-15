@@ -128,11 +128,7 @@ def get_list_env(
     if value is None:
         return default or []
 
-    return [
-        item.strip()
-        for item in value.split(separator)
-        if item.strip()
-    ]
+    return [item.strip() for item in value.split(separator) if item.strip()]
 
 
 def get_path_env(name: str, default: Path) -> Path:

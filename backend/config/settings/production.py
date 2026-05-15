@@ -10,7 +10,6 @@ Production-настройки проекта.
 from config.api import get_bool_env, get_env, get_list_env
 from config.settings.base import *  # noqa: F403
 
-
 DEBUG = False
 
 SECRET_KEY = get_env("DJANGO_SECRET_KEY", required=True)

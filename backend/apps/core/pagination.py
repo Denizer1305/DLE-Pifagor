@@ -1,9 +1,13 @@
 from collections import OrderedDict
 
+from core.constants import (
+    DEFAULT_PAGE_SIZE,
+    LARGE_PAGE_SIZE,
+    MAX_LARGE_PAGE_SIZE,
+    MAX_PAGE_SIZE,
+)
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
-
-from core.constants import DEFAULT_PAGE_SIZE, LARGE_PAGE_SIZE, MAX_LARGE_PAGE_SIZE, MAX_PAGE_SIZE
 
 
 class DefaultPageNumberPagination(PageNumberPagination):

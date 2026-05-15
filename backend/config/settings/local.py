@@ -4,8 +4,10 @@
 Используются для разработки на локальной машине.
 """
 
+from config.settings.base import INSTALLED_APPS as BASE_INSTALLED_APPS
+from config.settings.base import MIDDLEWARE as BASE_MIDDLEWARE
+from config.settings.base import REST_FRAMEWORK as BASE_REST_FRAMEWORK
 from config.settings.base import *  # noqa: F403
-
 
 DEBUG = True
 
@@ -20,13 +22,14 @@ ALLOWED_HOSTS = [
 # Debug Toolbar
 # -----------------------------------------------------------------------------
 
-INSTALLED_APPS += [  # noqa: F405
+INSTALLED_APPS = [
+    *BASE_INSTALLED_APPS,
     "debug_toolbar",
 ]
 
-MIDDLEWARE = [  # noqa: F405
+MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    *MIDDLEWARE,
+    *BASE_MIDDLEWARE,
 ]
 
 INTERNAL_IPS = [
@@ -70,7 +73,10 @@ JWT_REFRESH_COOKIE_SECURE = False
 # DRF Browsable API
 # -----------------------------------------------------------------------------
 
-REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [  # noqa: F405
-    "rest_framework.renderers.JSONRenderer",
-    "rest_framework.renderers.BrowsableAPIRenderer",
-]
+REST_FRAMEWORK = {
+    **BASE_REST_FRAMEWORK,
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ],
+}
