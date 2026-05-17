@@ -7,16 +7,16 @@
     --shadow-lg: 0 24px 60px rgba(57, 68, 88, 0.16);
     --shadow-xl: 0 26px 60px rgba(57, 68, 88, 0.18);
     --shadow-2xl: 0 28px 60px rgba(57, 68, 88, 0.18);
-    --shadow-3xl: 0 32px 72px rgba(57, 68, 88, 0.20);
+    --shadow-3xl: 0 32px 72px rgba(57, 68, 88, 0.2);
 
-    --shadow-float-dark: 0 18px 44px rgba(0, 0, 0, 0.10);
+    --shadow-float-dark: 0 18px 44px rgba(0, 0, 0, 0.1);
     --shadow-modal: 0 24px 60px rgba(57, 68, 88, 0.18);
 
     --shadow-focus-accent-sm: 0 0 0 3px rgba(74, 111, 165, 0.08);
     --shadow-focus-accent: 0 0 0 4px rgba(74, 111, 165, 0.08);
     --shadow-focus-accent-md: 0 0 0 3px rgba(74, 111, 165, 0.12);
 
-    --shadow-ring-accent: 0 0 0 10px rgba(74, 111, 165, 0.10);
+    --shadow-ring-accent: 0 0 0 10px rgba(74, 111, 165, 0.1);
     --shadow-ring-white: 0 0 0 10px rgba(255, 255, 255, 0.05);
 
     --shadow-inner-subtle: inset 0 0 0 1px rgba(57, 68, 88, 0.03);

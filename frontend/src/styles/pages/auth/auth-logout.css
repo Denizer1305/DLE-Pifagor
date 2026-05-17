@@ -1,0 +1,147 @@
+.logout-page .auth-logout-section {
+    position: relative;
+    min-height: calc(100vh - 132px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 16px 84px;
+    overflow: hidden;
+}
+
+.logout-page .auth-shell {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 560px;
+}
+
+.logout-page .auth-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 36px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(57, 68, 88, 0.08);
+    box-shadow: 0 24px 60px rgba(57, 68, 88, 0.14);
+    backdrop-filter: blur(14px);
+    text-align: center;
+}
+
+.logout-page .auth-card::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border-radius: 28px;
+    border: 1px dashed rgba(74, 111, 165, 0.12);
+    pointer-events: none;
+}
+
+.logout-page .auth-logo {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 92px;
+    height: 92px;
+    margin: 0 auto 20px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(57, 68, 88, 0.08);
+    box-shadow: var(--shadow-sm);
+}
+
+.logout-page .auth-logo img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+}
+
+.logout-page .auth-text {
+    position: relative;
+    z-index: 1;
+    max-width: 420px;
+    margin: 0 auto 24px;
+    color: var(--secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.logout-page .auth-info {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 12px;
+    margin-bottom: 28px;
+    text-align: left;
+}
+
+.logout-page .auth-info-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 14px;
+    align-items: start;
+    padding: 16px 18px;
+    border-radius: 22px;
+    background: rgba(57, 68, 88, 0.04);
+    border: 1px solid rgba(57, 68, 88, 0.08);
+}
+
+.logout-page .auth-info-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: rgba(74, 111, 165, 0.10);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-page .auth-info-copy strong {
+    display: block;
+    color: var(--primary);
+    font-size: 0.96rem;
+    margin-bottom: 4px;
+}
+
+.logout-page .auth-info-copy span {
+    color: var(--secondary);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.logout-page .auth-actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.logout-page .auth-btn {
+    min-height: 52px;
+    padding: 0 20px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--primary-08);
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-soft);
+}
+
+.logout-page .auth-btn.light {
+    background: var(--white-78);
+    color: var(--primary);
+}
+
+.logout-page .auth-btn.primary {
+    background: var(--primary);
+    color: var(--white);
+    border-color: transparent;
+}
+
+.logout-page .auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}

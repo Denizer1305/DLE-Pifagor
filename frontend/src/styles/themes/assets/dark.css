@@ -1,1 +1,57 @@
-/* В разработке */
+.theme-dark .auth-page {
+    color: rgba(255, 255, 255, 0.88);
+    background:
+        radial-gradient(circle at 12% 16%, rgba(74, 111, 165, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 10%, rgba(106, 140, 197, 0.12), transparent 24%),
+        linear-gradient(180deg, #151b26 0%, #101620 100%);
+}
+
+.theme-dark .auth-public-header__shell,
+.theme-dark .auth-form-inner,
+.theme-dark .auth-card {
+    background: rgba(22, 29, 41, 0.86);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.theme-dark .auth-public-header__theme-button,
+.theme-dark .form-input,
+.theme-dark .auth-logo-wrap,
+.theme-dark .auth-logo,
+.theme-dark .auth-info-item,
+.theme-dark .auth-status-card {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.theme-dark .auth-title,
+.theme-dark .auth-form-title,
+.theme-dark .auth-status-card__title,
+.theme-dark .auth-success-box__title,
+.theme-dark .auth-info-copy strong {
+    color: rgba(255, 255, 255, 0.94);
+}
+
+.theme-dark .auth-subtitle,
+.theme-dark .auth-form-description,
+.theme-dark .auth-text,
+.theme-dark .auth-info-copy span,
+.theme-dark .auth-form-bottom,
+.theme-dark .form-hint,
+.theme-dark .auth-status-card__text {
+    color: rgba(255, 255, 255, 0.64);
+}
+
+.theme-dark .form-label,
+.theme-dark .auth-public-header__theme-button,
+.theme-dark .auth-badge,
+.theme-dark .auth-meta-item {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.theme-dark .form-input {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.theme-dark .form-input::placeholder {
+    color: rgba(255, 255, 255, 0.36);
+}

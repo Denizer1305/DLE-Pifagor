@@ -1,0 +1,208 @@
+.public-header {
+    position: sticky;
+    top: 0;
+    z-index: 80;
+    padding: 22px 0 0;
+    transition:
+        padding 0.35s ease,
+        background-color 0.35s ease,
+        backdrop-filter 0.35s ease;
+}
+
+.public-header--scrolled {
+    padding-top: 12px;
+}
+
+.public-header__container {
+    min-height: 92px;
+    display: grid;
+    grid-template-columns: minmax(230px, 1fr) auto minmax(300px, 1fr);
+    align-items: center;
+    gap: 24px;
+    padding: 0 28px;
+    border-radius: 34px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(57, 68, 88, 0.08);
+    box-shadow: 0 18px 50px rgba(57, 68, 88, 0.1);
+    backdrop-filter: blur(14px);
+    transition:
+        min-height 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.public-header--scrolled .public-header__container {
+    min-height: 76px;
+    box-shadow: 0 14px 40px rgba(57, 68, 88, 0.12);
+}
+
+.public-header__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    width: fit-content;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.public-header__logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+}
+
+.public-header__brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.public-header__brand-text strong {
+    color: var(--primary);
+    font-family: var(--font-forum);
+    font-size: 1.6rem;
+    line-height: 1;
+    font-weight: 400;
+}
+
+.public-header__brand-text small {
+    color: var(--secondary);
+    font-size: 0.78rem;
+    line-height: 1.2;
+}
+
+.public-header__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px;
+    border-radius: var(--radius-pill);
+    background: rgba(57, 68, 88, 0.04);
+    border: 1px solid rgba(57, 68, 88, 0.06);
+}
+
+.public-header__nav-link {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: var(--radius-pill);
+    color: var(--secondary);
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: var(--transition-soft);
+}
+
+.public-header__nav-link:hover,
+.public-header__nav-link.is-active {
+    background: rgba(255, 255, 255, 0.88);
+    color: var(--primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.public-header__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.public-theme-toggle,
+.public-header__burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: var(--radius-round);
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(57, 68, 88, 0.08);
+    color: var(--primary);
+    cursor: pointer;
+    transition: var(--transition-soft);
+}
+
+.public-theme-toggle:hover,
+.public-header__burger:hover {
+    transform: translateY(-2px);
+    color: var(--accent);
+    box-shadow: var(--shadow-sm);
+}
+
+.public-header__login,
+.public-header__register {
+    min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: var(--transition-soft);
+}
+
+.public-header__login {
+    color: var(--primary);
+    background: rgba(57, 68, 88, 0.04);
+    border: 1px solid rgba(57, 68, 88, 0.08);
+}
+
+.public-header__register {
+    color: var(--white);
+    background: var(--primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.public-header__login:hover,
+.public-header__register:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.public-header__register:hover {
+    background: var(--accent);
+}
+
+.public-header__burger {
+    display: none;
+}
+
+@media (max-width: 1180px) {
+    .public-header__container {
+        grid-template-columns: 1fr auto;
+    }
+
+    .public-header__nav,
+    .public-header__login,
+    .public-header__register {
+        display: none;
+    }
+
+    .public-header__burger {
+        display: inline-flex;
+    }
+}
+
+@media (max-width: 640px) {
+    .public-header {
+        padding: 14px 0 0;
+    }
+
+    .public-header__container {
+        min-height: 78px;
+        padding: 0 18px;
+        border-radius: 28px;
+    }
+
+    .public-header__logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .public-header__brand-text {
+        display: none;
+    }
+}

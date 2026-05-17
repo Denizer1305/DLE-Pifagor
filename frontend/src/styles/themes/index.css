@@ -1,4 +1,6 @@
-@import "./light.css";
-@import "./dark.css";
-@import "./accent-themes.css";
-@import "./public.dark.css";
+@import "./assets/index.css";
+@import "./college.css";
+@import "./university.css";
+@import "./junior.css";
+@import "./middle.css";
+@import "./senior.css";

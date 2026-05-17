@@ -1,0 +1,197 @@
+.auth-intro {
+    position: relative;
+}
+
+.auth-intro-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.auth-visual {
+    margin-bottom: 22px;
+}
+
+.auth-visual-shell {
+    position: relative;
+    width: min(100%, 360px);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-ring {
+    position: absolute;
+    border-radius: var(--radius-round);
+    border: 1px solid var(--accent-18);
+    animation: spinSlow 24s linear infinite;
+}
+
+.auth-ring.one {
+    width: 100%;
+    height: 100%;
+}
+
+.auth-ring.two {
+    width: 80%;
+    height: 80%;
+    animation-direction: reverse;
+    animation-duration: 18s;
+}
+
+.auth-ring.three {
+    width: 60%;
+    height: 60%;
+    animation-duration: 14s;
+}
+
+.auth-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-round);
+    background: var(--accent);
+    box-shadow: 0 0 0 10px var(--accent-10);
+    animation: dotPulse 12s linear infinite;
+}
+
+.auth-dot.one {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.auth-dot.two {
+    right: 4%;
+    top: 50%;
+    transform: translateY(-50%);
+    animation-delay: 2s;
+    animation-duration: 16s;
+}
+
+.auth-mini-line {
+    position: absolute;
+    width: 110px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(74, 111, 165, 0.26), transparent);
+    animation: miniLineDrift 8s ease-in-out infinite;
+}
+
+.auth-mini-line.one {
+    top: 22%;
+    right: -18px;
+}
+
+.auth-mini-line.two {
+    bottom: 24%;
+    left: -18px;
+    animation-delay: 2s;
+}
+
+.auth-mark {
+    position: absolute;
+    width: 78px;
+    height: 78px;
+    border-radius: var(--radius-22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white-74);
+    border: 1px solid var(--primary-08);
+    color: var(--primary);
+    font-family: var(--font-forum);
+    font-size: 1.85rem;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: var(--blur-sm);
+    animation: greekMarkFloat 10s ease-in-out infinite;
+}
+
+.auth-mark.one {
+    top: 8%;
+    left: -6%;
+}
+
+.auth-mark.two {
+    right: -6%;
+    bottom: 10%;
+    animation-delay: 3s;
+}
+
+.auth-logo-wrap {
+    position: relative;
+    width: 88%;
+    z-index: 2;
+    animation: heroFloat 8s ease-in-out infinite;
+}
+
+.auth-logo-wrap img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 34px var(--primary-14));
+}
+
+.auth-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.auth-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 40px;
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--primary-10);
+    background: var(--white-74);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.86rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.auth-title {
+    font-family: var(--font-forum);
+    font-size: clamp(2.4rem, 4.4vw, 4rem);
+    line-height: 0.96;
+    color: var(--primary);
+    margin-bottom: 14px;
+    max-width: 520px;
+}
+
+.auth-subtitle {
+    max-width: 520px;
+    color: var(--secondary);
+    font-size: 0.98rem;
+    line-height: 1.82;
+    margin-bottom: 22px;
+}
+
+.auth-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.auth-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-04);
+    border: 1px solid var(--primary-08);
+    color: var(--primary);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.auth-meta-item i {
+    color: var(--accent);
+}

@@ -1,0 +1,81 @@
+:root {
+    --font-forum: "Forum", Georgia, "Times New Roman", serif;
+    --font-pt-sans: "PT Sans", "Segoe UI", Arial, sans-serif;
+
+    --font-heading: var(--font-forum);
+    --font-body: var(--font-pt-sans);
+
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+
+    --line-height-heading: 0.96;
+    --line-height-title: 1.04;
+    --line-height-base: 1.65;
+    --line-height-text: 1.82;
+
+    --letter-spacing-tight: -0.02em;
+    --letter-spacing-normal: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-base);
+    color: var(--primary-text, #2f2f2f);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-heading);
+    color: var(--primary, #394458);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+h1 {
+    font-size: clamp(2.8rem, 5vw, 5.6rem);
+}
+
+h2 {
+    font-size: clamp(2.3rem, 4vw, 4.4rem);
+}
+
+h3 {
+    font-size: clamp(1.9rem, 3vw, 3rem);
+}
+
+h4 {
+    font-size: clamp(1.45rem, 2vw, 2rem);
+}
+
+p {
+    color: var(--secondary, #8a8a9f);
+    line-height: var(--line-height-text);
+}
+
+strong,
+b {
+    font-weight: var(--font-weight-bold);
+}
+
+small {
+    font-size: 0.875rem;
+}
+
+.text-muted {
+    color: var(--secondary, #8a8a9f);
+}
+
+.text-primary {
+    color: var(--primary, #394458);
+}
+
+.text-accent {
+    color: var(--accent, #4a6fa5);
+}

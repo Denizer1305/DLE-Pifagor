@@ -1,0 +1,54 @@
+.verify-email-status {
+    display: grid;
+    gap: 18px;
+}
+
+.auth-status-card {
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 18px;
+    border-radius: var(--radius-22);
+    background: var(--primary-04);
+    border: 1px solid var(--primary-08);
+}
+
+.auth-status-card__icon {
+    width: 58px;
+    height: 58px;
+    border-radius: var(--radius-18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white-78);
+    color: var(--accent);
+    box-shadow: var(--shadow-sm);
+}
+
+.auth-status-card__title {
+    font-family: var(--font-forum);
+    font-size: 1.8rem;
+    line-height: 1;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.auth-status-card__text {
+    color: var(--secondary);
+    font-size: 0.94rem;
+    line-height: 1.72;
+}
+
+.auth-status-card--success .auth-status-card__icon {
+    color: #2e8b57;
+}
+
+.auth-status-card--error .auth-status-card__icon {
+    color: #b94a5a;
+}
+
+.auth-status-actions {
+    display: flex;
+    justify-content: center;
+}
