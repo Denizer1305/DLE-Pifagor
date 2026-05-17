@@ -1,9 +1,7 @@
-"""
-Пакет настроек проекта.
+from __future__ import annotations
 
-Фактический settings-файл выбирается через переменную окружения:
+from config.celery import app as celery_app
 
-    DJANGO_SETTINGS_MODULE=config.settings.local
-    DJANGO_SETTINGS_MODULE=config.settings.production
-    DJANGO_SETTINGS_MODULE=config.settings.test
-"""
+__all__ = [
+    "celery_app",
+]

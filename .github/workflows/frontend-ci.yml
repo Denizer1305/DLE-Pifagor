@@ -1,77 +1,89 @@
 name: Frontend CI
 
 on:
-  push:
-    branches:
-      - main
-      - develop
-      - "feature/**"
-      - "fix/**"
-      - "docs/**"
-    paths:
-      - "frontend/**"
-      - ".github/workflows/frontend-ci.yml"
-      - "Makefile"
-      - ".env.example"
+    push:
+        branches:
+            - master
+            - dev
+            - "feature/**"
+            - "fix/**"
+            - "refactor/**"
+            - "chore/**"
+        paths:
+            - "frontend/**"
+            - ".github/workflows/frontend-ci.yml"
+            - ".pre-commit-config.yaml"
+            - "Makefile"
+            - ".env.example"
 
-  pull_request:
-    branches:
-      - main
-      - develop
-    paths:
-      - "frontend/**"
-      - ".github/workflows/frontend-ci.yml"
-      - "Makefile"
-      - ".env.example"
+    pull_request:
+        branches:
+            - master
+            - dev
+        paths:
+            - "frontend/**"
+            - ".github/workflows/frontend-ci.yml"
+            - ".pre-commit-config.yaml"
+            - "Makefile"
+            - ".env.example"
 
 permissions:
-  contents: read
+    contents: read
+
+concurrency:
+    group: frontend-ci-${{ github.ref }}
+    cancel-in-progress: true
 
 defaults:
-  run:
-    working-directory: frontend
+    run:
+        working-directory: frontend
 
 env:
-  VITE_APP_NAME: Пифагор
-  VITE_APP_ENV: ci
-  VITE_API_BASE_URL: http://localhost:8000/api/v1
-  VITE_BACKEND_ORIGIN: http://localhost:8000
-  VITE_ENABLE_MOCKS: "false"
-  VITE_ENABLE_DEVTOOLS: "false"
+    VITE_APP_NAME: Пифагор
+    VITE_APP_ENV: ci
+    VITE_API_BASE_URL: http://localhost:8000/api/v1
+    VITE_BACKEND_ORIGIN: http://localhost:8000
+    VITE_ENABLE_MOCKS: "false"
+    VITE_ENABLE_DEVTOOLS: "false"
 
 jobs:
-  frontend:
-    name: Frontend checks
-    runs-on: ubuntu-latest
+    frontend:
+        name: Frontend checks
+        runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version:
-          - "22"
+        strategy:
+            fail-fast: false
+            matrix:
+                node-version:
+                    - "22"
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
+            - name: Set up Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: npm
+                  cache-dependency-path: frontend/package-lock.json
 
-      - name: Install frontend dependencies
-        run: npm ci
+            - name: Show Node and npm versions
+              run: |
+                  node --version
+                  npm --version
 
-      - name: Run lint
-        run: npm run lint --if-present
+            - name: Install frontend dependencies
+              run: npm ci
 
-      - name: Run typecheck
-        run: npm run typecheck --if-present
+            - name: Lint frontend
+              run: npm run lint --if-present
 
-      - name: Run unit tests
-        run: npm run test:unit --if-present
+            - name: Typecheck frontend
+              run: npm run typecheck --if-present
 
-      - name: Build frontend
-        run: npm run build
+            - name: Run frontend tests
+              run: npm run test:unit --if-present
+
+            - name: Build frontend
+              run: npm run build

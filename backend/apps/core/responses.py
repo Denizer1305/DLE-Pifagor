@@ -1,7 +1,7 @@
 from typing import Any
 
-from core.constants import API_ERROR_KEY, API_META_KEY, API_SUCCESS_KEY
-from core.exceptions import ApplicationError
+from apps.core.constants import API_ERROR_KEY, API_META_KEY, API_SUCCESS_KEY
+from apps.core.exceptions import ApplicationError
 from rest_framework import status
 from rest_framework.response import Response
 

@@ -13,6 +13,7 @@ from __future__ import annotations
 from datetime import timedelta
 from pathlib import Path
 
+from celery.schedules import crontab
 from config.api import get_bool_env, get_env, get_int_env, get_list_env
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -50,11 +51,13 @@ THIRD_PARTY_APPS = [
     "django_filters",
     "corsheaders",
     "drf_spectacular",
+    "django_celery_beat",
 ]
 
 LOCAL_APPS = [
-    "apps.core",
-    "apps.users",
+    "apps.core.apps.CoreConfig",
+    "apps.organizations.apps.OrganizationsConfig",
+    "apps.users.apps.UsersConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -116,12 +119,13 @@ TEMPLATES = [
 
 DATABASES = {
     "default": {
-        "ENGINE": get_env("DJANGO_DB_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": get_env("DJANGO_DB_NAME", str(BASE_DIR / "db.sqlite3")),
-        "USER": get_env("DJANGO_DB_USER", ""),
-        "PASSWORD": get_env("DJANGO_DB_PASSWORD", ""),
-        "HOST": get_env("DJANGO_DB_HOST", ""),
-        "PORT": get_env("DJANGO_DB_PORT", ""),
+        "ENGINE": get_env("DJANGO_DB_ENGINE", "django.db.backends.postgresql"),
+        "NAME": get_env("DJANGO_DB_NAME", "pifagor"),
+        "USER": get_env("DJANGO_DB_USER", "pifagor"),
+        "PASSWORD": get_env("DJANGO_DB_PASSWORD", "pifagor"),
+        "HOST": get_env("DJANGO_DB_HOST", "localhost"),
+        "PORT": get_env("DJANGO_DB_PORT", "5432"),
+        "CONN_MAX_AGE": get_int_env("DJANGO_DB_CONN_MAX_AGE", 60),
     }
 }
 
@@ -163,10 +167,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = get_env("DJANGO_LANGUAGE_CODE", "ru-ru")
 TIME_ZONE = get_env("DJANGO_TIME_ZONE", "Europe/Moscow")
 
-TIME_ZONE = get_env("DJANGO_TIME_ZONE", "Europe/Moscow")
-
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -204,9 +205,9 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
-        "core.permissions.IsAuthenticatedAndActive",
+        "apps.core.permissions.IsAuthenticatedAndActive",
     ],
-    "DEFAULT_PAGINATION_CLASS": "core.pagination.DefaultPageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS": "apps.core.pagination.DefaultPageNumberPagination",
     "PAGE_SIZE": get_int_env("DRF_PAGE_SIZE", 20),
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend",
@@ -214,7 +215,7 @@ REST_FRAMEWORK = {
         "rest_framework.filters.OrderingFilter",
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-    "EXCEPTION_HANDLER": "core.exceptions_handler.custom_exception_handler",
+    "EXCEPTION_HANDLER": "apps.core.exceptions_handler.custom_exception_handler",
 }
 
 
@@ -259,10 +260,10 @@ SIMPLE_JWT = {
 # -----------------------------------------------------------------------------
 
 JWT_REFRESH_COOKIE_NAME = get_env("JWT_REFRESH_COOKIE_NAME", "pifagor_refresh")
-JWT_REFRESH_COOKIE_SECURE = get_bool_env("JWT_REFRESH_COOKIE_SECURE", not DEBUG)
+JWT_REFRESH_COOKIE_PATH = get_env("JWT_REFRESH_COOKIE_PATH", "/api/v1/users/auth/")
+JWT_REFRESH_COOKIE_SECURE = get_bool_env("JWT_REFRESH_COOKIE_SECURE", False)
 JWT_REFRESH_COOKIE_HTTP_ONLY = True
 JWT_REFRESH_COOKIE_SAMESITE = get_env("JWT_REFRESH_COOKIE_SAMESITE", "Lax")
-JWT_REFRESH_COOKIE_PATH = get_env("JWT_REFRESH_COOKIE_PATH", "/api/v1/auth/")
 
 
 # -----------------------------------------------------------------------------
@@ -297,12 +298,45 @@ EMAIL_BACKEND = get_env(
     "django.core.mail.backends.console.EmailBackend",
 )
 
+EMAIL_HOST = get_env("DJANGO_EMAIL_HOST", "")
+EMAIL_PORT = get_int_env("DJANGO_EMAIL_PORT", 25)
+EMAIL_HOST_USER = get_env("DJANGO_EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = get_env("DJANGO_EMAIL_HOST_PASSWORD", "")
+EMAIL_USE_TLS = get_bool_env("DJANGO_EMAIL_USE_TLS", False)
+EMAIL_USE_SSL = get_bool_env("DJANGO_EMAIL_USE_SSL", False)
+EMAIL_TIMEOUT = get_int_env("DJANGO_EMAIL_TIMEOUT", 20)
+
 DEFAULT_FROM_EMAIL = get_env(
     "DJANGO_DEFAULT_FROM_EMAIL",
     "noreply@pifagor.local",
 )
 
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+
+# -----------------------------------------------------------------------------
+# Frontend / Email branding
+# -----------------------------------------------------------------------------
+
+FRONTEND_BASE_URL = get_env(
+    "FRONTEND_BASE_URL",
+    "http://localhost:5173",
+)
+
+EMAIL_VERIFY_PATH = get_env(
+    "EMAIL_VERIFY_PATH",
+    "/auth/verify-email",
+)
+
+PASSWORD_RESET_PATH = get_env(
+    "PASSWORD_RESET_PATH",
+    "/auth/reset-password",
+)
+
+EMAIL_LOGO_URL = get_env(
+    "EMAIL_LOGO_URL",
+    "",
+)
 
 
 # -----------------------------------------------------------------------------
@@ -314,7 +348,43 @@ CELERY_RESULT_BACKEND = get_env("CELERY_RESULT_BACKEND", "redis://localhost:6379
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = get_int_env("CELERY_TASK_TIME_LIMIT", 30 * 60)
+CELERY_TASK_SOFT_TIME_LIMIT = 60 * 5
+CELERY_ACCEPT_CONTENT = [
+    "json",
+]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_ENABLE_UTC = True
+CELERY_BEAT_SCHEDULE = {
+    "users-deactivate-expired-invite-codes-every-30-minutes": {
+        "task": "apps.users.tasks.cleanup_tasks.deactivate_expired_invite_codes_task",
+        "schedule": crontab(minute="*/30"),
+    },
+    "users-expire-old-join-requests-hourly": {
+        "task": "apps.users.tasks.cleanup_tasks.expire_old_join_requests_task",
+        "schedule": crontab(minute=0),
+    },
+    "users-anonymize-scheduled-users-hourly": {
+        "task": "apps.users.tasks.lifecycle_tasks.anonymize_scheduled_users_task",
+        "schedule": crontab(minute=10),
+    },
+    "users-cleanup-unused-expired-invite-codes-daily": {
+        "task": "apps.users.tasks.cleanup_tasks.cleanup_unused_expired_invite_codes_task",
+        "schedule": crontab(hour=3, minute=30),
+        "kwargs": {
+            "days": 30,
+        },
+    },
+}
 
+CELERY_IMPORTS = (
+    "apps.users.tasks.cleanup_tasks",
+    "apps.users.tasks.lifecycle_tasks",
+    "apps.users.tasks.emails.registration_email_tasks",
+    "apps.users.tasks.emails.join_request_email_tasks",
+    "apps.users.tasks.emails.guardian_email_tasks",
+    "apps.users.tasks.emails.lifecycle_email_tasks",
+)
 
 # -----------------------------------------------------------------------------
 # Security basics

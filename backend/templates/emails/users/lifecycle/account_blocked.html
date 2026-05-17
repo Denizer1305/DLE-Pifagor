@@ -1,0 +1,21 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+
+    <p class="email-text">
+        Ваш аккаунт в ЦОС «Пифагор» временно заблокирован.
+    </p>
+
+    {% if reason %}
+        <div class="danger-card">
+            <strong>Причина:</strong><br>
+            {{ reason }}
+        </div>
+    {% endif %}
+
+    <p class="email-text email-muted" style="margin-top: 20px;">
+        Если вы считаете, что произошла ошибка, обратитесь в образовательную организацию
+        или к ответственному администратору платформы.
+    </p>
+{% endblock %}

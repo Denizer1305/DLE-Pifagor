@@ -23,10 +23,6 @@ if not ALLOWED_HOSTS:
     raise RuntimeError("DJANGO_ALLOWED_HOSTS must be set in production.")
 
 
-# -----------------------------------------------------------------------------
-# Database
-# -----------------------------------------------------------------------------
-
 DATABASES = {
     "default": {
         "ENGINE": get_env("DJANGO_DB_ENGINE", "django.db.backends.postgresql"),
@@ -38,7 +34,6 @@ DATABASES = {
         "CONN_MAX_AGE": 60,
     }
 }
-
 
 # -----------------------------------------------------------------------------
 # Security
@@ -61,7 +56,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = "DENY"
 
 JWT_REFRESH_COOKIE_SECURE = True
-JWT_REFRESH_COOKIE_SAMESITE = get_env("JWT_REFRESH_COOKIE_SAMESITE", "Strict")
+JWT_REFRESH_COOKIE_SAMESITE = "Lax"
 
 
 # -----------------------------------------------------------------------------
@@ -69,7 +64,6 @@ JWT_REFRESH_COOKIE_SAMESITE = get_env("JWT_REFRESH_COOKIE_SAMESITE", "Strict")
 # -----------------------------------------------------------------------------
 
 CORS_ALLOWED_ORIGINS = get_list_env("CORS_ALLOWED_ORIGINS", default=[])
-
 CSRF_TRUSTED_ORIGINS = get_list_env("CSRF_TRUSTED_ORIGINS", default=[])
 
 
@@ -90,6 +84,22 @@ EMAIL_USE_TLS = get_bool_env("DJANGO_EMAIL_USE_TLS", True)
 
 DEFAULT_FROM_EMAIL = get_env("DJANGO_DEFAULT_FROM_EMAIL", required=True)
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+
+FRONTEND_BASE_URL = get_env(
+    "FRONTEND_BASE_URL",
+    "https://edu-pifagor.ru",
+)
+
+PIFAGOR_EMAIL_LOGO_URL = get_env(
+    "PIFAGOR_EMAIL_LOGO_URL",
+    "https://edu-pifagor.ru/static/emails/pifagor-logo-primary.png",
+)
+
+PIFAGOR_SUPPORT_EMAIL = get_env(
+    "PIFAGOR_SUPPORT_EMAIL",
+    "Pifagor-Platform33@yandex.ru",
+)
 
 
 # -----------------------------------------------------------------------------

@@ -1,0 +1,21 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+
+    <p class="email-text">
+        Запрос на связь родителя и учащегося не был подтверждён.
+    </p>
+
+    {% if review_comment %}
+        <div class="danger-card">
+            <strong>Комментарий проверяющего:</strong><br>
+            {{ review_comment }}
+        </div>
+    {% endif %}
+
+    <p class="email-text email-muted" style="margin-top: 20px;">
+        Пожалуйста, проверьте введённые данные и при необходимости обратитесь
+        к куратору или ответственному сотруднику образовательной организации.
+    </p>
+{% endblock %}

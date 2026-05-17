@@ -19,10 +19,17 @@ except ImportError:
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = BACKEND_DIR.parent
-ENV_FILE = PROJECT_ROOT / ".env"
 
-if load_dotenv is not None and ENV_FILE.exists():
-    load_dotenv(ENV_FILE)
+ENV_FILES = [
+    PROJECT_ROOT / ".env",
+    BACKEND_DIR / ".env",
+]
+
+if load_dotenv is not None:
+    for env_file in ENV_FILES:
+        if env_file.exists():
+            load_dotenv(env_file)
+            break
 
 
 def get_env(name: str, default: Any = None, *, required: bool = False) -> str | Any:

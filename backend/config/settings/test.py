@@ -12,6 +12,14 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.MD5PasswordHasher",
 ]
 
+# -----------------------------------------------------------------------------
+# Frontend / Email branding for tests
+# -----------------------------------------------------------------------------
+
+FRONTEND_BASE_URL = "http://testserver"
+PIFAGOR_EMAIL_LOGO_URL = "http://testserver/static/emails/pifagor-logo-primary.png"
+PIFAGOR_SUPPORT_EMAIL = "support@example.com"
+
 EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 
 
@@ -24,6 +32,11 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": ":memory:",
     }
+}
+
+MIGRATION_MODULES = {
+    # Если тесты станут медленными, сюда можно будет добавить приложения,
+    # для которых временно отключаются миграции.
 }
 
 

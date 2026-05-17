@@ -14,8 +14,8 @@
 
 from __future__ import annotations
 
-from core.exceptions import ApplicationError
-from core.responses import error_response
+from apps.core.exceptions import ApplicationError
+from apps.core.responses import error_response
 from rest_framework import status
 from rest_framework.views import exception_handler
 

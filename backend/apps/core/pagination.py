@@ -1,6 +1,6 @@
 from collections import OrderedDict
 
-from core.constants import (
+from apps.core.constants import (
     DEFAULT_PAGE_SIZE,
     LARGE_PAGE_SIZE,
     MAX_LARGE_PAGE_SIZE,

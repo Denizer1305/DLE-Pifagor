@@ -1,0 +1,19 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+
+    <p class="email-text">
+        В ЦОС «Пифагор» появилась новая заявка, ожидающая вашей проверки.
+    </p>
+
+    <p class="email-text email-muted">
+        Пожалуйста, откройте раздел заявок, проверьте данные пользователя и примите решение.
+    </p>
+
+    {% if applicant_name %}
+        <div class="notice-card">
+            Пользователь: <strong>{{ applicant_name }}</strong>
+        </div>
+    {% endif %}
+{% endblock %}

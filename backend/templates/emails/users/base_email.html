@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Forum&family=PT+Sans:wght@400;700&display=swap");
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f7f9fc;
+            color: #2f2f2f;
+            font-family: "PT Sans", Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        img {
+            border: 0;
+            outline: none;
+            text-decoration: none;
+        }
+
+        a {
+            color: #4a6fa5;
+        }
+
+        .email-wrapper {
+            width: 100%;
+            background: #f7f9fc;
+            padding: 32px 0;
+        }
+
+        .email-container {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .email-card {
+            background: #ffffff;
+            border: 1px solid #e8edf5;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 18px 50px rgba(57, 68, 88, 0.10);
+        }
+
+        .email-header {
+            padding: 32px 36px 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #eef1f6 100%);
+            border-bottom: 1px solid #e8edf5;
+        }
+
+        .brand-row {
+            width: 100%;
+        }
+
+        .brand-logo {
+            width: 72px;
+            height: auto;
+            vertical-align: middle;
+        }
+
+        .brand-title {
+            padding-left: 18px;
+            vertical-align: middle;
+        }
+
+        .brand-title-main {
+            margin: 0;
+            color: #2f394b;
+            font-family: "Forum", Georgia, serif;
+            font-size: 26px;
+            line-height: 1.2;
+            font-weight: 400;
+        }
+
+        .brand-title-sub {
+            margin: 5px 0 0;
+            color: #8a8a9f;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .email-body {
+            padding: 36px;
+        }
+
+        .email-title {
+            margin: 0 0 20px;
+            color: #2f394b;
+            font-family: "Forum", Georgia, serif;
+            font-size: 34px;
+            line-height: 1.15;
+            font-weight: 400;
+        }
+
+        .email-text {
+            margin: 0 0 16px;
+            color: #2f2f2f;
+            font-size: 17px;
+            line-height: 1.65;
+        }
+
+        .email-muted {
+            color: #6f7482;
+        }
+
+        .steps-card {
+            margin: 28px 0;
+            padding: 22px 24px;
+            background: #f8fafc;
+            border: 1px solid #e8edf5;
+            border-radius: 22px;
+        }
+
+        .steps-title {
+            margin: 0 0 14px;
+            color: #394458;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .steps-list {
+            margin: 0;
+            padding-left: 22px;
+            color: #2f2f2f;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .steps-list li {
+            margin: 0 0 8px;
+        }
+
+        .button-wrap {
+            margin: 30px 0 24px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 24px;
+            background: #394458;
+            color: #ffffff !important;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .link-fallback {
+            margin: 16px 0 0;
+            color: #6f7482;
+            font-size: 14px;
+            line-height: 1.55;
+            word-break: break-all;
+        }
+
+        .notice-card {
+            margin: 28px 0 0;
+            padding: 18px 20px;
+            background: rgba(74, 111, 165, 0.08);
+            border: 1px solid rgba(74, 111, 165, 0.18);
+            border-radius: 18px;
+            color: #394458;
+            font-size: 15px;
+            line-height: 1.55;
+        }
+
+        .danger-card {
+            margin: 28px 0 0;
+            padding: 18px 20px;
+            background: rgba(220, 53, 69, 0.08);
+            border: 1px solid rgba(220, 53, 69, 0.18);
+            border-radius: 18px;
+            color: #394458;
+            font-size: 15px;
+            line-height: 1.55;
+        }
+
+        .signature {
+            margin: 28px 0 0;
+            color: #2f2f2f;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .email-footer {
+            padding: 24px 36px 32px;
+            text-align: center;
+            color: #8a8a9f;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        @media only screen and (max-width: 720px) {
+            .email-wrapper {
+                padding: 16px 0;
+            }
+
+            .email-card {
+                border-radius: 0;
+            }
+
+            .email-header,
+            .email-body,
+            .email-footer {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .email-title {
+                font-size: 28px;
+            }
+
+            .brand-logo {
+                width: 58px;
+            }
+
+            .brand-title-main {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
+        {{ preview_text }}
+    </div>
+
+    <table class="email-wrapper" role="presentation" width="100%">
+        <tr>
+            <td align="center">
+                <table class="email-container" role="presentation" width="100%">
+                    <tr>
+                        <td>
+                            <div class="email-card">
+                                <div class="email-header">
+                                    <table class="brand-row" role="presentation">
+                                        <tr>
+                                            <td width="84">
+                                                {% if logo_url %}
+                                                    <img
+                                                        src="{{ logo_url }}"
+                                                        width="56"
+                                                        height="56"
+                                                        alt="Логотип ЦОС «Пифагор»"
+                                                        style="display:block;width:56px;height:56px;object-fit:contain;"
+                                                    />
+                                                {% else %}
+                                                    <div style="width:56px;height:56px;border-radius:18px;background:#394458;color:#ffffff;text-align:center;line-height:56px;font-weight:700;">
+                                                        П
+                                                    </div>
+                                                {% endif %}
+                                            </td>
+                                            <td class="brand-title">
+                                                <h1 class="brand-title-main">Цифровая образовательная среда «Пифагор»</h1>
+                                                <p class="brand-title-sub">Спокойное пространство для обучения, наставничества и роста</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="email-body">
+                                    <h2 class="email-title">{{ title }}</h2>
+
+                                    {% block content %}{% endblock %}
+
+                                    {% if next_steps %}
+                                        <div class="steps-card">
+                                            <p class="steps-title">Что дальше?</p>
+                                            <ol class="steps-list">
+                                                {% for step in next_steps %}
+                                                    <li>{{ step }}</li>
+                                                {% endfor %}
+                                            </ol>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if action_url and action_label %}
+                                        <div class="button-wrap">
+                                            <a class="button" href="{{ action_url }}">{{ action_label }}</a>
+                                        </div>
+
+                                        <p class="link-fallback">
+                                            Если кнопка не открывается, скопируйте ссылку в браузер:<br>
+                                            <a href="{{ action_url }}">{{ action_url }}</a>
+                                        </p>
+                                    {% endif %}
+
+                                    {% if security_note %}
+                                        <div class="notice-card">
+                                            {{ security_note }}
+                                        </div>
+                                    {% endif %}
+
+                                    <p class="signature">
+                                        {{ signature }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="email-footer">
+                                <strong>ЦОС «Пифагор»</strong><br>
+                                Это автоматическое письмо. Пожалуйста, не отвечайте на него.
+                                {% if support_email %}
+                                    <br>Для связи используйте: {{ support_email }}
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -257,3 +257,6 @@ precommit-clean: ## Очистить cache pre-commit
 
 .PHONY: install
 install: backend-install frontend-install precommit-install ## Установить зависимости и pre-commit hooks
+
+.PHONY: check
+check: precommit-run ci ## Выполнить pre-commit и полный локальный CI

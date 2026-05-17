@@ -1,0 +1,14 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+
+    <p class="email-text">
+        Ваша заявка подтверждена. Теперь вам доступны разделы платформы,
+        связанные с вашей ролью.
+    </p>
+
+    <p class="email-text email-muted">
+        Проверьте данные профиля и переходите к работе в личном кабинете.
+    </p>
+{% endblock %}
