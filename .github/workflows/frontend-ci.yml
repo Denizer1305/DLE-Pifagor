@@ -9,23 +9,10 @@ on:
             - "fix/**"
             - "refactor/**"
             - "chore/**"
-        paths:
-            - "frontend/**"
-            - ".github/workflows/frontend-ci.yml"
-            - ".pre-commit-config.yaml"
-            - "Makefile"
-            - ".env.example"
-
     pull_request:
         branches:
             - master
             - dev
-        paths:
-            - "frontend/**"
-            - ".github/workflows/frontend-ci.yml"
-            - ".pre-commit-config.yaml"
-            - "Makefile"
-            - ".env.example"
 
 permissions:
     contents: read

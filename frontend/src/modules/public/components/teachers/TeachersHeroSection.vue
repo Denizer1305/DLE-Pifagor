@@ -1,17 +1,19 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 
-import BaseIcon from "../../../../components/ui/BaseIcon.vue";
-import { useFloatingCanvas } from "../../shared/composables/useFloatingCanvas";
+import { useFloatingCanvas } from "@/modules/public/composables/useFloatingCanvas";
+import type {
+    PublicTeachersAction,
+    TeachersHeroContent,
+} from "@/modules/public/types/public-teachers.types";
 
-defineProps({
-    content: {
-        type: Object,
-        required: true,
-    },
-});
+interface Props {
+    content: TeachersHeroContent;
+}
 
-const teachersHeroCanvasRef = ref(null);
+defineProps<Props>();
+
+const teachersHeroCanvasRef = ref<HTMLCanvasElement | null>(null);
 
 const gridLines = [
     "vertical left",
@@ -29,13 +31,16 @@ const rings = ["one", "two", "three"];
 
 useFloatingCanvas(teachersHeroCanvasRef, {
     pointsCount: 48,
+    mobilePointsCount: 24,
     lineDistance: 135,
 });
 
-function getActionClass(action) {
+function getActionClass(action: PublicTeachersAction): string[] {
+    const variant = action.variant || "primary";
+
     return [
         "btn",
-        `btn-${action.variant}`,
+        variant === "primary" ? "btn-primary" : "btn-light",
         "fade-in",
     ];
 }
@@ -81,14 +86,14 @@ function getActionClass(action) {
 
             <div
                 v-for="line in movingLines"
-                :key="`teachers-moving-line-${line}`"
+                :key="`teachers-line-${line}`"
                 class="teachers-hero-moving-line"
                 :class="line"
             ></div>
 
             <div
                 v-for="dot in floatingDots"
-                :key="`teachers-floating-dot-${dot}`"
+                :key="`teachers-dot-${dot}`"
                 class="teachers-hero-floating-dot"
                 :class="dot"
             ></div>
@@ -102,10 +107,7 @@ function getActionClass(action) {
                         :key="badge.text"
                         class="teachers-hero-badge"
                     >
-                        <BaseIcon
-                            :name="badge.icon"
-                            size="15"
-                        />
+                        <i :class="badge.icon"></i>
                         {{ badge.text }}
                     </span>
                 </div>
@@ -128,7 +130,7 @@ function getActionClass(action) {
                         :key="highlight"
                         class="teachers-hero-highlight-item"
                     >
-                        <span class="teachers-hero-highlight-dot"></span>
+                        <i class="fas fa-circle"></i>
                         <span>{{ highlight }}</span>
                     </div>
                 </div>
@@ -144,11 +146,10 @@ function getActionClass(action) {
                     >
                         {{ action.label }}
 
-                        <BaseIcon
+                        <i
                             v-if="action.icon"
-                            :name="action.icon"
-                            size="16"
-                        />
+                            :class="action.icon"
+                        ></i>
                     </component>
                 </div>
             </div>

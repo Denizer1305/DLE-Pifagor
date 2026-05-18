@@ -1,24 +1,23 @@
-<script setup>
-    import BaseIcon from "../../../../components/ui/BaseIcon.vue";
+<script setup lang="ts">
+import type {
+    PublicTeachersAction,
+    TeachersCtaContent,
+} from "@/modules/public/types/public-teachers.types";
 
-    defineProps({
-        content: {
-            type: Object,
-            required: true,
-        },
-    });
+interface Props {
+    content: TeachersCtaContent;
+}
 
-    function getActionClass(action) {
-        const variant = action?.variant || "primary";
+defineProps<Props>();
 
-        return [
-            "btn",
-            variant === "secondary" || variant === "light"
-                ? "btn-secondary"
-                : "btn-primary",
-            "fade-in",
-        ];
-    }
+function getActionClass(action: PublicTeachersAction): string[] {
+    const variant = action.variant || "primary";
+
+    return [
+        "cta-btn",
+        variant === "primary" ? "primary" : "secondary",
+    ];
+}
 </script>
 
 <template>
@@ -34,20 +33,21 @@
                 </p>
 
                 <div class="teachers-page-cta-actions">
-                    <RouterLink
+                    <component
+                        :is="action.to ? 'RouterLink' : 'a'"
                         v-for="action in content.actions"
                         :key="action.label"
                         :to="action.to"
+                        :href="action.href"
                         :class="getActionClass(action)"
                     >
                         {{ action.label }}
 
-                        <BaseIcon
+                        <i
                             v-if="action.icon"
-                            :name="action.icon"
-                            size="16"
-                        />
-                    </RouterLink>
+                            :class="action.icon"
+                        ></i>
+                    </component>
                 </div>
 
                 <div class="teachers-page-cta-note">

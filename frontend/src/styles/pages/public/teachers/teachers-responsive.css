@@ -95,6 +95,10 @@
         padding: 34px;
         border-radius: var(--radius-30);
     }
+
+    .teachers-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 900px) {
@@ -116,6 +120,18 @@
 
     .teachers-shell {
         border-radius: var(--radius-30);
+    }
+
+    .teachers-filter-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .teachers-organization-filter-head {
+        display: grid;
+    }
+
+    .teachers-current-count {
+        width: fit-content;
     }
 }
 
@@ -284,6 +300,19 @@
     .teacher-modal-section {
         padding: 18px;
         border-radius: var(--radius-22);
+    }
+
+    .teachers-shell {
+        padding: 18px;
+        border-radius: var(--radius-28);
+    }
+
+    .teachers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-card-media {
+        height: 240px;
     }
 }
 

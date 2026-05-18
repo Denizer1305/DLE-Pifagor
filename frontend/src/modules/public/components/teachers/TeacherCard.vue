@@ -1,19 +1,21 @@
-<script setup>
-defineProps({
-    teacher: {
-        type: Object,
-        required: true,
-    },
-});
+<script setup lang="ts">
+import type { PublicTeacher } from "@/modules/public/types/public-teachers.types";
 
-const emit = defineEmits({
-    open: (teacher) => Boolean(teacher),
-});
+interface Props {
+    teacher: PublicTeacher;
+}
+
+interface Emits {
+    (event: "open", teacher: PublicTeacher): void;
+}
+
+defineProps<Props>();
+const emit = defineEmits<Emits>();
 </script>
 
 <template>
     <button
-        class="teacher-card fade-in"
+        class="teacher-card fade-in visible"
         type="button"
         @click="emit('open', teacher)"
     >
@@ -21,6 +23,7 @@ const emit = defineEmits({
             <img
                 :src="teacher.image.src"
                 :alt="teacher.image.alt"
+                loading="lazy"
             />
         </div>
 
@@ -38,7 +41,7 @@ const emit = defineEmits({
             </div>
 
             <div
-                v-if="teacher.tags?.length"
+                v-if="teacher.tags.length"
                 class="teacher-card-tags"
             >
                 <span

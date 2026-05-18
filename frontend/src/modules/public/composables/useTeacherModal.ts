@@ -4,20 +4,22 @@ import type { PublicTeacher } from "@/modules/public/types/public-teachers.types
 export function useTeacherModal() {
     const selectedTeacher = ref<PublicTeacher | null>(null);
 
-    const isTeacherModalOpen = computed(() => Boolean(selectedTeacher.value));
+    const isTeacherModalOpen = computed(() => {
+        return Boolean(selectedTeacher.value);
+    });
 
-    function openTeacherModal(teacher: PublicTeacher) {
+    function openTeacher(teacher: PublicTeacher): void {
         selectedTeacher.value = teacher;
     }
 
-    function closeTeacherModal() {
+    function closeTeacher(): void {
         selectedTeacher.value = null;
     }
 
     return {
         selectedTeacher,
         isTeacherModalOpen,
-        openTeacherModal,
-        closeTeacherModal,
+        openTeacher,
+        closeTeacher,
     };
 }

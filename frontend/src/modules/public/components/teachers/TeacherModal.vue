@@ -1,28 +1,33 @@
-<script setup>
-import { onBeforeUnmount, watch } from "vue";
+<script setup lang="ts">
+import { computed, onBeforeUnmount, watch } from "vue";
 
-import BaseIcon from "../../../../components/ui/BaseIcon.vue";
+import type { PublicTeacher } from "@/modules/public/types/public-teachers.types";
 
-const props = defineProps({
-    teacher: {
-        type: Object,
-        default: null,
-    },
-    isOpen: {
-        type: Boolean,
-        default: false,
-    },
+interface Props {
+    teacher: PublicTeacher | null;
+    isOpen: boolean;
+}
+
+interface Emits {
+    (event: "close"): void;
+}
+
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
+
+const modalTitleId = computed(() => {
+    if (!props.teacher) {
+        return "teacher-modal-title";
+    }
+
+    return `teacher-${props.teacher.id}-title`;
 });
 
-const emit = defineEmits({
-    close: null,
-});
-
-function closeModal() {
+function closeModal(): void {
     emit("close");
 }
 
-function handleKeydown(event) {
+function handleKeydown(event: KeyboardEvent): void {
     if (event.key === "Escape") {
         closeModal();
     }
@@ -31,14 +36,17 @@ function handleKeydown(event) {
 watch(
     () => props.isOpen,
     (isOpen) => {
+        document.body.classList.toggle("is-modal-open", isOpen);
+
         if (isOpen) {
-            document.body.classList.add("is-modal-open");
             window.addEventListener("keydown", handleKeydown);
             return;
         }
 
-        document.body.classList.remove("is-modal-open");
         window.removeEventListener("keydown", handleKeydown);
+    },
+    {
+        immediate: true,
     },
 );
 
@@ -51,27 +59,26 @@ onBeforeUnmount(() => {
 <template>
     <Teleport to="body">
         <div
-            v-if="isOpen && teacher"
-            class="teacher-modal-overlay"
-            role="presentation"
+            class="modal-overlay"
+            :class="{ active: isOpen && teacher }"
+            :aria-hidden="!isOpen"
             @click.self="closeModal"
         >
             <div
-                class="teacher-modal-window"
+                v-if="teacher"
+                class="modal-window teacher-modal"
                 role="dialog"
                 aria-modal="true"
-                :aria-labelledby="`${teacher.id}-title`"
+                :aria-labelledby="modalTitleId"
+                @click.stop
             >
                 <button
-                    class="teacher-modal-close"
+                    class="modal-close"
                     type="button"
                     aria-label="Закрыть окно"
                     @click="closeModal"
                 >
-                    <BaseIcon
-                        name="close"
-                        size="18"
-                    />
+                    <i class="fas fa-times"></i>
                 </button>
 
                 <div class="teacher-modal-content">
@@ -88,7 +95,7 @@ onBeforeUnmount(() => {
                         </div>
 
                         <h3
-                            :id="`${teacher.id}-title`"
+                            :id="modalTitleId"
                             class="teacher-modal-name"
                         >
                             {{ teacher.name }}
@@ -103,7 +110,7 @@ onBeforeUnmount(() => {
                         </p>
 
                         <div
-                            v-if="teacher.tags?.length"
+                            v-if="teacher.tags.length"
                             class="teacher-modal-tags"
                         >
                             <span
@@ -115,7 +122,10 @@ onBeforeUnmount(() => {
                             </span>
                         </div>
 
-                        <div class="teacher-modal-section">
+                        <div
+                            v-if="teacher.awards.length"
+                            class="teacher-modal-section"
+                        >
                             <div class="teacher-modal-section-title">
                                 Награды и достижения
                             </div>
@@ -125,13 +135,23 @@ onBeforeUnmount(() => {
                                     v-for="award in teacher.awards"
                                     :key="award"
                                 >
-                                    <BaseIcon
-                                        name="award"
-                                        size="17"
-                                    />
+                                    <i class="fas fa-award"></i>
                                     <span>{{ award }}</span>
                                 </li>
                             </ul>
+                        </div>
+
+                        <div
+                            v-if="teacher.department"
+                            class="teacher-modal-section"
+                        >
+                            <div class="teacher-modal-section-title">
+                                Отделение
+                            </div>
+
+                            <p class="teacher-modal-description">
+                                {{ teacher.department.name }}
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -9,23 +9,10 @@ on:
             - "fix/**"
             - "refactor/**"
             - "chore/**"
-        paths:
-            - "backend/**"
-            - ".github/workflows/backend-ci.yml"
-            - ".pre-commit-config.yaml"
-            - "Makefile"
-            - ".env.example"
-
     pull_request:
         branches:
             - master
             - dev
-        paths:
-            - "backend/**"
-            - ".github/workflows/backend-ci.yml"
-            - ".pre-commit-config.yaml"
-            - "Makefile"
-            - ".env.example"
 
 permissions:
     contents: read
@@ -111,7 +98,7 @@ jobs:
               run: python -m black --check apps config tests
 
             - name: Isort check
-              run: python -m isort --check-only apps config tests
+              run: python -m isort --profile black -o apps -o config --check-only apps config tests
 
             - name: Run backend tests
               run: python -m pytest

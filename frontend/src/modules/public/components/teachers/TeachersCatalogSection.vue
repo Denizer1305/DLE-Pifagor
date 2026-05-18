@@ -1,68 +1,31 @@
-<script setup>
-import { computed } from "vue";
+<script setup lang="ts">
+import PublicSectionHead from "@/modules/public/components/shared/PublicSectionHead.vue";
+import TeacherCard from "@/modules/public/components/teachers/TeacherCard.vue";
+import TeachersOrganizationFilter from "@/modules/public/components/teachers/TeachersOrganizationFilter.vue";
+import type {
+    PublicTeacher,
+    PublicTeachersPageData,
+    TeachersCatalogContent,
+} from "@/modules/public/types/public-teachers.types";
 
-import BaseIcon from "../../../../components/ui/BaseIcon.vue";
-import PublicSectionHead from "../../shared/components/PublicSectionHead.vue";
-import TeacherCard from "./TeacherCard.vue";
-import TeachersOrganizationFilter from "./TeachersOrganizationFilter.vue";
-
-const props = defineProps({
-    content: {
-        type: Object,
-        required: true,
-    },
-    organizations: {
-        type: Array,
-        required: true,
-    },
-    teachers: {
-        type: Array,
-        required: true,
-    },
-    selectedOrganizationSlug: {
-        type: String,
-        required: true,
-    },
-    isLoading: {
-        type: Boolean,
-        default: false,
-    },
-    errorMessage: {
-        type: String,
-        default: "",
-    },
-});
-
-const emit = defineEmits({
-    "update:selectedOrganizationSlug": (value) => typeof value === "string",
-    "open-teacher": (teacher) => Boolean(teacher),
-});
-
-const selectedOrganization = computed(() => {
-    return props.organizations.find((organization) => {
-        return organization.slug === props.selectedOrganizationSlug;
-    });
-});
-
-const filteredTeachers = computed(() => {
-    if (!props.selectedOrganizationSlug) {
-        return [];
-    }
-
-    return props.teachers.filter((teacher) => {
-        return teacher.organizationSlug === props.selectedOrganizationSlug;
-    });
-});
-
-const hasOrganizations = computed(() => props.organizations.length > 0);
-
-function updateSelectedOrganization(slug) {
-    emit("update:selectedOrganizationSlug", slug);
+interface Props {
+    content: TeachersCatalogContent;
+    pageData: PublicTeachersPageData;
+    search: string;
+    subject: string;
+    isLoading: boolean;
+    errorMessage: string;
 }
 
-function openTeacher(teacher) {
-    emit("open-teacher", teacher);
+interface Emits {
+    (event: "update:search", value: string): void;
+    (event: "update:subject", value: string): void;
+    (event: "reset-filters"): void;
+    (event: "open-teacher", teacher: PublicTeacher): void;
 }
+
+defineProps<Props>();
+const emit = defineEmits<Emits>();
 </script>
 
 <template>
@@ -77,42 +40,27 @@ function openTeacher(teacher) {
                 :description="content.description"
             />
 
-            <div class="teachers-shell fade-in">
+            <div class="teachers-shell fade-in visible">
                 <TeachersOrganizationFilter
-                    v-if="hasOrganizations"
-                    :model-value="selectedOrganizationSlug"
-                    :organizations="organizations"
-                    @update:model-value="updateSelectedOrganization"
+                    :organization="pageData.organization"
+                    :subjects="pageData.subjects"
+                    :search="search"
+                    :subject="subject"
+                    :is-fallback="pageData.meta.isFallback"
+                    :teachers-count="pageData.meta.teachersCount"
+                    :search-placeholder="content.searchPlaceholder"
+                    :subject-placeholder="content.subjectPlaceholder"
+                    @update:search="emit('update:search', $event)"
+                    @update:subject="emit('update:subject', $event)"
+                    @reset="emit('reset-filters')"
                 />
 
                 <div
                     v-if="errorMessage"
                     class="teachers-api-status warning"
                 >
-                    <BaseIcon
-                        name="info"
-                        size="17"
-                    />
+                    <i class="fas fa-info-circle"></i>
                     <span>{{ errorMessage }}</span>
-                </div>
-
-                <div
-                    v-if="selectedOrganization"
-                    class="teachers-current-organization"
-                >
-                    <div>
-                        <span class="teachers-current-label">
-                            Сейчас выбрана организация
-                        </span>
-
-                        <strong>
-                            {{ selectedOrganization.name }}
-                        </strong>
-                    </div>
-
-                    <span class="teachers-current-count">
-                        {{ filteredTeachers.length }} преподавателей
-                    </span>
                 </div>
 
                 <div
@@ -120,11 +68,7 @@ function openTeacher(teacher) {
                     class="teachers-empty-state"
                 >
                     <div class="teachers-empty-icon">
-                        <BaseIcon
-                            name="spinner"
-                            size="32"
-                            class="teachers-loading-icon"
-                        />
+                        <i class="fas fa-spinner teachers-loading-icon"></i>
                     </div>
 
                     <h3>
@@ -137,26 +81,23 @@ function openTeacher(teacher) {
                 </div>
 
                 <div
-                    v-else-if="filteredTeachers.length"
+                    v-else-if="pageData.teachers.length"
                     class="teachers-grid"
                 >
                     <TeacherCard
-                        v-for="teacher in filteredTeachers"
+                        v-for="teacher in pageData.teachers"
                         :key="teacher.id"
                         :teacher="teacher"
-                        @open="openTeacher"
+                        @open="emit('open-teacher', $event)"
                     />
                 </div>
 
                 <div
-                    v-else-if="!hasOrganizations"
+                    v-else-if="!pageData.organization"
                     class="teachers-empty-state"
                 >
                     <div class="teachers-empty-icon">
-                        <BaseIcon
-                            name="building-columns"
-                            size="32"
-                        />
+                        <i class="fas fa-building-columns"></i>
                     </div>
 
                     <h3>
@@ -173,10 +114,7 @@ function openTeacher(teacher) {
                     class="teachers-empty-state"
                 >
                     <div class="teachers-empty-icon">
-                        <BaseIcon
-                            name="teacher"
-                            size="32"
-                        />
+                        <i class="fas fa-chalkboard-user"></i>
                     </div>
 
                     <h3>
