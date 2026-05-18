@@ -1,7 +1,8 @@
-@import "./hero.css";
-@import "./story.css";
-@import "./mission.css";
-@import "./roadmap.css";
-@import "./team.css";
-@import "./gratitude.css";
-@import "./cta.css";
+@import "./about-cta.css";
+@import "./about-gratitude.css";
+@import "./about-hero.css";
+@import "./about-mission.css";
+@import "./about-roadmap.css";
+@import "./about-story.css";
+@import "./about-team.css";
+@import "./about-responsive.css";

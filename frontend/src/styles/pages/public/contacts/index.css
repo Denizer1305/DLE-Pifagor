@@ -1,4 +1,4 @@
-@import "./hero.css";
-@import "./main.css";
-@import "./form.css";
-@import "./cta.css";
+@import "./contacts-cta.css";
+@import "./contacts-form.css";
+@import "./contacts-hero.css";
+@import "./contacts-responsive.css";

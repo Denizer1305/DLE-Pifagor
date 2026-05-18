@@ -1,4 +1,5 @@
-@import "./hero.css";
-@import "./catalog.css";
-@import "./modal.css";
-@import "./cta.css";
+@import "./teachers-catalog.css";
+@import "./teachers-cta.css";
+@import "./teachers-hero.css";
+@import "./teachers-modal.css";
+@import "./teachers-responsive.css";

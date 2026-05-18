@@ -8,24 +8,32 @@ export const publicNavigationItems: PublicNavigationItem[] = [
     {
         label: "Главная",
         routeName: "home",
+        icon: "fa-solid fa-house",
+        description: "Приветственная страница платформы",
     },
     {
         label: "О платформе",
         routeName: "about",
+        icon: "fa-solid fa-circle-info",
+        description: "История, миссия и развитие",
     },
     {
         label: "Преподаватели",
         routeName: "teachers",
+        icon: "fa-solid fa-chalkboard-user",
+        description: "Педагоги образовательной организации",
     },
     {
         label: "Контакты",
         routeName: "contacts",
+        icon: "fa-solid fa-envelope",
+        description: "Связаться с командой проекта",
     },
 ];
 
 export const publicFooterGroups: PublicFooterGroup[] = [
     {
-        title: "Платформа",
+        title: "Навигация",
         links: [
             {
                 label: "Главная",
@@ -46,7 +54,7 @@ export const publicFooterGroups: PublicFooterGroup[] = [
         ],
     },
     {
-        title: "Пользователям",
+        title: "Аккаунт",
         links: [
             {
                 label: "Войти",

@@ -1,9 +1,8 @@
 .fade-in {
-    opacity: 0;
     transform: translateY(24px) scale(0.985);
     transition:
-        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 0.9s var(--ease-emphasis),
+        transform 0.9s var(--ease-emphasis);
 }
 
 .fade-in.visible {
@@ -11,56 +10,17 @@
     transform: translateY(0) scale(1);
 }
 
-.fade-in-fast {
-    opacity: 0;
-    transform: translateY(14px);
+.page-fade-enter-active,
+.page-fade-leave-active {
     transition:
-        opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity var(--duration-fast) ease,
+        transform var(--duration-fast) ease;
 }
 
-.fade-in-fast.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.scale-in {
+.page-fade-enter-from,
+.page-fade-leave-to {
     opacity: 0;
-    transform: scale(0.96);
-    transition:
-        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.scale-in.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.slide-in-left {
-    opacity: 0;
-    transform: translateX(-24px);
-    transition:
-        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.slide-in-left.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.slide-in-right {
-    opacity: 0;
-    transform: translateX(24px);
-    transition:
-        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.slide-in-right.visible {
-    opacity: 1;
-    transform: translateX(0);
+    transform: translateY(6px);
 }
 
 @keyframes heroFloat {
@@ -272,6 +232,28 @@
     }
 }
 
+@keyframes teachersIconSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .teacher-card:hover,
+    .team-member:hover,
+    .contact-card:hover,
+    .feature-card:hover,
+    .ai-card:hover,
+    .partner-card:hover,
+    .testimonial-panel:hover {
+        transform: none;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -280,14 +262,5 @@
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
-    }
-
-    .fade-in,
-    .fade-in-fast,
-    .scale-in,
-    .slide-in-left,
-    .slide-in-right {
-        opacity: 1 !important;
-        transform: none !important;
     }
 }

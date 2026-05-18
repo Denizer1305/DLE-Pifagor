@@ -1,7 +1,1 @@
-@import "./buttons.css";
-@import "./forms.css";
-@import "./badges.css";
-@import "./cards.css";
-@import "./modals.css";
-@import "./tables.css";
-@import "./custom-select.css";
+@import "./base/index.css";

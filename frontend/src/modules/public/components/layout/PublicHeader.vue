@@ -4,9 +4,9 @@ import { RouterLink, useRoute } from "vue-router";
 
 import PublicMobileMenu from "@/modules/public/components/layout/PublicMobileMenu.vue";
 import PublicThemeToggle from "@/modules/public/components/layout/PublicThemeToggle.vue";
-import { publicNavigationItems } from "@/modules/public/data/public-navigation.data";
 import { useMobileMenu } from "@/modules/public/composables/useMobileMenu";
 import { useScrollHeader } from "@/modules/public/composables/useScrollHeader";
+import { publicNavigationItems } from "@/modules/public/data/public-navigation.data";
 import logoSrc from "@/assets/image/logo/logo.svg";
 
 interface Props {
@@ -24,7 +24,6 @@ const route = useRoute();
 
 const {
     isMobileMenuOpen,
-    mobileMenuIcon,
     mobileMenuLabel,
     closeMobileMenu,
     toggleMobileMenu,
@@ -34,7 +33,7 @@ const { isScrolled } = useScrollHeader();
 
 const headerClasses = computed(() => {
     return {
-        "public-header--scrolled": isScrolled.value,
+        "is-scrolled": isScrolled.value,
     };
 });
 
@@ -45,77 +44,84 @@ function isActiveRoute(routeName: string): boolean {
 
 <template>
     <header
-        class="public-header"
+        class="site-header"
         :class="headerClasses"
     >
-        <div class="container public-header__container">
-            <RouterLink
-                class="public-header__brand"
-                :to="{ name: 'home' }"
-                aria-label="Цифровая образовательная среда «Пифагор»"
-            >
-                <img
-                    class="public-header__logo"
-                    :src="logoSrc"
-                    alt="ЦОС «Пифагор»"
-                />
+        <div class="container">
+            <div class="header-shell">
+                <div class="logo-header">
+                    <RouterLink
+                        :to="{ name: 'home' }"
+                        aria-label="Цифровая образовательная среда «Пифагор»"
+                    >
+                        <img
+                            :src="logoSrc"
+                            alt="ЦОС «Пифагор»"
+                        />
+                    </RouterLink>
+                </div>
 
-                <span class="public-header__brand-text">
-                    <strong>Пифагор</strong>
-                    <small>цифровая образовательная среда</small>
-                </span>
-            </RouterLink>
-
-            <nav
-                class="public-header__nav"
-                aria-label="Основная навигация"
-            >
-                <RouterLink
-                    v-for="item in publicNavigationItems"
-                    :key="item.routeName"
-                    class="public-header__nav-link"
-                    :class="{ 'is-active': isActiveRoute(item.routeName) }"
-                    :to="{ name: item.routeName }"
+                <nav
+                    class="header-nav"
+                    aria-label="Основная навигация"
                 >
-                    {{ item.label }}
-                </RouterLink>
-            </nav>
+                    <ul class="nav-links">
+                        <li
+                            v-for="item in publicNavigationItems"
+                            :key="item.routeName"
+                        >
+                            <RouterLink
+                                :to="{ name: item.routeName }"
+                                :class="{ active: isActiveRoute(item.routeName) }"
+                            >
+                                {{ item.label }}
+                            </RouterLink>
+                        </li>
+                    </ul>
+                </nav>
 
-            <div class="public-header__actions">
-                <PublicThemeToggle
-                    :is-dark-theme="props.isDarkTheme"
-                    @toggle="emit('toggle-theme')"
-                />
+                <div class="header-actions">
+                    <PublicThemeToggle
+                        :is-dark-theme="props.isDarkTheme"
+                        @toggle="emit('toggle-theme')"
+                    />
 
-                <RouterLink
-                    class="public-header__login"
-                    :to="{ name: 'login' }"
-                >
-                    Войти
-                </RouterLink>
+                    <RouterLink
+                        class="header-login-link"
+                        :to="{ name: 'login' }"
+                    >
+                        Войти
+                    </RouterLink>
 
-                <RouterLink
-                    class="public-header__register"
-                    :to="{ name: 'register' }"
-                >
-                    Регистрация
-                </RouterLink>
+                    <RouterLink
+                        class="login-btn"
+                        :to="{ name: 'register' }"
+                    >
+                        Регистрация
+                    </RouterLink>
 
-                <button
-                    class="public-header__burger"
-                    type="button"
-                    :aria-label="mobileMenuLabel"
-                    @click="toggleMobileMenu"
-                >
-                    <i :class="mobileMenuIcon"></i>
-                </button>
+                    <button
+                        class="mobile-menu-toggle burger"
+                        :class="{ active: isMobileMenuOpen }"
+                        type="button"
+                        :aria-label="mobileMenuLabel"
+                        :aria-expanded="isMobileMenuOpen"
+                        @click="toggleMobileMenu"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </div>
 
         <PublicMobileMenu
             :is-open="isMobileMenuOpen"
             :navigation="publicNavigationItems"
+            :is-dark-theme="props.isDarkTheme"
             @close="closeMobileMenu"
+            @toggle-theme="emit('toggle-theme')"
         />
     </header>
 </template>

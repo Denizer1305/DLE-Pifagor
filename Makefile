@@ -9,10 +9,18 @@ PROJECT_NAME := DLE-Pifagor
 BACKEND_DIR := backend
 FRONTEND_DIR := frontend
 
-PYTHON := python
-PIP := pip
+ifeq ($(OS),Windows_NT)
+VENV_BIN ?= .venv/Scripts
+PYTHON ?= $(VENV_BIN)/python.exe
+PIP ?= $(VENV_BIN)/pip.exe
+else
+VENV_BIN ?= .venv/bin
+PYTHON ?= $(VENV_BIN)/python
+PIP ?= $(VENV_BIN)/pip
+endif
 
 MANAGE := $(PYTHON) manage.py
+CI_DJANGO_SETTINGS := DJANGO_SETTINGS_MODULE=config.settings.test
 
 BACKEND_REQUIREMENTS_LOCAL := requirements/local.txt
 BACKEND_REQUIREMENTS_TEST := requirements/test.txt
@@ -72,7 +80,7 @@ backend-install-production: ## Установить backend-зависимост
 
 .PHONY: backend-check
 backend-check: ## Проверить Django-проект
-	cd $(BACKEND_DIR) && $(MANAGE) check
+	cd $(BACKEND_DIR) && $(CI_DJANGO_SETTINGS) $(MANAGE) check
 
 .PHONY: backend-makemigrations
 backend-makemigrations: ## Создать миграции backend
@@ -80,7 +88,7 @@ backend-makemigrations: ## Создать миграции backend
 
 .PHONY: backend-check-migrations
 backend-check-migrations: ## Проверить, что миграции не забыты
-	cd $(BACKEND_DIR) && $(MANAGE) makemigrations --check --dry-run
+	cd $(BACKEND_DIR) && $(CI_DJANGO_SETTINGS) $(MANAGE) makemigrations --check --dry-run
 
 .PHONY: backend-migrate
 backend-migrate: ## Применить миграции backend
@@ -115,16 +123,16 @@ backend-lint: ## Проверить backend через ruff
 backend-format: ## Отформатировать backend через ruff, black и isort
 	cd $(BACKEND_DIR) && $(PYTHON) -m ruff check apps config tests --fix
 	cd $(BACKEND_DIR) && $(PYTHON) -m black apps config tests
-	cd $(BACKEND_DIR) && $(PYTHON) -m isort apps config tests
+	cd $(BACKEND_DIR) && $(PYTHON) -m isort --profile black -o apps -o config apps config tests
 
 .PHONY: backend-format-check
 backend-format-check: ## Проверить форматирование backend
 	cd $(BACKEND_DIR) && $(PYTHON) -m black --check apps config tests
-	cd $(BACKEND_DIR) && $(PYTHON) -m isort --check-only apps config tests
+	cd $(BACKEND_DIR) && $(PYTHON) -m isort --profile black -o apps -o config --check-only apps config tests
 
 .PHONY: backend-test
 backend-test: ## Запустить backend-тесты
-	cd $(BACKEND_DIR) && $(PYTHON) -m pytest
+	cd $(BACKEND_DIR) && $(CI_DJANGO_SETTINGS) $(PYTHON) -m pytest
 
 .PHONY: backend-test-cov
 backend-test-cov: ## Запустить backend-тесты с coverage

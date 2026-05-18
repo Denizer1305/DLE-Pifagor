@@ -96,6 +96,10 @@ repos:
             args:
                 - --profile
                 - black
+                - -o
+                - apps
+                - -o
+                - config
 
     - repo: local
       hooks:

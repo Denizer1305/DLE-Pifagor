@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 """
 Совместимый фасад email-задач users.
 
@@ -9,6 +7,8 @@ from __future__ import annotations
 
 Новая внутренняя структура лежит в apps.users.tasks.emails.
 """
+
+from __future__ import annotations
 
 from apps.users.tasks.emails import (
     send_account_anonymized_task,

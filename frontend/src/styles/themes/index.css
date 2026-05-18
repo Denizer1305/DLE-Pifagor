@@ -1,6 +1,2 @@
-@import "./assets/index.css";
-@import "./college.css";
-@import "./university.css";
-@import "./junior.css";
-@import "./middle.css";
-@import "./senior.css";
+/* Implemented theme overrides only. */
+@import "./assets/dark.css";

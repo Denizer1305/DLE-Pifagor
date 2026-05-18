@@ -75,28 +75,58 @@ def __dir__() -> list[str]:
 
 if TYPE_CHECKING:
     from apps.users.tasks.cleanup_tasks import (
-        cleanup_unused_expired_invite_codes_task,
-        deactivate_expired_invite_codes_task,
-        expire_old_join_requests_task,
+        cleanup_unused_expired_invite_codes_task as cleanup_unused_expired_invite_codes_task,
+    )
+    from apps.users.tasks.cleanup_tasks import (
+        deactivate_expired_invite_codes_task as deactivate_expired_invite_codes_task,
+    )
+    from apps.users.tasks.cleanup_tasks import (
+        expire_old_join_requests_task as expire_old_join_requests_task,
     )
     from apps.users.tasks.email_tasks import (
-        send_account_anonymized_task,
-        send_account_blocked_task,
-        send_account_scheduled_for_deletion_task,
-        send_email_verification_task,
-        send_guardian_link_approved_task,
-        send_guardian_link_rejected_task,
-        send_guardian_link_requested_task,
-        send_guardian_registration_completed_task,
-        send_join_request_approved_task,
-        send_join_request_created_for_reviewer_task,
-        send_join_request_rejected_task,
-        send_learner_profile_required_task,
-        send_teacher_registration_pending_task,
+        send_account_anonymized_task as send_account_anonymized_task,
+    )
+    from apps.users.tasks.email_tasks import (
+        send_account_blocked_task as send_account_blocked_task,
+    )
+    from apps.users.tasks.email_tasks import (
+        send_account_scheduled_for_deletion_task as send_account_scheduled_for_deletion_task,
+    )
+    from apps.users.tasks.email_tasks import (
+        send_email_verification_task as send_email_verification_task,
+    )
+    from apps.users.tasks.email_tasks import (
+        send_guardian_link_approved_task as send_guardian_link_approved_task,
+    )
+    from apps.users.tasks.email_tasks import (
+        send_guardian_link_rejected_task as send_guardian_link_rejected_task,
+    )
+    from apps.users.tasks.email_tasks import (
+        send_guardian_link_requested_task as send_guardian_link_requested_task,
+    )
+    from apps.users.tasks.email_tasks import (
+        send_guardian_registration_completed_task as send_guardian_registration_completed_task,
+    )
+    from apps.users.tasks.email_tasks import (
+        send_join_request_approved_task as send_join_request_approved_task,
+    )
+    from apps.users.tasks.email_tasks import (
+        send_join_request_created_for_reviewer_task as send_join_request_created_for_reviewer_task,
+    )
+    from apps.users.tasks.email_tasks import (
+        send_join_request_rejected_task as send_join_request_rejected_task,
+    )
+    from apps.users.tasks.email_tasks import (
+        send_learner_profile_required_task as send_learner_profile_required_task,
+    )
+    from apps.users.tasks.email_tasks import (
+        send_teacher_registration_pending_task as send_teacher_registration_pending_task,
     )
     from apps.users.tasks.lifecycle_tasks import (
-        anonymize_scheduled_users_task,
-        archive_inactive_rejected_users_task,
+        anonymize_scheduled_users_task as anonymize_scheduled_users_task,
+    )
+    from apps.users.tasks.lifecycle_tasks import (
+        archive_inactive_rejected_users_task as archive_inactive_rejected_users_task,
     )
 
 

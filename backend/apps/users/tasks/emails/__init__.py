@@ -36,5 +36,6 @@ __all__ = [
     "send_join_request_created_for_reviewer_task",
     "send_join_request_rejected_task",
     "send_learner_profile_required_task",
+    "send_password_reset_task",
     "send_teacher_registration_pending_task",
 ]

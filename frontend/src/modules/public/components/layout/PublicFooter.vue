@@ -8,78 +8,77 @@ import {
 import logoSrc from "@/assets/image/logo/logo.svg";
 
 const currentYear = new Date().getFullYear();
+
+const footerLinks = publicFooterGroups.flatMap((group) => group.links);
 </script>
 
 <template>
-    <footer class="public-footer">
-        <div class="container public-footer__container">
-            <div class="public-footer__main">
-                <div class="public-footer__brand">
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-shell">
+                <div class="footer-main">
                     <RouterLink
-                        class="public-footer__logo-link"
+                        class="footer-brand"
                         :to="{ name: 'home' }"
                     >
-                        <img
-                            class="public-footer__logo"
-                            :src="logoSrc"
-                            alt="ЦОС «Пифагор»"
-                        />
+                        <span class="footer-brand-mark">
+                            <img
+                                :src="logoSrc"
+                                alt="ЦОС «Пифагор»"
+                            />
+                        </span>
+
+                        <span class="footer-brand-copy">
+                            <h3>ЦОС «Пифагор»</h3>
+
+                            <p>
+                                Цифровая образовательная среда для обучения,
+                                наставничества, расписания, заданий и роста.
+                            </p>
+                        </span>
                     </RouterLink>
 
-                    <div>
-                        <h2>ЦОС «Пифагор»</h2>
+                    <div class="footer-socials">
+                        <a
+                            v-for="social in publicSocialLinks"
+                            :key="social.label"
+                            class="footer-social-link"
+                            :href="social.href"
+                        >
+                            <i
+                                class="base-icon"
+                                :class="social.icon"
+                            ></i>
 
-                        <p>
-                            Цифровая образовательная среда для обучения,
-                            наставничества, расписания, заданий и роста.
-                        </p>
+                            {{ social.label }}
+                        </a>
                     </div>
                 </div>
 
-                <div class="public-footer__groups">
-                    <div
-                        v-for="group in publicFooterGroups"
-                        :key="group.title"
-                        class="public-footer__group"
+                <div class="footer-bottom">
+                    <nav
+                        class="footer-nav"
+                        aria-label="Навигация в подвале"
                     >
-                        <h3>{{ group.title }}</h3>
+                        <RouterLink
+                            v-for="link in footerLinks"
+                            :key="`${link.routeName}-${link.label}`"
+                            :to="{ name: link.routeName }"
+                        >
+                            {{ link.label }}
+                        </RouterLink>
+                    </nav>
 
-                        <nav>
-                            <RouterLink
-                                v-for="link in group.links"
-                                :key="link.routeName"
-                                :to="{ name: link.routeName }"
-                            >
-                                {{ link.label }}
-                            </RouterLink>
-                        </nav>
-                    </div>
-
-                    <div class="public-footer__group">
-                        <h3>Связь</h3>
-
-                        <nav>
-                            <a
-                                v-for="social in publicSocialLinks"
-                                :key="social.label"
-                                :href="social.href"
-                            >
-                                <i :class="social.icon"></i>
-                                {{ social.label }}
-                            </a>
-                        </nav>
-                    </div>
+                    <p class="footer-note">
+                        Спокойное пространство для обучения, наставничества и развития.
+                    </p>
                 </div>
-            </div>
 
-            <div class="public-footer__bottom">
-                <span>
-                    © {{ currentYear }} ЦОС «Пифагор». Все права защищены.
-                </span>
-
-                <span>
-                    Спокойное пространство для обучения, наставничества и развития.
-                </span>
+                <div class="footer-legal">
+                    <p>
+                        © {{ currentYear }} ЦОС «Пифагор». Все права защищены.
+                    </p>
+                </div>
             </div>
         </div>
     </footer>

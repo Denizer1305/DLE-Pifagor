@@ -71,25 +71,43 @@ def __dir__() -> list[str]:
 
 if TYPE_CHECKING:
     from apps.users.emails.guardian_emails import (
-        send_guardian_link_approved_email,
-        send_guardian_link_rejected_email,
-        send_guardian_link_requested_email,
+        send_guardian_link_approved_email as send_guardian_link_approved_email,
+    )
+    from apps.users.emails.guardian_emails import (
+        send_guardian_link_rejected_email as send_guardian_link_rejected_email,
+    )
+    from apps.users.emails.guardian_emails import (
+        send_guardian_link_requested_email as send_guardian_link_requested_email,
     )
     from apps.users.emails.join_request_emails import (
-        send_join_request_approved_email,
-        send_join_request_created_for_reviewer_email,
-        send_join_request_rejected_email,
+        send_join_request_approved_email as send_join_request_approved_email,
+    )
+    from apps.users.emails.join_request_emails import (
+        send_join_request_created_for_reviewer_email as send_join_request_created_for_reviewer_email,
+    )
+    from apps.users.emails.join_request_emails import (
+        send_join_request_rejected_email as send_join_request_rejected_email,
     )
     from apps.users.emails.lifecycle_emails import (
-        send_account_anonymized_email,
-        send_account_blocked_email,
-        send_account_scheduled_for_deletion_email,
+        send_account_anonymized_email as send_account_anonymized_email,
+    )
+    from apps.users.emails.lifecycle_emails import (
+        send_account_blocked_email as send_account_blocked_email,
+    )
+    from apps.users.emails.lifecycle_emails import (
+        send_account_scheduled_for_deletion_email as send_account_scheduled_for_deletion_email,
     )
     from apps.users.emails.registration_emails import (
-        send_email_verification_email,
-        send_guardian_registration_completed_email,
-        send_learner_profile_required_email,
-        send_teacher_registration_pending_email,
+        send_email_verification_email as send_email_verification_email,
+    )
+    from apps.users.emails.registration_emails import (
+        send_guardian_registration_completed_email as send_guardian_registration_completed_email,
+    )
+    from apps.users.emails.registration_emails import (
+        send_learner_profile_required_email as send_learner_profile_required_email,
+    )
+    from apps.users.emails.registration_emails import (
+        send_teacher_registration_pending_email as send_teacher_registration_pending_email,
     )
 
 

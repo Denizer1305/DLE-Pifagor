@@ -131,80 +131,156 @@ def __dir__() -> list[str]:
 
 if TYPE_CHECKING:
     from apps.users.services.audit_services import (
-        create_registration_attempt_log,
-        create_user_audit_log,
-        log_email_verified,
-        log_failed_login,
-        log_join_request_approved,
-        log_join_request_created,
-        log_join_request_rejected,
-        log_user_registered,
+        create_registration_attempt_log as create_registration_attempt_log,
+    )
+    from apps.users.services.audit_services import (
+        create_user_audit_log as create_user_audit_log,
+    )
+    from apps.users.services.audit_services import (
+        log_email_verified as log_email_verified,
+    )
+    from apps.users.services.audit_services import log_failed_login as log_failed_login
+    from apps.users.services.audit_services import (
+        log_join_request_approved as log_join_request_approved,
+    )
+    from apps.users.services.audit_services import (
+        log_join_request_created as log_join_request_created,
+    )
+    from apps.users.services.audit_services import (
+        log_join_request_rejected as log_join_request_rejected,
+    )
+    from apps.users.services.audit_services import (
+        log_user_registered as log_user_registered,
+    )
+    from apps.users.services.auth_services import authenticate_user as authenticate_user
+    from apps.users.services.auth_services import (
+        blacklist_refresh_token as blacklist_refresh_token,
     )
     from apps.users.services.auth_services import (
-        authenticate_user,
-        blacklist_refresh_token,
-        clear_refresh_token_cookie,
-        create_token_pair_for_user,
-        get_refresh_token_from_request,
-        login_user,
-        refresh_access_token,
-        set_refresh_token_cookie,
+        clear_refresh_token_cookie as clear_refresh_token_cookie,
+    )
+    from apps.users.services.auth_services import (
+        create_token_pair_for_user as create_token_pair_for_user,
+    )
+    from apps.users.services.auth_services import (
+        get_refresh_token_from_request as get_refresh_token_from_request,
+    )
+    from apps.users.services.auth_services import login_user as login_user
+    from apps.users.services.auth_services import (
+        refresh_access_token as refresh_access_token,
+    )
+    from apps.users.services.auth_services import (
+        set_refresh_token_cookie as set_refresh_token_cookie,
     )
     from apps.users.services.email_verification_services import (
-        build_email_verification_url,
-        create_email_verification_token,
-        verify_email_token,
+        build_email_verification_url as build_email_verification_url,
+    )
+    from apps.users.services.email_verification_services import (
+        create_email_verification_token as create_email_verification_token,
+    )
+    from apps.users.services.email_verification_services import (
+        verify_email_token as verify_email_token,
     )
     from apps.users.services.invite_code_services import (
-        create_guardian_curator_code,
-        create_guardian_learner_code,
-        create_invite_code,
-        create_teacher_registration_code,
-        use_invite_code,
-        validate_invite_code,
+        create_guardian_curator_code as create_guardian_curator_code,
+    )
+    from apps.users.services.invite_code_services import (
+        create_guardian_learner_code as create_guardian_learner_code,
+    )
+    from apps.users.services.invite_code_services import (
+        create_invite_code as create_invite_code,
+    )
+    from apps.users.services.invite_code_services import (
+        create_teacher_registration_code as create_teacher_registration_code,
+    )
+    from apps.users.services.invite_code_services import (
+        use_invite_code as use_invite_code,
+    )
+    from apps.users.services.invite_code_services import (
+        validate_invite_code as validate_invite_code,
     )
     from apps.users.services.join_requests import (
-        approve_join_request,
-        create_guardian_join_request,
-        create_join_request,
-        create_learner_join_request,
-        create_teacher_join_request,
-        reject_join_request,
+        approve_join_request as approve_join_request,
+    )
+    from apps.users.services.join_requests import (
+        create_guardian_join_request as create_guardian_join_request,
+    )
+    from apps.users.services.join_requests import (
+        create_join_request as create_join_request,
+    )
+    from apps.users.services.join_requests import (
+        create_learner_join_request as create_learner_join_request,
+    )
+    from apps.users.services.join_requests import (
+        create_teacher_join_request as create_teacher_join_request,
+    )
+    from apps.users.services.join_requests import (
+        reject_join_request as reject_join_request,
+    )
+    from apps.users.services.profiles import create_base_profile as create_base_profile
+    from apps.users.services.profiles import (
+        create_guardian_learner_link as create_guardian_learner_link,
     )
     from apps.users.services.profiles import (
-        create_base_profile,
-        create_guardian_learner_link,
-        create_guardian_profile,
-        create_learner_profile,
-        create_teacher_profile,
-        moderate_avatar,
-        reject_profile,
-        submit_avatar_for_moderation,
-        verify_learner_profile,
-        verify_teacher_profile,
+        create_guardian_profile as create_guardian_profile,
     )
+    from apps.users.services.profiles import (
+        create_learner_profile as create_learner_profile,
+    )
+    from apps.users.services.profiles import (
+        create_teacher_profile as create_teacher_profile,
+    )
+    from apps.users.services.profiles import moderate_avatar as moderate_avatar
+    from apps.users.services.profiles import reject_profile as reject_profile
+    from apps.users.services.profiles import (
+        submit_avatar_for_moderation as submit_avatar_for_moderation,
+    )
+    from apps.users.services.profiles import (
+        verify_learner_profile as verify_learner_profile,
+    )
+    from apps.users.services.profiles import (
+        verify_teacher_profile as verify_teacher_profile,
+    )
+    from apps.users.services.registration import register_guardian as register_guardian
+    from apps.users.services.registration import register_learner as register_learner
     from apps.users.services.registration import (
-        register_guardian,
-        register_learner,
-        register_minor_learner_by_guardian,
-        register_teacher,
-        submit_learner_group_request,
+        register_minor_learner_by_guardian as register_minor_learner_by_guardian,
+    )
+    from apps.users.services.registration import register_teacher as register_teacher
+    from apps.users.services.registration import (
+        submit_learner_group_request as submit_learner_group_request,
     )
     from apps.users.services.user_lifecycle_services import (
-        activate_user,
-        anonymize_user,
-        archive_user,
-        block_user,
-        schedule_user_deletion,
-        schedule_user_deletion_after_rejection,
+        activate_user as activate_user,
+    )
+    from apps.users.services.user_lifecycle_services import (
+        anonymize_user as anonymize_user,
+    )
+    from apps.users.services.user_lifecycle_services import archive_user as archive_user
+    from apps.users.services.user_lifecycle_services import block_user as block_user
+    from apps.users.services.user_lifecycle_services import (
+        schedule_user_deletion as schedule_user_deletion,
+    )
+    from apps.users.services.user_lifecycle_services import (
+        schedule_user_deletion_after_rejection as schedule_user_deletion_after_rejection,
     )
     from apps.users.services.user_settings_services import (
-        create_default_user_settings,
-        set_active_role,
-        update_compact_mode,
-        update_interface_theme,
-        update_language,
-        update_timezone,
+        create_default_user_settings as create_default_user_settings,
+    )
+    from apps.users.services.user_settings_services import (
+        set_active_role as set_active_role,
+    )
+    from apps.users.services.user_settings_services import (
+        update_compact_mode as update_compact_mode,
+    )
+    from apps.users.services.user_settings_services import (
+        update_interface_theme as update_interface_theme,
+    )
+    from apps.users.services.user_settings_services import (
+        update_language as update_language,
+    )
+    from apps.users.services.user_settings_services import (
+        update_timezone as update_timezone,
     )
 
 

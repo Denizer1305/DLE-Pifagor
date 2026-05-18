@@ -3,6 +3,8 @@ import { ApiError } from "@/services/api/api.errors";
 export type FormErrors = Record<string, string>;
 export type ApiFieldMap = Record<string, string>;
 
+const DEFAULT_FORM_ERROR_MESSAGE = "Проверьте данные и попробуйте ещё раз.";
+
 interface ParsedApiError {
     fieldErrors: Record<string, string>;
     message: string;
@@ -93,6 +95,7 @@ export function applyApiErrorsToForm(
     error: unknown,
     errors: FormErrors,
     fieldMap: ApiFieldMap = {},
+    fallbackMessage = DEFAULT_FORM_ERROR_MESSAGE,
 ): string {
     const parsedError = parseApiFormError(error);
 
@@ -104,5 +107,11 @@ export function applyApiErrorsToForm(
         }
     });
 
-    return parsedError.message || "Проверьте данные и попробуйте ещё раз.";
+    const message = parsedError.message || fallbackMessage;
+
+    if ("common" in errors && !errors.common) {
+        errors.common = message;
+    }
+
+    return message;
 }
