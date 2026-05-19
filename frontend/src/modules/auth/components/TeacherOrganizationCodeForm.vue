@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from "@/composables/useI18n";
 import AuthMessageModal from "@/modules/auth/components/AuthMessageModal.vue";
 import AuthSubmitButton from "@/modules/auth/components/AuthSubmitButton.vue";
 import { useTeacherOrganizationCodeForm } from "@/modules/auth/composables/useTeacherOrganizationCodeForm";
+
+const { tr } = useI18n();
 
 const {
     form,
@@ -35,11 +38,11 @@ const {
         </div>
 
         <h3 class="auth-success-box__title">
-            Проверьте почту
+            {{ tr("Проверьте почту") }}
         </h3>
 
         <p class="auth-success-box__text">
-            Мы отправили письмо для подтверждения email. После подтверждения заявка преподавателя будет рассмотрена организацией.
+            {{ tr("Мы отправили письмо для подтверждения email. После подтверждения заявка преподавателя будет рассмотрена организацией.") }}
         </p>
 
         <button
@@ -47,7 +50,7 @@ const {
             type="button"
             @click="goToLogin"
         >
-            Перейти ко входу
+            {{ tr("Перейти ко входу") }}
             <i class="fa-solid fa-right-to-bracket"></i>
         </button>
     </div>
@@ -63,7 +66,7 @@ const {
                 class="form-label"
                 for="inviteCode"
             >
-                Код образовательной организации
+                {{ tr("Код образовательной организации") }}
             </label>
 
             <input
@@ -73,18 +76,18 @@ const {
                 :class="{ 'is-invalid': errors.inviteCode }"
                 type="text"
                 autocomplete="off"
-                placeholder="Введите код, который выдала организация"
+                :placeholder="tr('Введите код, который выдала организация')"
             />
 
             <p
                 v-if="errors.inviteCode"
                 class="form-error"
             >
-                {{ errors.inviteCode }}
+                {{ tr(errors.inviteCode) }}
             </p>
 
             <p class="form-hint">
-                После проверки кода мы создадим аккаунт и отправим заявку администратору образовательной организации.
+                {{ tr("После проверки кода мы создадим аккаунт и отправим заявку администратору образовательной организации.") }}
             </p>
         </div>
 
@@ -95,7 +98,7 @@ const {
                 @click="goBackToRegistration"
             >
                 <i class="fa-solid fa-arrow-left"></i>
-                Назад
+                {{ tr("Назад") }}
             </button>
 
             <AuthSubmitButton

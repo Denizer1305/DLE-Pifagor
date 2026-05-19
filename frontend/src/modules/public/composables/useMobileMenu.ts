@@ -1,12 +1,15 @@
 import { computed, ref } from "vue";
 
+import { useI18n } from "@/composables/useI18n";
+
 export function useMobileMenu() {
+    const { t } = useI18n();
     const isMobileMenuOpen = ref(false);
 
     const mobileMenuLabel = computed(() => {
         return isMobileMenuOpen.value
-            ? "Закрыть меню"
-            : "Открыть меню";
+            ? t("common.closeMenu")
+            : t("common.openMenu");
     });
 
     const mobileMenuIcon = computed(() => {

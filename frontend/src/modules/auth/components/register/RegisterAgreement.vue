@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from "@/composables/useI18n";
+
 interface Props {
     modelValue: boolean;
     error?: string;
@@ -13,6 +15,7 @@ withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<Emits>();
+const { tr } = useI18n();
 
 function updateAgreement(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -32,7 +35,7 @@ function updateAgreement(event: Event): void {
             />
 
             <label for="registerAgreement">
-                Я принимаю условия использования платформы и согласен на обработку данных.
+                {{ tr("Я принимаю условия использования платформы и согласен на обработку данных.") }}
             </label>
         </div>
 
@@ -40,7 +43,7 @@ function updateAgreement(event: Event): void {
             v-if="error"
             class="form-error"
         >
-            {{ error }}
+            {{ tr(error) }}
         </p>
     </div>
 </template>

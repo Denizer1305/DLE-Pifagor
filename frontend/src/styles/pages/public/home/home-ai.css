@@ -250,10 +250,6 @@
 .ai-core-avatar {
     width: 118px;
     height: 118px;
-    border-radius: var(--radius-34);
-    background: linear-gradient(180deg, var(--white-95), var(--bg-600-92));
-    border: 1px solid var(--primary-08);
-    box-shadow: var(--shadow-md);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -266,8 +262,7 @@
 .ai-core-avatar img {
     width: 100%;
     height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 10px 18px var(--primary-14));
+    object-fit: cover;
 }
 
 .ai-logic-grid {

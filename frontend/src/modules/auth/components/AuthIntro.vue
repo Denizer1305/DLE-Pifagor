@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import heroLogo from "@/assets/image/logo/hero-logo.svg";
+import heroLogo from "@/assets/brand/logo/themes/light/hero-logo.svg";
+import { useI18n } from "@/composables/useI18n";
+import { useThemedLogo } from "@/composables/useThemedLogo";
 import type { AuthIntroConfig } from "@/modules/auth/types/auth-form.types";
 
 interface Props {
@@ -7,9 +9,12 @@ interface Props {
     logoSrc?: string;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
     logoSrc: heroLogo,
 });
+
+const { getThemedLogoSrc } = useThemedLogo();
+const { tr } = useI18n();
 </script>
 
 <template>
@@ -32,8 +37,8 @@ withDefaults(defineProps<Props>(), {
 
                     <div class="auth-logo-wrap">
                         <img
-                            :src="logoSrc"
-                            alt="Пифагор — цифровая образовательная среда"
+                            :src="getThemedLogoSrc(props.logoSrc)"
+                            :alt="tr('Пифагор — цифровая образовательная среда')"
                         />
                     </div>
                 </div>
@@ -46,16 +51,16 @@ withDefaults(defineProps<Props>(), {
                     class="auth-badge"
                 >
                     <i :class="badge.icon"></i>
-                    {{ badge.label }}
+                    {{ tr(badge.label) }}
                 </span>
             </div>
 
             <h1 class="auth-title">
-                {{ intro.title }}
+                {{ tr(intro.title) }}
             </h1>
 
             <p class="auth-subtitle">
-                {{ intro.subtitle }}
+                {{ tr(intro.subtitle) }}
             </p>
 
             <div class="auth-meta">
@@ -65,7 +70,7 @@ withDefaults(defineProps<Props>(), {
                     class="auth-meta-item"
                 >
                     <i :class="item.icon"></i>
-                    {{ item.label }}
+                    {{ tr(item.label) }}
                 </div>
             </div>
         </div>

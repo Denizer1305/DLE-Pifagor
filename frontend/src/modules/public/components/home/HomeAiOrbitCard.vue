@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useThemedLogo } from "@/composables/useThemedLogo";
+
 interface AiAvatar {
     src: string;
     alt: string;
@@ -9,6 +11,8 @@ interface Props {
 }
 
 defineProps<Props>();
+
+const { logoAISrc } = useThemedLogo();
 
 const orbitRings = ["one", "two", "three"];
 
@@ -58,7 +62,7 @@ const orbitNodes = [
 
                 <div class="ai-core-avatar">
                     <img
-                        :src="avatar.src"
+                        :src="logoAISrc"
                         :alt="avatar.alt"
                     />
                 </div>

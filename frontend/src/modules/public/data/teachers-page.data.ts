@@ -1,4 +1,4 @@
-import heroLogo from "@/assets/image/logo/hero-logo.svg";
+import heroLogo from "@/assets/brand/logo/themes/light/hero-logo.svg";
 import type { TeachersPageContent } from "@/modules/public/types/public-teachers.types";
 
 export const teachersPageContent: TeachersPageContent = {

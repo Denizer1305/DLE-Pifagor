@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from "@/composables/useI18n";
 import { usePasswordToggle } from "@/modules/auth/composables/usePasswordToggle";
 
 interface Props {
@@ -23,6 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<Emits>();
+const { tr } = useI18n();
 
 const {
     inputType,
@@ -44,7 +46,7 @@ function updateValue(event: Event): void {
             class="form-label"
             :for="id"
         >
-            {{ label }}
+            {{ tr(label) }}
         </label>
 
         <div class="password-field">
@@ -54,7 +56,7 @@ function updateValue(event: Event): void {
                 :class="{ 'is-invalid': props.error }"
                 :type="inputType"
                 :value="modelValue"
-                :placeholder="placeholder"
+                :placeholder="tr(placeholder)"
                 :autocomplete="autocomplete"
                 :required="required"
                 @input="updateValue"
@@ -74,7 +76,7 @@ function updateValue(event: Event): void {
             v-if="props.error"
             class="form-error"
         >
-            {{ props.error }}
+            {{ tr(props.error) }}
         </p>
     </div>
 </template>

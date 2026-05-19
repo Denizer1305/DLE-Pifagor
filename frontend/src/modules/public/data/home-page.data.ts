@@ -1,7 +1,7 @@
 import type { RouteLocationRaw } from "vue-router";
 
-import heroLogo from "@/assets/image/logo/hero-logo.svg";
-import anastasiaLogo from "@/assets/image/logo/Anastasia.svg";
+import heroLogo from "@/assets/brand/logo/themes/light/hero-logo.svg";
+import anastasiaLogo from "@/assets/brand/logo/themes/light/Anastasia.svg";
 
 import elros from "@/assets/image/avatars/elros.webp";
 import vamk from "@/assets/image/avatars/vamk.webp";

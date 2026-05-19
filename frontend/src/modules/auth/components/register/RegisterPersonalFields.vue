@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from "@/composables/useI18n";
 import type {
     RegisterFormErrors,
     RegisterFormState,
@@ -12,13 +13,14 @@ interface Props {
 }
 
 defineProps<Props>();
+const { tr } = useI18n();
 </script>
 
 <template>
     <div class="form-grid">
         <div class="form-group">
             <label class="form-label" for="lastName">
-                Фамилия
+                {{ tr("Фамилия") }}
             </label>
 
             <input
@@ -28,17 +30,17 @@ defineProps<Props>();
                 :class="{ 'is-invalid': errors.lastName }"
                 type="text"
                 autocomplete="family-name"
-                placeholder="Иванов"
+                :placeholder="tr('Иванов')"
             />
 
             <p v-if="errors.lastName" class="form-error form-error--compact">
-                Проверьте фамилию
+                {{ tr("Проверьте фамилию") }}
             </p>
         </div>
 
         <div class="form-group">
             <label class="form-label" for="firstName">
-                Имя
+                {{ tr("Имя") }}
             </label>
 
             <input
@@ -48,11 +50,11 @@ defineProps<Props>();
                 :class="{ 'is-invalid': errors.firstName }"
                 type="text"
                 autocomplete="given-name"
-                placeholder="Иван"
+                :placeholder="tr('Иван')"
             />
 
             <p v-if="errors.firstName" class="form-error form-error--compact">
-                Проверьте имя
+                {{ tr("Проверьте имя") }}
             </p>
         </div>
     </div>
@@ -60,7 +62,7 @@ defineProps<Props>();
     <div class="form-grid">
         <div class="form-group">
             <label class="form-label" for="middleName">
-                Отчество
+                {{ tr("Отчество") }}
             </label>
 
             <input
@@ -69,13 +71,13 @@ defineProps<Props>();
                 class="form-input"
                 type="text"
                 autocomplete="additional-name"
-                placeholder="Иванович"
+                :placeholder="tr('Иванович')"
             />
         </div>
 
         <div class="form-group">
             <label class="form-label" for="birthDate">
-                Дата рождения
+                {{ tr("Дата рождения") }}
             </label>
 
             <input
@@ -88,7 +90,7 @@ defineProps<Props>();
             />
 
             <p v-if="errors.birthDate" class="form-error form-error--compact">
-                Проверьте дату рождения
+                {{ tr("Проверьте дату рождения") }}
             </p>
         </div>
     </div>

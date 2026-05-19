@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from "@/composables/useI18n";
+
 interface Props {
     isOpen: boolean;
     title: string;
@@ -17,6 +19,7 @@ withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<Emits>();
+const { t, tr } = useI18n();
 </script>
 
 <template>
@@ -30,7 +33,7 @@ const emit = defineEmits<Emits>();
             <button
                 class="auth-message-modal__backdrop"
                 type="button"
-                aria-label="Закрыть окно"
+                :aria-label="t('common.closeWindow')"
                 @click="emit('close')"
             ></button>
 
@@ -56,11 +59,11 @@ const emit = defineEmits<Emits>();
 
                 <div class="auth-message-modal__content">
                     <h3 class="auth-message-modal__title">
-                        {{ title }}
+                        {{ tr(title) }}
                     </h3>
 
                     <p class="auth-message-modal__message">
-                        {{ message }}
+                        {{ tr(message) }}
                     </p>
                 </div>
 
@@ -69,7 +72,7 @@ const emit = defineEmits<Emits>();
                     type="button"
                     @click="emit('close')"
                 >
-                    {{ buttonLabel }}
+                    {{ tr(buttonLabel) }}
                 </button>
             </div>
         </div>

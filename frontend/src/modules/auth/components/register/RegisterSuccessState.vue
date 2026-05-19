@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from "@/composables/useI18n";
+
 interface Emits {
     (event: "go-login"): void;
 }
 
 const emit = defineEmits<Emits>();
+const { tr } = useI18n();
 </script>
 
 <template>
@@ -13,12 +16,11 @@ const emit = defineEmits<Emits>();
         </div>
 
         <h3 class="auth-success-box__title">
-            Проверьте электронную почту
+            {{ tr("Проверьте электронную почту") }}
         </h3>
 
         <p class="auth-success-box__text">
-            Мы отправили письмо для подтверждения email. После подтверждения вы сможете продолжить настройку аккаунта.
-            Если письмо не пришло, проверьте папку «Спам» или попробуйте войти позже.
+            {{ tr("Мы отправили письмо для подтверждения email. После подтверждения вы сможете продолжить настройку аккаунта. Если письмо не пришло, проверьте папку «Спам» или попробуйте войти позже.") }}
         </p>
 
         <button
@@ -26,7 +28,7 @@ const emit = defineEmits<Emits>();
             type="button"
             @click="emit('go-login')"
         >
-            Перейти ко входу
+            {{ tr("Перейти ко входу") }}
             <i class="fa-solid fa-right-to-bracket"></i>
         </button>
     </div>

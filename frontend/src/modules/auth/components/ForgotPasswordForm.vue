@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 
+import { useI18n } from "@/composables/useI18n";
 import AuthSubmitButton from "@/modules/auth/components/AuthSubmitButton.vue";
 import { useForgotPasswordForm } from "@/modules/auth/composables/useForgotPasswordForm";
 
@@ -12,6 +13,8 @@ const {
     submitForm,
     successMessage,
 } = useForgotPasswordForm();
+
+const { tr } = useI18n();
 </script>
 
 <template>
@@ -24,18 +27,18 @@ const {
         </div>
 
         <h3 class="auth-success-box__title">
-            Письмо отправлено
+            {{ tr("Письмо отправлено") }}
         </h3>
 
         <p class="auth-success-box__text">
-            {{ successMessage || "Если аккаунт с таким email существует, мы отправили инструкцию для восстановления доступа." }}
+            {{ tr(successMessage || "Если аккаунт с таким email существует, мы отправили инструкцию для восстановления доступа.") }}
         </p>
 
         <RouterLink
             class="auth-submit-btn"
             :to="{ name: 'login' }"
         >
-            Вернуться ко входу
+            {{ tr("Вернуться ко входу") }}
             <i class="fa-solid fa-right-to-bracket"></i>
         </RouterLink>
     </div>
@@ -50,7 +53,7 @@ const {
             class="form-alert form-alert--error"
         >
             <i class="fa-solid fa-circle-exclamation"></i>
-            {{ errors.common }}
+            {{ tr(errors.common) }}
         </div>
 
         <div class="form-group full">
@@ -75,7 +78,7 @@ const {
                 v-if="errors.email"
                 class="form-error"
             >
-                {{ errors.email }}
+                {{ tr(errors.email) }}
             </p>
         </div>
 
@@ -87,9 +90,9 @@ const {
         />
 
         <p class="auth-form-bottom">
-            Вспомнили пароль?
+            {{ tr("Вспомнили пароль?") }}
             <RouterLink :to="{ name: 'login' }">
-                Вернуться ко входу
+                {{ tr("Вернуться ко входу") }}
             </RouterLink>
         </p>
     </form>

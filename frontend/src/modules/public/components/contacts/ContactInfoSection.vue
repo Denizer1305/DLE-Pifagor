@@ -1,16 +1,15 @@
-<script setup>
-import BaseIcon from "../../../../components/ui/BaseIcon.vue";
-import PublicSectionHead from "../../shared/components/PublicSectionHead.vue";
-import ContactFindCard from "./ContactFindCard.vue";
-import ContactMapCard from "./ContactMapCard.vue";
-import ContactSocialCard from "./ContactSocialCard.vue";
+<script setup lang="ts">
+import PublicSectionHead from "@/modules/public/components/shared/PublicSectionHead.vue";
+import ContactFindCard from "@/modules/public/components/contacts/ContactFindCard.vue";
+import ContactMapCard from "@/modules/public/components/contacts/ContactMapCard.vue";
+import ContactSocialCard from "@/modules/public/components/contacts/ContactSocialCard.vue";
+import type { ContactMainContent } from "@/modules/public/types/contact.types";
 
-defineProps({
-    content: {
-        type: Object,
-        required: true,
-    },
-});
+interface Props {
+    content: ContactMainContent;
+}
+
+defineProps<Props>();
 </script>
 
 <template>
@@ -25,42 +24,36 @@ defineProps({
                 :description="content.description"
             />
 
-            <div class="contact-shell fade-in">
+            <div class="contact-shell fade-in visible">
                 <div class="contact-layout">
                     <div class="contact-column">
                         <div class="contact-card">
                             <div class="contact-card-inner">
                                 <div class="contact-card-topline">
-                                    <BaseIcon
-                                        :name="content.mainCard.topline.icon"
-                                        size="15"
-                                    />
-                                    {{ content.mainCard.topline.text }}
+                                    <i :class="content.info.toplineIcon"></i>
+                                    {{ content.info.topline }}
                                 </div>
 
                                 <h3 class="contact-card-title">
-                                    {{ content.mainCard.title }}
+                                    {{ content.info.title }}
                                 </h3>
 
                                 <p class="contact-card-text">
-                                    {{ content.mainCard.text }}
+                                    {{ content.info.text }}
                                 </p>
 
                                 <div class="contact-info-list">
                                     <div
-                                        v-for="item in content.mainCard.items"
-                                        :key="item.label"
+                                        v-for="item in content.info.items"
+                                        :key="item.title"
                                         class="contact-info-item"
                                     >
                                         <div class="contact-info-icon">
-                                            <BaseIcon
-                                                :name="item.icon"
-                                                size="22"
-                                            />
+                                            <i :class="item.icon"></i>
                                         </div>
 
                                         <div>
-                                            <strong>{{ item.label }}</strong>
+                                            <strong>{{ item.title }}</strong>
 
                                             <a
                                                 v-if="item.href"
@@ -78,15 +71,12 @@ defineProps({
 
                                 <div class="contact-actions">
                                     <a
-                                        v-for="action in content.mainCard.actions"
+                                        v-for="action in content.info.actions"
                                         :key="action.label"
                                         :href="action.href"
                                         class="contact-action-chip"
                                     >
-                                        <BaseIcon
-                                            :name="action.icon"
-                                            size="16"
-                                        />
+                                        <i :class="action.icon"></i>
                                         {{ action.label }}
                                     </a>
                                 </div>
@@ -96,24 +86,21 @@ defineProps({
                         <div class="contact-card">
                             <div class="contact-card-inner">
                                 <div class="contact-card-topline">
-                                    <BaseIcon
-                                        :name="content.hoursCard.topline.icon"
-                                        size="15"
-                                    />
-                                    {{ content.hoursCard.topline.text }}
+                                    <i :class="content.hours.toplineIcon"></i>
+                                    {{ content.hours.topline }}
                                 </div>
 
                                 <h3 class="contact-card-title">
-                                    {{ content.hoursCard.title }}
+                                    {{ content.hours.title }}
                                 </h3>
 
                                 <p class="contact-card-text">
-                                    {{ content.hoursCard.text }}
+                                    {{ content.hours.text }}
                                 </p>
 
                                 <div class="contact-hours-grid">
                                     <div
-                                        v-for="item in content.hoursCard.items"
+                                        v-for="item in content.hours.items"
                                         :key="item.title"
                                         class="contact-hours-item"
                                     >
@@ -124,39 +111,13 @@ defineProps({
                             </div>
                         </div>
 
-                        <div class="contact-card">
-                            <div class="contact-card-inner">
-                                <div class="contact-card-topline">
-                                    <BaseIcon
-                                        :name="content.socialCard.topline.icon"
-                                        size="15"
-                                    />
-                                    {{ content.socialCard.topline.text }}
-                                </div>
-
-                                <h3 class="contact-card-title">
-                                    {{ content.socialCard.title }}
-                                </h3>
-
-                                <p class="contact-card-text">
-                                    {{ content.socialCard.text }}
-                                </p>
-
-                                <div class="contact-social-grid">
-                                    <ContactSocialCard
-                                        v-for="social in content.socialCard.socials"
-                                        :key="social.title"
-                                        :social="social"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                        <ContactSocialCard :content="content.socials" />
                     </div>
 
                     <div class="contact-column">
-                        <ContactMapCard :card="content.mapCard" />
+                        <ContactMapCard :content="content.map" />
 
-                        <ContactFindCard :card="content.findCard" />
+                        <ContactFindCard :content="content.find" />
                     </div>
                 </div>
             </div>

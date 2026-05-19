@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
+
+import { useI18n } from "@/composables/useI18n";
+
+const { tr } = useI18n();
 </script>
 
 <template>
@@ -8,18 +12,18 @@ import { RouterLink } from "vue-router";
             <p class="error-page__code">403</p>
 
             <h1 class="error-page__title">
-                Доступ ограничен
+                {{ tr("Доступ ограничен") }}
             </h1>
 
             <p class="error-page__text">
-                У вашей роли нет доступа к этому разделу платформы.
+                {{ tr("У вашей роли нет доступа к этому разделу платформы.") }}
             </p>
 
             <RouterLink
                 class="error-page__button"
                 :to="{ name: 'home' }"
             >
-                Вернуться на главную
+                {{ tr("Вернуться на главную") }}
             </RouterLink>
         </div>
     </section>

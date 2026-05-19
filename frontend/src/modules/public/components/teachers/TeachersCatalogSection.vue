@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from "@/composables/useI18n";
 import PublicSectionHead from "@/modules/public/components/shared/PublicSectionHead.vue";
 import TeacherCard from "@/modules/public/components/teachers/TeacherCard.vue";
 import TeachersOrganizationFilter from "@/modules/public/components/teachers/TeachersOrganizationFilter.vue";
@@ -26,6 +27,7 @@ interface Emits {
 
 defineProps<Props>();
 const emit = defineEmits<Emits>();
+const { t } = useI18n();
 </script>
 
 <template>
@@ -72,11 +74,11 @@ const emit = defineEmits<Emits>();
                     </div>
 
                     <h3>
-                        Загружаем преподавателей
+                        {{ t("teachers.loadingTitle") }}
                     </h3>
 
                     <p>
-                        Получаем актуальный список преподавателей выбранной образовательной организации.
+                        {{ t("teachers.loadingDescription") }}
                     </p>
                 </div>
 

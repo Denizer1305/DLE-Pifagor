@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 
+import { useI18n } from "@/composables/useI18n";
 import AuthPasswordField from "@/modules/auth/components/AuthPasswordField.vue";
 import AuthSubmitButton from "@/modules/auth/components/AuthSubmitButton.vue";
 import { useResetPasswordForm } from "@/modules/auth/composables/useResetPasswordForm";
@@ -16,6 +17,8 @@ const {
     submitForm,
     successMessage,
 } = useResetPasswordForm();
+
+const { tr } = useI18n();
 </script>
 
 <template>
@@ -28,18 +31,18 @@ const {
         </div>
 
         <h3 class="auth-success-box__title">
-            Пароль обновлён
+            {{ tr("Пароль обновлён") }}
         </h3>
 
         <p class="auth-success-box__text">
-            {{ successMessage || "Теперь можно войти в аккаунт с новым паролем." }}
+            {{ tr(successMessage || "Теперь можно войти в аккаунт с новым паролем.") }}
         </p>
 
         <RouterLink
             class="auth-submit-btn"
             :to="{ name: 'login' }"
         >
-            Перейти ко входу
+            {{ tr("Перейти ко входу") }}
             <i class="fa-solid fa-right-to-bracket"></i>
         </RouterLink>
     </div>
@@ -54,7 +57,7 @@ const {
             class="form-alert form-alert--error"
         >
             <i class="fa-solid fa-circle-exclamation"></i>
-            {{ errors.common }}
+            {{ tr(errors.common) }}
         </div>
 
         <AuthPasswordField
@@ -68,8 +71,8 @@ const {
 
         <div class="password-strength">
             <div class="password-strength__top">
-                <span>Надёжность пароля</span>
-                <strong>{{ passwordStrengthLabel }}</strong>
+                <span>{{ tr("Надёжность пароля") }}</span>
+                <strong>{{ tr(passwordStrengthLabel) }}</strong>
             </div>
 
             <div class="password-strength__track">
@@ -83,17 +86,17 @@ const {
         <ul class="password-rules">
             <li :class="{ valid: passwordChecks.length }">
                 <i :class="passwordChecks.length ? 'fa-solid fa-check-circle' : 'fa-regular fa-circle'"></i>
-                Минимум 8 символов
+                {{ tr("Минимум 8 символов") }}
             </li>
 
             <li :class="{ valid: passwordChecks.upper }">
                 <i :class="passwordChecks.upper ? 'fa-solid fa-check-circle' : 'fa-regular fa-circle'"></i>
-                Заглавная буква
+                {{ tr("Заглавная буква") }}
             </li>
 
             <li :class="{ valid: passwordChecks.digit }">
                 <i :class="passwordChecks.digit ? 'fa-solid fa-check-circle' : 'fa-regular fa-circle'"></i>
-                Минимум одна цифра
+                {{ tr("Минимум одна цифра") }}
             </li>
         </ul>
 
@@ -114,9 +117,9 @@ const {
         />
 
         <p class="auth-form-bottom">
-            Вспомнили пароль?
+            {{ tr("Вспомнили пароль?") }}
             <RouterLink :to="{ name: 'login' }">
-                Вернуться ко входу
+                {{ tr("Вернуться ко входу") }}
             </RouterLink>
         </p>
     </form>

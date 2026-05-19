@@ -95,3 +95,9 @@
     color: currentColor;
     transition: var(--transition-soft);
 }
+
+.auth-public-header__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}

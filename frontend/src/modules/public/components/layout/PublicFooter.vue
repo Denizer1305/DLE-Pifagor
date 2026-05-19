@@ -1,15 +1,27 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 
+import { computed } from "vue";
+
+import { useI18n } from "@/composables/useI18n";
 import {
     publicFooterGroups,
     publicSocialLinks,
 } from "@/modules/public/data/public-navigation.data";
-import logoSrc from "@/assets/image/logo/logo.svg";
+import { useThemedLogo } from "@/composables/useThemedLogo";
 
 const currentYear = new Date().getFullYear();
 
-const footerLinks = publicFooterGroups.flatMap((group) => group.links);
+const { logoSrc } = useThemedLogo();
+const { localizePublicContent, t } = useI18n();
+
+const footerLinks = computed(() => {
+    return localizePublicContent(publicFooterGroups).flatMap((group) => group.links);
+});
+
+const socialLinks = computed(() => {
+    return localizePublicContent(publicSocialLinks);
+});
 </script>
 
 <template>
@@ -24,23 +36,22 @@ const footerLinks = publicFooterGroups.flatMap((group) => group.links);
                         <span class="footer-brand-mark">
                             <img
                                 :src="logoSrc"
-                                alt="ЦОС «Пифагор»"
+                                :alt="t('footer.brandName')"
                             />
                         </span>
 
                         <span class="footer-brand-copy">
-                            <h3>ЦОС «Пифагор»</h3>
+                            <h3>{{ t("footer.brandName") }}</h3>
 
                             <p>
-                                Цифровая образовательная среда для обучения,
-                                наставничества, расписания, заданий и роста.
+                                {{ t("footer.brandDescription") }}
                             </p>
                         </span>
                     </RouterLink>
 
                     <div class="footer-socials">
                         <a
-                            v-for="social in publicSocialLinks"
+                            v-for="social in socialLinks"
                             :key="social.label"
                             class="footer-social-link"
                             :href="social.href"
@@ -58,7 +69,7 @@ const footerLinks = publicFooterGroups.flatMap((group) => group.links);
                 <div class="footer-bottom">
                     <nav
                         class="footer-nav"
-                        aria-label="Навигация в подвале"
+                        :aria-label="t('footer.navigation')"
                     >
                         <RouterLink
                             v-for="link in footerLinks"
@@ -70,13 +81,13 @@ const footerLinks = publicFooterGroups.flatMap((group) => group.links);
                     </nav>
 
                     <p class="footer-note">
-                        Спокойное пространство для обучения, наставничества и развития.
+                        {{ t("footer.note") }}
                     </p>
                 </div>
 
                 <div class="footer-legal">
                     <p>
-                        © {{ currentYear }} ЦОС «Пифагор». Все права защищены.
+                        © {{ currentYear }} {{ t("footer.brandName") }}. {{ t("footer.legal") }}
                     </p>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 
+import { useI18n } from "@/composables/useI18n";
 import type { PublicCtaAction } from "@/modules/public/types/public.types";
 
 interface Props {
@@ -10,9 +11,8 @@ interface Props {
     actions: PublicCtaAction[];
 }
 
-withDefaults(defineProps<Props>(), {
-    eyebrow: "Начать работу",
-});
+const props = defineProps<Props>();
+const { t } = useI18n();
 </script>
 
 <template>
@@ -20,7 +20,7 @@ withDefaults(defineProps<Props>(), {
         <div class="container">
             <div class="public-cta-section__card">
                 <p class="public-cta-section__eyebrow">
-                    {{ eyebrow }}
+                    {{ props.eyebrow || t("common.getStarted") }}
                 </p>
 
                 <h2 class="public-cta-section__title">

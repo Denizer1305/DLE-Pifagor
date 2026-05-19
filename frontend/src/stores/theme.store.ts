@@ -41,11 +41,18 @@ function applyThemeToDocument(isDark: boolean): void {
     }
 
     const root = document.documentElement;
+    const body = document.body;
 
     root.classList.toggle("theme-dark", isDark);
     root.classList.toggle("theme-light", !isDark);
+    root.classList.toggle("dark-theme", isDark);
+
+    body.classList.toggle("theme-dark", isDark);
+    body.classList.toggle("theme-light", !isDark);
+    body.classList.toggle("dark-theme", isDark);
 
     root.dataset.theme = isDark ? "dark" : "light";
+    body.dataset.theme = isDark ? "dark" : "light";
 }
 
 export const useThemeStore = defineStore("theme", () => {

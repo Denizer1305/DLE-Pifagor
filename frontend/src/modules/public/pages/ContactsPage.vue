@@ -1,23 +1,29 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
+import { useI18n } from "@/composables/useI18n";
 import PublicLayout from "@/layouts/PublicLayout.vue";
+import ContactCtaSection from "@/modules/public/components/contacts/ContactCtaSection.vue";
+import ContactFeedbackSection from "@/modules/public/components/contacts/ContactFeedbackSection.vue";
+import ContactHeroSection from "@/modules/public/components/contacts/ContactHeroSection.vue";
+import ContactInfoSection from "@/modules/public/components/contacts/ContactInfoSection.vue";
+import { contactsPageContent } from "@/modules/public/data/contacts-page.data";
+
+const { localizePublicContent } = useI18n();
+
+const content = computed(() => {
+    return localizePublicContent(contactsPageContent);
+});
 </script>
 
 <template>
     <PublicLayout>
-        <section class="public-page-placeholder">
-            <div class="container">
-                <p class="public-page-placeholder__badge">
-                    Контакты
-                </p>
+        <ContactHeroSection :content="content.hero" />
 
-                <h1>
-                    Связаться с командой
-                </h1>
+        <ContactInfoSection :content="content.main" />
 
-                <p>
-                    Здесь будет рабочая форма обращения, подключённая к backend.
-                </p>
-            </div>
-        </section>
+        <ContactFeedbackSection :content="content.feedback" />
+
+        <ContactCtaSection :content="content.cta" />
     </PublicLayout>
 </template>

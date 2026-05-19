@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import { useThemedLogo } from "@/composables/useThemedLogo";
 import { useFloatingCanvas } from "@/modules/public/composables/useFloatingCanvas";
 import type {
     PublicTeachersAction,
@@ -28,6 +29,7 @@ const glows = ["one", "two", "three"];
 const movingLines = ["one", "two", "three", "four"];
 const floatingDots = ["one", "two", "three", "four"];
 const rings = ["one", "two", "three"];
+const { heroLogoSrc } = useThemedLogo();
 
 useFloatingCanvas(teachersHeroCanvasRef, {
     pointsCount: 48,
@@ -179,7 +181,7 @@ function getActionClass(action: PublicTeachersAction): string[] {
 
                     <div class="hero-logo-wrap">
                         <img
-                            :src="content.logo.src"
+                            :src="heroLogoSrc"
                             :alt="content.logo.alt"
                         />
                     </div>

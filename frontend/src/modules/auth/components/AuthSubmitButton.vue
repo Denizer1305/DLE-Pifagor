@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
+import { useI18n } from "@/composables/useI18n";
+
 interface Props {
     label: string;
     loadingLabel?: string;
@@ -7,12 +11,17 @@ interface Props {
     disabled?: boolean;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
     loadingLabel: "Пожалуйста, подождите...",
     icon: "fa-solid fa-arrow-right",
     isLoading: false,
     disabled: false,
 });
+
+const { tr } = useI18n();
+
+const currentLabel = computed(() => tr(props.label));
+const currentLoadingLabel = computed(() => tr(props.loadingLabel));
 </script>
 
 <template>
@@ -23,11 +32,11 @@ withDefaults(defineProps<Props>(), {
     >
         <span v-if="isLoading">
             <i class="fa-solid fa-spinner fa-spin"></i>
-            {{ loadingLabel }}
+            {{ currentLoadingLabel }}
         </span>
 
         <span v-else>
-            {{ label }}
+            {{ currentLabel }}
             <i :class="icon"></i>
         </span>
     </button>

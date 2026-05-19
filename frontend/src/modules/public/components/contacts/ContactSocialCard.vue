@@ -1,27 +1,52 @@
-<script setup>
-import BaseIcon from "../../../../components/ui/BaseIcon.vue";
+<script setup lang="ts">
+import type { ContactSocialCardContent } from "@/modules/public/types/contact.types";
 
-defineProps({
-    social: {
-        type: Object,
-        required: true,
-    },
-});
+interface Props {
+    content: ContactSocialCardContent;
+}
+
+defineProps<Props>();
 </script>
 
 <template>
-    <a
-        :href="social.href"
-        class="contact-social-card"
-    >
-        <span class="contact-social-icon">
-            <BaseIcon
-                :name="social.name || social.icon || social.title"
-                size="22"
-            />
-        </span>
+    <div class="contact-card">
+        <div class="contact-card-inner">
+            <div class="contact-card-topline">
+                <i :class="content.toplineIcon"></i>
+                {{ content.topline }}
+            </div>
 
-        <strong>{{ social.title }}</strong>
-        <span>{{ social.text }}</span>
-    </a>
+            <h3 class="contact-card-title">
+                {{ content.title }}
+            </h3>
+
+            <p class="contact-card-text">
+                {{ content.text }}
+            </p>
+
+            <div class="contact-social-grid">
+                <a
+                    v-for="item in content.items"
+                    :key="item.title"
+                    :href="item.href"
+                    class="contact-social-card"
+                >
+                    <i
+                        v-if="item.icon"
+                        :class="item.icon"
+                    ></i>
+
+                    <img
+                        v-else-if="item.image"
+                        :src="item.image"
+                        alt=""
+                        aria-hidden="true"
+                    />
+
+                    <strong>{{ item.title }}</strong>
+                    <span>{{ item.text }}</span>
+                </a>
+            </div>
+        </div>
+    </div>
 </template>

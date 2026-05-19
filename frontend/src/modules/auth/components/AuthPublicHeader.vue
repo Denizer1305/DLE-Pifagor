@@ -2,7 +2,10 @@
 import { computed } from "vue";
 import { RouterLink } from "vue-router";
 
-import logoPrimary from "@/assets/image/logo/logo.svg";
+import logoDark from "@/assets/brand/logo/themes/dark/logo.svg";
+import logoPrimary from "@/assets/brand/logo/themes/light/logo.svg";
+import { useI18n } from "@/composables/useI18n";
+import PublicLanguageToggle from "@/modules/public/components/layout/PublicLanguageToggle.vue";
 
 interface Props {
     logoSrc?: string;
@@ -23,9 +26,16 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<Emits>();
+const { t } = useI18n();
 
 const themeIconClass = computed(() => {
     return props.isDarkTheme ? "fa-solid fa-sun" : "fa-solid fa-moon";
+});
+
+const currentLogoSrc = computed(() => {
+    return props.isDarkTheme && props.logoSrc === logoPrimary
+        ? logoDark
+        : props.logoSrc;
 });
 
 function handleThemeToggle(): void {
@@ -43,19 +53,23 @@ function handleThemeToggle(): void {
             >
                 <img
                     class="auth-public-header__logo"
-                    :src="logoSrc"
+                    :src="currentLogoSrc"
                     :alt="logoAlt"
                 />
             </RouterLink>
 
-            <button
-                class="auth-public-header__theme-button"
-                type="button"
-                aria-label="Переключить тему"
-                @click="handleThemeToggle"
-            >
-                <i :class="themeIconClass"></i>
-            </button>
+            <div class="auth-public-header__actions">
+                <button
+                    class="auth-public-header__theme-button"
+                    type="button"
+                    :aria-label="t('common.switchTheme')"
+                    @click="handleThemeToggle"
+                >
+                    <i :class="themeIconClass"></i>
+                </button>
+
+                <PublicLanguageToggle />
+            </div>
         </div>
     </header>
 </template>

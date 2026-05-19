@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, watch } from "vue";
 
+import { useI18n } from "@/composables/useI18n";
 import type { PublicTeacher } from "@/modules/public/types/public-teachers.types";
 
 interface Props {
@@ -14,6 +15,7 @@ interface Emits {
 
 const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
+const { t } = useI18n();
 
 const modalTitleId = computed(() => {
     if (!props.teacher) {
@@ -75,7 +77,7 @@ onBeforeUnmount(() => {
                 <button
                     class="modal-close"
                     type="button"
-                    aria-label="Закрыть окно"
+                    :aria-label="t('common.closeWindow')"
                     @click="closeModal"
                 >
                     <i class="fas fa-times"></i>
@@ -127,7 +129,7 @@ onBeforeUnmount(() => {
                             class="teacher-modal-section"
                         >
                             <div class="teacher-modal-section-title">
-                                Награды и достижения
+                                {{ t("teachers.awards") }}
                             </div>
 
                             <ul class="teacher-modal-awards">
@@ -146,7 +148,7 @@ onBeforeUnmount(() => {
                             class="teacher-modal-section"
                         >
                             <div class="teacher-modal-section-title">
-                                Отделение
+                                {{ t("teachers.department") }}
                             </div>
 
                             <p class="teacher-modal-description">

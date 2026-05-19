@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from "@/composables/useI18n";
 import type { RegistrationRole } from "@/modules/auth/types/auth-form.types";
 
 interface RoleOption {
@@ -17,6 +18,7 @@ interface Emits {
 defineProps<Props>();
 
 const emit = defineEmits<Emits>();
+const { tr } = useI18n();
 
 const roleOptions: RoleOption[] = [
     {
@@ -40,7 +42,7 @@ function updateRole(value: RegistrationRole): void {
 
 <template>
     <div class="form-group full">
-        <label class="form-label">Выберите роль</label>
+        <label class="form-label">{{ tr("Выберите роль") }}</label>
 
         <div class="role-switcher">
             <label
@@ -55,7 +57,7 @@ function updateRole(value: RegistrationRole): void {
                     :checked="modelValue === role.value"
                     @change="updateRole(role.value)"
                 />
-                <span>{{ role.label }}</span>
+                <span>{{ tr(role.label) }}</span>
             </label>
         </div>
     </div>

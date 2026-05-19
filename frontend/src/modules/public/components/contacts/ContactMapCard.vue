@@ -1,108 +1,72 @@
-<script setup>
-import BaseIcon from "../../../../components/ui/BaseIcon.vue";
-import { useContactMap } from "../composables/useContactMap";
+<script setup lang="ts">
+import { useThemedLogo } from "@/composables/useThemedLogo";
+import { useI18n } from "@/composables/useI18n";
+import type { ContactMapContent } from "@/modules/public/types/contact.types";
 
-defineProps({
-    card: {
-        type: Object,
-        required: true,
-    },
-});
+interface Props {
+    content: ContactMapContent;
+}
 
-const {
-    isMapLoading,
-    isMapReady,
-    isMapFailed,
-} = useContactMap({
-    mapElementId: "contactMap",
-    coords: [56.11855, 40.37832],
-    zoom: 16,
-    balloonTitle: "Пифагор",
-    balloonText: "г. Владимир",
-    enabled: Boolean(import.meta.env.VITE_YANDEX_MAPS_API_KEY),
-});
+defineProps<Props>();
+
+const { heroLogoSrc } = useThemedLogo();
+const { t } = useI18n();
 </script>
 
 <template>
     <div
-        :id="card.id"
+        id="contact-map"
         class="contact-card contact-map-card"
     >
         <div class="contact-map-wrap">
             <div class="contact-map-head">
                 <div class="contact-card-topline">
-                    <BaseIcon
-                        :name="card.topline.icon"
-                        size="15"
-                    />
-
-                    {{ card.topline.text }}
+                    <i :class="content.toplineIcon"></i>
+                    {{ content.topline }}
                 </div>
 
                 <h3 class="contact-card-title">
-                    {{ card.title }}
+                    {{ content.title }}
                 </h3>
 
                 <p class="contact-card-text">
-                    {{ card.text }}
+                    {{ content.text }}
                 </p>
             </div>
 
             <div class="contact-map-box">
-                <div
+                <iframe
                     id="contactMap"
-                    class="contact-map"
-                    :class="{ 'contact-map--ready': isMapReady }"
-                ></div>
-
-                <a
-                    v-if="isMapFailed"
-                    :href="card.mapHref"
-                    class="contact-map-placeholder"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    :aria-label="`Открыть карту: ${card.address}`"
-                >
-                    <div class="contact-map-placeholder-icon">
-                        <BaseIcon
-                            name="map-marker"
-                            size="30"
-                        />
-                    </div>
-
-                    <strong>
-                        Открыть адрес на Яндекс Картах
-                    </strong>
-
-                    <span>
-                        {{ card.address }}
-                    </span>
-                </a>
+                    class="contact-map-frame"
+                    :src="content.mapSrc"
+                    :title="content.mapTitle"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
 
                 <div
-                    v-else-if="isMapLoading"
-                    class="contact-map-placeholder"
+                    id="contactMapFallback"
+                    class="contact-map-fallback"
                 >
-                    <div class="contact-map-placeholder-icon">
-                        <BaseIcon
-                            name="spinner"
-                            size="30"
+                    {{ content.fallbackText }}
+                </div>
+
+                <div
+                    class="contact-map-brand-marker"
+                    aria-hidden="true"
+                >
+                    <span class="contact-map-brand-pin">
+                        <img
+                            :src="heroLogoSrc"
+                            alt=""
                         />
-                    </div>
-
-                    <strong>
-                        Загружаем карту
-                    </strong>
-
-                    <span>
-                        {{ card.address }}
                     </span>
                 </div>
             </div>
 
             <div class="contact-map-note">
-                Адрес для навигации:
-                <strong>{{ card.address }}</strong>
+                {{ t("contacts.navigationAddress") }}
+                <strong>{{ content.address }}</strong>
             </div>
         </div>
     </div>

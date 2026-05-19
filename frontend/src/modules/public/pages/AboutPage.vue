@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
+import { useI18n } from "@/composables/useI18n";
 import PublicLayout from "@/layouts/PublicLayout.vue";
 import AboutCtaSection from "@/modules/public/components/about/AboutCtaSection.vue";
 import AboutGratitudeSection from "@/modules/public/components/about/AboutGratitudeSection.vue";
@@ -8,16 +11,22 @@ import AboutRoadmapSection from "@/modules/public/components/about/AboutRoadmapS
 import AboutStorySection from "@/modules/public/components/about/AboutStorySection.vue";
 import AboutTeamSection from "@/modules/public/components/about/AboutTeamSection.vue";
 import { aboutPageContent } from "@/modules/public/data/about-page.data";
+
+const { localizePublicContent } = useI18n();
+
+const content = computed(() => {
+    return localizePublicContent(aboutPageContent);
+});
 </script>
 
 <template>
     <PublicLayout>
-        <AboutHeroSection :content="aboutPageContent.hero" />
-        <AboutStorySection :content="aboutPageContent.story" />
-        <AboutMissionSection :content="aboutPageContent.mission" />
-        <AboutRoadmapSection :content="aboutPageContent.roadmap" />
-        <AboutTeamSection :content="aboutPageContent.team" />
-        <AboutGratitudeSection :content="aboutPageContent.gratitude" />
-        <AboutCtaSection :content="aboutPageContent.cta" />
+        <AboutHeroSection :content="content.hero" />
+        <AboutStorySection :content="content.story" />
+        <AboutMissionSection :content="content.mission" />
+        <AboutRoadmapSection :content="content.roadmap" />
+        <AboutTeamSection :content="content.team" />
+        <AboutGratitudeSection :content="content.gratitude" />
+        <AboutCtaSection :content="content.cta" />
     </PublicLayout>
 </template>

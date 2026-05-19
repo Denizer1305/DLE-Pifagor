@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from "@/composables/useI18n";
 import PublicSectionHead from "@/modules/public/components/shared/PublicSectionHead.vue";
 import HomePartnerCard from "@/modules/public/components/home/HomePartnerCard.vue";
 
@@ -31,6 +32,7 @@ interface Props {
 }
 
 defineProps<Props>();
+const { t } = useI18n();
 </script>
 
 <template>
@@ -64,7 +66,7 @@ defineProps<Props>();
 
                 <div
                     class="partners-diptych"
-                    aria-label="Партнёры платформы"
+                    :aria-label="t('common.platformPartners')"
                 >
                     <HomePartnerCard
                         v-if="content.items[0]"

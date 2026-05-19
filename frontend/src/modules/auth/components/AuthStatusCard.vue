@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from "@/composables/useI18n";
+
 type StatusType = "info" | "success" | "warning" | "error";
 
 interface Props {
@@ -12,6 +14,8 @@ const props = withDefaults(defineProps<Props>(), {
     type: "info",
     icon: "",
 });
+
+const { tr } = useI18n();
 
 function getDefaultIcon(): string {
     if (props.icon) {
@@ -42,11 +46,11 @@ function getDefaultIcon(): string {
 
         <div class="auth-status-card__content">
             <h3 class="auth-status-card__title">
-                {{ title }}
+                {{ tr(title) }}
             </h3>
 
             <p class="auth-status-card__text">
-                {{ text }}
+                {{ tr(text) }}
             </p>
         </div>
     </div>

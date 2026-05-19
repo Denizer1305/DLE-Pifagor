@@ -13,14 +13,23 @@
 .page-fade-enter-active,
 .page-fade-leave-active {
     transition:
-        opacity var(--duration-fast) ease,
-        transform var(--duration-fast) ease;
+        opacity 0.34s var(--ease-emphasis),
+        transform 0.34s var(--ease-emphasis),
+        filter 0.34s var(--ease-emphasis);
 }
 
 .page-fade-enter-from,
 .page-fade-leave-to {
     opacity: 0;
-    transform: translateY(6px);
+    filter: blur(4px);
+    transform: translateY(14px) scale(0.992);
+}
+
+.page-fade-enter-to,
+.page-fade-leave-from {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
 }
 
 @keyframes heroFloat {

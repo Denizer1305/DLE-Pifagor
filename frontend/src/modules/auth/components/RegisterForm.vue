@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 
+import { useI18n } from "@/composables/useI18n";
 import AuthMessageModal from "@/modules/auth/components/AuthMessageModal.vue";
 import AuthSubmitButton from "@/modules/auth/components/AuthSubmitButton.vue";
 import RegisterAgreement from "@/modules/auth/components/register/RegisterAgreement.vue";
@@ -28,6 +29,8 @@ const {
     submitForm,
     goToLogin,
 } = useRegistrationForm();
+
+const { tr } = useI18n();
 </script>
 
 <template>
@@ -62,15 +65,15 @@ const {
 
         <div class="registration-progress">
             <div class="registration-progress__top">
-                <span>Шаг {{ currentStep }} из 2</span>
-                <strong>{{ stepTitle }}</strong>
+                <span>{{ tr("Шаг") }} {{ currentStep }} {{ tr("из") }} 2</span>
+                <strong>{{ tr(stepTitle) }}</strong>
             </div>
 
             <div class="registration-progress__bar">
                 <span :style="{ width: currentStep === 1 ? '50%' : '100%' }"></span>
             </div>
 
-            <p>{{ stepDescription }}</p>
+            <p>{{ tr(stepDescription) }}</p>
         </div>
 
         <template v-if="currentStep === 1">
@@ -92,7 +95,7 @@ const {
                     class="auth-step-button auth-step-button--ghost"
                     :to="{ name: 'login' }"
                 >
-                    Уже есть аккаунт
+                    {{ tr("Уже есть аккаунт") }}
                 </RouterLink>
 
                 <button
@@ -100,7 +103,7 @@ const {
                     type="button"
                     @click="goNextStep"
                 >
-                    Продолжить
+                    {{ tr("Продолжить") }}
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
@@ -124,7 +127,7 @@ const {
                     @click="goPreviousStep"
                 >
                     <i class="fa-solid fa-arrow-left"></i>
-                    Назад
+                    {{ tr("Назад") }}
                 </button>
 
                 <AuthSubmitButton
@@ -137,9 +140,9 @@ const {
             </div>
 
             <p class="auth-form-bottom">
-                Уже есть аккаунт?
+                {{ tr("Уже есть аккаунт?") }}
                 <RouterLink :to="{ name: 'login' }">
-                    Войти
+                    {{ tr("Войти") }}
                 </RouterLink>
             </p>
         </template>

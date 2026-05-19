@@ -1,17 +1,20 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 
-import BaseIcon from "../../../../components/ui/BaseIcon.vue";
-import { useFloatingCanvas } from "../../shared/composables/useFloatingCanvas";
+import { useThemedLogo } from "@/composables/useThemedLogo";
+import { useFloatingCanvas } from "@/modules/public/composables/useFloatingCanvas";
+import type {
+    ContactHeroContent,
+    PublicContactAction,
+} from "@/modules/public/types/contact.types";
 
-defineProps({
-    content: {
-        type: Object,
-        required: true,
-    },
-});
+interface Props {
+    content: ContactHeroContent;
+}
 
-const contactHeroCanvasRef = ref(null);
+defineProps<Props>();
+
+const contactHeroCanvasRef = ref<HTMLCanvasElement | null>(null);
 
 const gridLines = [
     "vertical left",
@@ -26,17 +29,20 @@ const glows = ["one", "two", "three"];
 const movingLines = ["one", "two", "three", "four"];
 const floatingDots = ["one", "two", "three", "four"];
 const rings = ["one", "two", "three"];
+const { heroLogoSrc } = useThemedLogo();
 
 useFloatingCanvas(contactHeroCanvasRef, {
     pointsCount: 48,
+    mobilePointsCount: 24,
     lineDistance: 135,
 });
 
-function getActionClass(action) {
+function getActionClass(action: PublicContactAction): string[] {
     return [
         "btn",
-        `btn-${action.variant}`,
+        action.variant === "light" ? "btn-light" : "btn-primary",
         "fade-in",
+        "visible",
     ];
 }
 </script>
@@ -96,62 +102,60 @@ function getActionClass(action) {
 
         <div class="container contact-hero-container">
             <div class="contact-hero-content">
-                <div class="contact-hero-top-badges fade-in">
+                <div class="contact-hero-top-badges fade-in visible">
                     <span
                         v-for="badge in content.badges"
                         :key="badge.text"
                         class="contact-hero-badge"
                     >
-                        <BaseIcon
-                            :name="badge.icon"
-                            size="15"
-                        />
+                        <i :class="badge.icon"></i>
                         {{ badge.text }}
                     </span>
                 </div>
 
-                <h1 class="contact-hero-title fade-in">
+                <h1 class="contact-hero-title fade-in visible">
                     {{ content.title }}
                 </h1>
 
-                <p class="contact-hero-subtitle fade-in">
+                <p class="contact-hero-subtitle fade-in visible">
                     {{ content.subtitle }}
                 </p>
 
-                <p class="contact-hero-description fade-in">
+                <p class="contact-hero-description fade-in visible">
                     {{ content.description }}
                 </p>
 
-                <div class="contact-hero-highlight fade-in">
+                <div class="contact-hero-highlight fade-in visible">
                     <div
                         v-for="highlight in content.highlights"
                         :key="highlight"
                         class="contact-hero-highlight-item"
                     >
-                        <span class="contact-hero-highlight-dot"></span>
+                        <i class="fas fa-circle"></i>
                         <span>{{ highlight }}</span>
                     </div>
                 </div>
 
                 <div class="contact-hero-actions">
-                    <a
+                    <component
+                        :is="action.to ? 'RouterLink' : 'a'"
                         v-for="action in content.actions"
                         :key="action.label"
+                        :to="action.to"
                         :href="action.href"
                         :class="getActionClass(action)"
                     >
                         {{ action.label }}
 
-                        <BaseIcon
+                        <i
                             v-if="action.icon"
-                            :name="action.icon"
-                            size="16"
-                        />
-                    </a>
+                            :class="action.icon"
+                        ></i>
+                    </component>
                 </div>
             </div>
 
-            <div class="hero-visual fade-in">
+            <div class="hero-visual fade-in visible">
                 <div class="hero-visual-shell">
                     <div
                         v-for="ring in rings"
@@ -176,7 +180,7 @@ function getActionClass(action) {
 
                     <div class="hero-logo-wrap">
                         <img
-                            :src="content.logo.src"
+                            :src="heroLogoSrc"
                             :alt="content.logo.alt"
                         />
                     </div>

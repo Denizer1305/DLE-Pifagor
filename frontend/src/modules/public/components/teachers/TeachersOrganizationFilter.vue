@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 
+import { useI18n } from "@/composables/useI18n";
 import type {
     PublicTeachersOrganization,
     PublicTeachersSubject,
@@ -25,6 +26,7 @@ interface Emits {
 
 const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
+const { t } = useI18n();
 
 const subjectSelectRef = ref<HTMLElement | null>(null);
 const isSubjectSelectOpen = ref(false);
@@ -110,7 +112,7 @@ watch(
         <div class="teachers-organization-filter-head">
             <div class="teachers-organization-filter-main">
                 <span class="teachers-organization-filter-label">
-                    Образовательная организация
+                    {{ t("teachers.organization") }}
                 </span>
 
                 <strong
@@ -122,23 +124,23 @@ watch(
 
                 <p class="teachers-organization-filter-hint">
                     <span v-if="isFallback">
-                        Для гостей показываем преподавателей организации по умолчанию.
+                        {{ t("teachers.defaultGuest") }}
                     </span>
 
                     <span v-else>
-                        Для вас показаны преподаватели вашей образовательной организации.
+                        {{ t("teachers.defaultMember") }}
                     </span>
                 </p>
             </div>
 
             <span class="teachers-current-count">
-                {{ teachersCount }} преподавателей
+                {{ t("teachers.teachersCount", { count: teachersCount }) }}
             </span>
         </div>
 
         <div class="teachers-filter-controls">
             <label class="teachers-filter-field teachers-filter-field-search">
-                <span>Поиск</span>
+                <span>{{ t("teachers.search") }}</span>
 
                 <input
                     :value="localSearch"
@@ -149,7 +151,7 @@ watch(
             </label>
 
             <div class="teachers-filter-field">
-                <span>Предмет</span>
+                <span>{{ t("teachers.subject") }}</span>
 
                 <div
                     ref="subjectSelectRef"
@@ -216,7 +218,7 @@ watch(
                 type="button"
                 @click="emit('reset')"
             >
-                Сбросить
+                {{ t("teachers.reset") }}
             </button>
         </div>
     </div>

@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 
+import { useI18n } from "@/composables/useI18n";
 import AuthStatusCard from "@/modules/auth/components/AuthStatusCard.vue";
 import { useVerifyEmailForm } from "@/modules/auth/composables/useVerifyEmailForm";
+
+const { tr } = useI18n();
 
 const {
     status,
@@ -39,7 +42,7 @@ const {
                 class="auth-submit-btn"
                 :to="{ name: 'login' }"
             >
-                Перейти ко входу
+                {{ tr("Перейти ко входу") }}
                 <i class="fa-solid fa-right-to-bracket"></i>
             </RouterLink>
         </div>

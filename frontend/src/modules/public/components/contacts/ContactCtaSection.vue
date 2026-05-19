@@ -1,30 +1,27 @@
-<script setup>
-    import BaseIcon from "../../../../components/ui/BaseIcon.vue";
+<script setup lang="ts">
+import type {
+    ContactCtaContent,
+    PublicContactAction,
+} from "@/modules/public/types/contact.types";
 
-    defineProps({
-        content: {
-            type: Object,
-            required: true,
-        },
-    });
+interface Props {
+    content: ContactCtaContent;
+}
 
-    function getActionClass(action) {
-        const variant = action?.variant || "primary";
+defineProps<Props>();
 
-        return [
-            "btn",
-            variant === "secondary" || variant === "light"
-                ? "btn-secondary"
-                : "btn-primary",
-            "fade-in",
-        ];
-    }
+function getActionClass(action: PublicContactAction): string[] {
+    return [
+        "cta-btn",
+        action.variant === "primary" ? "primary" : "secondary",
+    ];
+}
 </script>
 
 <template>
     <section class="section contact-page-cta">
         <div class="container">
-            <div class="contact-page-cta-shell fade-in">
+            <div class="contact-page-cta-shell fade-in visible">
                 <h2>
                     {{ content.title }}
                 </h2>
@@ -34,20 +31,21 @@
                 </p>
 
                 <div class="contact-page-cta-actions">
-                    <a
+                    <component
+                        :is="action.to ? 'RouterLink' : 'a'"
                         v-for="action in content.actions"
                         :key="action.label"
+                        :to="action.to"
                         :href="action.href"
                         :class="getActionClass(action)"
                     >
                         {{ action.label }}
 
-                        <BaseIcon
+                        <i
                             v-if="action.icon"
-                            :name="action.icon"
-                            size="16"
-                        />
-                    </a>
+                            :class="action.icon"
+                        ></i>
+                    </component>
                 </div>
 
                 <div class="contact-page-cta-note">

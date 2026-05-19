@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 
+import { useI18n } from "@/composables/useI18n";
 import AuthPasswordField from "@/modules/auth/components/AuthPasswordField.vue";
 import AuthSubmitButton from "@/modules/auth/components/AuthSubmitButton.vue";
 import { useLoginForm } from "@/modules/auth/composables/useLoginForm";
@@ -12,6 +13,8 @@ const {
     canSubmit,
     submitForm,
 } = useLoginForm();
+
+const { tr } = useI18n();
 </script>
 
 <template>
@@ -24,7 +27,7 @@ const {
             class="form-alert form-alert--error"
         >
             <i class="fa-solid fa-circle-exclamation"></i>
-            {{ errors.common }}
+            {{ tr(errors.common) }}
         </div>
 
         <div class="form-group full">
@@ -49,7 +52,7 @@ const {
                 v-if="errors.email"
                 class="form-error"
             >
-                {{ errors.email }}
+                {{ tr(errors.email) }}
             </p>
         </div>
 
@@ -65,14 +68,14 @@ const {
         <div class="auth-form-row">
             <label class="auth-checkbox">
                 <input type="checkbox" />
-                <span>Запомнить устройство</span>
+                <span>{{ tr("Запомнить устройство") }}</span>
             </label>
 
             <RouterLink
                 class="auth-form-link"
                 :to="{ name: 'forgot-password' }"
             >
-                Забыли пароль?
+                {{ tr("Забыли пароль?") }}
             </RouterLink>
         </div>
 
@@ -85,9 +88,9 @@ const {
         />
 
         <p class="auth-form-bottom">
-            Нет аккаунта?
+            {{ tr("Нет аккаунта?") }}
             <RouterLink :to="{ name: 'register' }">
-                Создать аккаунт
+                {{ tr("Создать аккаунт") }}
             </RouterLink>
         </p>
     </form>

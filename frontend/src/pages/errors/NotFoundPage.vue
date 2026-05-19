@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
+
+import { useI18n } from "@/composables/useI18n";
+
+const { tr } = useI18n();
 </script>
 
 <template>
@@ -8,18 +12,18 @@ import { RouterLink } from "vue-router";
             <p class="error-page__code">404</p>
 
             <h1 class="error-page__title">
-                Страница не найдена
+                {{ tr("Страница не найдена") }}
             </h1>
 
             <p class="error-page__text">
-                Возможно, страница была перемещена или ссылка указана неверно.
+                {{ tr("Возможно, страница была перемещена или ссылка указана неверно.") }}
             </p>
 
             <RouterLink
                 class="error-page__button"
                 :to="{ name: 'home' }"
             >
-                Вернуться на главную
+                {{ tr("Вернуться на главную") }}
             </RouterLink>
         </div>
     </section>

@@ -2,12 +2,15 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
-import logoSrc from "@/assets/image/logo/logo.svg";
+import { useI18n } from "@/composables/useI18n";
+import { useThemedLogo } from "@/composables/useThemedLogo";
 import { useAuthStore } from "@/stores/auth.store";
 import { redirectAfterLogout } from "@/modules/auth/utils/auth-redirect.utils";
 
 const router = useRouter();
 const authStore = useAuthStore();
+const { tr } = useI18n();
+const { logoSrc } = useThemedLogo();
 
 const isSubmitting = ref(false);
 
@@ -38,17 +41,16 @@ async function logout(): Promise<void> {
             <div class="auth-logo">
                 <img
                     :src="logoSrc"
-                    alt="Пифагор"
+                    :alt="tr('Пифагор')"
                 />
             </div>
 
             <h1 class="auth-title">
-                Завершить сеанс?
+                {{ tr("Завершить сеанс?") }}
             </h1>
 
             <p class="auth-text">
-                Вы собираетесь выйти из личного кабинета. После выхода для продолжения работы
-                потребуется повторный вход в систему.
+                {{ tr("Вы собираетесь выйти из личного кабинета. После выхода для продолжения работы потребуется повторный вход в систему.") }}
             </p>
 
             <div class="auth-info">
@@ -58,8 +60,8 @@ async function logout(): Promise<void> {
                     </div>
 
                     <div class="auth-info-copy">
-                        <strong>Безопасное завершение</strong>
-                        <span>Сеанс будет завершён на текущем устройстве.</span>
+                        <strong>{{ tr("Безопасное завершение") }}</strong>
+                        <span>{{ tr("Сеанс будет завершён на текущем устройстве.") }}</span>
                     </div>
                 </div>
 
@@ -69,8 +71,8 @@ async function logout(): Promise<void> {
                     </div>
 
                     <div class="auth-info-copy">
-                        <strong>Повторный вход</strong>
-                        <span>Вы сможете войти снова в любое время через страницу авторизации.</span>
+                        <strong>{{ tr("Повторный вход") }}</strong>
+                        <span>{{ tr("Вы сможете войти снова в любое время через страницу авторизации.") }}</span>
                     </div>
                 </div>
             </div>
@@ -82,7 +84,7 @@ async function logout(): Promise<void> {
                     @click="goBack"
                 >
                     <i class="fa-solid fa-arrow-left"></i>
-                    Вернуться назад
+                    {{ tr("Вернуться назад") }}
                 </button>
 
                 <button
@@ -92,7 +94,7 @@ async function logout(): Promise<void> {
                     @click="logout"
                 >
                     <i :class="isSubmitting ? 'fa-solid fa-spinner fa-spin' : 'fa-solid fa-check'"></i>
-                    {{ isSubmitting ? "Выходим..." : "Выйти из аккаунта" }}
+                    {{ isSubmitting ? tr("Выходим...") : tr("Выйти из аккаунта") }}
                 </button>
             </div>
         </div>

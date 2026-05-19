@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { watch } from "vue";
 
+import { useI18n } from "@/composables/useI18n";
 import { usePhoneMask } from "@/modules/auth/composables/usePhoneMask";
 import type {
     RegisterFormErrors,
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+const { tr } = useI18n();
 
 const {
     phone,
@@ -59,7 +61,7 @@ watch(phone, (value) => {
                 v-if="errors.email"
                 class="form-error"
             >
-                {{ errors.email }}
+                {{ tr(errors.email) }}
             </p>
         </div>
 
@@ -68,7 +70,7 @@ watch(phone, (value) => {
                 class="form-label"
                 for="phone"
             >
-                Телефон
+                {{ tr("Телефон") }}
             </label>
 
             <input
@@ -88,7 +90,7 @@ watch(phone, (value) => {
                 v-if="errors.phone"
                 class="form-error"
             >
-                {{ errors.phone }}
+                {{ tr(errors.phone) }}
             </p>
         </div>
     </div>

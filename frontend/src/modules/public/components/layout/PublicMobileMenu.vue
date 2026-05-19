@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 
+import PublicLanguageToggle from "@/modules/public/components/layout/PublicLanguageToggle.vue";
+import { useI18n } from "@/composables/useI18n";
+import { useThemedLogo } from "@/composables/useThemedLogo";
 import type { PublicNavigationItem } from "@/modules/public/types/public.types";
-import logoSrc from "@/assets/image/logo/logo.svg";
 
 interface Props {
     isOpen: boolean;
@@ -17,13 +19,15 @@ interface Emits {
 
 defineProps<Props>();
 const emit = defineEmits<Emits>();
+const { logoSrc } = useThemedLogo();
+const { t } = useI18n();
 
 function getItemIcon(item: PublicNavigationItem): string {
     return item.icon || "fa-solid fa-circle-dot";
 }
 
 function getItemDescription(item: PublicNavigationItem): string {
-    return item.description || "Перейти в раздел";
+    return item.description || t("mobile.fallbackDescription");
 }
 </script>
 
@@ -33,14 +37,14 @@ function getItemDescription(item: PublicNavigationItem): string {
             class="mobile-overlay"
             :class="{ active: isOpen }"
             type="button"
-            aria-label="Закрыть мобильное меню"
+            :aria-label="t('common.closeMobileMenu')"
             @click="emit('close')"
         ></button>
 
         <aside
             class="mobile-menu"
             :class="{ active: isOpen }"
-            aria-label="Мобильное меню"
+            :aria-label="t('common.mobileMenu')"
         >
             <div
                 class="mobile-menu-bg"
@@ -62,11 +66,11 @@ function getItemDescription(item: PublicNavigationItem): string {
                 >
                     <img
                         :src="logoSrc"
-                        alt="ЦОС «Пифагор»"
+                        :alt="t('footer.brandName')"
                     />
 
                     <span class="mobile-logo-text">
-                        Пифагор
+                        {{ t("footer.brandName") }}
                     </span>
                 </RouterLink>
 
@@ -74,17 +78,19 @@ function getItemDescription(item: PublicNavigationItem): string {
                     <button
                         class="mobile-theme-toggle"
                         type="button"
-                        aria-label="Переключить тему"
+                        :aria-label="t('common.switchTheme')"
                         @click="emit('toggle-theme')"
                     >
                         <i class="base-icon fa-solid fa-sun"></i>
                         <i class="base-icon fa-solid fa-moon"></i>
                     </button>
 
+                    <PublicLanguageToggle />
+
                     <button
                         class="mobile-close-btn"
                         type="button"
-                        aria-label="Закрыть меню"
+                        :aria-label="t('common.closeMenu')"
                         @click="emit('close')"
                     >
                         <i class="fa-solid fa-xmark"></i>
@@ -95,7 +101,7 @@ function getItemDescription(item: PublicNavigationItem): string {
             <div class="mobile-menu-body">
                 <nav
                     class="mobile-nav-list"
-                    aria-label="Мобильная навигация"
+                    :aria-label="t('common.mobileNavigation')"
                 >
                     <RouterLink
                         v-for="item in navigation"
@@ -126,12 +132,11 @@ function getItemDescription(item: PublicNavigationItem): string {
 
                 <div class="mobile-quote">
                     <p class="mobile-quote-text">
-                        Цифровая образовательная среда для спокойного обучения,
-                        развития и наставничества.
+                        {{ t("mobile.quote") }}
                     </p>
 
                     <p class="mobile-quote-author">
-                        ЦОС «Пифагор»
+                        {{ t("footer.brandName") }}
                     </p>
                 </div>
 
@@ -142,7 +147,7 @@ function getItemDescription(item: PublicNavigationItem): string {
                         @click="emit('close')"
                     >
                         <i class="fa-solid fa-right-to-bracket"></i>
-                        Войти
+                        {{ t("auth.login") }}
                     </RouterLink>
 
                     <RouterLink
@@ -151,7 +156,7 @@ function getItemDescription(item: PublicNavigationItem): string {
                         @click="emit('close')"
                     >
                         <i class="fa-solid fa-user-plus"></i>
-                        Регистрация
+                        {{ t("auth.register") }}
                     </RouterLink>
                 </div>
             </div>

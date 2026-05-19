@@ -1,36 +1,32 @@
-<script setup>
-import BaseIcon from "../../../../components/ui/BaseIcon.vue";
+<script setup lang="ts">
+import type { ContactFindContent } from "@/modules/public/types/contact.types";
 
-defineProps({
-    card: {
-        type: Object,
-        required: true,
-    },
-});
+interface Props {
+    content: ContactFindContent;
+}
+
+defineProps<Props>();
 </script>
 
 <template>
     <div class="contact-card contact-find-card">
         <div class="contact-card-inner">
             <div class="contact-card-topline">
-                <BaseIcon
-                    :name="card.topline.icon"
-                    size="15"
-                />
-                {{ card.topline.text }}
+                <i :class="content.toplineIcon"></i>
+                {{ content.topline }}
             </div>
 
             <h3 class="contact-card-title">
-                {{ card.title }}
+                {{ content.title }}
             </h3>
 
             <p class="contact-card-text">
-                {{ card.text }}
+                {{ content.text }}
             </p>
 
             <div class="contact-find-steps">
                 <div
-                    v-for="step in card.steps"
+                    v-for="step in content.steps"
                     :key="step.number"
                     class="contact-find-step"
                 >
@@ -47,13 +43,10 @@ defineProps({
 
             <ul class="contact-note-list">
                 <li
-                    v-for="note in card.notes"
+                    v-for="note in content.notes"
                     :key="note"
                 >
-                    <BaseIcon
-                        name="check-circle"
-                        size="15"
-                    />
+                    <i class="fas fa-check-circle"></i>
                     <span>{{ note }}</span>
                 </li>
             </ul>

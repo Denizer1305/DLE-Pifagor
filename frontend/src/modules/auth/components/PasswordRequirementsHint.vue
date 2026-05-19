@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
+import { useI18n } from "@/composables/useI18n";
 import { evaluatePasswordStrength } from "@/modules/auth/composables/usePasswordStrength";
 
 interface Props {
@@ -13,6 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
     passwordConfirm: "",
     showMatchRule: false,
 });
+const { tr } = useI18n();
 
 const strength = computed(() => {
     return evaluatePasswordStrength(props.password);
@@ -65,11 +67,11 @@ const rules = computed(() => {
     <div class="password-hint">
         <div class="password-hint__top">
             <span class="password-hint__label">
-                Требования к паролю
+                {{ tr("Требования к паролю") }}
             </span>
 
             <strong class="password-hint__value">
-                {{ strength.label }}
+                {{ tr(strength.label) }}
             </strong>
         </div>
 
@@ -93,7 +95,7 @@ const rules = computed(() => {
                         : 'fa-regular fa-circle'"
                 ></i>
 
-                <span>{{ rule.label }}</span>
+                <span>{{ tr(rule.label) }}</span>
             </li>
         </ul>
     </div>
