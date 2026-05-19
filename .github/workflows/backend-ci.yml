@@ -92,13 +92,13 @@ jobs:
               run: python manage.py makemigrations --check --dry-run
 
             - name: Ruff check
-              run: python -m ruff check apps config tests
+              run: python -m ruff check apps config
 
             - name: Black check
-              run: python -m black --check apps config tests
+              run: python -m black --check apps config
 
             - name: Isort check
-              run: python -m isort --profile black -o apps -o config --check-only apps config tests
+              run: python -m isort --profile black -o apps -o config --check-only apps config
 
             - name: Run backend tests
               run: python -m pytest

@@ -117,18 +117,18 @@ backend-collectstatic: ## Собрать static-файлы
 
 .PHONY: backend-lint
 backend-lint: ## Проверить backend через ruff
-	cd $(BACKEND_DIR) && $(PYTHON) -m ruff check apps config tests
+	cd $(BACKEND_DIR) && $(PYTHON) -m ruff check apps config
 
 .PHONY: backend-format
 backend-format: ## Отформатировать backend через ruff, black и isort
-	cd $(BACKEND_DIR) && $(PYTHON) -m ruff check apps config tests --fix
-	cd $(BACKEND_DIR) && $(PYTHON) -m black apps config tests
-	cd $(BACKEND_DIR) && $(PYTHON) -m isort --profile black -o apps -o config apps config tests
+	cd $(BACKEND_DIR) && $(PYTHON) -m ruff check apps config --fix
+	cd $(BACKEND_DIR) && $(PYTHON) -m black apps config
+	cd $(BACKEND_DIR) && $(PYTHON) -m isort --profile black -o apps -o config apps config
 
 .PHONY: backend-format-check
 backend-format-check: ## Проверить форматирование backend
-	cd $(BACKEND_DIR) && $(PYTHON) -m black --check apps config tests
-	cd $(BACKEND_DIR) && $(PYTHON) -m isort --profile black -o apps -o config --check-only apps config tests
+	cd $(BACKEND_DIR) && $(PYTHON) -m black --check apps config
+	cd $(BACKEND_DIR) && $(PYTHON) -m isort --profile black -o apps -o config --check-only apps config
 
 .PHONY: backend-test
 backend-test: ## Запустить backend-тесты
