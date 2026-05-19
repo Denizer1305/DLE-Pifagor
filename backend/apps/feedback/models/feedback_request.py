@@ -10,7 +10,9 @@ class FeedbackRequest(TimeStampedModel):
     class TopicChoices(models.TextChoices):
         QUESTION = "question", _("Вопрос")
         PARTNERSHIP = "partnership", _("Сотрудничество")
-        ORGANIZATION_CONNECTION = "organization_connection", _("Подключение организации")
+        ORGANIZATION_CONNECTION = "organization_connection", _(
+            "Подключение организации"
+        )
         TECHNICAL_SUPPORT = "technical_support", _("Техническая поддержка")
         BUG = "bug", _("Ошибка")
         OTHER = "other", _("Другое")

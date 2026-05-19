@@ -1,16 +1,15 @@
 from __future__ import annotations
 
+from apps.feedback.models import FeedbackRequest
+from apps.feedback.serializers import FeedbackRequestCreateSerializer
+from apps.feedback.services import create_feedback_request
+from apps.feedback.throttles import ContactFeedbackThrottle
 from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework import status
 from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from apps.feedback.models import FeedbackRequest
-from apps.feedback.serializers import FeedbackRequestCreateSerializer
-from apps.feedback.services import create_feedback_request
-from apps.feedback.throttles import ContactFeedbackThrottle
 
 
 def get_request_files_list(request, field_name: str = "attachments") -> list:

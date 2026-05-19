@@ -4,10 +4,9 @@ import os
 import uuid
 
 from apps.core.models import TimeStampedModel
+from apps.feedback.validators import validate_feedback_attachment
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
-from apps.feedback.validators import validate_feedback_attachment
 
 
 def feedback_attachment_upload_to(instance, filename: str) -> str:

@@ -2,11 +2,9 @@ from __future__ import annotations
 
 import logging
 
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
-
 from apps.feedback.constants import CONTACT_FEEDBACK_ADMIN_EMAIL
 from apps.feedback.models import FeedbackRequest
+from django.core.mail import EmailMultiAlternatives
 
 logger = logging.getLogger(__name__)
 

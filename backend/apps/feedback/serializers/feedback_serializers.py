@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from rest_framework import serializers
-
 from apps.feedback.models import FeedbackRequest
 from apps.feedback.validators import (
     validate_feedback_attachments_count,
@@ -9,6 +7,7 @@ from apps.feedback.validators import (
     validate_feedback_name,
     validate_feedback_topic_text,
 )
+from rest_framework import serializers
 
 
 class FeedbackRequestCreateSerializer(serializers.Serializer):

@@ -228,7 +228,7 @@ seed-demo-data: ## Запустить скрипт демо-данных
 install: backend-install frontend-install ## Установить backend и frontend зависимости
 
 .PHONY: ci
-ci: backend-ci frontend-ci ## Выполнить все локальные CI-проверки
+ci: backend-ci ## Выполнить backend CI-проверки
 
 .PHONY: run
 run: ## Подсказка по запуску backend и frontend

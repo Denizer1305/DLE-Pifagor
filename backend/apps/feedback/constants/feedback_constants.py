@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 CONTACT_FEEDBACK_ADMIN_EMAIL = "Pifagor-Platform33@yandex.ru"
 
 MAX_FEEDBACK_ATTACHMENTS_COUNT = 5

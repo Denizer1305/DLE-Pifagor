@@ -1,13 +1,11 @@
 from __future__ import annotations
 
+from apps.feedback.models import FeedbackAttachment, FeedbackRequest
+from apps.feedback.services import create_feedback_request
 from django.contrib.auth import get_user_model
 from django.core import mail
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import RequestFactory, TestCase, override_settings
-
-from apps.feedback.models import FeedbackAttachment, FeedbackRequest
-from apps.feedback.services import create_feedback_request
-
+from django.test import RequestFactory, TestCase
 
 User = get_user_model()
 

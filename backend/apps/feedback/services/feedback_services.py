@@ -2,8 +2,6 @@ from __future__ import annotations
 
 import logging
 
-from django.db import transaction
-
 from apps.feedback.models import FeedbackAttachment, FeedbackRequest
 from apps.feedback.services.feedback_email_services import (
     send_feedback_admin_notification,
@@ -13,6 +11,7 @@ from apps.feedback.validators import (
     validate_feedback_attachment,
     validate_feedback_attachments_count,
 )
+from django.db import transaction
 
 logger = logging.getLogger(__name__)
 

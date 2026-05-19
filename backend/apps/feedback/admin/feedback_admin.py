@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-from django.contrib import admin
-
 from apps.feedback.models import FeedbackAttachment, FeedbackRequest
+from django.contrib import admin
 
 
 class FeedbackAttachmentInline(admin.TabularInline):
@@ -66,9 +65,7 @@ class FeedbackRequestAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
-    inlines = (
-        FeedbackAttachmentInline,
-    )
+    inlines = (FeedbackAttachmentInline,)
     fieldsets = (
         (
             "Обращение",
