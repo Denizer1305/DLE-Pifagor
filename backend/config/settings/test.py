@@ -76,3 +76,10 @@ JWT_REFRESH_COOKIE_SECURE = False
 REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [  # noqa: F405
     "rest_framework.renderers.JSONRenderer",
 ]
+
+REST_FRAMEWORK.setdefault("DEFAULT_THROTTLE_RATES", {})  # noqa: F405
+REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"].update(  # noqa: F405
+    {
+        "contact_feedback": "3/10min",
+    }
+)

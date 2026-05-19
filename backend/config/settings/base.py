@@ -58,6 +58,7 @@ LOCAL_APPS = [
     "apps.core.apps.CoreConfig",
     "apps.organizations.apps.OrganizationsConfig",
     "apps.users.apps.UsersConfig",
+    "apps.feedback.apps.FeedbackConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -216,6 +217,9 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "EXCEPTION_HANDLER": "apps.core.exceptions_handler.custom_exception_handler",
+    "DEFAULT_THROTTLE_RATES": {
+            "contact_feedback": "3/10min",
+        },
 }
 
 
