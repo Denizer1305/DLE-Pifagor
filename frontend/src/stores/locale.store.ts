@@ -1,6 +1,8 @@
 import { computed, ref, watch } from "vue";
 import { defineStore } from "pinia";
 
+import { runDocumentTransition } from "@/utils/document-transition.utils";
+
 export type LocaleCode = "ru" | "en";
 
 const LOCALE_STORAGE_KEY = "pifagor-locale";
@@ -46,6 +48,10 @@ export const useLocaleStore = defineStore("locale", () => {
     const nextLocale = computed<LocaleCode>(() => locale.value === "en" ? "ru" : "en");
 
     function setLocale(nextValue: LocaleCode): void {
+        if (nextValue !== locale.value) {
+            runDocumentTransition("is-locale-switching");
+        }
+
         locale.value = nextValue;
         saveLocale(nextValue);
         applyLocaleToDocument(nextValue);

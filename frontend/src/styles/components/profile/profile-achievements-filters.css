@@ -1,0 +1,66 @@
+.achievements-management-card,
+.achievements-card {
+    padding: 27px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-32);
+    background: var(--white-86);
+    box-shadow: var(--shadow-sm);
+}
+
+.achievements-management-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 22px;
+    margin-bottom: 22px;
+}
+
+.achievements-management-actions {
+    flex: 0 0 auto;
+}
+
+.achievements-source-switch {
+    display: inline-flex;
+    gap: 5px;
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-pill);
+    background: var(--primary-04);
+}
+
+.achievements-source-btn,
+.achievements-filter-chip {
+    min-height: 40px;
+    padding: 0 15px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    color: var(--primary);
+    background: transparent;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-soft);
+}
+
+.achievements-source-btn:hover,
+.achievements-filter-chip:hover {
+    color: var(--accent);
+    background: var(--accent-08);
+}
+
+.achievements-source-btn.is-active,
+.achievements-filter-chip.is-active {
+    color: var(--white);
+    background: var(--primary);
+}
+
+.achievements-filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.achievements-filter-chip {
+    border: 1px solid var(--primary-08);
+    background: var(--white-86);
+}

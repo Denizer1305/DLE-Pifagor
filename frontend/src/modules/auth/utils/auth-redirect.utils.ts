@@ -4,6 +4,11 @@ import { ROLE_CODES, type RoleCode } from "@/app/constants/roles.constants";
 
 const SAFE_INTERNAL_PATH_PATTERN = /^\/(?!\/)/;
 
+export interface DashboardRedirectContext {
+    roleCode?: RoleCode | "" | null;
+    isSuperuser?: boolean;
+}
+
 export function isSafeRedirectPath(value: unknown): value is string {
     if (typeof value !== "string") {
         return false;
@@ -29,14 +34,36 @@ export function getRedirectPathFromRoute(
     return fallbackPath;
 }
 
-export function getDashboardPathByRole(roleCode: RoleCode | "" | null | undefined): string {
-    if (
+export function isAdminRole(roleCode: RoleCode | "" | null | undefined): boolean {
+    return (
+        roleCode === ROLE_CODES.DIRECTOR ||
+        roleCode === ROLE_CODES.ORG_ADMIN ||
+        roleCode === ROLE_CODES.DEPARTMENT_HEAD ||
+        roleCode === ROLE_CODES.SUPERADMIN ||
+        roleCode === ROLE_CODES.PLATFORM_ADMIN ||
+        roleCode === ROLE_CODES.ADMIN
+    );
+}
+
+export function isTeacherRole(roleCode: RoleCode | "" | null | undefined): boolean {
+    return (
         roleCode === ROLE_CODES.TEACHER ||
         roleCode === ROLE_CODES.CURATOR ||
         roleCode === ROLE_CODES.METHODIST ||
         roleCode === ROLE_CODES.ORGANIZER ||
         roleCode === ROLE_CODES.MENTOR
-    ) {
+    );
+}
+
+export function getDashboardPathByRole(
+    roleCode: RoleCode | "" | null | undefined,
+    isSuperuser = false,
+): string {
+    if (isSuperuser || isAdminRole(roleCode)) {
+        return "/admin";
+    }
+
+    if (isTeacherRole(roleCode)) {
         return "/teacher";
     }
 
@@ -44,26 +71,18 @@ export function getDashboardPathByRole(roleCode: RoleCode | "" | null | undefine
         return "/parent";
     }
 
-    if (
-        roleCode === ROLE_CODES.DIRECTOR ||
-        roleCode === ROLE_CODES.ORG_ADMIN ||
-        roleCode === ROLE_CODES.DEPARTMENT_HEAD ||
-        roleCode === ROLE_CODES.SUPERADMIN
-    ) {
-        return "/admin";
-    }
-
     return "/student";
 }
 
-export function getDashboardRouteNameByRole(roleCode: RoleCode | "" | null | undefined): string {
-    if (
-        roleCode === ROLE_CODES.TEACHER ||
-        roleCode === ROLE_CODES.CURATOR ||
-        roleCode === ROLE_CODES.METHODIST ||
-        roleCode === ROLE_CODES.ORGANIZER ||
-        roleCode === ROLE_CODES.MENTOR
-    ) {
+export function getDashboardRouteNameByRole(
+    roleCode: RoleCode | "" | null | undefined,
+    isSuperuser = false,
+): string {
+    if (isSuperuser || isAdminRole(roleCode)) {
+        return "admin-dashboard";
+    }
+
+    if (isTeacherRole(roleCode)) {
         return "teacher-dashboard";
     }
 
@@ -71,24 +90,35 @@ export function getDashboardRouteNameByRole(roleCode: RoleCode | "" | null | und
         return "parent-dashboard";
     }
 
-    if (
-        roleCode === ROLE_CODES.DIRECTOR ||
-        roleCode === ROLE_CODES.ORG_ADMIN ||
-        roleCode === ROLE_CODES.DEPARTMENT_HEAD ||
-        roleCode === ROLE_CODES.SUPERADMIN
-    ) {
-        return "admin-dashboard";
-    }
-
     return "student-dashboard";
+}
+
+export function getDashboardPathByContext(context: DashboardRedirectContext): string {
+    return getDashboardPathByRole(
+        context.roleCode,
+        Boolean(context.isSuperuser),
+    );
+}
+
+export function getDashboardRouteNameByContext(context: DashboardRedirectContext): string {
+    return getDashboardRouteNameByRole(
+        context.roleCode,
+        Boolean(context.isSuperuser),
+    );
 }
 
 export async function redirectAfterLogin(
     router: Router,
     route: RouteLocationNormalizedLoaded,
     roleCode: RoleCode | "" | null | undefined,
+    isSuperuser = false,
 ): Promise<void> {
-    const fallbackPath = getDashboardPathByRole(roleCode);
+    const fallbackPath = getDashboardPathByRole(roleCode, isSuperuser);
+    if (isSuperuser || isAdminRole(roleCode)) {
+        await router.push(fallbackPath);
+        return;
+    }
+
     const redirectPath = getRedirectPathFromRoute(route, fallbackPath);
 
     await router.push(redirectPath);

@@ -1,3 +1,5 @@
+import type { RoleCode } from "@/app/constants/roles.constants";
+
 export interface UserShort {
     id: number;
     email: string;
@@ -9,10 +11,12 @@ export interface UserShort {
 }
 
 export interface UserDetail extends UserShort {
+    backup_email?: string;
     birth_date: string | null;
     status: string;
     is_active: boolean;
     is_staff: boolean;
+    is_superuser: boolean;
     is_email_verified: boolean;
     email_verified_at: string | null;
     is_phone_verified: boolean;
@@ -26,6 +30,7 @@ export interface UserDetail extends UserShort {
     anonymized_at: string | null;
     created_at: string;
     updated_at: string;
+    active_roles?: RoleCode[];
 }
 
 export interface UserUpdatePayload {

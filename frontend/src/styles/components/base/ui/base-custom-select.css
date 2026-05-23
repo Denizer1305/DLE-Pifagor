@@ -146,6 +146,12 @@
     cursor: not-allowed;
 }
 
+.custom-select-empty {
+    padding: 12px 14px;
+    color: var(--secondary);
+    font-size: 0.8rem;
+}
+
 .custom-select.is-disabled,
 .custom-select.is-empty {
     opacity: 0.72;

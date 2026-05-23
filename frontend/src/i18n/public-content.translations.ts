@@ -393,7 +393,7 @@ export const publicContentTranslations: Record<string, string> = {
 
     "Цифровая образовательная среда Пифагор": "Pifagor Digital Learning Environment",
     "«Пифагор» объединяет обучение, контроль знаний, курсы, тестирование, практические работы, журнал, расписание, аналитику и интеллектуальную помощь в одном пространстве.": "Pifagor brings learning, assessment, courses, testing, practical work, gradebook, schedule, analytics, and intelligent assistance into one space.",
-    
+
     "Анастасия — это интеллектуальный помощник внутри платформы. Она помогает преподавателю работать с учебным процессом, а студенту — спокойнее ориентироваться в обучении.": "Anastasia is an intelligent assistant inside the platform. She helps teachers work with the learning process and helps students navigate learning more calmly.",
     "Входит в работу": "Gets involved in daily work",
     "Она помогает быстрее ориентироваться в учебных материалах, заданиях, результатах и действиях внутри платформы.": "She helps users navigate learning materials, assignments, results, and platform actions faster.",

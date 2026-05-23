@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { useToastStore } from "@/stores/toast.store";
 
+interface Props {
+    closeLabel: string;
+}
+
+defineProps<Props>();
+
 const toastStore = useToastStore();
 
 function getIconClass(type: string): string {
@@ -52,7 +58,7 @@ function getIconClass(type: string): string {
                 <button
                     class="toast-card__close"
                     type="button"
-                    aria-label="Закрыть уведомление"
+                    :aria-label="closeLabel"
                     @click="toastStore.removeToast(toast.id)"
                 >
                     <i class="fa-solid fa-xmark"></i>

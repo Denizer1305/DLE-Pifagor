@@ -1,0 +1,183 @@
+.dashboard-intro {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-38);
+    background: linear-gradient(180deg, var(--white-86) 0%, rgba(244, 246, 250, 0.88) 100%);
+    border: 1px solid var(--primary-08);
+    box-shadow: var(--shadow-md);
+}
+
+.dashboard-intro::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top right, var(--accent-10) 0%, transparent 26%),
+        radial-gradient(circle at bottom left, var(--accent-light-08) 0%, transparent 24%);
+    pointer-events: none;
+}
+
+.dashboard-intro-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+    gap: 22px;
+    padding: 28px;
+}
+
+.dashboard-intro-content,
+.dashboard-intro-copy {
+    max-width: 780px;
+}
+
+.dashboard-intro-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.dashboard-intro-badge,
+.dashboard-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 38px;
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--white-78);
+    border: 1px solid var(--primary-08);
+    color: var(--primary);
+    font-size: 0.82rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-sm);
+}
+
+.dashboard-intro-title {
+    font-family: var(--font-forum);
+    font-size: clamp(2.4rem, 4vw, 4rem);
+    line-height: 0.96;
+    color: var(--primary);
+    margin-bottom: 14px;
+}
+
+.dashboard-intro-text {
+    max-width: 680px;
+    color: var(--secondary);
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 24px;
+}
+
+.dashboard-quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.dashboard-quick-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 0 20px;
+    border-radius: var(--radius-pill);
+    background: var(--primary);
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: var(--transition-soft);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+}
+
+.dashboard-quick-btn:hover {
+    transform: translateY(-2px);
+    background: var(--color-primary-900);
+}
+
+.dashboard-quick-btn.light,
+.dashboard-quick-btn.secondary {
+    background: var(--white-80);
+    color: var(--primary);
+    border: 1px solid var(--primary-08);
+}
+
+.dashboard-quick-btn.light:hover,
+.dashboard-quick-btn.secondary:hover {
+    color: var(--accent);
+    background: var(--white-96);
+}
+
+.dashboard-intro-side {
+    display: grid;
+    gap: 16px;
+    align-content: start;
+}
+
+.dashboard-day-card,
+.dashboard-schedule-card {
+    padding: 22px;
+    border-radius: var(--radius-28);
+    background: var(--white-84);
+    border: 1px solid var(--primary-08);
+    box-shadow: var(--shadow-sm);
+}
+
+.dashboard-card-topline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 34px;
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--accent-10);
+    color: var(--accent);
+    font-size: 0.76rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.dashboard-day-title {
+    font-family: var(--font-forum);
+    font-size: 2rem;
+    line-height: 0.98;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.dashboard-day-text {
+    color: var(--secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.dashboard-day-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.dashboard-day-stat {
+    padding: 12px;
+    border-radius: var(--radius-18);
+    background: var(--primary-04);
+    border: 1px solid var(--primary-08);
+}
+
+.dashboard-day-stat strong {
+    display: block;
+    color: var(--primary);
+    font-family: var(--font-forum);
+    font-size: 1.5rem;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.dashboard-day-stat span {
+    color: var(--secondary);
+    font-size: 0.78rem;
+    line-height: 1.4;
+}

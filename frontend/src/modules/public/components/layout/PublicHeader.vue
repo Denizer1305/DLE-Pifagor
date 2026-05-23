@@ -3,13 +3,18 @@ import { computed } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 
 import PublicMobileMenu from "@/modules/public/components/layout/PublicMobileMenu.vue";
+import PublicAccountMenu from "@/modules/public/components/layout/PublicAccountMenu.vue";
 import PublicLanguageToggle from "@/modules/public/components/layout/PublicLanguageToggle.vue";
 import PublicThemeToggle from "@/modules/public/components/layout/PublicThemeToggle.vue";
 import { useI18n } from "@/composables/useI18n";
 import { useMobileMenu } from "@/modules/public/composables/useMobileMenu";
 import { useScrollHeader } from "@/modules/public/composables/useScrollHeader";
-import { publicNavigationItems } from "@/modules/public/data/public-navigation.data";
+import {
+    createPublicAccountMenuContent,
+    publicNavigationItems,
+} from "@/modules/public/data/public-navigation.data";
 import { useThemedLogo } from "@/composables/useThemedLogo";
+import { useAuthStore } from "@/stores/auth.store";
 
 interface Props {
     isDarkTheme: boolean;
@@ -23,6 +28,7 @@ const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const route = useRoute();
+const authStore = useAuthStore();
 const { localizePublicContent, t } = useI18n();
 
 const {
@@ -39,6 +45,20 @@ const navigationItems = computed(() => {
     return localizePublicContent(publicNavigationItems);
 });
 
+const accountMenu = computed(() => {
+    if (!authStore.isAuthenticated || !authStore.user) {
+        return null;
+    }
+
+    return createPublicAccountMenuContent({
+        fullName: authStore.userFullName,
+        email: authStore.user.email,
+        avatarUrl: authStore.avatarUrl,
+        activeRole: authStore.activeRole,
+        isSuperuser: authStore.isSuperuser,
+    });
+});
+
 const headerClasses = computed(() => {
     return {
         "is-scrolled": isScrolled.value,
@@ -47,6 +67,11 @@ const headerClasses = computed(() => {
 
 function isActiveRoute(routeName: string): boolean {
     return route.name === routeName;
+}
+
+async function logout(): Promise<void> {
+    await authStore.logout();
+    closeMobileMenu();
 }
 </script>
 
@@ -96,19 +121,27 @@ function isActiveRoute(routeName: string): boolean {
 
                     <PublicLanguageToggle />
 
-                    <RouterLink
-                        class="header-login-link"
-                        :to="{ name: 'login' }"
-                    >
-                        {{ t("auth.login") }}
-                    </RouterLink>
+                    <PublicAccountMenu
+                        v-if="accountMenu"
+                        :content="accountMenu"
+                        @logout="logout"
+                    />
 
-                    <RouterLink
-                        class="login-btn"
-                        :to="{ name: 'register' }"
-                    >
-                        {{ t("auth.register") }}
-                    </RouterLink>
+                    <template v-else>
+                        <RouterLink
+                            class="header-login-link"
+                            :to="{ name: 'login' }"
+                        >
+                            {{ t("auth.login") }}
+                        </RouterLink>
+
+                        <RouterLink
+                            class="login-btn"
+                            :to="{ name: 'register' }"
+                        >
+                            {{ t("auth.register") }}
+                        </RouterLink>
+                    </template>
 
                     <button
                         class="mobile-menu-toggle burger"
@@ -130,7 +163,9 @@ function isActiveRoute(routeName: string): boolean {
             :is-open="isMobileMenuOpen"
             :navigation="navigationItems"
             :is-dark-theme="props.isDarkTheme"
+            :account-menu="accountMenu"
             @close="closeMobileMenu"
+            @logout="logout"
             @toggle-theme="emit('toggle-theme')"
         />
     </header>

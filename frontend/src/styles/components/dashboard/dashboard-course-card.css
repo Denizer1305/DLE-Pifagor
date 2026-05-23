@@ -1,0 +1,192 @@
+.dashboard-courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.dashboard-course-card {
+    position: relative;
+    overflow: hidden;
+    padding: 22px;
+    border-radius: var(--radius-30);
+    background: var(--white-84);
+    border: 1px solid var(--primary-08);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-soft);
+    min-width: 0;
+}
+
+.dashboard-course-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+}
+
+.dashboard-course-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, var(--accent-08) 0%, transparent 34%);
+    pointer-events: none;
+}
+
+.dashboard-course-top,
+.dashboard-course-meta,
+.dashboard-course-progress,
+.dashboard-course-actions,
+.dashboard-course-title,
+.dashboard-course-desc {
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-course-top {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.dashboard-course-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-10);
+    color: var(--accent);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.dashboard-course-status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 5px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-05);
+    border: 1px solid var(--primary-08);
+    color: var(--secondary);
+    font-size: 0.74rem;
+    font-weight: 700;
+}
+
+.dashboard-course-status.active {
+    background: var(--accent-10);
+    color: var(--accent);
+    border-color: var(--accent-16);
+}
+
+.dashboard-course-title {
+    font-family: var(--font-forum);
+    font-size: 1.65rem;
+    line-height: 1;
+    color: var(--primary);
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+}
+
+.dashboard-course-desc {
+    color: var(--secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    overflow-wrap: anywhere;
+}
+
+.dashboard-course-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.dashboard-course-meta-item {
+    padding: 12px;
+    border-radius: var(--radius-18);
+    background: var(--primary-04);
+    border: 1px solid var(--primary-08);
+}
+
+.dashboard-course-meta-item strong {
+    display: block;
+    color: var(--primary);
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+.dashboard-course-meta-item span {
+    display: block;
+    color: var(--secondary);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.dashboard-course-progress {
+    margin-bottom: 18px;
+}
+
+.dashboard-course-progress-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--secondary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.dashboard-course-progress-track {
+    height: 8px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-08);
+    overflow: hidden;
+}
+
+.dashboard-course-progress-bar {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.dashboard-course-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dashboard-course-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-05);
+    border: 1px solid var(--primary-08);
+    color: var(--primary);
+    font-size: 0.84rem;
+    font-weight: 700;
+    transition: var(--transition-soft);
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.dashboard-course-btn:hover {
+    transform: translateY(-1px);
+    color: var(--accent);
+}
+
+.dashboard-course-btn.primary {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+}
+
+.dashboard-course-btn.primary:hover {
+    background: var(--color-primary-900);
+    color: var(--white);
+}

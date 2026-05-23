@@ -1,0 +1,99 @@
+.profile-city-select {
+    position: relative;
+    width: 100%;
+}
+
+.profile-city-select__input-wrap {
+    position: relative;
+}
+
+.profile-city-select__input-wrap > i:first-child {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    color: var(--accent);
+    font-size: 0.84rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.profile-city-select__input-wrap input {
+    padding-left: 39px;
+    padding-right: 38px;
+}
+
+.profile-city-select__spinner {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    color: var(--accent);
+    transform: translateY(-50%);
+}
+
+.profile-city-select__options {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: 0;
+    z-index: 20;
+    display: grid;
+    gap: 7px;
+    max-height: 244px;
+    overflow-y: auto;
+    padding: 8px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-18);
+    background: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
+.profile-city-select__option {
+    display: grid;
+    grid-template-columns: 16px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    min-height: 43px;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: var(--radius-14);
+    color: var(--primary);
+    background: var(--primary-04);
+    font: inherit;
+    font-size: 0.84rem;
+    line-height: 1.35;
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition-soft);
+}
+
+.profile-city-select__option i {
+    color: var(--accent);
+}
+
+.profile-city-select__option:hover {
+    color: var(--accent);
+    background: var(--accent-08);
+}
+
+.profile-city-select__state {
+    padding: 11px 12px;
+    color: var(--secondary);
+    font-size: 0.82rem;
+}
+
+.theme-dark .profile-city-select__options,
+.dark-theme .profile-city-select__options {
+    border-color: var(--dark-border);
+    background: rgba(20, 25, 34, 0.98);
+}
+
+.theme-dark .profile-city-select__option,
+.dark-theme .profile-city-select__option {
+    color: var(--dark-text);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.theme-dark .profile-city-select__state,
+.dark-theme .profile-city-select__state {
+    color: var(--dark-text-soft);
+}

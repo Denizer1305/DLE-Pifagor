@@ -60,3 +60,24 @@ export interface PublicCtaAction {
     routeName: string;
     variant: "primary" | "secondary";
 }
+
+export interface PublicAccountAction {
+    label: string;
+    icon: string;
+    routeName?: string;
+    action?: "logout";
+}
+
+export interface PublicAccountMenuContent {
+    openLabel: string;
+    closeLabel: string;
+    user: {
+        fullName: string;
+        roleLabel: string;
+        avatarUrl: string;
+        avatarAlt: string;
+    };
+    title: string;
+    subtitle: string;
+    actions: PublicAccountAction[];
+}

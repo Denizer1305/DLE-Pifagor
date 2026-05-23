@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import AuthProvider from "@/app/providers/AuthProvider.vue";
 import ThemeProvider from "@/app/providers/ThemeProvider.vue";
 </script>
 
 <template>
-    <ThemeProvider>
-        <slot />
-    </ThemeProvider>
+    <AuthProvider>
+        <ThemeProvider>
+            <slot />
+        </ThemeProvider>
+    </AuthProvider>
 </template>

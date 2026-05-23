@@ -76,6 +76,7 @@ export function useLoginForm() {
                 router,
                 route,
                 authStore.activeRole,
+                authStore.isSuperuser,
             );
         } catch (error) {
             applyApiErrorsToForm(

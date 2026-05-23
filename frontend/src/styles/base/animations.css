@@ -32,6 +32,40 @@
     transform: translateY(0) scale(1);
 }
 
+html.is-theme-switching *,
+html.is-theme-switching *::before,
+html.is-theme-switching *::after,
+body.is-theme-switching *,
+body.is-theme-switching *::before,
+body.is-theme-switching *::after {
+    transition:
+        background-color 0.34s var(--ease-emphasis),
+        border-color 0.34s var(--ease-emphasis),
+        box-shadow 0.34s var(--ease-emphasis),
+        color 0.34s var(--ease-emphasis),
+        fill 0.34s var(--ease-emphasis),
+        opacity 0.34s var(--ease-emphasis),
+        stroke 0.34s var(--ease-emphasis) !important;
+}
+
+html.is-locale-switching #app,
+body.is-locale-switching #app {
+    opacity: 0.965;
+    filter: blur(1.5px);
+    transform: translateY(2px);
+    transition:
+        opacity 0.28s var(--ease-emphasis),
+        filter 0.28s var(--ease-emphasis),
+        transform 0.28s var(--ease-emphasis);
+}
+
+#app {
+    transition:
+        opacity 0.28s var(--ease-emphasis),
+        filter 0.28s var(--ease-emphasis),
+        transform 0.28s var(--ease-emphasis);
+}
+
 @keyframes heroFloat {
     0%,
     100% {

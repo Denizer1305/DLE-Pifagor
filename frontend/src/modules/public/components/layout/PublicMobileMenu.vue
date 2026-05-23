@@ -2,19 +2,25 @@
 import { RouterLink } from "vue-router";
 
 import PublicLanguageToggle from "@/modules/public/components/layout/PublicLanguageToggle.vue";
+import PublicAccountMenu from "@/modules/public/components/layout/PublicAccountMenu.vue";
 import { useI18n } from "@/composables/useI18n";
 import { useThemedLogo } from "@/composables/useThemedLogo";
-import type { PublicNavigationItem } from "@/modules/public/types/public.types";
+import type {
+    PublicAccountMenuContent,
+    PublicNavigationItem,
+} from "@/modules/public/types/public.types";
 
 interface Props {
     isOpen: boolean;
     navigation: PublicNavigationItem[];
     isDarkTheme: boolean;
+    accountMenu?: PublicAccountMenuContent | null;
 }
 
 interface Emits {
     (event: "close"): void;
     (event: "toggle-theme"): void;
+    (event: "logout"): void;
 }
 
 defineProps<Props>();
@@ -141,23 +147,32 @@ function getItemDescription(item: PublicNavigationItem): string {
                 </div>
 
                 <div class="mobile-auth">
-                    <RouterLink
-                        class="mobile-login-btn"
-                        :to="{ name: 'login' }"
-                        @click="emit('close')"
-                    >
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                        {{ t("auth.login") }}
-                    </RouterLink>
+                    <PublicAccountMenu
+                        v-if="accountMenu"
+                        :content="accountMenu"
+                        mode="mobile"
+                        @logout="emit('logout')"
+                    />
 
-                    <RouterLink
-                        class="mobile-login-btn mobile-register-btn"
-                        :to="{ name: 'register' }"
-                        @click="emit('close')"
-                    >
-                        <i class="fa-solid fa-user-plus"></i>
-                        {{ t("auth.register") }}
-                    </RouterLink>
+                    <template v-else>
+                        <RouterLink
+                            class="mobile-login-btn"
+                            :to="{ name: 'login' }"
+                            @click="emit('close')"
+                        >
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            {{ t("auth.login") }}
+                        </RouterLink>
+
+                        <RouterLink
+                            class="mobile-login-btn mobile-register-btn"
+                            :to="{ name: 'register' }"
+                            @click="emit('close')"
+                        >
+                            <i class="fa-solid fa-user-plus"></i>
+                            {{ t("auth.register") }}
+                        </RouterLink>
+                    </template>
                 </div>
             </div>
         </aside>

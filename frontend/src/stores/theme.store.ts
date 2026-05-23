@@ -1,6 +1,8 @@
 import { computed, ref, watch } from "vue";
 import { defineStore } from "pinia";
 
+import { runDocumentTransition } from "@/utils/document-transition.utils";
+
 type ThemeMode = "light" | "dark" | "system";
 
 const THEME_STORAGE_KEY = "pifagor-theme-mode";
@@ -74,6 +76,10 @@ export const useThemeStore = defineStore("theme", () => {
     });
 
     function setThemeMode(nextMode: ThemeMode): void {
+        if (nextMode !== mode.value || nextMode === "system") {
+            runDocumentTransition("is-theme-switching");
+        }
+
         mode.value = nextMode;
         saveThemeMode(nextMode);
         applyThemeToDocument(isDark.value);

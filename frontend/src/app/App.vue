@@ -3,6 +3,10 @@ import { RouterView } from "vue-router";
 
 import AppProviders from "@/app/providers/AppProviders.vue";
 import ToastContainer from "@/components/feedback/ToastContainer.vue";
+
+const appUi = {
+    toastCloseLabel: "Закрыть уведомление",
+};
 </script>
 
 <template>
@@ -20,6 +24,6 @@ import ToastContainer from "@/components/feedback/ToastContainer.vue";
             </Transition>
         </RouterView>
 
-        <ToastContainer />
+        <ToastContainer :close-label="appUi.toastCloseLabel" />
     </AppProviders>
 </template>

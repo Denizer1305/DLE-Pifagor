@@ -1,10 +1,19 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 
-import { setAccessToken } from "@/services/api/http.client";
+import {
+    clearAccessToken,
+    getAccessToken,
+    refreshAccessToken,
+    setAccessToken,
+} from "@/services/api/http.client";
 import * as authApi from "@/modules/auth/api/auth.api";
 import { getCurrentUser } from "@/modules/users/api/users.api";
-import { getCurrentUserSettings } from "@/modules/users/api/user-settings.api";
+import { fetchCurrentProfile } from "@/modules/profile/api/profile.api";
+import {
+    getCurrentUserSettings,
+    setActiveRole,
+} from "@/modules/users/api/user-settings.api";
 import type {
     GuardianRegistrationPayload,
     LearnerRegistrationPayload,
@@ -15,12 +24,31 @@ import type {
 import type { RoleCode } from "@/app/constants/roles.constants";
 import type { UserSettings } from "@/modules/users/types/user-settings.types";
 import type { UserDetail } from "@/modules/users/types/user.types";
+import { ROLE_CODES } from "@/app/constants/roles.constants";
+import { resolveBackendAssetUrl } from "@/utils/backend-asset-url.utils";
 
 let initAuthPromise: Promise<void> | null = null;
+
+const ROLE_AUTO_DETECT_ORDER: RoleCode[] = [
+    ROLE_CODES.SUPERADMIN,
+    ROLE_CODES.PLATFORM_ADMIN,
+    ROLE_CODES.ADMIN,
+    ROLE_CODES.DIRECTOR,
+    ROLE_CODES.ORG_ADMIN,
+    ROLE_CODES.DEPARTMENT_HEAD,
+    ROLE_CODES.TEACHER,
+    ROLE_CODES.CURATOR,
+    ROLE_CODES.METHODIST,
+    ROLE_CODES.ORGANIZER,
+    ROLE_CODES.MENTOR,
+    ROLE_CODES.LEARNER,
+    ROLE_CODES.GUARDIAN,
+];
 
 export const useAuthStore = defineStore("auth", () => {
     const user = ref<UserDetail | null>(null);
     const settings = ref<UserSettings | null>(null);
+    const avatarUrl = ref("");
 
     const isLoading = ref(false);
     const isInitialized = ref(false);
@@ -28,6 +56,7 @@ export const useAuthStore = defineStore("auth", () => {
 
     const isAuthenticated = computed(() => Boolean(user.value));
     const activeRole = computed<RoleCode | "">(() => settings.value?.active_role || "");
+    const isSuperuser = computed(() => Boolean(user.value?.is_superuser));
 
     const userFullName = computed(() => {
         if (!user.value) {
@@ -41,19 +70,51 @@ export const useAuthStore = defineStore("auth", () => {
     const isLoginAllowed = computed(() => Boolean(user.value?.is_login_allowed));
 
     function resetAuthState(): void {
-        setAccessToken(null);
+        clearAccessToken();
         user.value = null;
         settings.value = null;
+        avatarUrl.value = "";
     }
 
     async function loadUserContext(): Promise<void> {
-        const [currentUser, currentSettings] = await Promise.all([
+        const [currentUser, currentSettings, currentProfile] = await Promise.all([
             getCurrentUser(),
             getCurrentUserSettings(),
+            fetchCurrentProfile().catch(() => null),
         ]);
 
         user.value = currentUser;
-        settings.value = currentSettings;
+        avatarUrl.value = resolveBackendAssetUrl(
+            currentProfile?.identity.avatar_url,
+        );
+        settings.value = currentSettings.active_role
+            ? currentSettings
+            : await resolveInitialUserRole(currentUser);
+    }
+
+    async function resolveInitialUserRole(
+        currentUser: UserDetail,
+    ): Promise<UserSettings> {
+        if (currentUser.is_superuser) {
+            return getCurrentUserSettings();
+        }
+
+        const availableRoles = currentUser.active_roles || [];
+        const orderedAvailableRoles = ROLE_AUTO_DETECT_ORDER.filter((roleCode) => {
+            return availableRoles.includes(roleCode);
+        });
+
+        for (const roleCode of orderedAvailableRoles) {
+            try {
+                return await setActiveRole({
+                    role_code: roleCode,
+                });
+            } catch {
+                continue;
+            }
+        }
+
+        return getCurrentUserSettings();
     }
 
     async function initAuth(): Promise<void> {
@@ -70,9 +131,16 @@ export const useAuthStore = defineStore("auth", () => {
             errorMessage.value = null;
 
             try {
-                const refreshResponse = await authApi.refresh();
+                const savedAccessToken = getAccessToken();
 
-                setAccessToken(refreshResponse.access);
+                if (!savedAccessToken) {
+                    const refreshedAccessToken = await refreshAccessToken();
+
+                    if (!refreshedAccessToken) {
+                        resetAuthState();
+                        return;
+                    }
+                }
 
                 await loadUserContext();
             } catch {
@@ -98,6 +166,10 @@ export const useAuthStore = defineStore("auth", () => {
             user.value = response.user;
 
             settings.value = await getCurrentUserSettings();
+            const currentProfile = await fetchCurrentProfile().catch(() => null);
+            avatarUrl.value = resolveBackendAssetUrl(
+                currentProfile?.identity.avatar_url,
+            );
             isInitialized.value = true;
         } catch (error) {
             resetAuthState();
@@ -151,10 +223,19 @@ export const useAuthStore = defineStore("auth", () => {
     }
 
     async function refreshSession(): Promise<boolean> {
-        try {
-            const response = await authApi.refresh();
+        isLoading.value = true;
+        errorMessage.value = null;
 
-            setAccessToken(response.access);
+        try {
+            const access = await refreshAccessToken();
+
+            if (!access) {
+                resetAuthState();
+                isInitialized.value = true;
+
+                return false;
+            }
+
             await loadUserContext();
 
             isInitialized.value = true;
@@ -165,7 +246,13 @@ export const useAuthStore = defineStore("auth", () => {
             isInitialized.value = true;
 
             return false;
+        } finally {
+            isLoading.value = false;
         }
+    }
+
+    function setAvatarUrl(value: string): void {
+        avatarUrl.value = resolveBackendAssetUrl(value);
     }
 
     async function registerTeacher(payload: TeacherRegistrationPayload): Promise<UserDetail> {
@@ -199,12 +286,14 @@ export const useAuthStore = defineStore("auth", () => {
     return {
         user,
         settings,
+        avatarUrl,
         isLoading,
         isInitialized,
         errorMessage,
 
         isAuthenticated,
         activeRole,
+        isSuperuser,
         userFullName,
         isEmailVerified,
         isLoginAllowed,
@@ -215,6 +304,7 @@ export const useAuthStore = defineStore("auth", () => {
         reloadCurrentUser,
         refreshSession,
         resetAuthState,
+        setAvatarUrl,
 
         registerTeacher,
         registerLearner,
