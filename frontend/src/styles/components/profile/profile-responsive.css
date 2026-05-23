@@ -1,0 +1,126 @@
+@media (max-width: 1280px) {
+    .profile-hero-layout,
+    .profile-edit-hero-layout,
+    .achievements-hero-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-hero-avatar-card,
+    .achievements-status-card {
+        max-width: 580px;
+    }
+
+    .teacher-role-facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1000px) {
+    .profile-identity-card,
+    .profile-communication-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .achievements-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .profile-edit-grid-3,
+    .profile-edit-toggle-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .profile-hero-layout,
+    .profile-edit-hero-layout,
+    .achievements-hero-layout,
+    .profile-identity-card,
+    .profile-communication-card,
+    .profile-communication-note,
+    .profile-communication-status,
+    .teacher-profile-role,
+    .profile-edit-section,
+    .achievements-management-card,
+    .achievements-card {
+        padding: 20px;
+        border-radius: var(--radius-24);
+    }
+
+    .profile-hero-title,
+    .profile-edit-hero-title,
+    .achievements-hero-title {
+        font-size: 2.35rem;
+    }
+
+    .profile-hero-stats,
+    .profile-identity-facts,
+    .teacher-profile-role-grid,
+    .teacher-role-facts,
+    .teacher-role-education-list,
+    .profile-edit-grid-2,
+    .profile-edit-grid-3,
+    .profile-edit-toggle-list,
+    .achievements-stats-grid,
+    .achievements-featured-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-profile-role-head,
+    .achievements-management-head,
+    .profile-edit-actions-card {
+        flex-direction: column;
+    }
+
+    .profile-edit-avatar-card {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .profile-edit-hero-actions,
+    .profile-edit-actions,
+    .achievements-management-actions,
+    .achievements-main-btn {
+        width: 100%;
+    }
+
+    .achievement-document-card {
+        grid-template-columns: 50px minmax(0, 1fr);
+    }
+
+    .achievement-document-actions {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 520px) {
+    .profile-hero-layout,
+    .profile-edit-hero-layout,
+    .achievements-hero-layout,
+    .profile-identity-card,
+    .teacher-profile-role,
+    .profile-edit-section,
+    .achievements-management-card,
+    .achievements-card {
+        padding: 16px;
+    }
+
+    .profile-communication-item {
+        grid-template-columns: 42px minmax(0, 1fr);
+        padding: 10px;
+    }
+
+    .profile-communication-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .profile-communication-arrow {
+        display: none;
+    }
+
+    .achievements-source-switch {
+        display: flex;
+        overflow-x: auto;
+    }
+}

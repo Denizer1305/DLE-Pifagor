@@ -1,0 +1,132 @@
+.achievements-card-wide {
+    width: 100%;
+}
+
+.achievements-featured-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+    margin-top: 22px;
+}
+
+.achievement-featured-card {
+    display: grid;
+    gap: 15px;
+    padding: 19px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-22);
+    background: var(--primary-04);
+}
+
+.achievement-featured-preview,
+.achievement-document-preview {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    border-radius: var(--radius-16);
+    color: var(--accent);
+    background: var(--accent-10);
+    font-size: 1.35rem;
+}
+
+.achievement-featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 11px;
+}
+
+.achievement-featured-tags span {
+    padding: 5px 9px;
+    border-radius: var(--radius-pill);
+    color: var(--accent);
+    background: var(--accent-10);
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.achievement-featured-body h3 {
+    margin: 0 0 8px;
+    color: var(--primary);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.achievement-featured-body p {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 0.82rem;
+    line-height: 1.6;
+}
+
+.achievement-featured-footer,
+.achievement-document-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.achievement-document-btn {
+    min-height: 40px;
+    padding: 0 14px;
+    font-size: 0.78rem;
+}
+
+.achievements-documents-grid {
+    display: grid;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.achievement-document-card {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr) auto;
+    gap: 15px;
+    align-items: center;
+    padding: 13px 15px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-18);
+    background: var(--primary-04);
+}
+
+.achievement-document-content {
+    min-width: 0;
+}
+
+.achievement-document-content strong {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 5px;
+    color: var(--primary);
+    font-size: 0.87rem;
+    line-height: 1.45;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.achievement-document-content span {
+    display: block;
+    overflow: hidden;
+    color: var(--secondary);
+    font-size: 0.76rem;
+    line-height: 1.45;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.achievement-preview-modal__dialog {
+    max-width: 540px;
+}
+
+.achievement-preview-modal .base-modal__body {
+    display: grid;
+    gap: 17px;
+}
+
+.achievement-preview-modal .achievement-featured-preview {
+    width: 82px;
+    height: 82px;
+    font-size: 1.8rem;
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.22 111.39" role="img" aria-label="Pifagor">
+    <defs>
+        <linearGradient id="shield" x1="28" x2="102" y1="8" y2="86" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#f7fafc"/>
+            <stop offset="1" stop-color="#dbeafe"/>
+        </linearGradient>
+        <linearGradient id="accent" x1="46" x2="84" y1="21" y2="58" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#93c5fd"/>
+            <stop offset="1" stop-color="#60a5fa"/>
+        </linearGradient>
+        <filter id="glow" x="0" y="0" width="130.22" height="111.39" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#60a5fa" flood-opacity=".35"/>
+        </filter>
+    </defs>
+    <g filter="url(#glow)">
+        <path fill="#7897c4" d="M99.52 14.38c.49 6.55 2.62 43-22.22 63.39a53.65 53.65 0 0 1-13.27 8 68 68 0 0 1-19.28-16.6C27.32 47.08 29.66 20.9 30.49 14a61.42 61.42 0 0 0 12.26-1.3A62.06 62.06 0 0 0 63.51 4.17l2.56-.26A66.22 66.22 0 0 0 86.78 12.7a64.58 64.58 0 0 0 12.74 1.68Z"/>
+        <path fill="url(#shield)" d="M95.33 18.06c.43 5.76 2.3 37.82-19.53 55.73a47.39 47.39 0 0 1-11.67 7 59.7 59.7 0 0 1-16.95-14.58C31.86 46.81 33.91 23.79 34.64 17.74a53.86 53.86 0 0 0 10.78-1.15 54.58 54.58 0 0 0 18.25-7.51l2.25-.22a58.33 58.33 0 0 0 18.21 7.73 57.32 57.32 0 0 0 11.2 1.47Z"/>
+        <rect width="16" height="16" x="56.65" y="40.9" fill="#132036" rx="2"/>
+        <path fill="url(#accent)" d="m81.01 34.57-8.27 6.31-6.13-8.03.05-.04-.05-.07 8.21-6.27 6.19 8.1ZM66.56 32.78l.05.07-9.96 7.94-7.98-10.02 10.02-7.97 7.92 9.94-.05.04Z"/>
+    </g>
+    <path fill="none" stroke="#dbeafe" stroke-linecap="round" stroke-width="4" d="M20 92c13 9 28 14 44 14s31-5 44-14"/>
+</svg>

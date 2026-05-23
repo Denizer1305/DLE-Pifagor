@@ -1,0 +1,14 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+
+    <p class="email-text">
+        Связь родителя и учащегося подтверждена.
+    </p>
+
+    <p class="email-text email-muted">
+        Теперь в кабинете родителя будут доступны сведения, связанные с обучением ребёнка:
+        расписание, задания, уведомления и важные учебные события.
+    </p>
+{% endblock %}

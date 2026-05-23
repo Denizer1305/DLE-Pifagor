@@ -1,0 +1,21 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+
+    <p class="email-text">
+        Аккаунт переведён в состояние ожидания анонимизации.
+    </p>
+
+    <p class="email-text email-muted">
+        Если решение не будет изменено, персональные данные будут обезличены
+        после окончания установленного срока.
+    </p>
+
+    {% if scheduled_for_deletion_at %}
+        <div class="danger-card">
+            Планируемая дата анонимизации:<br>
+            <strong>{{ scheduled_for_deletion_at }}</strong>
+        </div>
+    {% endif %}
+{% endblock %}

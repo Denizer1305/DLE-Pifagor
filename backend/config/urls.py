@@ -21,7 +21,10 @@ from drf_spectacular.views import (
 )
 
 api_v1_patterns = [
-    path("users/", include("users.urls")),
+    path("users/", include("apps.users.urls")),
+    path("organizations/", include("apps.organizations.urls")),
+    path("feedback/", include("apps.feedback.urls")),
+    path("dashboard/", include("apps.dashboard.urls")),
 ]
 
 

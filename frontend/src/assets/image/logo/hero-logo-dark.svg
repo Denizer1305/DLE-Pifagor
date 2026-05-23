@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 137.42" role="img" aria-label="Пифагор">
+    <defs>
+        <linearGradient id="heroShield" x1="28" x2="102" y1="8" y2="86" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#f8fafc"/>
+            <stop offset="1" stop-color="#dbeafe"/>
+        </linearGradient>
+        <linearGradient id="heroAccent" x1="46" x2="84" y1="21" y2="58" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#93c5fd"/>
+            <stop offset="1" stop-color="#38bdf8"/>
+        </linearGradient>
+        <filter id="heroGlow" x="0" y="0" width="130.2" height="137.42" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#38bdf8" flood-opacity=".38"/>
+        </filter>
+    </defs>
+    <g filter="url(#heroGlow)">
+        <path fill="#7897c4" d="M99.52 14.38c.48 6.55 2.61 43-22.22 63.39a53.92 53.92 0 0 1-13.28 8 67.74 67.74 0 0 1-19.27-16.62C27.32 47.08 29.65 20.9 30.48 14a61.58 61.58 0 0 0 12.27-1.3 62.06 62.06 0 0 0 20.76-8.53l2.56-.25a66.35 66.35 0 0 0 20.71 8.79 65.93 65.93 0 0 0 12.74 1.67Z"/>
+        <path fill="url(#heroShield)" d="M95.32 18.06c.43 5.76 2.31 37.83-19.53 55.73a47.39 47.39 0 0 1-11.67 7 59.68 59.68 0 0 1-16.94-14.58C31.85 46.81 33.9 23.79 34.64 17.74A53.78 53.78 0 0 0 45.42 16.6a54.66 54.66 0 0 0 18.25-7.52l2.25-.22a58.36 58.36 0 0 0 18.2 7.73 57.51 57.51 0 0 0 11.2 1.47Z"/>
+        <rect width="16" height="16" x="56.65" y="40.9" fill="#132036" rx="2"/>
+        <path fill="url(#heroAccent)" d="m81.01 34.57-8.27 6.31-6.13-8.03.05-.04-.05-.07 8.21-6.27 6.19 8.1ZM66.56 32.78l.05.07-9.96 7.94-7.98-10.02 10.02-7.97 7.92 9.94-.05.04Z"/>
+    </g>
+    <text x="65.1" y="131" fill="#f8fafc" font-family="Georgia, serif" font-size="22" text-anchor="middle" letter-spacing="1.4">ПИФАГОР</text>
+</svg>

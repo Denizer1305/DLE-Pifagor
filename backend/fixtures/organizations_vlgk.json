@@ -1,0 +1,778 @@
+[
+    {
+        "model": "organizations.organization",
+        "pk": 1,
+        "fields": {
+            "name": "Государственное автономное профессиональное образовательное учреждение Владимирской области «Высшая государственная инженерно-техническая школа (колледж) имени Д.К. Советкина»",
+            "short_name": "ГАПОУ ВО «ВлГК им. Советкина»",
+            "slug": "vlgk-sovetkina",
+            "code": "vlgk_sovetkina",
+            "description": "ГАПОУ ВО «ВлГК им. Советкина» — образовательная организация среднего профессионального образования во Владимире. История организации связана с Владимирским земским ремесленным училищем имени И.С. Мальцова, открытым 14 ноября 1885 года. Колледж развивает инженерно-техническое образование, сохраняет традиции профессиональной подготовки и объединяет учебный процесс, практику, наставничество, волонтёрские и патриотические инициативы.",
+            "city": "Владимир",
+            "address": "600001, Владимирская область, г. Владимир, ул. Дворянская, д. 27",
+            "phone": "+7 (492) 232-25-41",
+            "email": "info@vamk33.ru",
+            "website": "http://vamk33.ru",
+            "logo": "",
+            "is_active": true,
+            "is_public": true,
+            "is_default_public": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.department",
+        "pk": 1,
+        "fields": {
+            "organization": 1,
+            "name": "Отделение информационных технологий и программирования",
+            "short_name": "ИТ",
+            "code": "it",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.department",
+        "pk": 2,
+        "fields": {
+            "organization": 1,
+            "name": "Отделение технологии машиностроения",
+            "short_name": "ТМ",
+            "code": "machine_building",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.department",
+        "pk": 3,
+        "fields": {
+            "organization": 1,
+            "name": "Электротехническое отделение",
+            "short_name": "ЭТ",
+            "code": "electrical",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.department",
+        "pk": 4,
+        "fields": {
+            "organization": 1,
+            "name": "Экономическое отделение",
+            "short_name": "ЭКО",
+            "code": "economics",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.department",
+        "pk": 5,
+        "fields": {
+            "organization": 1,
+            "name": "Юридическое отделение",
+            "short_name": "ЮР",
+            "code": "law",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.department",
+        "pk": 6,
+        "fields": {
+            "organization": 1,
+            "name": "Отделение дизайна",
+            "short_name": "ДИЗ",
+            "code": "design",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.department",
+        "pk": 7,
+        "fields": {
+            "organization": 1,
+            "name": "Общеобразовательное отделение",
+            "short_name": "ОО",
+            "code": "general_education",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.studygroup",
+        "pk": 1,
+        "fields": {
+            "organization": 1,
+            "department": 1,
+            "name": "ИС-24-1",
+            "code": "is_24_1",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.studygroup",
+        "pk": 2,
+        "fields": {
+            "organization": 1,
+            "department": 1,
+            "name": "ИС-23-1",
+            "code": "is_23_1",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.studygroup",
+        "pk": 3,
+        "fields": {
+            "organization": 1,
+            "department": 1,
+            "name": "ПР-24-1",
+            "code": "pr_24_1",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.studygroup",
+        "pk": 4,
+        "fields": {
+            "organization": 1,
+            "department": 2,
+            "name": "ТМ-24-1",
+            "code": "tm_24_1",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.studygroup",
+        "pk": 5,
+        "fields": {
+            "organization": 1,
+            "department": 2,
+            "name": "ТМ-23-1",
+            "code": "tm_23_1",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.studygroup",
+        "pk": 6,
+        "fields": {
+            "organization": 1,
+            "department": 3,
+            "name": "ЭТ-24-1",
+            "code": "et_24_1",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.studygroup",
+        "pk": 7,
+        "fields": {
+            "organization": 1,
+            "department": 3,
+            "name": "ЭТ-23-1",
+            "code": "et_23_1",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.studygroup",
+        "pk": 8,
+        "fields": {
+            "organization": 1,
+            "department": 4,
+            "name": "БУ-24-1",
+            "code": "bu_24_1",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.studygroup",
+        "pk": 9,
+        "fields": {
+            "organization": 1,
+            "department": 5,
+            "name": "ЮР-24-1",
+            "code": "ur_24_1",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.studygroup",
+        "pk": 10,
+        "fields": {
+            "organization": 1,
+            "department": 6,
+            "name": "ДИЗ-24-1",
+            "code": "diz_24_1",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.studygroup",
+        "pk": 11,
+        "fields": {
+            "organization": 1,
+            "department": 7,
+            "name": "ОП-24-1",
+            "code": "op_24_1",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.studygroup",
+        "pk": 12,
+        "fields": {
+            "organization": 1,
+            "department": 7,
+            "name": "ОП-23-1",
+            "code": "op_23_1",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 1,
+        "fields": {
+            "name": "Русский язык",
+            "short_name": "Русский язык",
+            "code": "russian_language",
+            "description": "Общеобразовательная дисциплина, направленная на развитие грамотной письменной и устной речи.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 2,
+        "fields": {
+            "name": "Литература",
+            "short_name": "Литература",
+            "code": "literature",
+            "description": "Общеобразовательная дисциплина, формирующая читательскую культуру и гуманитарное мышление.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 3,
+        "fields": {
+            "name": "Английский язык",
+            "short_name": "Английский язык",
+            "code": "english_language",
+            "description": "Иностранный язык для профессионального и повседневного общения.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 4,
+        "fields": {
+            "name": "История",
+            "short_name": "История",
+            "code": "history",
+            "description": "Общеобразовательная дисциплина, изучающая ключевые исторические процессы и события.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 5,
+        "fields": {
+            "name": "Обществознание",
+            "short_name": "Обществознание",
+            "code": "social_studies",
+            "description": "Дисциплина о человеке, обществе, праве, экономике и социальных отношениях.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 6,
+        "fields": {
+            "name": "Математика",
+            "short_name": "Математика",
+            "code": "mathematics",
+            "description": "Базовая математическая дисциплина для общеобразовательной и профессиональной подготовки.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 7,
+        "fields": {
+            "name": "Алгебра",
+            "short_name": "Алгебра",
+            "code": "algebra",
+            "description": "Раздел математики, связанный с выражениями, уравнениями, функциями и преобразованиями.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 8,
+        "fields": {
+            "name": "Геометрия",
+            "short_name": "Геометрия",
+            "code": "geometry",
+            "description": "Раздел математики, изучающий пространственные и плоскостные фигуры, свойства и доказательства.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 9,
+        "fields": {
+            "name": "Вероятность и статистика",
+            "short_name": "Статистика",
+            "code": "probability_statistics",
+            "description": "Дисциплина о вероятностных моделях, статистических данных и их интерпретации.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 10,
+        "fields": {
+            "name": "Информатика",
+            "short_name": "Информатика",
+            "code": "informatics",
+            "description": "Общеобразовательная и профессиональная дисциплина о данных, алгоритмах, программировании и цифровых технологиях.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 11,
+        "fields": {
+            "name": "Основы алгоритмизации и программирования",
+            "short_name": "ОАиП",
+            "code": "algorithms_programming",
+            "description": "Профессиональная дисциплина о построении алгоритмов и разработке программ.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 12,
+        "fields": {
+            "name": "Базы данных",
+            "short_name": "БД",
+            "code": "databases",
+            "description": "Профессиональная дисциплина о проектировании, создании и использовании баз данных.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 13,
+        "fields": {
+            "name": "Операционные системы и среды",
+            "short_name": "ОС",
+            "code": "operating_systems",
+            "description": "Дисциплина о принципах работы операционных систем, файловых систем, процессов и пользовательских сред.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 14,
+        "fields": {
+            "name": "Компьютерные сети",
+            "short_name": "Сети",
+            "code": "computer_networks",
+            "description": "Профессиональная дисциплина о сетевых технологиях, протоколах, оборудовании и администрировании.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 15,
+        "fields": {
+            "name": "Веб-разработка",
+            "short_name": "Web",
+            "code": "web_development",
+            "description": "Дисциплина о создании веб-интерфейсов, клиентских и серверных компонентов веб-приложений.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 16,
+        "fields": {
+            "name": "Архитектура аппаратных средств",
+            "short_name": "ААС",
+            "code": "hardware_architecture",
+            "description": "Профессиональная дисциплина об устройстве компьютеров, периферии и аппаратных компонентов.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 17,
+        "fields": {
+            "name": "Физика",
+            "short_name": "Физика",
+            "code": "physics",
+            "description": "Общеобразовательная дисциплина о законах природы, механике, электричестве, оптике и современной физике.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 18,
+        "fields": {
+            "name": "Химия",
+            "short_name": "Химия",
+            "code": "chemistry",
+            "description": "Общеобразовательная дисциплина о веществах, реакциях, строении и свойствах материалов.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 19,
+        "fields": {
+            "name": "Биология",
+            "short_name": "Биология",
+            "code": "biology",
+            "description": "Общеобразовательная дисциплина о живых системах, организмах и закономерностях жизни.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 20,
+        "fields": {
+            "name": "Астрономия",
+            "short_name": "Астрономия",
+            "code": "astronomy",
+            "description": "Общеобразовательная дисциплина о небесных телах, космосе и строении Вселенной.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 21,
+        "fields": {
+            "name": "Физическая культура",
+            "short_name": "Физкультура",
+            "code": "physical_education",
+            "description": "Дисциплина, направленная на развитие физической культуры, здоровья и двигательной активности.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 22,
+        "fields": {
+            "name": "Безопасность жизнедеятельности",
+            "short_name": "БЖД",
+            "code": "life_safety",
+            "description": "Дисциплина о безопасности человека, общества, производственной среды и действиях в чрезвычайных ситуациях.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 23,
+        "fields": {
+            "name": "Основы философии",
+            "short_name": "Философия",
+            "code": "philosophy",
+            "description": "Гуманитарная дисциплина, формирующая культуру мышления и понимание мировоззренческих вопросов.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 24,
+        "fields": {
+            "name": "Инженерная графика",
+            "short_name": "Инж. графика",
+            "code": "engineering_graphics",
+            "description": "Профессиональная дисциплина о чертежах, технической графике и визуальном представлении инженерных объектов.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 25,
+        "fields": {
+            "name": "Техническая механика",
+            "short_name": "Тех. механика",
+            "code": "technical_mechanics",
+            "description": "Инженерная дисциплина о силах, движении, равновесии и расчётах технических систем.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 26,
+        "fields": {
+            "name": "Материаловедение",
+            "short_name": "Материаловедение",
+            "code": "materials_science",
+            "description": "Профессиональная дисциплина о свойствах материалов, их структуре, обработке и применении.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 27,
+        "fields": {
+            "name": "Метрология, стандартизация и сертификация",
+            "short_name": "МСС",
+            "code": "metrology_standardization",
+            "description": "Дисциплина о точности измерений, стандартах, сертификации и обеспечении качества.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 28,
+        "fields": {
+            "name": "Технология машиностроения",
+            "short_name": "ТМ",
+            "code": "machine_building_technology",
+            "description": "Профессиональная дисциплина о производственных процессах, обработке деталей и организации машиностроительного производства.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 29,
+        "fields": {
+            "name": "Электротехника и электроника",
+            "short_name": "ЭТиЭ",
+            "code": "electrical_engineering",
+            "description": "Профессиональная дисциплина об электрических цепях, электронных компонентах и технических устройствах.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 30,
+        "fields": {
+            "name": "Автоматизация технологических процессов",
+            "short_name": "Автоматизация",
+            "code": "process_automation",
+            "description": "Дисциплина об автоматизированных системах управления, датчиках, исполнительных механизмах и производственных процессах.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 31,
+        "fields": {
+            "name": "Экономика организации",
+            "short_name": "Экономика",
+            "code": "organization_economics",
+            "description": "Профессиональная дисциплина об экономике предприятия, ресурсах, затратах, эффективности и управлении.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 32,
+        "fields": {
+            "name": "Бухгалтерский учет",
+            "short_name": "Бухучёт",
+            "code": "accounting",
+            "description": "Профессиональная дисциплина о бухгалтерском учёте, документации, отчётности и финансовой информации.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 33,
+        "fields": {
+            "name": "Право",
+            "short_name": "Право",
+            "code": "law",
+            "description": "Дисциплина о правовой системе, нормах права и регулировании общественных отношений.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 34,
+        "fields": {
+            "name": "Правовое обеспечение профессиональной деятельности",
+            "short_name": "ПОПД",
+            "code": "professional_law_support",
+            "description": "Профессиональная дисциплина о правовых основах деятельности специалиста в профессиональной сфере.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 35,
+        "fields": {
+            "name": "Дизайн-проектирование",
+            "short_name": "Дизайн",
+            "code": "design_projecting",
+            "description": "Профессиональная дисциплина о проектировании визуальных решений, композиции и дизайн-концепций.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 36,
+        "fields": {
+            "name": "Компьютерная графика",
+            "short_name": "КГ",
+            "code": "computer_graphics",
+            "description": "Дисциплина о создании и обработке графических изображений, макетов и визуальных материалов.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 37,
+        "fields": {
+            "name": "Основы предпринимательства",
+            "short_name": "Предпринимательство",
+            "code": "entrepreneurship",
+            "description": "Дисциплина о предпринимательском мышлении, бизнес-моделях, проектировании продукта и экономической самостоятельности.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 38,
+        "fields": {
+            "name": "Индивидуальный проект",
+            "short_name": "Инд. проект",
+            "code": "individual_project",
+            "description": "Дисциплина, связанная с выполнением индивидуального учебного или исследовательского проекта.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    },
+    {
+        "model": "organizations.subject",
+        "pk": 39,
+        "fields": {
+            "name": "Проектная деятельность",
+            "short_name": "Проекты",
+            "code": "project_activity",
+            "description": "Дисциплина о командной и индивидуальной работе над проектами, постановке целей, планировании и защите результата.",
+            "is_active": true,
+            "created_at": "2026-05-19T00:00:00Z",
+            "updated_at": "2026-05-19T00:00:00Z"
+        }
+    }
+]

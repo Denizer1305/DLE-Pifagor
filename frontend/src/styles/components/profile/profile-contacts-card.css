@@ -1,0 +1,124 @@
+.profile-communication-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+    gap: 22px;
+}
+
+.profile-communication-card,
+.profile-communication-note,
+.profile-communication-status {
+    padding: 26px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-30);
+    background: var(--white-86);
+    box-shadow: var(--shadow-sm);
+}
+
+.profile-communication-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.profile-communication-item {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) 30px;
+    gap: 13px;
+    align-items: center;
+    min-height: 72px;
+    padding: 11px 14px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-18);
+    color: inherit;
+    background: var(--primary-04);
+    text-decoration: none;
+    transition: var(--transition-soft);
+}
+
+.profile-communication-item:hover {
+    border-color: var(--accent-20);
+    background: var(--white-96);
+    transform: translateY(-1px);
+}
+
+.profile-communication-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-14);
+    color: var(--accent);
+    background: var(--accent-10);
+}
+
+.profile-communication-body {
+    min-width: 0;
+}
+
+.profile-communication-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--secondary);
+    font-size: 0.76rem;
+}
+
+.profile-communication-value {
+    display: block;
+    overflow: hidden;
+    color: var(--primary);
+    font-size: 0.9rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-communication-arrow {
+    color: var(--secondary);
+    font-size: 0.78rem;
+    text-align: center;
+}
+
+.profile-communication-side {
+    display: grid;
+    gap: 14px;
+    align-content: start;
+}
+
+.profile-communication-note-title {
+    margin: 0 0 10px;
+    color: var(--primary);
+    font-size: 1.06rem;
+    line-height: 1.35;
+}
+
+.profile-communication-note-text {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 0.86rem;
+    line-height: 1.75;
+}
+
+.profile-communication-status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--primary-08);
+    color: var(--secondary);
+    font-size: 0.84rem;
+}
+
+.profile-communication-status-row:first-child {
+    padding-top: 0;
+}
+
+.profile-communication-status-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.profile-communication-status-row strong {
+    color: var(--primary);
+    font-size: 0.84rem;
+}

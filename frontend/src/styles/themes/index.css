@@ -1,4 +1,2 @@
-@import "./light.css";
-@import "./dark.css";
-@import "./accent-themes.css";
-@import "./public.dark.css";
+/* Implemented theme overrides only. */
+@import "./assets/dark.css";

@@ -20,12 +20,36 @@
 ## Иерархия
 
 ```css
-h1 { font-size: 40px; line-height: 1.15; font-weight: 700; }
-h2 { font-size: 28px; line-height: 1.25; font-weight: 700; }
-h3 { font-size: 20px; line-height: 1.3; font-weight: 600; }
-body { font-size: 16px; line-height: 1.6; font-weight: 400; }
-small { font-size: 14px; line-height: 1.45; font-weight: 400; }
-caption { font-size: 12px; line-height: 1.4; font-weight: 500; }
+h1 {
+    font-size: 40px;
+    line-height: 1.15;
+    font-weight: 700;
+}
+h2 {
+    font-size: 28px;
+    line-height: 1.25;
+    font-weight: 700;
+}
+h3 {
+    font-size: 20px;
+    line-height: 1.3;
+    font-weight: 600;
+}
+body {
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+small {
+    font-size: 14px;
+    line-height: 1.45;
+    font-weight: 400;
+}
+caption {
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 500;
+}
 ```
 
 ---

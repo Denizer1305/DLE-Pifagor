@@ -1,0 +1,14 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+
+    <p class="email-text">
+        В ЦОС «Пифагор» создан запрос на связь родителя и учащегося.
+    </p>
+
+    <p class="email-text email-muted">
+        После подтверждения родитель сможет видеть важные учебные события,
+        расписание, задания, уведомления и другую информацию, доступную в кабинете родителя.
+    </p>
+{% endblock %}

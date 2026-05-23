@@ -1,0 +1,53 @@
+
+.dashboard-quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.dashboard-quick-action {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    padding: 16px;
+    border-radius: var(--radius-22);
+    background: var(--primary-04);
+    border: 1px solid var(--primary-08);
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition-soft);
+}
+
+.dashboard-quick-action:hover {
+    transform: translateY(-2px);
+    background: var(--white-88);
+    box-shadow: var(--shadow-sm);
+}
+
+.dashboard-quick-action-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-10);
+    color: var(--accent);
+    font-size: 0.95rem;
+}
+
+.dashboard-quick-action-copy strong {
+    display: block;
+    color: var(--primary);
+    font-size: 0.92rem;
+    line-height: 1.45;
+    margin-bottom: 4px;
+}
+
+.dashboard-quick-action-copy span {
+    display: block;
+    color: var(--secondary);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}

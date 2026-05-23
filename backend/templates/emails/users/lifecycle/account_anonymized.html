@@ -1,0 +1,14 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+
+    <p class="email-text">
+        Аккаунт был анонимизирован.
+    </p>
+
+    <p class="email-text email-muted">
+        Персональные данные обезличены. Это действие выполняется для защиты данных
+        и сохранения целостности учебной истории, журнала, заданий и аудита платформы.
+    </p>
+{% endblock %}

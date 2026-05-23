@@ -1,6 +1,7 @@
-@import "./hero.css";
-@import "./features.css";
-@import "./ai.css";
-@import "./partners.css";
-@import "./testimonials.css";
-@import "./cta.css";
+@import "./home-ai.css";
+@import "./home-cta.css";
+@import "./home-features.css";
+@import "./home-hero.css";
+@import "./home-partners.css";
+@import "./home-testimonials.css";
+@import "./home-responsive.css";

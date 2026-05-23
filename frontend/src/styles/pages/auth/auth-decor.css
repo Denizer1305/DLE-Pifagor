@@ -1,0 +1,138 @@
+.auth-grid-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.auth-grid-line {
+    position: absolute;
+}
+
+.auth-grid-line.vertical {
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--primary-16), transparent);
+    animation: linePulse 8s ease-in-out infinite;
+}
+
+.auth-grid-line.vertical.left {
+    left: 4%;
+}
+
+.auth-grid-line.vertical.center {
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 1s;
+}
+
+.auth-grid-line.vertical.right {
+    right: 4%;
+    animation-delay: 2s;
+}
+
+.auth-grid-line.horizontal {
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-16), transparent);
+    animation: lineSweep 12s linear infinite;
+}
+
+.auth-grid-line.horizontal.top {
+    top: 132px;
+}
+
+.auth-grid-line.horizontal.bottom {
+    bottom: 72px;
+    animation-delay: 3s;
+}
+
+.auth-decor {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.auth-circle {
+    position: absolute;
+    border-radius: var(--radius-round);
+    border: 1px solid var(--accent-16);
+    animation: circleDrift 18s ease-in-out infinite;
+}
+
+.auth-circle.one {
+    width: 420px;
+    height: 420px;
+    top: 4%;
+    right: -120px;
+}
+
+.auth-circle.two {
+    width: 280px;
+    height: 280px;
+    bottom: 8%;
+    left: -80px;
+    animation-delay: 2s;
+}
+
+.auth-circle.three {
+    width: 180px;
+    height: 180px;
+    top: 52%;
+    right: 18%;
+    animation-delay: 4s;
+}
+
+.auth-glow {
+    position: absolute;
+    border-radius: var(--radius-round);
+    filter: blur(22px);
+    background: var(--accent-08);
+    animation: glowMove 14s ease-in-out infinite;
+}
+
+.auth-glow.one {
+    width: 220px;
+    height: 220px;
+    top: 12%;
+    left: 12%;
+}
+
+.auth-glow.two {
+    width: 180px;
+    height: 180px;
+    bottom: 12%;
+    right: 12%;
+    animation-delay: 3s;
+}
+
+.auth-moving-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(74, 111, 165, 0.30), transparent);
+    animation: movingLine 10s linear infinite;
+}
+
+.auth-moving-line.one {
+    top: 18%;
+    left: -220px;
+    width: 220px;
+}
+
+.auth-moving-line.two {
+    top: 58%;
+    left: -180px;
+    width: 180px;
+    animation-delay: 4s;
+}
+
+.auth-moving-line.three {
+    bottom: 18%;
+    left: -240px;
+    width: 240px;
+    animation-delay: 7s;
+}

@@ -1,0 +1,21 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+
+    <p class="email-text">
+        Мы внимательно рассмотрели заявку, но сейчас не можем подтвердить её.
+    </p>
+
+    {% if review_comment %}
+        <div class="danger-card">
+            <strong>Комментарий проверяющего:</strong><br>
+            {{ review_comment }}
+        </div>
+    {% endif %}
+
+    <p class="email-text email-muted" style="margin-top: 20px;">
+        Если вы считаете, что произошла ошибка, пожалуйста, уточните данные
+        в образовательной организации.
+    </p>
+{% endblock %}

@@ -1,0 +1,234 @@
+@media (max-width: 1180px) {
+    .auth-layout {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .auth-intro-inner {
+        align-items: center;
+        text-align: center;
+    }
+
+    .auth-title,
+    .auth-subtitle {
+        max-width: 760px;
+    }
+
+    .auth-meta,
+    .auth-badges {
+        justify-content: center;
+    }
+
+    .auth-form-shell {
+        width: min(100%, 720px);
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-public-header {
+        padding-top: 16px;
+    }
+
+    .auth-public-header__shell {
+        min-height: 72px;
+        padding: 10px 14px;
+        border-radius: 24px;
+    }
+
+    .auth-public-header__brand {
+        min-width: 0;
+    }
+
+    .auth-public-header__logo {
+        height: 48px;
+        margin-left: 8px;
+    }
+
+    .auth-public-header__theme-button {
+        width: 48px;
+        height: 48px;
+    }
+
+    .auth-section {
+        min-height: calc(100vh - 98px);
+        padding: 42px 0 64px;
+    }
+
+    .auth-form-inner {
+        padding: 26px;
+    }
+
+    .auth-form-shell {
+        border-radius: var(--radius-30);
+    }
+
+    .auth-form-shell::before {
+        inset: 12px;
+        border-radius: 22px;
+    }
+
+    .form-grid,
+    .role-switcher {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-form-row {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .auth-title {
+        font-size: clamp(2.5rem, 14vw, 3.6rem);
+    }
+
+    .auth-visual-shell {
+        width: min(100%, 280px);
+    }
+
+    .logout-page .auth-card {
+        padding: 30px 24px;
+        border-radius: 30px;
+    }
+
+    .logout-page .auth-actions {
+        flex-direction: column;
+    }
+
+    .logout-page .auth-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-section {
+        padding: 32px 0 52px;
+    }
+
+    .auth-form-inner {
+        padding: 22px;
+    }
+
+    .auth-form-title {
+        font-size: 2.2rem;
+    }
+
+    .auth-badge,
+    .auth-meta-item {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .auth-status-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .auth-status-card__icon {
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1440px) {
+    .auth-section .container,
+    .auth-container {
+        width: min(1320px, calc(100% - 96px));
+    }
+
+    .auth-layout {
+        grid-template-columns: minmax(0, 0.95fr) minmax(520px, 0.78fr);
+        gap: 56px;
+    }
+
+    .auth-form-inner {
+        padding: 42px;
+    }
+
+    .auth-title {
+        max-width: 620px;
+        font-size: clamp(3.6rem, 4.2vw, 5.2rem);
+    }
+
+    .auth-subtitle {
+        max-width: 620px;
+        font-size: 1.05rem;
+    }
+
+    .auth-visual-shell {
+        width: min(100%, 400px);
+    }
+}
+
+@media (min-width: 1720px) {
+    .auth-section .container,
+    .auth-container {
+        width: min(1480px, calc(100% - 120px));
+    }
+
+    .auth-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(560px, 0.72fr);
+        gap: 72px;
+    }
+
+    .auth-public-header {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .auth-public-header__shell {
+        min-height: 80px;
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .auth-form-shell {
+        border-radius: 42px;
+    }
+
+    .auth-form-inner {
+        padding: 46px;
+    }
+}
+
+@media (min-width: 2100px) {
+    .auth-section .container,
+    .auth-container {
+        width: min(1620px, calc(100% - 160px));
+    }
+
+    .auth-layout {
+        gap: 96px;
+    }
+
+    .auth-title {
+        font-size: 5.6rem;
+    }
+
+    .auth-subtitle {
+        font-size: 1.12rem;
+    }
+
+    .auth-form-title {
+        font-size: 3.4rem;
+    }
+}
+
+@media (max-width: 1180px) {
+    .register-page .auth-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .register-page .auth-form-shell {
+        max-width: 760px;
+    }
+}
+
+@media (max-width: 768px) {
+    .register-page .auth-form-inner {
+        padding: 26px;
+    }
+
+    .registration-actions {
+        grid-template-columns: 1fr;
+    }
+}

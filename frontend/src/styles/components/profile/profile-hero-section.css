@@ -1,0 +1,221 @@
+.profile-hero-card,
+.profile-edit-hero,
+.achievements-hero {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-38);
+    background: linear-gradient(180deg, var(--white-92), rgba(244, 246, 250, 0.9));
+    box-shadow: var(--shadow-md);
+}
+
+.profile-hero-card-bg,
+.profile-edit-hero-bg,
+.achievements-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.profile-hero-circle,
+.profile-hero-glow,
+.profile-edit-hero-circle,
+.profile-edit-hero-glow,
+.achievements-hero-circle,
+.achievements-hero-glow {
+    position: absolute;
+    border-radius: var(--radius-round);
+}
+
+.profile-hero-circle.one,
+.profile-edit-hero-circle.one,
+.achievements-hero-circle.one {
+    top: -80px;
+    right: 22%;
+    width: 210px;
+    height: 210px;
+    border: 1px solid var(--accent-10);
+}
+
+.profile-hero-circle.two,
+.profile-edit-hero-circle.two,
+.achievements-hero-circle.two {
+    bottom: -160px;
+    left: -60px;
+    width: 340px;
+    height: 340px;
+    border: 1px solid var(--primary-06);
+}
+
+.profile-hero-glow.one,
+.profile-edit-hero-glow.one,
+.achievements-hero-glow.one {
+    top: -10%;
+    right: -5%;
+    width: 46%;
+    height: 74%;
+    background: radial-gradient(circle, var(--accent-10), transparent 68%);
+}
+
+.profile-hero-glow.two,
+.profile-edit-hero-glow.two,
+.achievements-hero-glow.two {
+    bottom: -28%;
+    left: -10%;
+    width: 42%;
+    height: 68%;
+    background: radial-gradient(circle, var(--accent-light-08), transparent 68%);
+}
+
+.profile-hero-layout,
+.profile-edit-hero-layout,
+.achievements-hero-layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+    gap: 28px;
+    padding: 30px;
+}
+
+.profile-hero-copy,
+.profile-edit-hero-copy,
+.achievements-hero-copy {
+    max-width: 760px;
+}
+
+.profile-hero-topline,
+.profile-edit-hero-topline,
+.achievements-hero-topline {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 36px;
+    padding: 7px 14px;
+    margin-bottom: 20px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-pill);
+    color: var(--accent);
+    background: var(--white-80);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.profile-hero-title,
+.profile-edit-hero-title,
+.achievements-hero-title {
+    margin: 0 0 14px;
+    color: var(--primary);
+    font-family: var(--font-forum);
+    font-size: clamp(2.45rem, 4vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1;
+}
+
+.profile-hero-subtitle,
+.profile-edit-hero-text,
+.achievements-hero-text {
+    max-width: 700px;
+    margin: 0 0 24px;
+    color: var(--secondary);
+    font-size: 0.96rem;
+    line-height: 1.8;
+}
+
+.profile-hero-badges,
+.profile-edit-hero-badges,
+.achievements-hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.profile-hero-badge,
+.profile-edit-hero-badge,
+.achievements-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 40px;
+    padding: 8px 14px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-pill);
+    color: var(--primary);
+    background: var(--white-80);
+    font-size: 0.8rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-xs);
+}
+
+.profile-hero-side,
+.achievements-hero-side {
+    display: flex;
+    align-items: stretch;
+}
+
+.profile-hero-avatar-card {
+    width: 100%;
+    padding: 22px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-28);
+    background: var(--white-84);
+    box-shadow: var(--shadow-sm);
+}
+
+.profile-hero-avatar {
+    width: 88px;
+    height: 88px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    border-radius: var(--radius-22);
+    box-shadow: var(--shadow-sm);
+}
+
+.profile-hero-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-hero-meta strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--primary);
+    font-size: 1.05rem;
+}
+
+.profile-hero-meta span {
+    color: var(--secondary);
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+.profile-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 9px;
+    margin-top: 20px;
+}
+
+.profile-hero-stat {
+    padding: 13px 10px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-16);
+    background: var(--primary-04);
+}
+
+.profile-hero-stat strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary);
+    font-family: var(--font-forum);
+    font-size: 1.42rem;
+    line-height: 1;
+}
+
+.profile-hero-stat span {
+    color: var(--secondary);
+    font-size: 0.72rem;
+    line-height: 1.35;
+}

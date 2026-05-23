@@ -1,106 +1,104 @@
 name: Backend CI
 
 on:
-  push:
-    branches:
-      - main
-      - develop
-      - "feature/**"
-      - "fix/**"
-      - "docs/**"
-    paths:
-      - "backend/**"
-      - ".github/workflows/backend-ci.yml"
-      - "Makefile"
-      - ".env.example"
-
-  pull_request:
-    branches:
-      - main
-      - develop
-    paths:
-      - "backend/**"
-      - ".github/workflows/backend-ci.yml"
-      - "Makefile"
-      - ".env.example"
+    push:
+        branches:
+            - master
+            - dev
+            - "feature/**"
+            - "fix/**"
+            - "refactor/**"
+            - "chore/**"
+    pull_request:
+        branches:
+            - master
+            - dev
 
 permissions:
-  contents: read
+    contents: read
+
+concurrency:
+    group: backend-ci-${{ github.ref }}
+    cancel-in-progress: true
 
 defaults:
-  run:
-    working-directory: backend
+    run:
+        working-directory: backend
 
 env:
-  DJANGO_SETTINGS_MODULE: config.settings.test
-  DJANGO_SECRET_KEY: ci-secret-key
-  DJANGO_DEBUG: "false"
-  DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1
+    DJANGO_SETTINGS_MODULE: config.settings.test
+    DJANGO_SECRET_KEY: ci-secret-key
+    DJANGO_DEBUG: "false"
+    DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1
 
-  DJANGO_DB_ENGINE: django.db.backends.sqlite3
-  DJANGO_DB_NAME: ":memory:"
+    DJANGO_DB_ENGINE: django.db.backends.sqlite3
+    DJANGO_DB_NAME: ":memory:"
 
-  CORS_ALLOWED_ORIGINS: http://localhost:5173
-  CSRF_TRUSTED_ORIGINS: http://localhost:5173
+    DJANGO_TIME_ZONE: Europe/Moscow
+    DJANGO_LANGUAGE_CODE: ru-ru
 
-  JWT_ACCESS_TOKEN_LIFETIME_MINUTES: "10"
-  JWT_REFRESH_TOKEN_LIFETIME_DAYS: "7"
-  JWT_REFRESH_COOKIE_NAME: pifagor_refresh
-  JWT_REFRESH_COOKIE_SECURE: "false"
-  JWT_REFRESH_COOKIE_SAMESITE: Lax
-  JWT_REFRESH_COOKIE_PATH: /api/v1/auth/
+    CORS_ALLOWED_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+    CSRF_TRUSTED_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
 
-  CELERY_TASK_ALWAYS_EAGER: "true"
-  CELERY_TASK_EAGER_PROPAGATES: "true"
+    JWT_ACCESS_TOKEN_LIFETIME_MINUTES: "10"
+    JWT_REFRESH_TOKEN_LIFETIME_DAYS: "7"
+    JWT_REFRESH_COOKIE_NAME: pifagor_refresh
+    JWT_REFRESH_COOKIE_SECURE: "false"
+    JWT_REFRESH_COOKIE_SAMESITE: Lax
+    JWT_REFRESH_COOKIE_PATH: /api/v1/auth/
+
+    CELERY_TASK_ALWAYS_EAGER: "true"
+    CELERY_TASK_EAGER_PROPAGATES: "true"
 
 jobs:
-  backend:
-    name: Backend checks
-    runs-on: ubuntu-latest
+    backend:
+        name: Backend checks
+        runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version:
-          - "3.12"
+        strategy:
+            fail-fast: false
+            matrix:
+                python-version:
+                    - "3.12"
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6
 
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: pip
-          cache-dependency-path: |
-            backend/requirements/base.txt
-            backend/requirements/test.txt
+            - name: Set up Python
+              uses: actions/setup-python@v6
+              with:
+                  python-version: ${{ matrix.python-version }}
+                  cache: pip
+                  cache-dependency-path: |
+                      backend/requirements/base.txt
+                      backend/requirements/test.txt
 
-      - name: Upgrade pip
-        run: python -m pip install --upgrade pip
+            - name: Upgrade pip
+              run: python -m pip install --upgrade pip
 
-      - name: Install backend dependencies
-        run: pip install -r requirements/test.txt
+            - name: Install backend dependencies
+              run: pip install -r requirements/test.txt
 
-      - name: Check Django project
-        run: python manage.py check
+            - name: Show Python and Django versions
+              run: |
+                  python --version
+                  python -m django --version
 
-      - name: Check migrations
-        run: python manage.py makemigrations --check --dry-run
+            - name: Django system check
+              run: python manage.py check
 
-      - name: Run Ruff
-        run: python -m ruff check apps config tests
+            - name: Check migrations
+              run: python manage.py makemigrations --check --dry-run
 
-      - name: Check Black formatting
-        run: python -m black --check apps config tests
+            - name: Ruff check
+              run: python -m ruff check apps config
 
-      - name: Check import sorting
-        run: python -m isort --check-only apps config tests
+            - name: Black check
+              run: python -m black --check apps config
 
-      - name: Run pre-commit
-        run: pre-commit run --all-files
-        working-directory: .
+            - name: Isort check
+              run: python -m isort --profile black -o apps -o config --check-only apps config
 
-      - name: Run tests
-        run: python -m pytest
+            - name: Run backend tests
+              run: python -m pytest

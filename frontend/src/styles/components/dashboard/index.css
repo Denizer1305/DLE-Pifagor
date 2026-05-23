@@ -1,0 +1,16 @@
+@import "./dashboard-shell.css";
+@import "./dashboard-sidebar.css";
+@import "./dashboard-topbar.css";
+@import "./dashboard-panels.css";
+@import "./dashboard-calendar.css";
+@import "./dashboard-intro.css";
+@import "./dashboard-cards.css";
+@import "./dashboard-responsive.css";
+@import "./dashboard-activity.css";
+@import "./dashboard-ai.css";
+@import "./dashboard-stats.css";
+@import "./dashboard-quick-actions.css";
+@import "./dashboard-tables.css";
+@import "./dashboard-timeline.css";
+@import "./dashboard-course-card.css";
+@import "./dashboard-admin-page.css";

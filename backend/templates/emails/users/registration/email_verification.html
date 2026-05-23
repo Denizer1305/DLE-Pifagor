@@ -1,0 +1,15 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+
+    <p class="email-text">
+        Добро пожаловать в ЦОС «Пифагор». Чтобы завершить первый этап регистрации,
+        подтвердите ваш email.
+    </p>
+
+    <p class="email-text email-muted">
+        Это помогает защитить аккаунт и убедиться, что именно вы будете получать
+        важные уведомления платформы.
+    </p>
+{% endblock %}
