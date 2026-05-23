@@ -9,13 +9,25 @@ from apps.users.permissions import (
 )
 from apps.users.serializers import (
     AvatarModerationSerializer,
+    CurrentProfileAvatarSerializer,
+    CurrentProfileSerializer,
+    CurrentProfileUpdateSerializer,
     ProfileSerializer,
     ProfileUpdateSerializer,
 )
-from apps.users.services import moderate_avatar, submit_avatar_for_moderation
+from apps.users.services import (
+    build_current_profile_payload,
+    delete_current_profile_avatar,
+    moderate_avatar,
+    submit_avatar_for_moderation,
+    update_current_profile,
+    update_current_profile_avatar,
+)
+from apps.users.services.current_profile.locations import suggest_cities
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, viewsets
+from rest_framework import filters, status, viewsets
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 
@@ -145,3 +157,108 @@ class ProfileViewSet(viewsets.ModelViewSet):
         )
 
         return Response(ProfileSerializer(profile).data)
+
+    @action(
+        detail=False,
+        methods=["get"],
+        url_path="me",
+        permission_classes=[IsAuthenticated],
+    )
+    def me(self, request):
+        """
+        Возвращает агрегированные данные текущего профиля.
+        """
+
+        payload = build_current_profile_payload(user=request.user)
+
+        return Response(
+            CurrentProfileSerializer(payload).data,
+            status=status.HTTP_200_OK,
+        )
+
+    @action(
+        detail=False,
+        methods=["get", "patch"],
+        url_path="me/edit",
+        permission_classes=[IsAuthenticated],
+    )
+    def me_edit(self, request):
+        """
+        Возвращает или обновляет данные формы редактирования текущего профиля.
+        """
+
+        if request.method == "GET":
+            payload = build_current_profile_payload(user=request.user)
+
+            return Response(
+                CurrentProfileSerializer(payload).data,
+                status=status.HTTP_200_OK,
+            )
+
+        serializer = CurrentProfileUpdateSerializer(
+            data=request.data,
+            partial=True,
+            context={"primary_email": request.user.email},
+        )
+        serializer.is_valid(raise_exception=True)
+
+        payload = update_current_profile(
+            user=request.user,
+            data=serializer.validated_data,
+            request=request,
+        )
+
+        return Response(
+            CurrentProfileSerializer(payload).data,
+            status=status.HTTP_200_OK,
+        )
+
+    @action(
+        detail=False,
+        methods=["post", "delete"],
+        url_path="me/avatar",
+        permission_classes=[IsAuthenticated],
+    )
+    def me_avatar(self, request):
+        """
+        Загружает или удаляет аватар текущего пользователя.
+        """
+
+        if request.method == "DELETE":
+            payload = delete_current_profile_avatar(
+                user=request.user,
+                request=request,
+            )
+
+            return Response(
+                CurrentProfileSerializer(payload).data,
+                status=status.HTTP_200_OK,
+            )
+
+        serializer = CurrentProfileAvatarSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        payload = update_current_profile_avatar(
+            user=request.user,
+            avatar=serializer.validated_data["avatar"],
+            request=request,
+        )
+
+        return Response(
+            CurrentProfileSerializer(payload).data,
+            status=status.HTTP_200_OK,
+        )
+
+    @action(
+        detail=False,
+        methods=["get"],
+        url_path="me/city-suggestions",
+        permission_classes=[IsAuthenticated],
+    )
+    def me_city_suggestions(self, request):
+        query = request.query_params.get("query", "")
+
+        return Response(
+            {"suggestions": suggest_cities(query=query)},
+            status=status.HTTP_200_OK,
+        )

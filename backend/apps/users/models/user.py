@@ -33,6 +33,11 @@ class User(AbstractBaseUser, PermissionsMixin, LifecycleModel):
         unique=True,
         db_index=True,
     )
+    backup_email = models.EmailField(
+        _("Резервный email"),
+        blank=True,
+        default="",
+    )
     phone = models.CharField(
         _("Телефон"),
         max_length=32,
@@ -179,6 +184,9 @@ class User(AbstractBaseUser, PermissionsMixin, LifecycleModel):
 
         if self.email:
             self.email = self.email.strip().lower()
+
+        if self.backup_email:
+            self.backup_email = self.backup_email.strip().lower()
 
         if self.phone:
             self.phone = self.phone.strip()

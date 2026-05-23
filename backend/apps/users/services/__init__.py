@@ -89,6 +89,10 @@ _SERVICE_EXPORTS = {
     "update_interface_theme": "apps.users.services.user_settings_services",
     "update_language": "apps.users.services.user_settings_services",
     "update_timezone": "apps.users.services.user_settings_services",
+    "build_current_profile_payload": "apps.users.services.current_profile_services",
+    "delete_current_profile_avatar": "apps.users.services.current_profile_services",
+    "update_current_profile": "apps.users.services.current_profile_services",
+    "update_current_profile_avatar": "apps.users.services.current_profile_services",
 }
 
 

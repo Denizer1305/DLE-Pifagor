@@ -59,6 +59,7 @@ LOCAL_APPS = [
     "apps.organizations.apps.OrganizationsConfig",
     "apps.users.apps.UsersConfig",
     "apps.feedback.apps.FeedbackConfig",
+    "apps.dashboard.apps.DashboardConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -340,6 +341,12 @@ PASSWORD_RESET_PATH = get_env(
 EMAIL_LOGO_URL = get_env(
     "EMAIL_LOGO_URL",
     "",
+)
+
+DADATA_API_TOKEN = get_env("DADATA_API_TOKEN", "")
+DADATA_SUGGESTIONS_URL = get_env(
+    "DADATA_SUGGESTIONS_URL",
+    "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address",
 )
 
 

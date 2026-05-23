@@ -24,6 +24,9 @@ class RoleCode(models.TextChoices):
     DIRECTOR = "director", "Директор"
     ORG_ADMIN = "org_admin", "Администратор организации"
     SUPERADMIN = "superadmin", "Суперадминистратор"
+    PLATFORM_ADMIN = "platform_admin", "Администратор платформы"
+    MODERATOR = "moderator", "Модератор"
+    SUPPORT = "support", "Техническая поддержка"
 
 
 LEARNER_ROLE_CODES = {

@@ -19,6 +19,12 @@ from apps.users.selectors.audit_selectors import (
     get_registration_attempts_queryset,
     get_user_audit_logs_queryset,
 )
+from apps.users.selectors.current_profile_selectors import (
+    get_active_role_code_for_user,
+    get_current_role_profile,
+    get_or_create_profile_for_user,
+    get_role_label,
+)
 from apps.users.selectors.guardian_selectors import (
     get_active_guardian_learner_links_queryset,
     get_active_guardian_link,
@@ -195,4 +201,8 @@ __all__ = [
     "user_has_pending_join_request",
     "user_is_superadmin",
     "user_phone_exists",
+    "get_active_role_code_for_user",
+    "get_current_role_profile",
+    "get_or_create_profile_for_user",
+    "get_role_label",
 ]

@@ -23,6 +23,11 @@ from apps.users.serializers.auth_serializers import (
     ResetPasswordSerializer,
     TokenPairSerializer,
 )
+from apps.users.serializers.current_profile_serializers import (
+    CurrentProfileAvatarSerializer,
+    CurrentProfileSerializer,
+    CurrentProfileUpdateSerializer,
+)
 from apps.users.serializers.guardian_profile_serializers import (
     GuardianLearnerCreateSerializer,
     GuardianLearnerSerializer,
@@ -121,4 +126,7 @@ __all__ = [
     "UserUpdateSerializer",
     "ForgotPasswordSerializer",
     "ResetPasswordSerializer",
+    "CurrentProfileAvatarSerializer",
+    "CurrentProfileSerializer",
+    "CurrentProfileUpdateSerializer",
 ]

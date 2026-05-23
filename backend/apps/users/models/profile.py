@@ -71,6 +71,35 @@ class Profile(TimeStampedModel):
         blank=True,
     )
 
+    preferred_contact_method = models.CharField(
+        _("Предпочтительный способ связи"),
+        max_length=32,
+        choices=[
+            ("email", _("Электронная почта")),
+            ("phone", _("Телефон")),
+            ("vk", _("ВКонтакте")),
+            ("max", _("MAX")),
+        ],
+        default="email",
+    )
+
+    show_email = models.BooleanField(
+        _("Показывать email в профиле"),
+        default=True,
+    )
+    show_phone = models.BooleanField(
+        _("Показывать телефон в профиле"),
+        default=False,
+    )
+    email_notifications = models.BooleanField(
+        _("Email-уведомления"),
+        default=True,
+    )
+    push_notifications = models.BooleanField(
+        _("Внутрисистемные уведомления"),
+        default=True,
+    )
+
     social_link_max = models.URLField(
         _("Ссылка на профиль в MAX"),
         blank=True,

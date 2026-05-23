@@ -43,6 +43,7 @@ def test_user_detail_serializer() -> None:
     assert data["id"] == user.id
     assert data["email"] == "detail-serializer@example.com"
     assert "status" in data
+    assert "is_superuser" in data
     assert "created_at" in data
 
 
