@@ -25,6 +25,7 @@ api_v1_patterns = [
     path("organizations/", include("apps.organizations.urls")),
     path("feedback/", include("apps.feedback.urls")),
     path("dashboard/", include("apps.dashboard.urls")),
+    path("notifications/", include("apps.notifications.urls")),
 ]
 
 

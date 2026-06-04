@@ -60,6 +60,7 @@ LOCAL_APPS = [
     "apps.users.apps.UsersConfig",
     "apps.feedback.apps.FeedbackConfig",
     "apps.dashboard.apps.DashboardConfig",
+    "apps.notifications.apps.NotificationsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -205,6 +206,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "apps.core.permissions.IsAuthenticatedAndActive",
