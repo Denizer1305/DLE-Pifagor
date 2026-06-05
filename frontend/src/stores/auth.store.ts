@@ -10,6 +10,7 @@ import {
 import * as authApi from "@/modules/auth/api/auth.api";
 import { getCurrentUser } from "@/modules/users/api/users.api";
 import { fetchCurrentProfile } from "@/modules/profile/api/profile.api";
+import type { CurrentProfileDto } from "@/modules/profile/types/profile.types";
 import {
     getCurrentUserSettings,
     setActiveRole,
@@ -48,6 +49,7 @@ const ROLE_AUTO_DETECT_ORDER: RoleCode[] = [
 export const useAuthStore = defineStore("auth", () => {
     const user = ref<UserDetail | null>(null);
     const settings = ref<UserSettings | null>(null);
+    const profile = ref<CurrentProfileDto | null>(null);
     const avatarUrl = ref("");
 
     const isLoading = ref(false);
@@ -68,11 +70,17 @@ export const useAuthStore = defineStore("auth", () => {
 
     const isEmailVerified = computed(() => Boolean(user.value?.is_email_verified));
     const isLoginAllowed = computed(() => Boolean(user.value?.is_login_allowed));
+    const organizationName = computed(() => {
+        const value = profile.value?.role_profile?.organization;
+
+        return typeof value === "string" ? value.trim() : "";
+    });
 
     function resetAuthState(): void {
         clearAccessToken();
         user.value = null;
         settings.value = null;
+        profile.value = null;
         avatarUrl.value = "";
     }
 
@@ -84,37 +92,46 @@ export const useAuthStore = defineStore("auth", () => {
         ]);
 
         user.value = currentUser;
+        profile.value = currentProfile;
         avatarUrl.value = resolveBackendAssetUrl(
             currentProfile?.identity.avatar_url,
         );
-        settings.value = currentSettings.active_role
-            ? currentSettings
-            : await resolveInitialUserRole(currentUser);
+        settings.value = await resolveUserRole(currentUser, currentSettings);
     }
 
-    async function resolveInitialUserRole(
+    async function resolveUserRole(
         currentUser: UserDetail,
+        currentSettings: UserSettings,
     ): Promise<UserSettings> {
         if (currentUser.is_superuser) {
-            return getCurrentUserSettings();
+            return {
+                active_role: ROLE_CODES.SUPERADMIN,
+            };
         }
 
         const availableRoles = currentUser.active_roles || [];
-        const orderedAvailableRoles = ROLE_AUTO_DETECT_ORDER.filter((roleCode) => {
-            return availableRoles.includes(roleCode);
-        });
+        const selectedRole = currentSettings.active_role
+            && availableRoles.includes(currentSettings.active_role)
+            ? currentSettings.active_role
+            : ROLE_AUTO_DETECT_ORDER.find((roleCode) => {
+                return availableRoles.includes(roleCode);
+            });
 
-        for (const roleCode of orderedAvailableRoles) {
+        if (selectedRole) {
             try {
                 return await setActiveRole({
-                    role_code: roleCode,
+                    role_code: selectedRole,
                 });
             } catch {
-                continue;
+                return {
+                    active_role: selectedRole,
+                };
             }
         }
 
-        return getCurrentUserSettings();
+        return {
+            active_role: "",
+        };
     }
 
     async function initAuth(): Promise<void> {
@@ -165,8 +182,12 @@ export const useAuthStore = defineStore("auth", () => {
             setAccessToken(response.access);
             user.value = response.user;
 
-            settings.value = await getCurrentUserSettings();
+            settings.value = await resolveUserRole(
+                response.user,
+                await getCurrentUserSettings(),
+            );
             const currentProfile = await fetchCurrentProfile().catch(() => null);
+            profile.value = currentProfile;
             avatarUrl.value = resolveBackendAssetUrl(
                 currentProfile?.identity.avatar_url,
             );
@@ -286,6 +307,7 @@ export const useAuthStore = defineStore("auth", () => {
     return {
         user,
         settings,
+        profile,
         avatarUrl,
         isLoading,
         isInitialized,
@@ -297,6 +319,7 @@ export const useAuthStore = defineStore("auth", () => {
         userFullName,
         isEmailVerified,
         isLoginAllowed,
+        organizationName,
 
         initAuth,
         login,

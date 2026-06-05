@@ -2,9 +2,9 @@
 import { computed } from "vue";
 import { RouterLink } from "vue-router";
 
-import logoDark from "@/assets/brand/logo/themes/dark/logo.svg";
 import logoPrimary from "@/assets/brand/logo/themes/light/logo.svg";
 import { useI18n } from "@/composables/useI18n";
+import { useThemedLogo } from "@/composables/useThemedLogo";
 import PublicLanguageToggle from "@/modules/public/components/layout/PublicLanguageToggle.vue";
 
 interface Props {
@@ -27,16 +27,13 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>();
 const { t } = useI18n();
+const { getThemedLogoSrc } = useThemedLogo();
 
 const themeIconClass = computed(() => {
     return props.isDarkTheme ? "fa-solid fa-sun" : "fa-solid fa-moon";
 });
 
-const currentLogoSrc = computed(() => {
-    return props.isDarkTheme && props.logoSrc === logoPrimary
-        ? logoDark
-        : props.logoSrc;
-});
+const currentLogoSrc = computed(() => getThemedLogoSrc(props.logoSrc));
 
 function handleThemeToggle(): void {
     emit("toggle-theme");
