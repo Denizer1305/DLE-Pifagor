@@ -11,7 +11,19 @@ from apps.feedback.validators import (
     validate_feedback_attachment,
     validate_feedback_attachments_count,
 )
+from apps.notifications.constants import (
+    NotificationCategory,
+    NotificationLevel,
+    NotificationRole,
+    NotificationSourceType,
+    NotificationType,
+)
+from apps.notifications.services import create_notification
+from apps.users.constants.lifecycle import UserRoleStatus
+from apps.users.constants.roles import PLATFORM_ADMIN_ROLE_CODES
+from django.contrib.auth import get_user_model
 from django.db import transaction
+from django.db.models import Q
 
 logger = logging.getLogger(__name__)
 
@@ -84,6 +96,14 @@ def create_feedback_request(
         )
 
     try:
+        notify_platform_admins_about_feedback(feedback_request)
+    except Exception:
+        logger.exception(
+            "Failed to create feedback in-app notifications " "feedback_request_id=%s",
+            feedback_request.pk,
+        )
+
+    try:
         send_feedback_admin_notification(feedback_request)
     except Exception as error:
         logger.exception(
@@ -111,3 +131,57 @@ def create_feedback_request(
         )
 
     return feedback_request
+
+
+def notify_platform_admins_about_feedback(
+    feedback_request: FeedbackRequest,
+) -> None:
+    User = get_user_model()
+    admins = (
+        User.objects.filter(is_active=True)
+        .filter(
+            Q(is_superuser=True)
+            | Q(
+                user_roles__role__code__in=PLATFORM_ADMIN_ROLE_CODES,
+                user_roles__role__is_active=True,
+                user_roles__status=UserRoleStatus.ACTIVE,
+            )
+        )
+        .distinct()
+    )
+    message = build_feedback_notification_message(feedback_request)
+
+    for admin in admins:
+        create_notification(
+            recipient=admin,
+            title="Новое обращение пользователя",
+            message=message,
+            notification_type=NotificationType.SUPPORT_REQUEST,
+            category=NotificationCategory.FEEDBACK,
+            level=NotificationLevel.WARNING,
+            recipient_role=NotificationRole.ADMIN,
+            source_type=NotificationSourceType.SUPPORT_REQUEST,
+            source_id=str(feedback_request.pk),
+            deduplication_key=(
+                f"feedback:admin:{admin.pk}:request:{feedback_request.pk}"
+            ),
+            action_label="Открыть обращение",
+            action_url=f"/admin/feedback?request={feedback_request.pk}",
+            payload={
+                "feedback_request_id": feedback_request.pk,
+                "email": feedback_request.email,
+                "topic": feedback_request.topic,
+            },
+        )
+
+
+def build_feedback_notification_message(
+    feedback_request: FeedbackRequest,
+) -> str:
+    subject = feedback_request.subject.strip()
+    summary = subject or feedback_request.message.strip()
+
+    if len(summary) > 140:
+        summary = f"{summary[:137].rstrip()}..."
+
+    return f"{feedback_request.full_name}: {summary}"

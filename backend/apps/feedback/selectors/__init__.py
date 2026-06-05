@@ -1,11 +1,9 @@
-"""
-Селекторы приложения feedback.
+from apps.feedback.selectors.feedback_selectors import (
+    get_feedback_requests_queryset,
+    get_feedback_summary_payload,
+)
 
-Селекторы нужны для чтения и отбора данных без размещения сложных QuerySet
-в views или services.
-
-На текущем этапе публичная форма только создаёт обращения, поэтому
-чтение обращений через selectors пока не используется.
-"""
-
-__all__: list[str] = []
+__all__ = [
+    "get_feedback_requests_queryset",
+    "get_feedback_summary_payload",
+]
