@@ -1,0 +1,183 @@
+.admin-user-detail-hero {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.admin-user-detail-grid,
+.admin-user-edit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.admin-user-card dl {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+}
+
+.admin-user-card dd {
+    margin: 0;
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.admin-user-profile-card {
+    grid-column: 1 / -1;
+}
+
+.admin-user-profile-card dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 22px;
+}
+
+.admin-user-profile-card dt,
+.admin-user-profile-card dd {
+    min-width: 0;
+}
+
+.admin-user-audit {
+    display: grid;
+    gap: 10px;
+}
+
+.admin-user-audit p {
+    display: grid;
+    gap: 4px;
+    padding: 12px;
+    border-radius: var(--radius-18);
+    background: var(--primary-04);
+}
+
+.admin-user-edit-form,
+.admin-user-edit-form label {
+    display: grid;
+    gap: 10px;
+}
+
+.admin-user-edit-form {
+    gap: 24px;
+}
+
+.admin-user-edit-form label > span:not(.admin-checkbox-box) {
+    color: var(--primary);
+    font-weight: 800;
+    line-height: 1.35;
+}
+
+.admin-user-edit-form input,
+.admin-user-edit-form textarea {
+    width: 100%;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-18);
+    background: var(--white-82);
+    color: var(--primary);
+    font: inherit;
+}
+
+.admin-user-edit-form input {
+    min-height: 46px;
+    padding: 0 14px;
+}
+
+.admin-user-edit-form textarea {
+    resize: vertical;
+    min-height: 150px;
+    padding: 14px;
+}
+
+.admin-user-edit-toggle {
+    align-content: center;
+    align-self: end;
+}
+
+.admin-user-edit-form .admin-checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 14px;
+    border: 1px solid var(--primary-12);
+    border-radius: var(--radius-18);
+    background: var(--white-86);
+    color: var(--primary);
+    font-weight: 800;
+    cursor: pointer;
+    transition: var(--transition-soft);
+}
+
+.admin-checkbox-field input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.admin-checkbox-box {
+    position: relative;
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--accent-32);
+    border-radius: 7px;
+    background: var(--white-82);
+    transition: var(--transition-soft);
+}
+
+.admin-checkbox-field input:checked + .admin-checkbox-box {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+
+.admin-checkbox-field input:checked + .admin-checkbox-box::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 7px;
+    height: 12px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.admin-user-edit-form .admin-checkbox-field:hover {
+    border-color: var(--accent-32);
+    background: var(--accent-08);
+}
+
+.admin-checkbox-field input:focus-visible + .admin-checkbox-box {
+    box-shadow: 0 0 0 4px var(--accent-08);
+}
+
+.admin-user-edit-reason {
+    gap: 10px;
+}
+
+.admin-user-edit-actions {
+    padding-top: 6px;
+}
+
+@media (max-width: 1120px) {
+    .admin-user-detail-grid,
+    .admin-user-edit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-user-profile-card dl {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 680px) {
+    .admin-users-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-user-detail-hero,
+    .admin-users-pagination {
+        display: grid;
+    }
+}

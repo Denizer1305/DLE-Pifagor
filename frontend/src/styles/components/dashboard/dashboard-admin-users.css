@@ -1,0 +1,298 @@
+.admin-users-page,
+.admin-user-detail,
+.admin-user-edit {
+    display: grid;
+    gap: 22px;
+}
+
+.admin-users-hero,
+.admin-user-card,
+.admin-users-filters,
+.admin-users-summary article,
+.admin-users-empty {
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-30);
+    background: var(--white-86);
+    box-shadow: var(--shadow-sm);
+}
+
+.admin-users-hero,
+.admin-user-card {
+    padding: 26px;
+}
+
+.admin-users-hero h1,
+.admin-user-card h1,
+.admin-user-card h2 {
+    margin: 12px 0 10px;
+    color: var(--primary);
+    font-family: var(--font-forum);
+    line-height: 1;
+}
+
+.admin-users-hero h1,
+.admin-user-card h1 {
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+}
+
+.admin-user-card h2 {
+    font-size: 2rem;
+}
+
+.admin-users-hero p,
+.admin-user-card p {
+    margin: 0;
+    color: var(--secondary);
+    line-height: 1.7;
+}
+
+.admin-users-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.admin-users-summary article {
+    display: grid;
+    gap: 8px;
+    padding: 18px;
+}
+
+.admin-users-summary i {
+    color: var(--accent);
+}
+
+.admin-users-summary span,
+.admin-users-row small,
+.admin-user-card dt,
+.admin-user-audit time {
+    color: var(--secondary);
+    font-size: 0.82rem;
+}
+
+.admin-users-summary strong {
+    color: var(--primary);
+    font-size: 1.8rem;
+}
+
+.admin-users-filters {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) minmax(180px, 220px) minmax(180px, 220px) auto auto;
+    gap: 12px;
+    align-items: center;
+    padding: 16px;
+}
+
+.admin-users-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 46px;
+    padding: 0 16px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-18);
+    background: var(--white-78);
+}
+
+.admin-users-search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--primary);
+    font: inherit;
+}
+
+.admin-users-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-20);
+    background: var(--white-82);
+}
+
+.admin-users-table {
+    width: 100%;
+    min-width: 860px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.admin-users-table th,
+.admin-users-table td {
+    padding: 14px 16px;
+    color: var(--secondary);
+    font-size: 0.86rem;
+    line-height: 1.45;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--primary-08);
+}
+
+.admin-users-table th:last-child,
+.admin-users-table td:last-child {
+    width: 190px;
+}
+
+.admin-users-table th {
+    background: var(--primary-06);
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.admin-users-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.admin-users-table strong {
+    display: block;
+    color: var(--primary);
+    margin-bottom: 4px;
+}
+
+.admin-users-table small {
+    color: var(--secondary);
+    overflow-wrap: anywhere;
+}
+
+.admin-users-table mark {
+    display: inline-flex;
+    padding: 6px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-08);
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.admin-users-table mark.is-success {
+    background: rgba(45, 160, 98, 0.14);
+    color: #237747;
+}
+
+.admin-users-table mark.is-warning {
+    background: rgba(255, 188, 67, 0.18);
+    color: #9a6900;
+}
+
+.admin-users-table mark.is-danger {
+    background: rgba(210, 72, 72, 0.14);
+    color: #aa3333;
+}
+
+.admin-users-actions,
+.admin-user-detail-actions,
+.admin-user-edit-actions,
+.admin-user-status-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.admin-users-actions {
+    gap: 8px;
+}
+
+.admin-users-actions a,
+.admin-user-status-actions button,
+.admin-users-pagination button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 16px;
+    border: 1px solid var(--primary-12);
+    border-radius: var(--radius-pill);
+    background: var(--white-88);
+    color: var(--primary);
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-xs);
+    transition: var(--transition-soft);
+}
+
+.admin-users-actions a {
+    white-space: nowrap;
+}
+
+.admin-users-actions a:hover,
+.admin-user-status-actions button:hover,
+.admin-users-pagination button:hover:not(:disabled) {
+    border-color: var(--accent-32);
+    background: var(--accent-08);
+    color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.admin-users-pagination button:disabled {
+    opacity: 0.48;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.admin-users-pagination {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 16px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-20);
+    background: var(--white-78);
+    color: var(--secondary);
+}
+
+.admin-users-pagination strong {
+    justify-self: center;
+    color: var(--primary);
+    font-size: 0.92rem;
+}
+
+.admin-users-pagination div {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.admin-users-error,
+.admin-users-success,
+.admin-users-empty {
+    padding: 16px;
+}
+
+.admin-users-empty {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    color: var(--secondary);
+    text-align: center;
+}
+
+.admin-users-empty i {
+    color: var(--accent);
+    font-size: 1.6rem;
+}
+
+@media (max-width: 1120px) {
+    .admin-users-filters {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 680px) {
+    .admin-users-pagination {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-users-pagination strong,
+    .admin-users-pagination div {
+        justify-self: stretch;
+    }
+
+    .admin-users-pagination div {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

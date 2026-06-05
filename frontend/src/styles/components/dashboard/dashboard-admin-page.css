@@ -155,10 +155,6 @@
     z-index: 1;
 }
 
-.admin-dashboard-bottom-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(330px, 0.9fr);
-}
-
 .admin-dashboard-bottom-grid .dashboard-ai-card {
     min-height: 100%;
 }

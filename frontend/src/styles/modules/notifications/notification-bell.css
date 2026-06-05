@@ -1,0 +1,43 @@
+.notification-bell {
+    position: relative;
+}
+
+.notification-bell__button {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border: var(--border-subtle);
+    border-radius: var(--radius-round);
+    background: var(--white-86);
+    color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.notification-bell__button:hover,
+.notification-bell__button.has-unread {
+    color: var(--accent);
+    border-color: var(--accent-18);
+    background: var(--accent-08);
+}
+
+.notification-unread-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: var(--radius-pill);
+    background: var(--color-warning);
+    color: var(--white);
+    border: 2px solid var(--white);
+    font-size: 0.68rem;
+    font-weight: 900;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}

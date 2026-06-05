@@ -5,8 +5,8 @@
     min-height: 100vh;
     color: var(--primary-text);
     background:
-        radial-gradient(circle at top left, rgba(74, 111, 165, 0.07) 0%, transparent 18%),
-        radial-gradient(circle at bottom right, rgba(106, 140, 197, 0.06) 0%, transparent 18%),
+        radial-gradient(circle at top left, var(--accent-07) 0%, transparent 18%),
+        radial-gradient(circle at bottom right, var(--accent-light-06) 0%, transparent 18%),
         var(--white);
 }
 
@@ -82,7 +82,7 @@
 .dashboard-panel-backdrop {
     position: fixed;
     inset: 0;
-    z-index: 20;
+    z-index: 40;
     border: 0;
     background: transparent;
 }

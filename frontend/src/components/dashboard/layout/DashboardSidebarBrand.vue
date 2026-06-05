@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useThemedLogo } from "@/composables/useThemedLogo";
 import type { DashboardBrand } from "@/components/dashboard/types/dashboard.types";
 
 interface Props {
@@ -6,12 +7,13 @@ interface Props {
 }
 
 defineProps<Props>();
+const { getThemedLogoSrc } = useThemedLogo();
 </script>
 
 <template>
     <div class="sidebar-brand">
         <img
-            :src="brand.logo"
+            :src="getThemedLogoSrc(brand.logo)"
             :alt="brand.title"
         />
 

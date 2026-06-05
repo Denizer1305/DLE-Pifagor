@@ -22,7 +22,6 @@
 
 .dashboard-grid-3 {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(320px, 0.96fr);
     gap: 22px;
     align-items: stretch;
 }
@@ -156,4 +155,3 @@
     transform: translateY(-1px);
     color: var(--accent);
 }
-

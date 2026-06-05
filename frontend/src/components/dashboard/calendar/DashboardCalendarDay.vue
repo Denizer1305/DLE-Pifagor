@@ -20,6 +20,7 @@ function getDayClasses(): string[] {
         props.day.isWeekend ? "is-weekend" : "",
         props.day.isToday ? "is-today" : "",
         props.isActive ? "is-selected" : "",
+        props.day.events?.length ? "has-events" : "",
     ].filter(Boolean);
 }
 </script>
@@ -42,8 +43,8 @@ function getDayClasses(): string[] {
             class="dashboard-calendar-day-dots"
         >
             <i
-                v-for="event in day.events"
-                :key="`${day.date}-${event.type}`"
+                v-for="(event, index) in day.events"
+                :key="`${day.date}-${event.type}-${index}`"
                 class="dashboard-event-dot"
                 :class="`is-${event.type}`"
             ></i>

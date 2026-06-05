@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 
 import DashboardCalendar from "@/components/dashboard/calendar/DashboardCalendar.vue";
 import { useDashboardCreateItems } from "@/components/dashboard/composables/useDashboardCreateItems";
@@ -12,6 +12,8 @@ import DashboardProfilePanel from "@/components/dashboard/panels/DashboardProfil
 import DashboardStateView from "@/components/dashboard/shared/DashboardStateView.vue";
 
 import type { DashboardPageScaffoldModel } from "@/components/dashboard/types/dashboard.types";
+import { getNotificationActionTarget } from "@/modules/notifications/mappers/notification.mapper";
+import { useNotificationsStore } from "@/modules/notifications/stores/notifications.store";
 
 interface Props {
     model: DashboardPageScaffoldModel;
@@ -32,6 +34,25 @@ const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const modelSource = computed(() => props.model);
+const notificationsStore = useNotificationsStore();
+const notificationsContent = computed(() => {
+    return {
+        ...props.model.notifications,
+        items: notificationsStore.unreadItems
+            .slice(0, 6)
+            .map((item) => ({
+                id: item.id,
+                title: item.title,
+                text: item.message,
+                icon: item.levelIcon,
+                isNew: item.isUnread,
+                actionLabel: item.actionLabel,
+                actionTo: item.hasAction
+                    ? getNotificationActionTarget(item.actionUrl)
+                    : undefined,
+            })),
+    };
+});
 
 const {
     isSidebarOpen,
@@ -43,11 +64,40 @@ const {
     calendarDays,
     createModalKind,
     isCreateModalOpen,
+    isSaving,
     notesContent,
+    saveError,
     closeCreateModal,
+    deleteItem,
     openCreateModal,
     submitCreateModal,
 } = useDashboardCreateItems(modelSource);
+
+async function handleCreateItem(payload: Parameters<typeof submitCreateModal>[0]): Promise<void> {
+    const wasSaved = await submitCreateModal(payload);
+
+    if (wasSaved && payload.notificationEnabled) {
+        emit("reload");
+    }
+}
+
+async function handleDeleteItem(itemId: number): Promise<void> {
+    if (await deleteItem(itemId)) {
+        emit("reload");
+    }
+}
+
+function handleOpenNotification(notificationId: string | number): void {
+    const normalizedId = Number(notificationId);
+
+    if (Number.isFinite(normalizedId)) {
+        void notificationsStore.markAsRead(normalizedId);
+    }
+}
+
+onMounted(() => {
+    void notificationsStore.loadFeed();
+});
 </script>
 
 <template>
@@ -62,12 +112,14 @@ const {
                 :content="model.calendarContent"
                 :days="calendarDays"
                 @create="openCreateModal('calendar')"
+                @remove="handleDeleteItem"
             />
         </template>
 
         <template #notifications>
             <DashboardNotificationsPanel
-                :content="model.notifications"
+                :content="notificationsContent"
+                @open="handleOpenNotification"
             />
         </template>
 
@@ -75,6 +127,7 @@ const {
             <DashboardNotesPanel
                 :content="notesContent"
                 @create="openCreateModal('note')"
+                @remove="handleDeleteItem"
             />
         </template>
 
@@ -110,8 +163,10 @@ const {
             :is-open="isCreateModalOpen"
             :kind="createModalKind"
             :content="model.createModal"
+            :is-submitting="isSaving"
+            :error-message="saveError"
             @close="closeCreateModal"
-            @submit="submitCreateModal"
+            @submit="handleCreateItem"
         />
     </DashboardShell>
 </template>

@@ -12,5 +12,10 @@
 @import "./dashboard-quick-actions.css";
 @import "./dashboard-tables.css";
 @import "./dashboard-timeline.css";
+@import "./dashboard-page-nav.css";
 @import "./dashboard-course-card.css";
 @import "./dashboard-admin-page.css";
+@import "./dashboard-feedback.css";
+@import "./dashboard-admin-users.css";
+@import "./dashboard-admin-user-detail.css";
+@import "./dashboard-mobile-hardening.css";

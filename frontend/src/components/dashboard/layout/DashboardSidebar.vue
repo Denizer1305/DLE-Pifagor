@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, useRoute } from "vue-router";
 
+import { useThemedLogo } from "@/composables/useThemedLogo";
 import type {
     DashboardBrand,
     DashboardNavigationItem,
@@ -18,6 +19,7 @@ interface Props {
 
 const props = defineProps<Props>();
 const route = useRoute();
+const { getThemedLogoSrc } = useThemedLogo();
 
 function isActive(item: DashboardNavigationItem): boolean {
     if (typeof item.to === "string") {
@@ -67,7 +69,7 @@ function getExtraCardClass(): string {
                 :to="{ name: 'home' }"
             >
                 <img
-                    :src="brand.logo"
+                    :src="getThemedLogoSrc(brand.logo)"
                     :alt="brand.title"
                 />
 
@@ -138,7 +140,7 @@ function getExtraCardClass(): string {
                     <div class="sidebar-ai-mark">
                         <img
                             v-if="extraCard.image"
-                            :src="extraCard.image.src"
+                            :src="getThemedLogoSrc(extraCard.image.src)"
                             :alt="extraCard.image.alt"
                         />
 

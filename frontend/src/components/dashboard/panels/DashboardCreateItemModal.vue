@@ -12,6 +12,8 @@ interface Props {
     isOpen: boolean;
     kind: DashboardCreateItemKind;
     content: DashboardCreateItemModalContent;
+    isSubmitting?: boolean;
+    errorMessage?: string;
 }
 
 interface DashboardCreateItemPayload {
@@ -20,9 +22,13 @@ interface DashboardCreateItemPayload {
     text: string;
     date: string;
     eventType: DashboardCalendarEventType;
+    notificationEnabled: boolean;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+    isSubmitting: false,
+    errorMessage: "",
+});
 
 const emit = defineEmits<{
     (event: "close"): void;
@@ -34,6 +40,7 @@ const form = reactive({
     text: "",
     date: "",
     eventType: "lesson" as DashboardCalendarEventType,
+    notificationEnabled: true,
 });
 
 const modalCopy = computed(() => props.content[props.kind]);
@@ -56,6 +63,7 @@ function resetForm(): void {
     form.text = "";
     form.date = "";
     form.eventType = "lesson";
+    form.notificationEnabled = true;
 }
 
 function getTodayDateKey(): string {
@@ -82,10 +90,9 @@ function submitForm(): void {
         text,
         date: form.date || getTodayDateKey(),
         eventType: form.eventType,
+        notificationEnabled: form.notificationEnabled,
     });
 
-    resetForm();
-    emit("close");
 }
 
 function selectEventType(value: string): void {
@@ -189,12 +196,33 @@ function selectEventType(value: string): void {
                             rows="5"
                         ></textarea>
                     </label>
+
+                    <label class="dashboard-create-reminder is-wide">
+                        <span class="dashboard-create-reminder__copy">
+                            <strong>{{ modalCopy.notificationLabel }}</strong>
+                            <span>{{ modalCopy.notificationText }}</span>
+                        </span>
+
+                        <input
+                            v-model="form.notificationEnabled"
+                            type="checkbox"
+                        />
+                        <span class="dashboard-create-reminder__toggle"></span>
+                    </label>
                 </div>
 
                 <footer class="base-modal__footer">
+                    <p
+                        v-if="errorMessage"
+                        class="contact-form-error dashboard-create-modal__error"
+                    >
+                        {{ errorMessage }}
+                    </p>
+
                     <button
                         type="button"
                         class="dashboard-create-modal__secondary"
+                        :disabled="isSubmitting"
                         @click="emit('close')"
                     >
                         {{ content.cancelLabel }}
@@ -203,9 +231,10 @@ function selectEventType(value: string): void {
                     <button
                         type="submit"
                         class="dashboard-create-modal__primary"
+                        :disabled="isSubmitting"
                     >
                         <i class="fas fa-plus"></i>
-                        {{ modalCopy.submitLabel }}
+                        {{ isSubmitting ? content.savingLabel : modalCopy.submitLabel }}
                     </button>
                 </footer>
             </form>
