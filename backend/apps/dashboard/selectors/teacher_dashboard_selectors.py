@@ -7,6 +7,10 @@ from apps.dashboard.selectors.calendar_selectors import (
     get_calendar_start_date,
     get_month_label,
 )
+from apps.dashboard.selectors.notification_selectors import (
+    get_dashboard_notifications_payload,
+    get_dashboard_unread_notifications_count,
+)
 from apps.dashboard.selectors.profile_selectors import get_user_avatar_url
 from apps.users.constants.lifecycle import UserRoleStatus
 from apps.users.constants.roles import ROLE_LABELS, STAFF_ROLE_CODES
@@ -18,14 +22,14 @@ def get_teacher_dashboard_summary(*, user, request=None) -> dict:
 
     return {
         "profile": get_teacher_profile_payload(user, request=request),
-        "stats": get_teacher_stats_payload(),
+        "stats": get_teacher_stats_payload(user),
         "schedule": [],
         "calendar": build_teacher_calendar_payload(today),
         "courses": [],
         "attention_items": [],
         "activity_items": [],
         "journal_rows": [],
-        "notifications": [],
+        "notifications": get_dashboard_notifications_payload(user),
         "notes": [],
     }
 
@@ -66,7 +70,7 @@ def get_teacher_role_code(user):
     return None
 
 
-def get_teacher_stats_payload() -> list[dict]:
+def get_teacher_stats_payload(user) -> list[dict]:
     return [
         {
             "key": "courses",
@@ -134,7 +138,7 @@ def get_teacher_stats_payload() -> list[dict]:
         {
             "key": "notifications",
             "label": "Уведомления",
-            "value": 0,
+            "value": get_dashboard_unread_notifications_count(user),
             "caption": "Новые уведомления",
             "icon": "fas fa-bell",
             "progress": 0,

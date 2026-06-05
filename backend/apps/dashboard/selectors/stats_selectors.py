@@ -8,6 +8,7 @@ from apps.users.constants.onboarding import JoinRequestStatus
 from apps.users.constants.roles import RoleCode
 from apps.users.models import UserJoinRequest, UserRole
 from django.contrib.auth import get_user_model
+from django.db.models import Q
 
 User = get_user_model()
 
@@ -34,6 +35,28 @@ def count_users_by_role(role_code: str) -> int:
             status=UserRoleStatus.ACTIVE,
         )
         .values("user_id")
+        .distinct()
+        .count()
+    )
+
+
+def count_registered_learners() -> int:
+    """
+    Counts learner accounts from the moment their learner profile is created.
+
+    Registration creates LearnerProfile before role approval, while an active
+    role remains a valid fallback for records created outside onboarding.
+    """
+
+    return (
+        User.objects.filter(
+            Q(learner_profile__isnull=False)
+            | Q(
+                user_roles__role__code=RoleCode.LEARNER,
+                user_roles__role__is_active=True,
+                user_roles__status=UserRoleStatus.ACTIVE,
+            ),
+        )
         .distinct()
         .count()
     )
@@ -127,8 +150,8 @@ def get_admin_stats_payload() -> list[dict]:
         DashboardCount(
             key="learners",
             label="Студенты",
-            value=count_users_by_role(RoleCode.LEARNER),
-            caption="Активные учащиеся",
+            value=count_registered_learners(),
+            caption="Зарегистрированные учащиеся",
             icon="fas fa-user-graduate",
             tone="violet",
         ),

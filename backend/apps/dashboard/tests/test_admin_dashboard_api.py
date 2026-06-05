@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from apps.users.constants.lifecycle import UserRoleStatus
 from apps.users.constants.roles import RoleCode
-from apps.users.models import Role, UserRole
+from apps.users.models import LearnerProfile, Role, UserRole
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from rest_framework.test import APIClient
@@ -135,3 +135,33 @@ class AdminDashboardSummaryApiTestCase(TestCase):
 
         self.assertIn("users", stats)
         self.assertGreaterEqual(stats["users"]["value"], 3)
+
+    def test_admin_summary_counts_registered_learners_before_role_approval(
+        self,
+    ) -> None:
+        admin = self.create_user(
+            email="learner-admin@example.com",
+            phone="+79990000007",
+            is_superuser=True,
+            is_staff=True,
+        )
+        first_learner = self.create_user(
+            email="learner-one@example.com",
+            phone="+79990000008",
+        )
+        second_learner = self.create_user(
+            email="learner-two@example.com",
+            phone="+79990000009",
+        )
+        LearnerProfile.objects.create(user=first_learner)
+        LearnerProfile.objects.create(user=second_learner)
+
+        self.client.force_authenticate(user=admin)
+
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 200)
+
+        stats = {item["key"]: item for item in response.json()["stats"]}
+
+        self.assertEqual(stats["learners"]["value"], 2)

@@ -12,96 +12,106 @@ from apps.dashboard.selectors.notification_selectors import (
     get_dashboard_unread_notifications_count,
 )
 from apps.dashboard.selectors.profile_selectors import get_user_avatar_url
+from apps.users.constants.lifecycle import GuardianLearnerStatus
 from apps.users.constants.roles import ROLE_LABELS, RoleCode
 from django.utils import timezone
 
 
-def get_student_dashboard_summary(*, user, request=None) -> dict:
+def get_parent_dashboard_summary(*, user, request=None) -> dict:
     today = timezone.localdate()
-    unread_notifications = get_dashboard_unread_notifications_count(user)
+    notifications = get_dashboard_notifications_payload(user)
+    children_count = user.guardian_learner_links.filter(
+        status=GuardianLearnerStatus.ACTIVE,
+    ).count()
 
     return {
-        "profile": get_student_profile_payload(user, request=request),
-        "stats": get_student_stats_payload(),
+        "profile": get_parent_profile_payload(user, request=request),
+        "stats": get_parent_stats_payload(user, children_count),
         "day_stats": {
             "lessons": 0,
             "assignments": 0,
-            "notifications": unread_notifications,
+            "messages": get_dashboard_unread_notifications_count(user),
         },
         "schedule": [],
-        "calendar": build_student_calendar_payload(today),
+        "calendar": build_parent_calendar_payload(today),
         "courses": [],
-        "assignments": [],
+        "important_items": map_notifications_to_important_items(notifications),
         "activity_items": [],
         "grade_rows": [],
-        "goals": [],
-        "notifications": get_dashboard_notifications_payload(user),
+        "messages": [],
+        "notifications": notifications,
         "notes": [],
     }
 
 
-def get_student_profile_payload(user, request=None) -> dict:
-    learner_profile = getattr(user, "learner_profile", None)
-    group_label = "Личное пространство студента"
-
-    if learner_profile:
-        if learner_profile.group:
-            group_label = str(learner_profile.group)
-        elif learner_profile.organization:
-            group_label = str(learner_profile.organization)
-
+def get_parent_profile_payload(user, request=None) -> dict:
     return {
         "id": user.id,
         "full_name": user.get_full_name() or user.email,
         "email": user.email,
         "avatar_url": get_user_avatar_url(user, request=request),
-        "role_label": ROLE_LABELS.get(RoleCode.LEARNER, "Студент"),
-        "group_label": group_label,
+        "role_label": ROLE_LABELS.get(RoleCode.GUARDIAN, "Родитель"),
     }
 
 
-def get_student_stats_payload() -> list[dict]:
+def get_parent_stats_payload(user, children_count: int) -> list[dict]:
+    unread_count = get_dashboard_unread_notifications_count(user)
+
     return [
         {
-            "key": "courses",
-            "label": "Активные курсы",
-            "value": 0,
-            "caption": "Данные пока не добавлены",
-            "icon": "fas fa-book-open",
+            "key": "children",
+            "label": "Детей",
+            "value": children_count,
+            "caption": "Подтвержденные учебные профили",
+            "icon": "fas fa-child-reaching",
             "progress": 0,
             "tone": "primary",
-        },
-        {
-            "key": "assignments",
-            "label": "Задания",
-            "value": 0,
-            "caption": "Данные пока не добавлены",
-            "icon": "fas fa-clipboard-check",
-            "progress": 0,
-            "tone": "warning",
         },
         {
             "key": "average_grade",
             "label": "Средний балл",
             "value": "—",
             "caption": "Данные пока не добавлены",
-            "icon": "fas fa-star",
+            "icon": "fas fa-chart-line",
             "progress": 0,
-            "tone": "success",
+            "tone": "neutral",
         },
         {
-            "key": "progress",
-            "label": "Прогресс",
+            "key": "attendance",
+            "label": "Посещаемость",
             "value": "0%",
             "caption": "Данные пока не добавлены",
-            "icon": "fas fa-chart-line",
+            "icon": "fas fa-calendar-check",
+            "progress": 0,
+            "tone": "neutral",
+        },
+        {
+            "key": "messages",
+            "label": "Уведомления",
+            "value": unread_count,
+            "caption": "Новые уведомления",
+            "icon": "fas fa-bell",
             "progress": 0,
             "tone": "primary",
         },
     ]
 
 
-def build_student_calendar_payload(target_date) -> dict:
+def map_notifications_to_important_items(notifications: list[dict]) -> list[dict]:
+    return [
+        {
+            "id": notification["id"],
+            "icon": notification["icon"],
+            "title": notification["title"],
+            "text": notification["text"],
+            "meta": "Новое" if notification["is_new"] else "",
+            "tone": "primary",
+        }
+        for notification in notifications
+    ]
+
+
+def build_parent_calendar_payload(target_date) -> dict:
     first_day = target_date.replace(day=1)
     calendar_start = get_calendar_start_date(first_day)
     days = []
