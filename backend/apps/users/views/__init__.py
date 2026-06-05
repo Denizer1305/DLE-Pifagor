@@ -7,6 +7,7 @@ Views принимают HTTP-запросы, вызывают serializers и se
 Бизнес-логика должна оставаться в users/services/.
 """
 
+from apps.users.views.admin_user_views import AdminUserViewSet
 from apps.users.views.auth_views import (
     ForgotPasswordView,
     GuardianRegistrationView,
@@ -54,4 +55,5 @@ __all__ = [
     "RefreshTokenView",
     "ForgotPasswordView",
     "ResetPasswordView",
+    "AdminUserViewSet",
 ]

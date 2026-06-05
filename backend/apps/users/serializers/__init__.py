@@ -9,6 +9,21 @@
 Сложная бизнес-логика остаётся в users/services/.
 """
 
+from apps.users.serializers.admin_user_serializers import (
+    AdminUserAuditLogListSerializer,
+    AdminUserAvailableRoleSerializer,
+    AdminUserBulkItemResultSerializer,
+    AdminUserBulkResultSerializer,
+    AdminUserBulkSerializer,
+    AdminUserChangeRolesSerializer,
+    AdminUserDeleteSerializer,
+    AdminUserDetailSerializer,
+    AdminUserListSerializer,
+    AdminUserRoleAssignmentSerializer,
+    AdminUserRoleSerializer,
+    AdminUserStatusActionSerializer,
+    AdminUserUpdateSerializer,
+)
 from apps.users.serializers.audit_serializers import (
     RegistrationAttemptLogSerializer,
     UserAuditLogSerializer,
@@ -77,12 +92,30 @@ from apps.users.serializers.user_serializers import (
     UserUpdateSerializer,
 )
 from apps.users.serializers.user_settings_serializers import (
-    SetActiveRoleSerializer,
-    UserSettingsSerializer,
+    AppearanceSettingsUpdateSerializer,
+    ChangePasswordSerializer,
+    NotificationSettingsUpdateSerializer,
+    PrivacySettingsUpdateSerializer,
+    RoleSettingsUpdateSerializer,
+    SecuritySettingsUpdateSerializer,
+    UserSettingsPayloadSerializer,
     UserSettingsUpdateSerializer,
 )
 
 __all__ = [
+    "AdminUserAuditLogListSerializer",
+    "AdminUserAvailableRoleSerializer",
+    "AdminUserBulkItemResultSerializer",
+    "AdminUserBulkResultSerializer",
+    "AdminUserBulkSerializer",
+    "AdminUserChangeRolesSerializer",
+    "AdminUserDeleteSerializer",
+    "AdminUserDetailSerializer",
+    "AdminUserListSerializer",
+    "AdminUserRoleAssignmentSerializer",
+    "AdminUserRoleSerializer",
+    "AdminUserStatusActionSerializer",
+    "AdminUserUpdateSerializer",
     "AvatarModerationSerializer",
     "AccessTokenSerializer",
     "BaseRegistrationSerializer",
@@ -109,7 +142,12 @@ __all__ = [
     "ResendEmailVerificationSerializer",
     "RoleSerializer",
     "RoleShortSerializer",
-    "SetActiveRoleSerializer",
+    "AppearanceSettingsUpdateSerializer",
+    "ChangePasswordSerializer",
+    "NotificationSettingsUpdateSerializer",
+    "PrivacySettingsUpdateSerializer",
+    "RoleSettingsUpdateSerializer",
+    "SecuritySettingsUpdateSerializer",
     "SubmitLearnerGroupRequestSerializer",
     "TeacherProfileSerializer",
     "TeacherProfileUpdateSerializer",
@@ -120,7 +158,7 @@ __all__ = [
     "UserJoinRequestSerializer",
     "UserRoleCreateSerializer",
     "UserRoleSerializer",
-    "UserSettingsSerializer",
+    "UserSettingsPayloadSerializer",
     "UserSettingsUpdateSerializer",
     "UserShortSerializer",
     "UserUpdateSerializer",

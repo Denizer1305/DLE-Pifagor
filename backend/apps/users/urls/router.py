@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from apps.users.views import (
+    AdminUserViewSet,
     GuardianLearnerViewSet,
     GuardianProfileViewSet,
     InviteCodeViewSet,
@@ -81,6 +82,12 @@ router.register(
     r"settings",
     UserSettingsViewSet,
     basename="settings",
+)
+
+router.register(
+    r"admin/users",
+    AdminUserViewSet,
+    basename="admin-users",
 )
 
 

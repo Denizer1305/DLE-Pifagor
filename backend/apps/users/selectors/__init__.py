@@ -9,6 +9,17 @@ Selectors отвечают только за чтение данных и под
     в `users/services/`.
 """
 
+from apps.users.selectors.admin_user_selectors import (
+    actor_can_access_admin_user,
+    filter_admin_users_by_role_group,
+    get_admin_parents_queryset_for_actor,
+    get_admin_students_queryset_for_actor,
+    get_admin_teachers_queryset_for_actor,
+    get_admin_user_by_id_for_actor,
+    get_admin_user_detail_queryset_for_actor,
+    get_admin_users_base_queryset,
+    get_admin_users_queryset_for_actor,
+)
 from apps.users.selectors.audit_selectors import (
     get_audit_logs_by_action,
     get_audit_logs_by_actor,
@@ -81,6 +92,7 @@ from apps.users.selectors.role_selectors import (
     user_has_active_role,
     user_is_superadmin,
 )
+from apps.users.selectors.settings_selectors import get_or_create_settings_for_user
 from apps.users.selectors.teacher_selectors import (
     get_public_teacher_profiles_queryset,
     get_public_teachers_by_organization,
@@ -205,4 +217,14 @@ __all__ = [
     "get_current_role_profile",
     "get_or_create_profile_for_user",
     "get_role_label",
+    "get_or_create_settings_for_user",
+    "actor_can_access_admin_user",
+    "filter_admin_users_by_role_group",
+    "get_admin_parents_queryset_for_actor",
+    "get_admin_students_queryset_for_actor",
+    "get_admin_teachers_queryset_for_actor",
+    "get_admin_user_by_id_for_actor",
+    "get_admin_user_detail_queryset_for_actor",
+    "get_admin_users_base_queryset",
+    "get_admin_users_queryset_for_actor",
 ]

@@ -20,10 +20,10 @@ from apps.users.services import (
     delete_current_profile_avatar,
     moderate_avatar,
     submit_avatar_for_moderation,
+    suggest_cities,
     update_current_profile,
     update_current_profile_avatar,
 )
-from apps.users.services.current_profile.locations import suggest_cities
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, status, viewsets
 from rest_framework.decorators import action

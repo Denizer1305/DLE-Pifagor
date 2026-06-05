@@ -202,6 +202,12 @@ def is_superadmin(user) -> bool:
         bool: True, если у пользователя есть роль superadmin.
     """
 
+    if not is_authenticated_active_user(user):
+        return False
+
+    if getattr(user, "is_superuser", False):
+        return True
+
     return has_any_role(
         user=user,
         role_codes=PLATFORM_ADMIN_ROLE_CODES,
