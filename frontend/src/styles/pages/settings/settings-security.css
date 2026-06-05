@@ -1,0 +1,117 @@
+.security-password-form {
+    display: grid;
+    gap: 18px;
+}
+
+.security-password-form .settings-form-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.security-sessions-card {
+    display: grid;
+    gap: 16px;
+}
+
+.security-sessions-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.security-sessions-head h3 {
+    margin: 0 0 6px;
+    color: var(--primary);
+    font-size: 1.05rem;
+}
+
+.security-sessions-head p {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+.security-danger-btn {
+    background: var(--warning-08);
+    color: var(--color-warning);
+    border: 1px solid var(--warning-18);
+}
+
+.security-danger-btn:hover {
+    background: var(--warning-12);
+    transform: translateY(-2px);
+}
+
+.security-sessions-list {
+    display: grid;
+    gap: 12px;
+}
+
+.security-session-item {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) auto;
+    gap: 14px;
+    align-items: center;
+    padding: 14px;
+    border-radius: var(--radius-22);
+    background: var(--primary-04);
+    border: var(--border-subtle);
+    transition: var(--transition-fast);
+}
+
+.security-session-item:hover {
+    border-color: var(--accent-16);
+    background: var(--accent-06);
+}
+
+.security-session-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-10);
+    color: var(--accent);
+}
+
+.security-session-copy {
+    display: grid;
+    gap: 4px;
+}
+
+.security-session-copy strong {
+    color: var(--primary);
+    font-size: 0.94rem;
+}
+
+.security-session-copy span,
+.security-session-copy small {
+    color: var(--secondary);
+    font-size: 0.82rem;
+    line-height: 1.45;
+}
+
+.security-session-current {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 5px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--success-10);
+    color: var(--color-success);
+    font-size: 0.76rem;
+    font-weight: 800;
+}
+
+.security-session-btn {
+    background: var(--white-82);
+    color: var(--accent);
+    border: var(--border-subtle);
+}
+
+.security-session-btn:hover {
+    background: var(--accent);
+    color: var(--white);
+}

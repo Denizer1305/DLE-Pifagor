@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import type { ProfileAchievementDocumentModel } from "@/modules/profile/types/profile.types";
+import DashboardEmptyState from "@/components/dashboard/shared/DashboardEmptyState.vue";
+import type {
+    ProfileAchievementDocumentModel,
+    ProfileAchievementsCollectionContent,
+} from "@/modules/profile/types/profile.types";
 
 interface Props {
     documents: ProfileAchievementDocumentModel[];
+    content: ProfileAchievementsCollectionContent;
 }
 
 interface Emits {
@@ -17,19 +22,22 @@ const emit = defineEmits<Emits>();
     <section class="achievements-grid fade-in visible">
         <article class="achievements-card achievements-card-wide">
             <div class="achievements-card-topline">
-                <i class="fas fa-certificate"></i>
-                Коллекция документов
+                <i :class="content.icon"></i>
+                {{ content.topline }}
             </div>
 
             <h2 class="achievements-card-title">
-                Все сертификаты и награды
+                {{ content.title }}
             </h2>
 
             <p class="achievements-card-text">
-                Основной каталог документов, который можно просматривать, фильтровать и открывать в полном виде.
+                {{ content.text }}
             </p>
 
-            <div class="achievements-documents-grid">
+            <div
+                v-if="documents.length"
+                class="achievements-documents-grid"
+            >
                 <article
                     v-for="document in documents"
                     :key="document.id"
@@ -62,6 +70,13 @@ const emit = defineEmits<Emits>();
                     </div>
                 </article>
             </div>
+
+            <DashboardEmptyState
+                v-else
+                :icon="content.emptyIcon"
+                :title="content.emptyTitle"
+                :text="content.emptyText"
+            />
         </article>
     </section>
 </template>

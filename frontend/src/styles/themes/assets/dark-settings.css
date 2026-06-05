@@ -1,0 +1,124 @@
+.theme-dark .settings-hero-card {
+    border-color: var(--dark-border);
+    background:
+        radial-gradient(circle at top right, var(--accent-10), transparent 30%),
+        linear-gradient(180deg, var(--dark-surface-strong), var(--dark-surface));
+    box-shadow: var(--dark-shadow);
+}
+
+.theme-dark :is(
+    .settings-card,
+    .settings-center-card,
+    .appearance-theme-card,
+    .role-settings-role-option
+) {
+    border-color: var(--dark-border);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04)),
+        var(--dark-surface);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
+}
+
+.theme-dark :is(
+    .settings-hero-summary,
+    .settings-hero-badge,
+    .settings-hero-summary-row,
+    .settings-toggle-row,
+    .settings-select-row,
+    .settings-info-card,
+    .appearance-theme-preview,
+    .security-session-item
+) {
+    border-color: var(--dark-border);
+    background: var(--dark-surface-soft);
+}
+
+.theme-dark :is(
+    .settings-hero-topline,
+    .settings-card-topline,
+    .settings-center-card-icon,
+    .security-session-icon
+) {
+    color: var(--dark-accent-strong);
+    border-color: color-mix(in srgb, var(--dark-accent) 20%, transparent);
+    background: color-mix(in srgb, var(--dark-accent) 10%, transparent);
+}
+
+.theme-dark :is(
+    .settings-hero-title,
+    .settings-hero-summary-head strong,
+    .settings-hero-summary-row strong,
+    .settings-card-title,
+    .settings-toggle-copy strong,
+    .settings-select-copy strong,
+    .settings-input-row strong,
+    .settings-center-card h2,
+    .appearance-theme-copy strong,
+    .role-settings-role-option,
+    .security-sessions-head h3,
+    .security-session-copy strong
+) {
+    color: var(--dark-text);
+}
+
+.theme-dark :is(
+    .settings-hero-text,
+    .settings-hero-summary-head span,
+    .settings-hero-summary-row span,
+    .settings-card-text,
+    .settings-toggle-copy span,
+    .settings-select-copy span,
+    .settings-input-row small,
+    .settings-center-card p,
+    .appearance-theme-copy span,
+    .security-sessions-head p,
+    .security-session-copy span,
+    .security-session-copy small
+) {
+    color: var(--dark-text-muted);
+}
+
+.theme-dark :is(
+    .settings-select-row .custom-select-trigger,
+    .settings-time-input,
+    .settings-input-row input
+) {
+    border-color: var(--dark-border);
+    background: rgba(255, 255, 255, 0.065);
+    color: var(--dark-text);
+}
+
+.theme-dark :is(
+    .settings-select-row .custom-select-trigger:focus,
+    .settings-select-row .custom-select.is-open .custom-select-trigger,
+    .settings-time-input:focus,
+    .settings-input-row input:focus
+) {
+    border-color: var(--dark-border-strong);
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--dark-accent) 12%, transparent);
+}
+
+.theme-dark :is(
+    .settings-center-card-arrow,
+    .security-session-btn
+) {
+    border-color: var(--dark-border);
+    background: var(--dark-surface-soft);
+    color: var(--dark-accent-strong);
+}
+
+.theme-dark :is(
+    .role-settings-role-option.is-active,
+    .appearance-theme-card.is-active
+) {
+    border-color: var(--dark-border-strong);
+    background:
+        radial-gradient(circle at top right, var(--accent-14), transparent 38%),
+        var(--dark-surface-strong);
+}
+
+.theme-dark .settings-primary-btn {
+    color: #101724;
+    background: var(--dark-accent);
+}

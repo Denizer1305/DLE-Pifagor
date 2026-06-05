@@ -36,7 +36,7 @@ function confirmCrop(file: File): void {
 </script>
 
 <template>
-    <section class="profile-edit-section fade-in visible">
+    <section class="profile-edit-section profile-edit-section-avatar fade-in visible">
         <div class="profile-edit-section-head">
             <div>
                 <div class="profile-edit-section-topline">

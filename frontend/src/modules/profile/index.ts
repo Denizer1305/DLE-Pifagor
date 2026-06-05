@@ -9,9 +9,13 @@ export {
 
 export { useProfilePage } from "@/modules/profile/composables/useProfilePage";
 export { useProfileEditForm } from "@/modules/profile/composables/useProfileEditForm";
-export { useProfileAchievements } from "@/modules/profile/composables/useProfileAchievements";
 
 export { createProfileNavigation } from "@/modules/profile/data/profile-navigation.data";
+export { createEmptyProfileAchievementsModel } from "@/modules/profile/data/profile-achievements.data";
+export {
+    profileEditFormContent,
+    profileEditPageContent,
+} from "@/modules/profile/data/profile-edit.data";
 
 export {
     mapCurrentProfileToPageModel,
@@ -39,6 +43,10 @@ export type {
     CurrentProfileIdentityDto,
     CurrentProfileRoleDto,
     ProfileContactsCardModel,
+    ProfileAchievementDocumentModel,
+    ProfileAchievementsCollectionContent,
+    ProfileAchievementsPageModel,
+    ProfileAchievementsStatModel,
     ProfileHeroModel,
     ProfileIdentityCardModel,
     ProfileIdentityModel,
@@ -51,6 +59,12 @@ export type {
 export type {
     CurrentProfileEditPayload,
     ProfileEditFormErrors,
+    ProfileEditFormContent,
     ProfileEditFormState,
+    ProfileEditHeroContent,
+    ProfileEditPageContent,
     ProfileEditPageState,
+    ProfileEditSectionHeading,
+    ProfileEditSelectOption,
+    ProfileEditSubmitContent,
 } from "@/modules/profile/types/profile-edit.types";

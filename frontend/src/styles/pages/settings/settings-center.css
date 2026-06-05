@@ -1,0 +1,122 @@
+.settings-center-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.settings-center-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr) auto;
+    gap: 16px;
+    align-items: center;
+    min-height: 160px;
+    padding: 24px;
+    border-radius: var(--radius-30);
+    background: var(--white-88);
+    border: var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    overflow: hidden;
+    transition: var(--transition-soft);
+}
+
+.settings-center-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 88% 14%, var(--accent-08), transparent 34%);
+    opacity: 0;
+    transition: var(--transition-fast);
+}
+
+.settings-center-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-18);
+    box-shadow: var(--shadow-lg);
+}
+
+.settings-center-card:focus-visible {
+    outline: none;
+    transform: translateY(-3px);
+    border-color: var(--accent-18);
+    box-shadow: var(--shadow-focus-accent-md);
+}
+
+.settings-center-card:hover::before {
+    opacity: 1;
+}
+
+.settings-center-card-icon {
+    position: relative;
+    z-index: 1;
+    width: 58px;
+    height: 58px;
+    border-radius: var(--radius-20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-10);
+    color: var(--accent);
+    font-size: 1.15rem;
+}
+
+.settings-center-card-copy,
+.settings-center-card-arrow {
+    position: relative;
+    z-index: 1;
+}
+
+.settings-center-card-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.settings-center-card h2 {
+    margin: 0;
+    color: var(--primary);
+    font-size: 1.15rem;
+    line-height: 1.25;
+}
+
+.settings-center-card p {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.settings-center-card-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-05);
+    color: var(--accent);
+    font-size: 0.74rem;
+    font-weight: 800;
+}
+
+.settings-center-card-arrow {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-round);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white-82);
+    border: var(--border-subtle);
+    color: var(--accent);
+    transition: var(--transition-fast);
+}
+
+.settings-center-card:hover .settings-center-card-arrow {
+    transform: translateX(4px);
+    background: var(--accent);
+    color: var(--white);
+}

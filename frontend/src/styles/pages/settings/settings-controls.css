@@ -1,0 +1,205 @@
+.settings-toggle-row,
+.settings-select-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: center;
+    min-height: 76px;
+    padding: 16px 18px;
+    border-radius: var(--radius-24);
+    background: var(--primary-04);
+    border: var(--border-subtle);
+    transition: var(--transition-fast);
+}
+
+.settings-toggle-row:hover,
+.settings-select-row:hover {
+    background: var(--accent-06);
+    border-color: var(--accent-16);
+}
+
+.settings-toggle-copy,
+.settings-select-copy {
+    display: grid;
+    gap: 6px;
+}
+
+.settings-toggle-copy strong,
+.settings-select-copy strong {
+    color: var(--primary);
+    font-size: 0.96rem;
+}
+
+.settings-toggle-copy span,
+.settings-select-copy span {
+    color: var(--secondary);
+    font-size: 0.86rem;
+    line-height: 1.55;
+}
+
+.settings-toggle-row input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.settings-toggle-ui {
+    position: relative;
+    width: 54px;
+    height: 30px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-12);
+    border: 1px solid var(--primary-08);
+    transition: var(--transition-fast);
+}
+
+.settings-toggle-ui::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: var(--radius-round);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-50%);
+    transition: var(--transition-fast);
+}
+
+.settings-toggle-row input[type="checkbox"]:checked + .settings-toggle-ui {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.settings-toggle-row input[type="checkbox"]:checked + .settings-toggle-ui::before {
+    left: 26px;
+}
+
+.settings-toggle-row input[type="checkbox"]:focus-visible + .settings-toggle-ui {
+    box-shadow: var(--shadow-focus-accent);
+}
+
+.settings-toggle-row:has(input:disabled) {
+    cursor: not-allowed;
+    opacity: 0.72;
+}
+
+.settings-toggle-row:has(input:checked) {
+    border-color: var(--accent-16);
+    background: var(--accent-06);
+}
+
+.settings-select-row .custom-select {
+    width: 210px;
+    min-width: 210px;
+}
+
+.settings-select-row .custom-select-dropdown {
+    z-index: 200;
+}
+
+.settings-select-row .custom-select-trigger,
+.settings-time-input {
+    min-width: 210px;
+    min-height: 44px;
+    padding: 10px 14px;
+    border-radius: var(--radius-pill);
+    border: var(--border-subtle);
+    background: var(--white-92);
+    color: var(--primary);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.settings-select-row .custom-select-trigger:focus,
+.settings-select-row .custom-select.is-open .custom-select-trigger,
+.settings-time-input:focus {
+    border-color: var(--border-focus-accent);
+    box-shadow: var(--shadow-focus-accent);
+}
+
+.settings-select-row .custom-select-trigger:disabled,
+.settings-time-input:disabled {
+    cursor: not-allowed;
+    opacity: 0.62;
+}
+
+.settings-input-row {
+    display: grid;
+    gap: 8px;
+}
+
+.settings-input-row > span {
+    display: grid;
+    gap: 5px;
+}
+
+.settings-input-row strong {
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.settings-input-row small {
+    color: var(--secondary);
+    font-size: 0.8rem;
+    line-height: 1.45;
+}
+
+.settings-input-row input {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: var(--border-subtle);
+    border-radius: var(--radius-18);
+    background: var(--white-92);
+    color: var(--primary);
+    font: inherit;
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.settings-input-row input:focus {
+    border-color: var(--border-focus-accent);
+    box-shadow: var(--shadow-focus-accent);
+}
+
+.settings-input-row em {
+    color: var(--color-warning);
+    font-size: 0.78rem;
+    font-style: normal;
+    line-height: 1.45;
+}
+
+.settings-error-card,
+.settings-success-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: var(--radius-18);
+    font-size: 0.86rem;
+    line-height: 1.5;
+}
+
+.settings-error-card {
+    border: 1px solid var(--warning-18);
+    background: var(--warning-08);
+    color: var(--color-warning);
+}
+
+.settings-success-card {
+    margin-bottom: 20px;
+    border: 1px solid var(--success-10);
+    background: var(--success-10);
+    color: var(--color-success);
+}
+
+.settings-actions-row {
+    display: flex;
+    justify-content: flex-start;
+}

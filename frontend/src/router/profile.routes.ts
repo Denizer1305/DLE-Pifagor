@@ -136,6 +136,50 @@ export const profileRoutes: RouteRecordRaw[] = [
     },
 
     // -------------------------------------------------------------------------
+    // Parent aliases
+    // -------------------------------------------------------------------------
+
+    {
+        path: "/parent/profile",
+        name: "parent-profile",
+        component: () => import("@/modules/profile/pages/ProfilePage.vue"),
+        meta: {
+            requiresAuth: true,
+            title: "Профиль родителя | Пифагор",
+            layout: "dashboard",
+            roles: [
+                "guardian",
+            ],
+        },
+    },
+    {
+        path: "/parent/profile/edit",
+        name: "parent-profile-edit",
+        component: () => import("@/modules/profile/pages/ProfileEditPage.vue"),
+        meta: {
+            requiresAuth: true,
+            title: "Редактирование профиля родителя | Пифагор",
+            layout: "dashboard",
+            roles: [
+                "guardian",
+            ],
+        },
+    },
+    {
+        path: "/parent/achievements",
+        name: "parent-achievements",
+        component: () => import("@/modules/profile/pages/ProfileAchievementsPage.vue"),
+        meta: {
+            requiresAuth: true,
+            title: "Достижения родителя | Пифагор",
+            layout: "dashboard",
+            roles: [
+                "guardian",
+            ],
+        },
+    },
+
+    // -------------------------------------------------------------------------
     // Admin aliases
     // -------------------------------------------------------------------------
 
@@ -149,6 +193,8 @@ export const profileRoutes: RouteRecordRaw[] = [
             layout: "dashboard",
             roles: [
                 "superadmin",
+                "platform_admin",
+                "admin",
                 "director",
                 "org_admin",
                 "department_head",
@@ -165,6 +211,8 @@ export const profileRoutes: RouteRecordRaw[] = [
             layout: "dashboard",
             roles: [
                 "superadmin",
+                "platform_admin",
+                "admin",
                 "director",
                 "org_admin",
                 "department_head",
@@ -181,6 +229,8 @@ export const profileRoutes: RouteRecordRaw[] = [
             layout: "dashboard",
             roles: [
                 "superadmin",
+                "platform_admin",
+                "admin",
                 "director",
                 "org_admin",
                 "department_head",

@@ -1,0 +1,146 @@
+.theme-dark :is(
+    .admin-dashboard-page,
+    .teacher-dashboard-page,
+    .student-dashboard-page,
+    .parent-dashboard-page
+) {
+    --primary: var(--dark-text);
+    --primary-text: var(--dark-text);
+    --secondary: var(--dark-text-muted);
+    --accent: var(--dark-accent);
+    --accent-light: var(--dark-accent);
+    --primary-03: rgba(255, 255, 255, 0.03);
+    --primary-04: rgba(255, 255, 255, 0.045);
+    --primary-05: rgba(255, 255, 255, 0.055);
+    --primary-06: rgba(255, 255, 255, 0.065);
+    --primary-08: rgba(255, 255, 255, 0.09);
+    --primary-10: rgba(255, 255, 255, 0.1);
+    --primary-12: rgba(255, 255, 255, 0.12);
+    --primary-14: rgba(255, 255, 255, 0.14);
+    --accent-06: color-mix(in srgb, var(--dark-accent) 6%, transparent);
+    --accent-07: color-mix(in srgb, var(--dark-accent) 7%, transparent);
+    --accent-08: color-mix(in srgb, var(--dark-accent) 8%, transparent);
+    --accent-10: color-mix(in srgb, var(--dark-accent) 10%, transparent);
+    --accent-12: color-mix(in srgb, var(--dark-accent) 12%, transparent);
+    --accent-14: color-mix(in srgb, var(--dark-accent) 14%, transparent);
+    --accent-16: color-mix(in srgb, var(--dark-accent) 16%, transparent);
+    --accent-18: color-mix(in srgb, var(--dark-accent) 18%, transparent);
+    --accent-22: color-mix(in srgb, var(--dark-accent) 22%, transparent);
+    --accent-30: color-mix(in srgb, var(--dark-accent) 30%, transparent);
+    --white-66: rgba(255, 255, 255, 0.045);
+    --white-72: rgba(255, 255, 255, 0.052);
+    --white-78: rgba(255, 255, 255, 0.058);
+    --white-80: rgba(255, 255, 255, 0.06);
+    --white-82: rgba(255, 255, 255, 0.065);
+    --white-84: rgba(255, 255, 255, 0.07);
+    --white-86: rgba(255, 255, 255, 0.075);
+    --white-88: rgba(255, 255, 255, 0.08);
+    --white-92: rgba(255, 255, 255, 0.09);
+    --white-94: rgba(255, 255, 255, 0.1);
+    --white-96: rgba(255, 255, 255, 0.11);
+    --border-color-subtle: var(--dark-border);
+    --border-color-accent-subtle: color-mix(in srgb, var(--dark-accent) 20%, transparent);
+    --border-focus-accent: var(--dark-border-strong);
+    --shadow-sm: 0 8px 22px rgba(0, 0, 0, 0.18);
+    --shadow-md: 0 18px 44px rgba(0, 0, 0, 0.24);
+    color: var(--dark-text-soft);
+    background:
+        radial-gradient(circle at 9% 9%, rgba(var(--brand-accent-rgb), 0.2), transparent 27%),
+        radial-gradient(circle at 92% 14%, rgba(15, 160, 179, 0.09), transparent 24%),
+        linear-gradient(180deg, #0d1320 0%, #0b111a 100%);
+}
+
+.theme-dark :is(
+    .sidebar-card,
+    .teacher-dashboard-topbar,
+    .dashboard-card,
+    .dashboard-day-card,
+    .dashboard-schedule-card,
+    .dashboard-floating-panel,
+    .dashboard-loading-state,
+    .dashboard-error-state,
+    .dashboard-empty-state
+) {
+    border-color: var(--dark-border);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.045)),
+        var(--dark-surface);
+    box-shadow: var(--dark-shadow);
+}
+
+.theme-dark .dashboard-intro {
+    border-color: var(--dark-border);
+    background:
+        radial-gradient(circle at top right, var(--accent-10), transparent 30%),
+        linear-gradient(180deg, var(--dark-surface-strong), var(--dark-surface));
+    box-shadow: var(--dark-shadow);
+}
+
+.theme-dark :is(
+    .teacher-dashboard-search input,
+    .dashboard-icon-btn,
+    .teacher-dashboard-user,
+    .sidebar-profile,
+    .dashboard-notification-item,
+    .dashboard-note-item,
+    .dashboard-panel-empty,
+    .dashboard-profile-panel-info,
+    .dashboard-profile-action,
+    .dashboard-calendar-day,
+    .dashboard-calendar-legend-item,
+    .dashboard-activity-item,
+    .dashboard-attention-item,
+    .dashboard-quick-action,
+    .dashboard-day-stat
+) {
+    border-color: var(--dark-border);
+    background: var(--dark-surface-soft);
+}
+
+.theme-dark :is(.sidebar-nav-link:hover, .sidebar-nav-link.is-active)::before {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.theme-dark :is(.sidebar-ai, .sidebar-student-card, .dashboard-ai-card) {
+    border-color: var(--dark-border-strong);
+    background:
+        radial-gradient(circle at top right, var(--accent-14), transparent 38%),
+        rgba(255, 255, 255, 0.055);
+}
+
+.theme-dark :is(
+    .dashboard-ai-logo,
+    .sidebar-ai-mark,
+    .sidebar-student-card-icon,
+    .dashboard-ai-prompt,
+    .dashboard-ai-action
+) {
+    border-color: var(--dark-border);
+    background: var(--dark-surface-soft);
+}
+
+.theme-dark :is(
+    .sidebar-nav-link.is-active .sidebar-nav-icon,
+    .sidebar-nav-link:hover .sidebar-nav-icon,
+    .dashboard-quick-btn,
+    .sidebar-ai-btn,
+    .dashboard-filter-chip.is-active,
+    .admin-dashboard-page .dashboard-calendar-day.is-selected,
+    .dashboard-create-modal__primary
+) {
+    background: var(--dark-accent);
+    border-color: var(--dark-accent);
+    color: #101724;
+}
+
+.theme-dark :is(.dashboard-card-action, .dashboard-filter-chip, .dashboard-quick-btn.secondary) {
+    border-color: var(--dark-border);
+    background: var(--dark-surface-soft);
+    color: var(--dark-text-soft);
+}
+
+.theme-dark :is(.dashboard-create-field input, .dashboard-create-field textarea) {
+    border-color: var(--dark-border);
+    background: var(--dark-surface-soft);
+    color: var(--dark-text);
+}

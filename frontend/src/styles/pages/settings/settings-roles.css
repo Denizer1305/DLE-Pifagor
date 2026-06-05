@@ -1,0 +1,60 @@
+.role-settings-role-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.role-settings-role-option {
+    min-height: 110px;
+    padding: 18px 14px;
+    border: var(--border-subtle);
+    border-radius: var(--radius-24);
+    background: var(--white-88);
+    color: var(--primary);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    display: grid;
+    gap: 10px;
+    justify-items: center;
+    align-content: center;
+    transition: var(--transition-soft);
+}
+
+.role-settings-role-option i {
+    width: 46px;
+    height: 46px;
+    border-radius: var(--radius-16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-10);
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+.role-settings-role-option:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-18);
+    box-shadow: var(--shadow-md);
+}
+
+.role-settings-role-option:focus-visible {
+    outline: none;
+    border-color: var(--accent-30);
+    box-shadow: var(--shadow-focus-accent-md);
+}
+
+.role-settings-role-option.is-active {
+    border-color: var(--accent-30);
+    background:
+        radial-gradient(circle at top right, var(--accent-10), transparent 38%),
+        var(--white-92);
+    box-shadow: var(--shadow-focus-accent-md);
+}
+
+.role-settings-role-option:disabled {
+    cursor: not-allowed;
+    opacity: 0.62;
+    transform: none;
+}

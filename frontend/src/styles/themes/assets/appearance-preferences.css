@@ -1,0 +1,211 @@
+:root[data-density="compact"] {
+    --appearance-main-padding: 14px;
+    --appearance-section-gap: 14px;
+    --appearance-card-padding: 20px;
+    --appearance-hero-padding: 24px;
+    --appearance-control-padding: 12px 14px;
+    --appearance-control-height: 66px;
+}
+
+:root[data-density="comfortable"] {
+    --appearance-main-padding: 18px;
+    --appearance-section-gap: 22px;
+    --appearance-card-padding: 28px;
+    --appearance-hero-padding: 34px;
+    --appearance-control-padding: 16px 18px;
+    --appearance-control-height: 76px;
+}
+
+:root[data-density="spacious"] {
+    --appearance-main-padding: 24px;
+    --appearance-section-gap: 30px;
+    --appearance-card-padding: 34px;
+    --appearance-hero-padding: 42px;
+    --appearance-control-padding: 20px 22px;
+    --appearance-control-height: 86px;
+}
+
+:root[data-density] .dashboard-main {
+    padding: var(--appearance-main-padding);
+}
+
+:root[data-density] :is(.dashboard-main-inner, .dashboard-content-column) {
+    gap: var(--appearance-section-gap);
+}
+
+:root[data-density] :is(
+    .dashboard-card-inner,
+    .dashboard-card:not(:has(.dashboard-card-inner)),
+    .settings-card,
+    .profile-identity-card,
+    .profile-communication-card,
+    .profile-role-section,
+    .profile-edit-card,
+    .profile-edit-section
+) {
+    padding: var(--appearance-card-padding);
+}
+
+:root[data-density] :is(
+    .dashboard-intro-grid,
+    .settings-hero-layout,
+    .profile-hero-layout,
+    .profile-edit-hero-layout,
+    .achievements-hero-layout
+) {
+    padding: var(--appearance-hero-padding);
+}
+
+:root[data-density] :is(.settings-toggle-row, .settings-select-row) {
+    min-height: var(--appearance-control-height);
+    padding: var(--appearance-control-padding);
+}
+
+:root[data-large-cards="true"] :is(
+    .dashboard-card-inner,
+    .dashboard-card:not(:has(.dashboard-card-inner)),
+    .settings-card,
+    .profile-identity-card,
+    .profile-communication-card,
+    .profile-role-section,
+    .profile-edit-card,
+    .profile-edit-section
+) {
+    padding: calc(var(--appearance-card-padding, 28px) + 8px);
+}
+
+:root[data-large-cards="true"] :is(
+    .dashboard-day-card,
+    .dashboard-schedule-card,
+    .settings-hero-summary
+) {
+    padding: 28px;
+}
+
+:root[data-large-cards="true"] :is(
+    .dashboard-intro-grid,
+    .settings-hero-layout,
+    .profile-hero-layout,
+    .profile-edit-hero-layout,
+    .achievements-hero-layout
+) {
+    padding: calc(var(--appearance-hero-padding, 34px) + 8px);
+}
+
+:root[data-large-cards="true"] :is(
+    .dashboard-content-grid,
+    .dashboard-grid-2,
+    .dashboard-grid-3,
+    .settings-form-grid
+) {
+    gap: 28px;
+}
+
+:root[data-rounded-cards="false"] {
+    --radius-14: 6px;
+    --radius-16: 6px;
+    --radius-18: 7px;
+    --radius-20: 7px;
+    --radius-22: 8px;
+    --radius-24: 8px;
+    --radius-26: 8px;
+    --radius-28: 8px;
+    --radius-30: 8px;
+    --radius-32: 8px;
+    --radius-34: 8px;
+    --radius-36: 8px;
+    --radius-38: 8px;
+    --radius-40: 8px;
+    --radius-42: 8px;
+    --radius-44: 8px;
+}
+
+:root[data-rounded-cards="false"] :is(
+    .dashboard-intro,
+    .dashboard-card,
+    .settings-hero-card,
+    .settings-card,
+    .sidebar-card,
+    .teacher-dashboard-topbar
+) {
+    border-radius: 8px;
+}
+
+:root[data-glass-panels="false"] :is(
+    .sidebar-card,
+    .teacher-dashboard-topbar,
+    .dashboard-card,
+    .dashboard-day-card,
+    .dashboard-schedule-card,
+    .dashboard-floating-panel,
+    .settings-hero-summary,
+    .settings-card,
+    .profile-hero-card,
+    .profile-identity-card,
+    .profile-communication-card,
+    .profile-role-section,
+    .profile-edit-card,
+    .profile-edit-section,
+    .header-shell,
+    .auth-public-header__shell,
+    .auth-form-shell
+) {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--white);
+}
+
+.theme-dark[data-glass-panels="false"] :is(
+    .sidebar-card,
+    .teacher-dashboard-topbar,
+    .dashboard-card,
+    .dashboard-day-card,
+    .dashboard-schedule-card,
+    .dashboard-floating-panel,
+    .settings-hero-summary,
+    .settings-card,
+    .profile-hero-card,
+    .profile-identity-card,
+    .profile-communication-card,
+    .profile-role-section,
+    .profile-edit-card,
+    .profile-edit-section,
+    .header-shell,
+    .auth-public-header__shell,
+    .auth-form-shell
+) {
+    background: var(--dark-surface-strong);
+}
+
+:root[data-sticky-sidebar="false"] .sidebar-card {
+    position: relative;
+    top: 0;
+    min-height: auto;
+}
+
+:root[data-sticky-sidebar="true"] .sidebar-card {
+    position: sticky;
+    top: 20px;
+}
+
+:root[data-animations="false"] {
+    scroll-behavior: auto;
+    --transition: none;
+    --transition-fast: none;
+    --transition-soft: none;
+    --transition-slower: none;
+    --transition-color: none;
+    --transition-transform: none;
+    --transition-shadow: none;
+    --transition-fade: none;
+    --transition-panel: none;
+    --transition-slide-soft: none;
+    --transition-transform-slower: none;
+}
+
+:root[data-animations="false"] *,
+:root[data-animations="false"] *::before,
+:root[data-animations="false"] *::after {
+    animation: none !important;
+    transition: none !important;
+}

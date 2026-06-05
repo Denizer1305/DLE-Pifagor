@@ -1,2 +1,5 @@
-/* Implemented theme overrides only. */
+@import "./assets/palettes.css";
 @import "./assets/dark.css";
+@import "./assets/dark-dashboard.css";
+@import "./assets/dark-settings.css";
+@import "./assets/appearance-preferences.css";

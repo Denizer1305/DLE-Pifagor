@@ -1,4 +1,7 @@
 @import "./auth/index.css";
+@import "./calendar/index.css";
+@import "./notes/index.css";
 @import "./public/index.css";
-
+@import "./settings/index.css";
 @import "./errors.css";
+@import "./feedback/index.css";

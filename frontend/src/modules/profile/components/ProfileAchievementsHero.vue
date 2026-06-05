@@ -53,8 +53,8 @@ defineProps<Props>();
             <div class="achievements-hero-side">
                 <div class="achievements-status-card">
                     <div class="achievements-status-head">
-                        <strong>Портфолио пользователя</strong>
-                        <span>Текущая сводка</span>
+                        <strong>{{ hero.summaryTitle }}</strong>
+                        <span>{{ hero.summarySubtitle }}</span>
                     </div>
 
                     <div class="achievements-status-list">

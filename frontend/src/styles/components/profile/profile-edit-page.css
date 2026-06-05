@@ -56,7 +56,15 @@
 
 .profile-edit-form {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 22px;
+}
+
+.profile-edit-section-avatar,
+.profile-edit-section-identity,
+.profile-edit-section-role,
+.profile-edit-section-submit {
+    grid-column: 1 / -1;
 }
 
 .profile-edit-section {
@@ -92,6 +100,10 @@
     display: flex;
     align-items: center;
     gap: 22px;
+}
+
+.profile-edit-section-identity .profile-edit-grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .profile-edit-avatar-preview {

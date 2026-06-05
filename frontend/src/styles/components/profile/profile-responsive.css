@@ -16,6 +16,10 @@
 }
 
 @media (max-width: 1000px) {
+    .profile-edit-form {
+        grid-template-columns: 1fr;
+    }
+
     .profile-identity-card,
     .profile-communication-grid {
         grid-template-columns: 1fr;
