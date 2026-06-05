@@ -46,10 +46,7 @@ export function createAdminNavigation(
             description: "Состав, статусы и активность",
             icon: "fas fa-chalkboard-user",
             to: {
-                name: "admin-users",
-                query: {
-                    role: "teacher",
-                },
+                name: "admin-teachers",
             },
             badge: formatBadge(getStatValue(stats, "teachers")),
         },
@@ -59,10 +56,7 @@ export function createAdminNavigation(
             description: "Обучающиеся и группы",
             icon: "fas fa-user-graduate",
             to: {
-                name: "admin-users",
-                query: {
-                    role: "learner",
-                },
+                name: "admin-students",
             },
             badge: formatBadge(getStatValue(stats, "learners")),
         },
@@ -72,10 +66,7 @@ export function createAdminNavigation(
             description: "Связанные родительские аккаунты",
             icon: "fas fa-people-roof",
             to: {
-                name: "admin-users",
-                query: {
-                    role: "guardian",
-                },
+                name: "admin-parents",
             },
             badge: formatBadge(getStatValue(stats, "guardians")),
         },
@@ -115,6 +106,33 @@ export function createAdminNavigation(
             icon: "fas fa-chart-line",
             to: {
                 name: "admin-analytics",
+            },
+        },
+        {
+            key: "calendar",
+            label: "Календарь",
+            description: "План, события и дедлайны",
+            icon: "fas fa-calendar-days",
+            to: {
+                name: "admin-calendar",
+            },
+        },
+        {
+            key: "notes",
+            label: "Заметки",
+            description: "Личные заметки и напоминания",
+            icon: "fas fa-note-sticky",
+            to: {
+                name: "admin-notes",
+            },
+        },
+        {
+            key: "notifications",
+            label: "Уведомления",
+            description: "События, заявки и системные сообщения",
+            icon: "fas fa-bell",
+            to: {
+                name: "admin-notifications",
             },
         },
         {
