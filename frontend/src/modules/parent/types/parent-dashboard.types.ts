@@ -59,7 +59,16 @@ export interface ParentGradeRow {
     warning?: boolean;
 }
 
+export interface ParentDashboardProfile {
+    id: number;
+    fullName: string;
+    email: string;
+    avatarUrl: string;
+    roleLabel: string;
+}
+
 export interface ParentDashboardSummary {
+    profile: ParentDashboardProfile;
     calendar: {
         monthLabel: string;
         selectedDate: string;

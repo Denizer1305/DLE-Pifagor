@@ -20,18 +20,9 @@ export const studentRoutes: RouteRecordRaw[] = [
         },
     },
     {
-        path: "/student/profile",
-        name: "student-profile",
-        component: () => import("@/modules/student/pages/StudentPlaceholderPage.vue"),
-        meta: {
-            ...studentMeta,
-            title: "Профиль студента | Пифагор",
-        },
-    },
-    {
         path: "/student/courses",
         name: "student-courses",
-        component: () => import("@/modules/student/pages/StudentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...studentMeta,
             title: "Курсы студента | Пифагор",
@@ -40,7 +31,7 @@ export const studentRoutes: RouteRecordRaw[] = [
     {
         path: "/student/lessons",
         name: "student-lessons",
-        component: () => import("@/modules/student/pages/StudentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...studentMeta,
             title: "Уроки студента | Пифагор",
@@ -49,7 +40,7 @@ export const studentRoutes: RouteRecordRaw[] = [
     {
         path: "/student/assignments",
         name: "student-assignments",
-        component: () => import("@/modules/student/pages/StudentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...studentMeta,
             title: "Задания студента | Пифагор",
@@ -58,7 +49,7 @@ export const studentRoutes: RouteRecordRaw[] = [
     {
         path: "/student/grades",
         name: "student-grades",
-        component: () => import("@/modules/student/pages/StudentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...studentMeta,
             title: "Успеваемость студента | Пифагор",
@@ -67,16 +58,25 @@ export const studentRoutes: RouteRecordRaw[] = [
     {
         path: "/student/progress",
         name: "student-progress",
-        component: () => import("@/modules/student/pages/StudentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...studentMeta,
             title: "Прогресс студента | Пифагор",
         },
     },
     {
+        path: "/student/feedback",
+        name: "student-feedback",
+        component: () => import("@/modules/feedback/pages/FeedbackPage.vue"),
+        meta: {
+            ...studentMeta,
+            title: "Обращения студента | Пифагор",
+        },
+    },
+    {
         path: "/student/calendar",
         name: "student-calendar",
-        component: () => import("@/modules/student/pages/StudentPlaceholderPage.vue"),
+        component: () => import("@/modules/calendar/pages/CalendarPage.vue"),
         meta: {
             ...studentMeta,
             title: "Календарь студента | Пифагор",
@@ -85,7 +85,7 @@ export const studentRoutes: RouteRecordRaw[] = [
     {
         path: "/student/notifications",
         name: "student-notifications",
-        component: () => import("@/modules/student/pages/StudentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...studentMeta,
             title: "Уведомления студента | Пифагор",
@@ -94,19 +94,10 @@ export const studentRoutes: RouteRecordRaw[] = [
     {
         path: "/student/notes",
         name: "student-notes",
-        component: () => import("@/modules/student/pages/StudentPlaceholderPage.vue"),
+        component: () => import("@/modules/notes/pages/NotesPage.vue"),
         meta: {
             ...studentMeta,
             title: "Заметки студента | Пифагор",
-        },
-    },
-    {
-        path: "/student/settings",
-        name: "student-settings",
-        component: () => import("@/modules/student/pages/StudentPlaceholderPage.vue"),
-        meta: {
-            ...studentMeta,
-            title: "Настройки студента | Пифагор",
         },
     },
 ];
