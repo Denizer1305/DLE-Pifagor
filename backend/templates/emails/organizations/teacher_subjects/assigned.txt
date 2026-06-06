@@ -1,0 +1,8 @@
+{{ title }}
+
+{{ greeting }}
+
+Вам назначен предмет: {{ subject_name }}
+{% if organization_name %}Организация: {{ organization_name }}{% endif %}
+
+{{ signature }}

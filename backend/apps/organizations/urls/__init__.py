@@ -1,5 +1,16 @@
-from apps.organizations.urls.public_urls import urlpatterns
+from __future__ import annotations
 
-__all__ = [
-    "urlpatterns",
+from django.urls import include, path
+
+app_name = "organizations"
+
+urlpatterns = [
+    path(
+        "",
+        include("apps.organizations.urls.public_urls"),
+    ),
+    path(
+        "",
+        include("apps.organizations.urls.admin_urls"),
+    ),
 ]

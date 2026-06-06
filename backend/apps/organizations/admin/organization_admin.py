@@ -19,6 +19,7 @@ class OrganizationAdmin(admin.ModelAdmin):
         "is_active",
         "is_public",
         "is_default_public",
+        "has_active_teacher_registration_code",
         "created_at",
     )
     list_filter = (
@@ -26,6 +27,7 @@ class OrganizationAdmin(admin.ModelAdmin):
         "is_public",
         "is_default_public",
         "city",
+        "teacher_registration_code_is_active",
     )
     search_fields = (
         "name",
@@ -33,6 +35,7 @@ class OrganizationAdmin(admin.ModelAdmin):
         "code",
         "city",
         "email",
+        "phone",
     )
     prepopulated_fields = {
         "slug": ("code",),
@@ -40,6 +43,8 @@ class OrganizationAdmin(admin.ModelAdmin):
     readonly_fields = (
         "created_at",
         "updated_at",
+        "teacher_registration_code_hash",
+        "has_active_teacher_registration_code",
     )
     fieldsets = (
         (
@@ -75,6 +80,21 @@ class OrganizationAdmin(admin.ModelAdmin):
                     "is_public",
                     "is_default_public",
                 )
+            },
+        ),
+        (
+            _("Код регистрации преподавателя"),
+            {
+                "fields": (
+                    "teacher_registration_code_hash",
+                    "teacher_registration_code_is_active",
+                    "teacher_registration_code_expires_at",
+                    "has_active_teacher_registration_code",
+                ),
+                "description": _(
+                    "Открытое значение кода здесь не хранится. "
+                    "Для генерации и смены кода позже будет отдельное действие."
+                ),
             },
         ),
         (

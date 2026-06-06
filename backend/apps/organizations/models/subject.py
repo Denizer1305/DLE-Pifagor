@@ -9,8 +9,8 @@ class Subject(TimeStampedModel):
     """
     Учебный предмет.
 
-    Используется на странице преподавателей, в курсах,
-    расписании, журнале и учебных материалах.
+    Используется как справочник предметов для преподавателей,
+    групп, учебных планов и заданий.
     """
 
     name = models.CharField(
@@ -36,18 +36,21 @@ class Subject(TimeStampedModel):
     is_active = models.BooleanField(
         _("Активен"),
         default=True,
-        db_index=True,
     )
 
     class Meta:
         db_table = "organizations_subject"
-        verbose_name = _("Учебный предмет")
-        verbose_name_plural = _("Учебные предметы")
+        verbose_name = _("Предмет")
+        verbose_name_plural = _("Предметы")
         ordering = ("name",)
         indexes = [
             models.Index(
                 fields=["is_active", "name"],
-                name="org_subj_active_idx",
+                name="org_subject_active_name_idx",
+            ),
+            models.Index(
+                fields=["code", "is_active"],
+                name="org_subject_code_active_idx",
             ),
         ]
 

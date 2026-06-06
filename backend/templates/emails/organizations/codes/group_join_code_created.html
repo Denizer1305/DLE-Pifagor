@@ -1,0 +1,7 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+    <p class="email-text">Создан код присоединения к группе{% if group_name %} {{ group_name }}{% endif %}.</p>
+    <div class="notice-card"><strong>Код:</strong> {{ code }}{% if organization_name %}<br><strong>Организация:</strong> {{ organization_name }}{% endif %}{% if expires_at %}<br><strong>Действует до:</strong> {{ expires_at }}{% endif %}</div>
+{% endblock %}

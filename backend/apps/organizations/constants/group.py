@@ -26,7 +26,7 @@ class StudyGroupStatus(models.TextChoices):
 
 class StudyForm(models.TextChoices):
     """
-    Форма обучения группы.
+    Форма обучения учебной группы.
     """
 
     FULL_TIME = "full_time", _("Очная")
@@ -51,4 +51,26 @@ MIN_GROUP_JOIN_CODE_LENGTH = 4
 MAX_GROUP_JOIN_CODE_LENGTH = 64
 """
 Максимальная длина кода вступления в группу.
+"""
+
+
+GROUP_JOIN_CODE_PURPOSE = "group_join"
+"""
+Назначение кода вступления в группу.
+
+Полезно для аудита, логов и будущих сервисов.
+"""
+
+
+MIN_COURSE_NUMBER = 1
+"""
+Минимальный номер курса.
+"""
+
+
+MAX_COURSE_NUMBER = 6
+"""
+Максимальный номер курса.
+
+Для СПО обычно хватает 1-4, но оставляем запас под разные программы.
 """

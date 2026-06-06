@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from apps.core.models import TimeStampedModel
+from apps.organizations.managers import DepartmentManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -14,6 +15,8 @@ class Department(TimeStampedModel):
         - строительное отделение;
         - экономическое отделение.
     """
+
+    objects = DepartmentManager()
 
     organization = models.ForeignKey(
         "organizations.Organization",
@@ -36,6 +39,10 @@ class Department(TimeStampedModel):
         blank=True,
         db_index=True,
     )
+    description = models.TextField(
+        _("Описание"),
+        blank=True,
+    )
     is_active = models.BooleanField(
         _("Активно"),
         default=True,
@@ -50,6 +57,21 @@ class Department(TimeStampedModel):
             models.UniqueConstraint(
                 fields=["organization", "name"],
                 name="organizations_department_unique_name",
+            ),
+            models.UniqueConstraint(
+                fields=["organization", "code"],
+                condition=~models.Q(code=""),
+                name="organizations_department_unique_code",
+            ),
+        ]
+        indexes = [
+            models.Index(
+                fields=["organization", "is_active"],
+                name="org_department_active_idx",
+            ),
+            models.Index(
+                fields=["organization", "code"],
+                name="org_department_code_idx",
             ),
         ]
 

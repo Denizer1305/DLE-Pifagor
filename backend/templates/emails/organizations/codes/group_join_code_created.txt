@@ -1,0 +1,10 @@
+{{ title }}
+
+{{ greeting }}
+
+Создан код присоединения к группе{% if group_name %} {{ group_name }}{% endif %}.
+Код: {{ code }}
+{% if organization_name %}Организация: {{ organization_name }}{% endif %}
+{% if expires_at %}Действует до: {{ expires_at }}{% endif %}
+
+{{ signature }}

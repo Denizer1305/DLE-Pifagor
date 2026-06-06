@@ -1,0 +1,10 @@
+{{ title }}
+
+{{ greeting }}
+
+Срок действия кода скоро истечёт.
+Код: {{ code }}
+{% if code_type %}Тип: {{ code_type }}{% endif %}
+{% if expires_at %}Действует до: {{ expires_at }}{% endif %}
+
+{{ signature }}

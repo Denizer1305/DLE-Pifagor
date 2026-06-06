@@ -17,8 +17,11 @@ class SubjectAdmin(admin.ModelAdmin):
         "code",
         "is_active",
         "created_at",
+        "updated_at",
     )
-    list_filter = ("is_active",)
+    list_filter = (
+        "is_active",
+    )
     search_fields = (
         "name",
         "short_name",
@@ -27,6 +30,9 @@ class SubjectAdmin(admin.ModelAdmin):
     readonly_fields = (
         "created_at",
         "updated_at",
+    )
+    ordering = (
+        "name",
     )
     fieldsets = (
         (
@@ -42,7 +48,11 @@ class SubjectAdmin(admin.ModelAdmin):
         ),
         (
             _("Статус"),
-            {"fields": ("is_active",)},
+            {
+                "fields": (
+                    "is_active",
+                )
+            },
         ),
         (
             _("Служебная информация"),

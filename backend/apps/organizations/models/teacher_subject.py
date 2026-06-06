@@ -8,10 +8,10 @@ from django.utils.translation import gettext_lazy as _
 
 class TeacherSubject(TimeStampedModel):
     """
-    Связь преподавателя с учебным предметом.
+    Предмет преподавателя.
 
-    Один преподаватель может вести несколько предметов.
-    Один предмет может вести несколько преподавателей.
+    Модель хранит связь преподавателя с предметом.
+    Проверка роли пользователя выполняется в service-слое через UserRole.
     """
 
     teacher = models.ForeignKey(
@@ -23,29 +23,31 @@ class TeacherSubject(TimeStampedModel):
     subject = models.ForeignKey(
         "organizations.Subject",
         on_delete=models.CASCADE,
-        related_name="teacher_links",
+        related_name="teacher_subjects",
         verbose_name=_("Предмет"),
     )
-
     is_primary = models.BooleanField(
         _("Основной предмет"),
         default=False,
     )
     is_active = models.BooleanField(
-        _("Активна"),
+        _("Активен"),
         default=True,
-        db_index=True,
+    )
+    notes = models.TextField(
+        _("Заметки"),
+        blank=True,
     )
 
     class Meta:
         db_table = "organizations_teacher_subject"
-        verbose_name = _("Связь преподавателя с предметом")
-        verbose_name_plural = _("Связи преподавателей с предметами")
-        ordering = ("teacher", "-is_primary", "subject__name")
+        verbose_name = _("Предмет преподавателя")
+        verbose_name_plural = _("Предметы преподавателей")
+        ordering = ("teacher", "-is_primary", "subject")
         constraints = [
             models.UniqueConstraint(
                 fields=["teacher", "subject"],
-                name="org_teacher_subject_unique",
+                name="organizations_teacher_subject_unique",
             ),
         ]
         indexes = [
@@ -57,11 +59,15 @@ class TeacherSubject(TimeStampedModel):
                 fields=["subject", "is_active"],
                 name="org_ts_subject_idx",
             ),
+            models.Index(
+                fields=["teacher", "is_primary"],
+                name="org_ts_primary_idx",
+            ),
         ]
 
     def __str__(self) -> str:
         """
-        Возвращает строковое представление связи.
+        Возвращает строковое представление связи преподавателя и предмета.
 
         Returns:
             str: Преподаватель и предмет.

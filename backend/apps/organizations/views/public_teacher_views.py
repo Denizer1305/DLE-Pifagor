@@ -37,7 +37,8 @@ class PublicTeachersPageAPIView(APIView):
             Response: Данные страницы преподавателей.
         """
 
-        organization = resolve_public_teachers_organization(request.user)
+        user = request.user if request.user.is_authenticated else None
+        organization = resolve_public_teachers_organization(user)
 
         if not organization:
             return Response(
@@ -62,7 +63,7 @@ class PublicTeachersPageAPIView(APIView):
         position = request.query_params.get("position", "")
 
         teachers_queryset = get_public_teachers_queryset(
-            organization,
+            organization=organization,
             search=search,
             subject=subject,
             position=position,
@@ -100,9 +101,7 @@ class PublicTeachersPageAPIView(APIView):
                 "meta": {
                     "teachers_count": teachers_queryset.count(),
                     "subjects_count": subjects_queryset.count(),
-                    "is_fallback": (
-                        not request.user.is_authenticated or request.user.is_anonymous
-                    ),
+                    "is_fallback": user is None,
                     "search": search,
                     "subject": subject,
                     "position": position,

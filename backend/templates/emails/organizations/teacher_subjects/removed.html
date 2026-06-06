@@ -1,0 +1,7 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+    <p class="email-text">С вас снято назначение на предмет: <strong>{{ subject_name }}</strong>.</p>
+    {% if organization_name %}<p class="email-text email-muted">Организация: {{ organization_name }}</p>{% endif %}
+{% endblock %}
