@@ -8,6 +8,9 @@
 
 from __future__ import annotations
 
+from django.db import IntegrityError, transaction
+from django.utils import timezone
+
 from apps.notifications.constants import (
     NotificationCategory,
     NotificationDeliveryChannel,
@@ -22,8 +25,10 @@ from apps.notifications.selectors import (
     get_notification_by_deduplication_key,
     get_user_active_notification_by_id,
 )
-from django.db import IntegrityError, transaction
-from django.utils import timezone
+from apps.notifications.services.notification_preference_services import (
+    resolve_delivery_channels_for_recipient,
+    should_create_notification_for_recipient,
+)
 
 
 @transaction.atomic
@@ -44,7 +49,7 @@ def create_notification(
     delivery_channels: list[str] | None = None,
     payload: dict | None = None,
     event_at=None,
-) -> tuple[Notification, bool]:
+) -> tuple[Notification | None, bool]:
     """
     Создаёт уведомление без дублей.
 
@@ -53,6 +58,13 @@ def create_notification(
     - флаг created, который показывает, было ли уведомление создано.
     """
 
+    if not should_create_notification_for_recipient(
+        recipient=recipient,
+        category=category,
+        level=level,
+    ):
+        return None, False
+
     existing_notification = get_notification_by_deduplication_key(
         deduplication_key,
     )
@@ -60,7 +72,16 @@ def create_notification(
     if existing_notification:
         return existing_notification, False
 
-    normalized_channels = normalize_delivery_channels(delivery_channels)
+    normalized_channels = resolve_delivery_channels_for_recipient(
+        recipient=recipient,
+        category=category,
+        level=level,
+        channels=delivery_channels,
+    )
+
+    if not normalized_channels:
+        return None, False
+
     delivery_statuses = build_initial_delivery_statuses(normalized_channels)
 
     notification = Notification(
@@ -305,7 +326,7 @@ def create_system_notification(
     action_label: str = "",
     action_url: str = "",
     payload: dict | None = None,
-) -> tuple[Notification, bool]:
+) -> tuple[Notification | None, bool]:
     """
     Создаёт системное уведомление.
     """
@@ -335,7 +356,7 @@ def create_security_notification(
     action_label: str = "",
     action_url: str = "",
     payload: dict | None = None,
-) -> tuple[Notification, bool]:
+) -> tuple[Notification | None, bool]:
     """
     Создаёт уведомление безопасности.
     """

@@ -7,6 +7,9 @@ from __future__ import annotations
 from datetime import date, datetime
 from unittest.mock import patch
 
+from django.utils import timezone
+from rest_framework.test import APITestCase
+
 from apps.notifications.constants import (
     NotificationCategory,
     NotificationLevel,
@@ -23,8 +26,7 @@ from apps.notifications.services import (
     create_notification,
 )
 from apps.notifications.tests.factories import create_test_user
-from django.utils import timezone
-from rest_framework.test import APITestCase
+from apps.users.models import UserSettings
 
 
 class NotificationGenerationTestCase(APITestCase):
@@ -44,6 +46,11 @@ class NotificationGenerationTestCase(APITestCase):
             first_name="Мария",
             last_name="Иванова",
         )
+
+    def set_notification_settings(self, notification_settings: dict) -> None:
+        settings, _ = UserSettings.objects.get_or_create(user=self.user)
+        settings.notification_settings = notification_settings
+        settings.save(update_fields=["notification_settings", "updated_at"])
 
     def test_create_notification_is_idempotent_by_deduplication_key(self) -> None:
         """
@@ -84,6 +91,76 @@ class NotificationGenerationTestCase(APITestCase):
         self.assertFalse(second_created)
         self.assertEqual(first_notification.id, second_notification.id)
         self.assertEqual(self.user.notifications.count(), 1)
+
+    def test_disabled_in_app_channel_suppresses_regular_notification(self) -> None:
+        self.set_notification_settings(
+            {
+                "channels": {
+                    "in_app": False,
+                    "email": True,
+                    "vk": False,
+                    "max": False,
+                }
+            }
+        )
+
+        key = build_deduplication_key(
+            user_id=self.user.id,
+            notification_type=NotificationType.SYSTEM,
+            source_type=NotificationSourceType.SYSTEM,
+            source_id="hidden-by-settings",
+        )
+
+        notification, created = create_notification(
+            recipient=self.user,
+            title="Уведомление",
+            message="Обычное сообщение.",
+            notification_type=NotificationType.SYSTEM,
+            category=NotificationCategory.EDUCATION,
+            level=NotificationLevel.INFO,
+            source_type=NotificationSourceType.SYSTEM,
+            source_id="hidden-by-settings",
+            deduplication_key=key,
+        )
+
+        self.assertIsNone(notification)
+        self.assertFalse(created)
+        self.assertEqual(self.user.notifications.count(), 0)
+
+    def test_critical_notification_ignores_disabled_in_app_channel(self) -> None:
+        self.set_notification_settings(
+            {
+                "channels": {
+                    "in_app": False,
+                    "email": False,
+                    "vk": False,
+                    "max": False,
+                }
+            }
+        )
+
+        key = build_deduplication_key(
+            user_id=self.user.id,
+            notification_type=NotificationType.SECURITY,
+            source_type=NotificationSourceType.SECURITY_EVENT,
+            source_id="critical-settings",
+        )
+
+        notification, created = create_notification(
+            recipient=self.user,
+            title="Критичное событие",
+            message="Важное сообщение безопасности.",
+            notification_type=NotificationType.SECURITY,
+            category=NotificationCategory.SECURITY,
+            level=NotificationLevel.DANGER,
+            source_type=NotificationSourceType.SECURITY_EVENT,
+            source_id="critical-settings",
+            deduplication_key=key,
+        )
+
+        self.assertTrue(created)
+        self.assertIsNotNone(notification)
+        self.assertIn("in_app", notification.delivery_channels)
 
     def test_birthday_notification_created_only_on_birthday(self) -> None:
         """
