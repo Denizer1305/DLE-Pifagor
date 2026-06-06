@@ -1,5 +1,6 @@
 import { computed, type Ref } from "vue";
 
+import { dashboardPlanCreateActions } from "@/components/dashboard/data/dashboard-plan-actions.data";
 import { useDashboardCalendarPlan } from "@/components/dashboard/composables/useDashboardCalendarPlan";
 import {
     createDashboardCardSectionContent,
@@ -23,6 +24,7 @@ export function useParentDashboardPresentation(
 
         return {
             ...content,
+            actions: dashboardPlanCreateActions,
             items: [
                 ...calendarPlanItems.value,
                 ...content.items,

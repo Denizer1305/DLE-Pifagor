@@ -3,7 +3,10 @@ import { RouterLink } from "vue-router";
 
 import DashboardEmptyState from "@/components/dashboard/shared/DashboardEmptyState.vue";
 import DashboardSectionHead from "@/components/dashboard/shared/DashboardSectionHead.vue";
-import type { DashboardTimelineContent } from "@/components/dashboard/types/dashboard.types";
+import type {
+    DashboardAction,
+    DashboardTimelineContent,
+} from "@/components/dashboard/types/dashboard.types";
 
 interface Props {
     content: DashboardTimelineContent;
@@ -17,6 +20,16 @@ withDefaults(defineProps<Props>(), {
     emptyIcon: "",
     emptyTitle: "",
 });
+
+const emit = defineEmits<{
+    (event: "create", kind: "calendar" | "note"): void;
+}>();
+
+function handleAction(action: DashboardAction): void {
+    if (action.createKind) {
+        emit("create", action.createKind);
+    }
+}
 </script>
 
 <template>
@@ -32,29 +45,46 @@ withDefaults(defineProps<Props>(), {
                 :text="content.text"
             >
                 <template #actions>
-                    <RouterLink
-                        v-if="content.action?.to"
-                        class="dashboard-card-action"
-                        :to="content.action.to"
-                    >
-                        <i
-                            v-if="content.action.icon"
-                            :class="content.action.icon"
-                        ></i>
-                        {{ content.action.label }}
-                    </RouterLink>
+                    <div class="dashboard-inline-actions">
+                        <button
+                            v-for="action in content.actions?.filter((item) => item.createKind)"
+                            :key="`${action.createKind}-${action.label}`"
+                            type="button"
+                            class="dashboard-card-action"
+                            :class="action.variant ? `is-${action.variant}` : ''"
+                            @click="handleAction(action)"
+                        >
+                            <i
+                                v-if="action.icon"
+                                :class="action.icon"
+                            ></i>
+                            {{ action.label }}
+                        </button>
 
-                    <a
-                        v-else-if="content.action"
-                        class="dashboard-card-action"
-                        :href="content.action.href || '#'"
-                    >
-                        <i
-                            v-if="content.action.icon"
-                            :class="content.action.icon"
-                        ></i>
-                        {{ content.action.label }}
-                    </a>
+                        <RouterLink
+                            v-if="content.action?.to"
+                            class="dashboard-card-action"
+                            :to="content.action.to"
+                        >
+                            <i
+                                v-if="content.action.icon"
+                                :class="content.action.icon"
+                            ></i>
+                            {{ content.action.label }}
+                        </RouterLink>
+
+                        <a
+                            v-else-if="content.action"
+                            class="dashboard-card-action"
+                            :href="content.action.href || '#'"
+                        >
+                            <i
+                                v-if="content.action.icon"
+                                :class="content.action.icon"
+                            ></i>
+                            {{ content.action.label }}
+                        </a>
+                    </div>
                 </template>
             </DashboardSectionHead>
 

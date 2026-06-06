@@ -82,7 +82,7 @@ const pageContent = computed<ErrorPageContent>(() => ({
     ],
     footer: {
         text: "Цифровая образовательная среда «Пифагор»",
-        address: "г. Владимир, ул. Дворянская, д. 27",
+        address: "Владимирская область, г. Владимир",
         email: "Pifagor-Platform33@yandex.ru",
         phone: "+7 (900) 000-00-00",
     },

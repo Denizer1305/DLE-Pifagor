@@ -1,5 +1,6 @@
 import { computed, type ComputedRef } from "vue";
 
+import { dashboardPlanCreateActions } from "@/components/dashboard/data/dashboard-plan-actions.data";
 import { useDashboardCalendarPlan } from "@/components/dashboard/composables/useDashboardCalendarPlan";
 import { adminDashboardPageUi } from "@/modules/admin/data/admin-dashboard-page.data";
 import type { AdminDashboardPageModel } from "@/modules/admin/types/admin-dashboard-page.types";
@@ -45,6 +46,7 @@ export function useAdminDashboardPresentation(
             icon: ui.plan.icon,
             title: ui.plan.title,
             text: ui.plan.text,
+            actions: dashboardPlanCreateActions,
             emptyText: ui.plan.emptyText,
             items: [
                 ...calendarPlanItems.value,

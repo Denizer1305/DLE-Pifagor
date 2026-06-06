@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 import DashboardActivityCard from "@/components/dashboard/cards/DashboardActivityCard.vue";
 import DashboardAttentionCard from "@/components/dashboard/cards/DashboardAttentionCard.vue";
@@ -14,10 +14,12 @@ import { useDashboardLogout } from "@/composables/dashboard/useDashboardLogout";
 import { useStudentDashboard } from "@/modules/student/composables/useStudentDashboard";
 import { useStudentDashboardPresentation } from "@/modules/student/composables/useStudentDashboardPresentation";
 import { useAuthStore } from "@/stores/auth.store";
+import type { DashboardCreateItemKind } from "@/components/dashboard/types/dashboard.types";
 
 const authStore = useAuthStore();
 const userFullName = computed(() => authStore.userFullName);
 const { logout } = useDashboardLogout();
+const dashboardScaffold = ref<InstanceType<typeof DashboardPageScaffold> | null>(null);
 
 const {
     model,
@@ -38,10 +40,15 @@ const {
 function reloadDashboard(): void {
     void loadDashboard();
 }
+
+function openDashboardCreateItem(kind: DashboardCreateItemKind): void {
+    dashboardScaffold.value?.openCreateItem(kind);
+}
 </script>
 
 <template>
     <DashboardPageScaffold
+        ref="dashboardScaffold"
         :model="model"
         :is-loading="isLoading"
         :error-message="errorMessage"
@@ -64,6 +71,7 @@ function reloadDashboard(): void {
                 :content="scheduleContent"
                 :empty-icon="model.scheduleSection.emptyIcon"
                 :empty-title="ui.emptyTitle"
+                @create="openDashboardCreateItem"
             />
 
             <DashboardActivityCard

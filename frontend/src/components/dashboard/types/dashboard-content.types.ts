@@ -7,6 +7,7 @@ export interface DashboardAction {
     description?: string;
     to?: RouteLocationRaw;
     href?: string;
+    createKind?: "calendar" | "note";
     variant?: "primary" | "secondary";
 }
 
@@ -84,6 +85,7 @@ export interface DashboardTimelineContent {
     title: string;
     text?: string;
     action?: DashboardAction;
+    actions?: DashboardAction[];
     items: DashboardTimelineItem[];
     emptyText?: string;
 }
@@ -149,4 +151,5 @@ export interface DashboardHeroSectionContent {
     miniPlan?: DashboardMiniPlanItem[];
     miniPlanTitle?: string;
     miniPlanIcon?: string;
+    miniPlanEmptyText?: string;
 }

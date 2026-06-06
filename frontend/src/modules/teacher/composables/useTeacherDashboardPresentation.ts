@@ -1,5 +1,6 @@
 import { computed, type Ref } from "vue";
 
+import { dashboardPlanCreateActions } from "@/components/dashboard/data/dashboard-plan-actions.data";
 import { useDashboardCalendarPlan } from "@/components/dashboard/composables/useDashboardCalendarPlan";
 import { teacherDashboardPageUi } from "@/modules/teacher/data/teacher-dashboard.data";
 import type { TeacherDashboardPageModel } from "@/modules/teacher/types/teacher-dashboard.types";
@@ -42,6 +43,7 @@ export function useTeacherDashboardPresentation(
     const planContent = computed<DashboardTimelineContent>(() => {
         return {
             ...ui.plan,
+            actions: dashboardPlanCreateActions,
             items: [
                 ...calendarPlanItems.value,
                 ...pageModel.value.planItems.map((item) => {

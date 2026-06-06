@@ -12,6 +12,7 @@ interface Props {
     search: DashboardSearchConfig;
     labels: DashboardTopbarLabels;
     user: DashboardTopbarUser;
+    notesCount?: number;
 }
 
 interface Emits {
@@ -125,6 +126,12 @@ onMounted(() => {
                     @click="togglePanel('notes')"
                 >
                     <i class="fas fa-note-sticky"></i>
+                    <span
+                        v-if="notesCount"
+                        class="dashboard-icon-badge"
+                    >
+                        {{ notesCount > 99 ? "99+" : notesCount }}
+                    </span>
                 </button>
 
                 <div

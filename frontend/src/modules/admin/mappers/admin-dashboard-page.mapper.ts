@@ -35,6 +35,7 @@ export function mapAdminSummaryToPageModel(
             miniPlan,
             miniPlanTitle: "Ближайший план",
             miniPlanIcon: "fas fa-clock",
+            miniPlanEmptyText: "План пока не заполнен. Добавьте событие или заметку в календаре.",
         },
         featuredStat: mapAdminFeaturedStat(summary),
         compactStats: mapAdminCompactStats(summary),

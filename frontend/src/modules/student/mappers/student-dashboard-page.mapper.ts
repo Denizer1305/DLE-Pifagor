@@ -45,6 +45,7 @@ export function createStudentDashboardModel(
         notifications: {
             title: "Уведомления",
             createLabel: "Создать уведомление",
+            countLabel: "новых",
             items: summary?.notifications ?? [],
             emptyText: "Уведомлений пока нет.",
             actionLabel: "Посмотреть все уведомления",
@@ -54,6 +55,7 @@ export function createStudentDashboardModel(
             title: "Заметки",
             createLabel: "Создать заметку",
             removeLabel: "Удалить заметку",
+            countLabel: "заметок",
             items: summary?.notes ?? [],
             emptyText: "Заметок пока нет.",
             actionLabel: "Открыть все заметки",

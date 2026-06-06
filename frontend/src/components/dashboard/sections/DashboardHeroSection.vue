@@ -128,7 +128,7 @@ function toRoute(routeName: string) {
                         v-else
                         class="dashboard-panel-empty"
                     >
-                        {{ content.dayCard.text }}
+                        {{ content.miniPlanEmptyText || "План пока не заполнен. Добавьте событие или заметку." }}
                     </div>
                 </div>
 

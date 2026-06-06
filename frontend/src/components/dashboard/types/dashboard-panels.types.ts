@@ -87,6 +87,8 @@ export interface DashboardNotificationItem {
 export interface DashboardNotificationsContent {
     title: string;
     items: DashboardNotificationItem[];
+    count?: number;
+    countLabel?: string;
     createLabel?: string;
     emptyText?: string;
     actionLabel?: string;
@@ -104,6 +106,8 @@ export interface DashboardNoteItem {
 export interface DashboardNotesContent {
     title: string;
     items: DashboardNoteItem[];
+    count?: number;
+    countLabel?: string;
     createLabel?: string;
     removeLabel?: string;
     readLabel?: string;

@@ -53,6 +53,31 @@
     text-align: right;
 }
 
+.dashboard-panel-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: var(--radius-pill);
+    background: var(--accent-10);
+    color: var(--accent);
+    font-size: 0.76rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.dashboard-floating-panel-head .dashboard-panel-count {
+    color: var(--accent);
+    text-align: center;
+}
+
+.dashboard-panel-count b {
+    color: currentColor;
+    font-size: 0.84rem;
+}
+
 .dashboard-panel-content {
     display: grid;
     gap: 14px;

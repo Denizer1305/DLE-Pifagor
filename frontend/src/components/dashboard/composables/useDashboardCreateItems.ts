@@ -39,18 +39,22 @@ export function useDashboardCreateItems(
     });
 
     const notesContent = computed<DashboardNotesContent>(() => {
+        const items = [
+            ...persistedNotes.value.map((item) => ({
+                id: item.id,
+                itemId: item.id,
+                date: formatShortDate(item.date),
+                title: item.title,
+                text: item.text,
+            })),
+            ...viewModel.value.notes.items,
+        ];
+
         return {
             ...viewModel.value.notes,
-            items: [
-                ...persistedNotes.value.map((item) => ({
-                    id: item.id,
-                    itemId: item.id,
-                    date: formatShortDate(item.date),
-                    title: item.title,
-                    text: item.text,
-                })),
-                ...viewModel.value.notes.items,
-            ],
+            count: items.length,
+            countLabel: viewModel.value.notes.countLabel || "заметок",
+            items,
         };
     });
 
@@ -156,6 +160,7 @@ export function useDashboardCreateItems(
             });
 
             persistedItems.value.unshift(item);
+            window.dispatchEvent(new Event("dashboard-items:changed"));
             closeCreateModal();
 
             return true;

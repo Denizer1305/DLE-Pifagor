@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
+import { ref } from "vue";
 
 import DashboardActivityCard from "@/components/dashboard/cards/DashboardActivityCard.vue";
 import DashboardAiCard from "@/components/dashboard/cards/DashboardAiCard.vue";
@@ -14,8 +15,10 @@ import DashboardStatsSection from "@/components/dashboard/sections/DashboardStat
 import { useDashboardLogout } from "@/composables/dashboard/useDashboardLogout";
 import { useTeacherDashboard } from "@/modules/teacher/composables/useTeacherDashboard";
 import { useTeacherDashboardPresentation } from "@/modules/teacher/composables/useTeacherDashboardPresentation";
+import type { DashboardCreateItemKind } from "@/components/dashboard/types/dashboard.types";
 
 const { logout } = useDashboardLogout();
+const dashboardScaffold = ref<InstanceType<typeof DashboardPageScaffold> | null>(null);
 
 const {
     errorMessage,
@@ -35,10 +38,15 @@ const {
     activityContent,
     journalRows,
 } = useTeacherDashboardPresentation(pageModel);
+
+function openDashboardCreateItem(kind: DashboardCreateItemKind): void {
+    dashboardScaffold.value?.openCreateItem(kind);
+}
 </script>
 
 <template>
     <DashboardPageScaffold
+        ref="dashboardScaffold"
         :model="viewModel"
         :is-loading="isLoading"
         :error-message="errorMessage"
@@ -64,6 +72,7 @@ const {
                 card-class="teacher-dashboard-plan-card"
                 :empty-icon="ui.plan.emptyIcon"
                 :empty-title="ui.emptyTitle"
+                @create="openDashboardCreateItem"
             />
 
             <DashboardAttentionCard

@@ -58,6 +58,13 @@ function removeNote(itemId: number): void {
     <div class="dashboard-panel-content">
         <div class="dashboard-floating-panel-head">
             <strong>{{ content.title }}</strong>
+            <span
+                v-if="content.count"
+                class="dashboard-panel-count"
+            >
+                <b>{{ content.count }}</b>
+                {{ content.countLabel }}
+            </span>
         </div>
 
         <button

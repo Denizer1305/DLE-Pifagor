@@ -50,8 +50,7 @@ export function mapCalendarToPlanItems(
     summary: AdminDashboardSummary,
 ): AdminDashboardTimelineItemModel[] {
     const selectedDate = summary.calendar.selectedDate || getTodayDateKey();
-
-    return summary.calendar.days
+    const calendarItems = summary.calendar.days
         .filter((day) => !day.isMuted && day.date >= selectedDate && Boolean(day.title || day.text))
         .slice(0, 4)
         .map((day) => ({
@@ -59,6 +58,60 @@ export function mapCalendarToPlanItems(
             title: day.title || "Административная задача",
             text: day.text || "Проверьте состояние платформы и новые события.",
         }));
+
+    return calendarItems.length
+        ? calendarItems
+        : mapAdminSummaryToPlanItems(summary);
+}
+
+function mapAdminSummaryToPlanItems(
+    summary: AdminDashboardSummary,
+): AdminDashboardTimelineItemModel[] {
+    const joinRequestsCount = getSummaryStatValue(summary, "join_requests");
+    const feedbackCount = getSummaryStatValue(summary, "feedback");
+    const items: AdminDashboardTimelineItemModel[] = [];
+
+    if (joinRequestsCount > 0) {
+        items.push({
+            time: "Сегодня",
+            title: "Проверить новые заявки",
+            text: `${joinRequestsCount} заявок ожидают административного рассмотрения.`,
+        });
+    }
+
+    if (feedbackCount > 0) {
+        items.push({
+            time: "Сегодня",
+            title: "Разобрать обращения",
+            text: `${feedbackCount} обращений пользователей требуют внимания.`,
+        });
+    }
+
+    if (summary.auditEvents.length > 0) {
+        items.push({
+            time: "Сегодня",
+            title: "Просмотреть события аудита",
+            text: "Проверьте последние системные события и действия пользователей.",
+        });
+    }
+
+    if (summary.systemHealth.status !== "ok") {
+        items.push({
+            time: "Сегодня",
+            title: "Проверить состояние системы",
+            text: "В сводке есть предупреждения, которые стоит проверить.",
+        });
+    }
+
+    if (!items.length) {
+        items.push({
+            time: "Сегодня",
+            title: "Обновить административную сводку",
+            text: "Проверьте ключевые показатели платформы и ближайшие события.",
+        });
+    }
+
+    return items.slice(0, 4);
 }
 
 function getActualDashboardDateLabel(summary: AdminDashboardSummary): string {

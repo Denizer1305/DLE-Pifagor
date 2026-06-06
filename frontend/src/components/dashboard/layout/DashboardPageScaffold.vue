@@ -12,6 +12,7 @@ import DashboardProfilePanel from "@/components/dashboard/panels/DashboardProfil
 import DashboardStateView from "@/components/dashboard/shared/DashboardStateView.vue";
 
 import type { DashboardPageScaffoldModel } from "@/components/dashboard/types/dashboard.types";
+import type { DashboardCreateItemKind } from "@/components/dashboard/types/dashboard.types";
 import { getNotificationActionTarget } from "@/modules/notifications/mappers/notification.mapper";
 import { useNotificationsStore } from "@/modules/notifications/stores/notifications.store";
 
@@ -38,6 +39,8 @@ const notificationsStore = useNotificationsStore();
 const notificationsContent = computed(() => {
     return {
         ...props.model.notifications,
+        count: notificationsStore.unreadCount,
+        countLabel: props.model.notifications.countLabel || "новых",
         items: notificationsStore.unreadItems
             .slice(0, 6)
             .map((item) => ({
@@ -95,6 +98,14 @@ function handleOpenNotification(notificationId: string | number): void {
     }
 }
 
+function openCreateItem(kind: DashboardCreateItemKind): void {
+    openCreateModal(kind);
+}
+
+defineExpose({
+    openCreateItem,
+});
+
 onMounted(() => {
     void notificationsStore.loadFeed();
 });
@@ -104,6 +115,7 @@ onMounted(() => {
     <DashboardShell
         :config="model.shell"
         :is-sidebar-open="isSidebarOpen"
+        :notes-count="notesContent.count"
         @toggle-sidebar="toggleSidebar"
         @close-sidebar="closeSidebar"
     >

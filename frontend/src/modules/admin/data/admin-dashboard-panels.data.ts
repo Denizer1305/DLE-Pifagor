@@ -33,6 +33,7 @@ export function createAdminNotificationsContent(): DashboardNotificationsContent
     return {
         title: "Уведомления",
         items: [],
+        countLabel: "новых",
         emptyText: "Уведомлений пока нет.",
     };
 }
@@ -43,6 +44,7 @@ export function createAdminNotesContent(): DashboardNotesContent {
         createLabel: "Создать заметку",
         removeLabel: "Удалить заметку",
         items: [],
+        countLabel: "заметок",
         emptyText: "Заметок пока нет.",
         actionLabel: "Открыть все заметки",
         actionTo: {

@@ -17,10 +17,23 @@ export function useDashboardCalendarPlan() {
         const todayKey = getTodayDateKey();
 
         return items.value
-            .filter((item) => item.kind === "calendar" && item.date >= todayKey)
+            .filter((item) => {
+                return (item.kind === "calendar" || item.kind === "note")
+                    && item.date >= todayKey;
+            })
             .sort(compareCalendarItems)
             .slice(0, 6)
             .map((item) => {
+                if (item.kind === "note") {
+                    return {
+                        id: `note-${item.id}`,
+                        time: formatTimelineDate(item.date),
+                        title: item.title,
+                        text: item.text || "Заметка на выбранный день",
+                        tone: "neutral",
+                    };
+                }
+
                 return {
                     id: `calendar-${item.id}`,
                     time: formatTimelineDate(item.date),

@@ -42,6 +42,7 @@ export function createCalendarPageModel(
         notifications: {
             title: "Уведомления",
             items: [],
+            countLabel: "новых",
             emptyText: "Уведомлений пока нет.",
             actionLabel: "Открыть уведомления",
             actionTo: {
@@ -53,6 +54,7 @@ export function createCalendarPageModel(
             createLabel: "Создать заметку",
             removeLabel: "Удалить заметку",
             items: [],
+            countLabel: "заметок",
             emptyText: "Заметок пока нет.",
             actionLabel: "Открыть все заметки",
             actionTo: {

@@ -6,6 +6,7 @@ import type { DashboardShellConfig } from "@/components/dashboard/types/dashboar
 interface Props {
     config: DashboardShellConfig;
     isSidebarOpen?: boolean;
+    notesCount?: number;
 }
 
 interface Emits {
@@ -40,6 +41,7 @@ defineEmits<Emits>();
                         :search="config.search"
                         :labels="config.topbarLabels"
                         :user="config.topbarUser"
+                        :notes-count="notesCount"
                         @toggle-sidebar="$emit('toggle-sidebar')"
                     >
                         <template #calendar>

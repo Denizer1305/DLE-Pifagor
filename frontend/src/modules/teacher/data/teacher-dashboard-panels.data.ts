@@ -49,6 +49,7 @@ export function createTeacherNotificationsContent(
 ): DashboardNotificationsContent {
     return {
         title: "Уведомления",
+        countLabel: "новых",
         items: summary.notifications.map((item) => {
             return {
                 id: item.id,
@@ -73,6 +74,7 @@ export function createTeacherNotesContent(
         title: "Ближайшие заметки",
         createLabel: "Создать заметку",
         removeLabel: "Удалить заметку",
+        countLabel: "заметок",
         items: summary.notes.map((note) => {
             return {
                 id: note.id,
