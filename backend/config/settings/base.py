@@ -342,8 +342,10 @@ PASSWORD_RESET_PATH = get_env(
 
 EMAIL_LOGO_URL = get_env(
     "EMAIL_LOGO_URL",
-    "",
+    f"{FRONTEND_BASE_URL.rstrip('/')}/email/logo-pifagor.png",
 )
+
+SUPPORT_EMAIL = get_env("SUPPORT_EMAIL", "Pifagor-Platform33@yandex.ru")
 
 DADATA_API_TOKEN = get_env("DADATA_API_TOKEN", "")
 DADATA_SUGGESTIONS_URL = get_env(
@@ -397,6 +399,7 @@ CELERY_IMPORTS = (
     "apps.users.tasks.emails.join_request_email_tasks",
     "apps.users.tasks.emails.guardian_email_tasks",
     "apps.users.tasks.emails.lifecycle_email_tasks",
+    "apps.users.tasks.emails.security_email_tasks",
 )
 
 # -----------------------------------------------------------------------------

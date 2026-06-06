@@ -91,15 +91,17 @@ FRONTEND_BASE_URL = get_env(
     "https://edu-pifagor.ru",
 )
 
-PIFAGOR_EMAIL_LOGO_URL = get_env(
-    "PIFAGOR_EMAIL_LOGO_URL",
-    "https://edu-pifagor.ru/static/emails/pifagor-logo-primary.png",
+EMAIL_LOGO_URL = get_env(
+    "EMAIL_LOGO_URL",
+    "https://edu-pifagor.ru/email/logo-pifagor.png",
 )
+PIFAGOR_EMAIL_LOGO_URL = EMAIL_LOGO_URL
 
-PIFAGOR_SUPPORT_EMAIL = get_env(
-    "PIFAGOR_SUPPORT_EMAIL",
+SUPPORT_EMAIL = get_env(
+    "SUPPORT_EMAIL",
     "Pifagor-Platform33@yandex.ru",
 )
+PIFAGOR_SUPPORT_EMAIL = SUPPORT_EMAIL
 
 
 # -----------------------------------------------------------------------------

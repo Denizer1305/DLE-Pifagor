@@ -84,8 +84,10 @@ SERVER_EMAIL = DEFAULT_FROM_EMAIL
 # -----------------------------------------------------------------------------
 
 FRONTEND_BASE_URL = "http://localhost:5173"
-PIFAGOR_EMAIL_LOGO_URL = "http://localhost:5173/static/emails/pifagor-logo-primary.png"
-PIFAGOR_SUPPORT_EMAIL = "Pifagor-Platform33@yandex.ru"
+EMAIL_LOGO_URL = "http://localhost:5173/email/logo-pifagor.png"
+SUPPORT_EMAIL = "Pifagor-Platform33@yandex.ru"
+PIFAGOR_EMAIL_LOGO_URL = EMAIL_LOGO_URL
+PIFAGOR_SUPPORT_EMAIL = SUPPORT_EMAIL
 
 
 # -----------------------------------------------------------------------------
