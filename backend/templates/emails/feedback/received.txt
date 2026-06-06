@@ -1,0 +1,8 @@
+{{ title }}
+
+{% if full_name %}Здравствуйте, {{ full_name }}!{% else %}Здравствуйте!{% endif %}
+
+Мы получили ваше обращение и передали его ответственному сотруднику.
+{% if request_number %}Номер обращения: {{ request_number }}{% endif %}
+
+{{ signature }}

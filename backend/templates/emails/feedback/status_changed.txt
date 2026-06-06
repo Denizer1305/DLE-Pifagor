@@ -1,0 +1,7 @@
+{{ title }}
+
+Статус вашего обращения изменён.
+{% if request_number %}Номер обращения: {{ request_number }}{% endif %}
+Новый статус: {{ status_label }}
+
+{{ signature }}

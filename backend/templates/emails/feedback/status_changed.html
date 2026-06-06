@@ -1,0 +1,6 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">Статус вашего обращения изменён.</p>
+    <div class="notice-card">{% if request_number %}<strong>Номер обращения:</strong> {{ request_number }}<br>{% endif %}<strong>Новый статус:</strong> {{ status_label }}</div>
+{% endblock %}

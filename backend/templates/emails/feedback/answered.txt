@@ -1,0 +1,8 @@
+{{ title }}
+
+По вашему обращению появился ответ.
+{% if request_number %}Номер обращения: {{ request_number }}{% endif %}
+
+{{ answer_text }}
+
+{{ signature }}
