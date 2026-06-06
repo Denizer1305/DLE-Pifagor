@@ -1,42 +1,91 @@
-# frontend
+# Пифагор — frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+Frontend образовательной платформы «Пифагор» на Vue 3, TypeScript и Vite. Приложение включает публичные страницы, авторизацию, личные кабинеты пользователей, профиль, настройки, уведомления, календарь, заметки и административные инструменты.
 
-## Recommended IDE Setup
+## Стек
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Vue 3 + Composition API
+- TypeScript
+- Vite
+- Vue Router
+- Pinia
+- Axios
+- Font Awesome
 
-## Recommended Browser Setup
+## Основные модули
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-    - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-    - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-    - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-    - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- `auth` — вход, регистрация, подтверждение email, восстановление пароля и страница выхода.
+- `public` — главная, о платформе, преподаватели, контакты и публичная форма обратной связи.
+- `admin` — ЛК администратора, пользователи, создание/редактирование/просмотр пользователей, обращения, календарь, заметки.
+- `teacher` — ЛК преподавателя с dashboard-виджетами и данными backend.
+- `student` — ЛК студента с учебным пространством и состояниями пустых данных.
+- `parent` — ЛК родителя по общей dashboard-схеме.
+- `profile` — профиль пользователя, редактирование, avatar upload/crop, город через DaData endpoints, телефонная маска.
+- `settings` — внешний вид, темы, язык, уведомления, приватность, роли и безопасность.
+- `calendar` — полноценная страница календаря, создание событий и план на день.
+- `notes` — личные заметки, отображение в календаре и отдельная страница заметок.
+- `notifications` — список, выпадающее меню, счётчики, прочтение и настройки уведомлений.
+- `feedback` — обращения пользователей с файлами, статусами и интеграцией с уведомлениями.
 
-## Type Support for `.vue` Imports in TS
+## Архитектура
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+Для модулей используется единая схема:
 
-## Customize configuration
+- `api` — низкоуровневые HTTP-запросы.
+- `services` — сценарии работы с backend.
+- `mappers` — преобразование DTO в модели интерфейса.
+- `types` — DTO, модели и payload-типы.
+- `data` — весь текст, опции и статичная конфигурация.
+- `composables` — состояние и пользовательские сценарии.
+- `components` — тупые компоненты без бизнес-логики.
+- `pages` — тонкие страницы, собирающие shell, composables и компоненты.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+Общие dashboard-компоненты лежат в `src/components/dashboard`. Их нужно переиспользовать для карточек, shell, topbar, sidebar, панелей календаря, уведомлений и заметок.
 
-## Project Setup
+## Запуск
 
 ```sh
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+По умолчанию frontend ожидает backend API на локальном окружении проекта. Базовый URL настраивается в HTTP-клиенте и env-конфигурации проекта.
+
+## Проверки
 
 ```sh
+npm run type-check
 npm run build
 ```
+
+`npm run build` запускает TypeScript-проверку и production-сборку.
+
+## Работа с backend
+
+Frontend использует REST API для:
+
+- авторизации и refresh-сессии;
+- dashboard-сводок для администратора, преподавателя, студента и родителя;
+- профиля и пользовательских настроек;
+- календарных событий и заметок;
+- уведомлений и их настроек;
+- обращений и вложений;
+- администрирования пользователей.
+
+Если UI уже отправляет новый payload, а backend возвращает `400`, `401`, `403`, `404` или `405`, сначала проверьте serializer/view/service соответствующего backend-модуля.
+
+## Темы и локализация
+
+Поддержаны светлый, тёмный и системный режимы отображения. Цветовая тема управляет CSS-переменными и логотипом из `src/assets/brand/logo/themes`.
+
+Язык интерфейса выбирается в настройках внешнего вида. Тексты должны выноситься в `*.data.ts` или i18n-словарь, а не оставаться внутри компонентов.
+
+## Правила разработки
+
+- Страница должна оставаться тонкой.
+- Компоненты должны принимать готовые данные через props.
+- Текст хранится в `data` или translations.
+- Логику выносить в composables/services.
+- DTO преобразовывать в mappers.
+- Для select использовать общий кастомный `BaseSelect`.
+- Для dashboard не плодить новые карточки, если подходит общий компонент.
