@@ -37,6 +37,7 @@ export function createSettingsScaffold(
         notifications: {
             title: "Уведомления",
             items: [],
+            countLabel: "новых",
             actionLabel: "Открыть уведомления",
             actionTo: { name: "settings-notifications" },
         },
@@ -45,6 +46,7 @@ export function createSettingsScaffold(
             createLabel: "Создать заметку",
             removeLabel: "Удалить заметку",
             items: [],
+            countLabel: "заметок",
             actionLabel: "Открыть все заметки",
             actionTo: { name: "profile" },
         },

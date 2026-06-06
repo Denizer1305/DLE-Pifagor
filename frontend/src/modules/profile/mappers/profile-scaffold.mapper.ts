@@ -33,6 +33,7 @@ export function mapCurrentProfileToScaffoldModel(
         notifications: {
             title: "Уведомления",
             items: [],
+            countLabel: "новых",
             actionLabel: "Открыть уведомления",
             actionTo: { name: getPanelRouteName(dto.active_role.code, "notifications") },
         },
@@ -41,6 +42,7 @@ export function mapCurrentProfileToScaffoldModel(
             createLabel: "Создать заметку",
             removeLabel: "Удалить заметку",
             items: [],
+            countLabel: "заметок",
             actionLabel: "Открыть все заметки",
             actionTo: { name: getPanelRouteName(dto.active_role.code, "notes") },
         },
