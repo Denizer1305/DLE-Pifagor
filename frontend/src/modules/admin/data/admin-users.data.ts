@@ -1,4 +1,5 @@
 import type { AdminUserRoleGroup } from "@/modules/admin/types/admin-users.types";
+import { ROLE_CODES } from "@/app/constants/roles.constants";
 import type { RouteLocationRaw } from "vue-router";
 
 interface AdminUsersNavItem {
@@ -87,6 +88,45 @@ export const adminUserEditContent = {
         reason: "Причина изменения",
     },
 };
+
+export const adminUserCreateContent = {
+    title: "Создание пользователя",
+    text: "Добавьте базовые данные аккаунта, назначьте первичную роль и настройте доступ ко входу.",
+    badge: "Новый аккаунт",
+    loadingText: "Готовим форму создания пользователя...",
+    errorTitle: "Не удалось создать пользователя",
+    backLabel: "Все пользователи",
+    submitLabel: "Создать пользователя",
+    submittingLabel: "Создаём...",
+    successMessage: "Пользователь создан.",
+    fields: {
+        email: "Email",
+        backupEmail: "Резервный email",
+        phone: "Телефон",
+        firstName: "Имя",
+        lastName: "Фамилия",
+        middleName: "Отчество",
+        birthDate: "Дата рождения",
+        password: "Временный пароль",
+        roleCode: "Первичная роль",
+        isLoginAllowed: "Вход разрешен",
+        sendInvite: "Отправить приглашение",
+        reason: "Комментарий администратора",
+    },
+    placeholders: {
+        roleCode: "Выберите роль",
+        password: "Оставьте пустым, если пароль создаст backend",
+        reason: "Например: пользователь добавлен по заявке организации.",
+    },
+};
+
+export const adminUserCreateRoleOptions = [
+    { value: "", label: "Без роли" },
+    { value: ROLE_CODES.ADMIN, label: "Администратор" },
+    { value: ROLE_CODES.TEACHER, label: "Преподаватель" },
+    { value: ROLE_CODES.STUDENT, label: "Студент" },
+    { value: ROLE_CODES.GUARDIAN, label: "Родитель" },
+] as const;
 
 export const adminUserStatusOptions = [
     { value: "", label: "Все статусы" },

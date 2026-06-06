@@ -206,7 +206,7 @@ export const adminRoutes: RouteRecordRaw[] = [
     {
         path: "/admin/users/create",
         name: "admin-users-create",
-        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
+        component: () => import("@/modules/admin/pages/AdminUserCreatePage.vue"),
         meta: {
             requiresAuth: true,
             roles: [

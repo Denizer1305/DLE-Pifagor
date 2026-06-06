@@ -1,6 +1,8 @@
 import { ROLE_LABELS, type RoleCode } from "@/app/constants/roles.constants";
 import { getAdminUsersPageCopy } from "@/modules/admin/data/admin-users.data";
 import type {
+    AdminUserCreateForm,
+    AdminUserCreatePayload,
     AdminUserDetailDto,
     AdminUserDetailModel,
     AdminUserEditForm,
@@ -128,6 +130,23 @@ export function createAdminUserEditForm(dto: AdminUserDetailDto): AdminUserEditF
     };
 }
 
+export function createAdminUserCreateForm(): AdminUserCreateForm {
+    return {
+        email: "",
+        backupEmail: "",
+        phone: "",
+        firstName: "",
+        lastName: "",
+        middleName: "",
+        birthDate: "",
+        isLoginAllowed: true,
+        reason: "",
+        password: "",
+        roleCode: "",
+        sendInvite: true,
+    };
+}
+
 export function mapAdminUserEditPayload(
     form: AdminUserEditForm,
     expectedUpdatedAt: string,
@@ -143,6 +162,23 @@ export function mapAdminUserEditPayload(
         is_login_allowed: form.isLoginAllowed,
         expected_updated_at: expectedUpdatedAt,
         reason: form.reason.trim(),
+    };
+}
+
+export function mapAdminUserCreatePayload(form: AdminUserCreateForm): AdminUserCreatePayload {
+    return {
+        email: form.email.trim(),
+        backup_email: form.backupEmail.trim() || undefined,
+        phone: form.phone.trim(),
+        first_name: form.firstName.trim(),
+        last_name: form.lastName.trim(),
+        middle_name: form.middleName.trim() || undefined,
+        birth_date: form.birthDate || null,
+        is_login_allowed: form.isLoginAllowed,
+        password: form.password.trim() || undefined,
+        role_code: form.roleCode || undefined,
+        send_invite: form.sendInvite,
+        reason: form.reason.trim() || undefined,
     };
 }
 

@@ -7,6 +7,7 @@ export {
     fetchAdminUserDetail,
     fetchAdminUsers,
     patchAdminUser,
+    postAdminUser,
     postAdminUserStatusAction,
 } from "@/modules/admin/api/admin-users.api";
 export { useAdminDashboard } from "@/modules/admin/composables/useAdminDashboard";
@@ -14,6 +15,7 @@ export { useAdminDashboardPresentation } from "@/modules/admin/composables/useAd
 export { useAdminFeedback } from "@/modules/admin/composables/useAdminFeedback";
 export { useAdminUserDetail } from "@/modules/admin/composables/useAdminUserDetail";
 export { useAdminUserEdit } from "@/modules/admin/composables/useAdminUserEdit";
+export { useAdminUserCreate } from "@/modules/admin/composables/useAdminUserCreate";
 export { useAdminUsers } from "@/modules/admin/composables/useAdminUsers";
 
 export {
@@ -49,8 +51,10 @@ export {
     mapAdminFeedbackRequest,
 } from "@/modules/admin/mappers/admin-feedback.mapper";
 export {
+    createAdminUserCreateForm,
     createAdminUserEditForm,
     mapAdminUserDetail,
+    mapAdminUserCreatePayload,
     mapAdminUserEditPayload,
     mapAdminUsersList,
 } from "@/modules/admin/mappers/admin-users.mapper";
@@ -82,6 +86,8 @@ export type {
     AdminFeedbackTopic,
 } from "@/modules/admin/types/admin-feedback.types";
 export type {
+    AdminUserCreateForm,
+    AdminUserCreatePayload,
     AdminUserDetailDto,
     AdminUserDetailModel,
     AdminUserEditForm,

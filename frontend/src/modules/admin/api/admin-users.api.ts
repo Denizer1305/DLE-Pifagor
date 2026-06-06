@@ -1,5 +1,6 @@
 import { httpClient } from "@/services/api/http.client";
 import type {
+    AdminUserCreatePayload,
     AdminUserDetailDto,
     AdminUsersPaginatedDto,
     AdminUserStatusAction,
@@ -31,6 +32,17 @@ export async function fetchAdminUsers(
 
 export async function fetchAdminUserDetail(userId: number): Promise<AdminUserDetailDto> {
     const response = await httpClient.get<AdminUserDetailDto>(`${ADMIN_USERS_URL}${userId}/`);
+
+    return response.data;
+}
+
+export async function postAdminUser(
+    payload: AdminUserCreatePayload,
+): Promise<AdminUserDetailDto> {
+    const response = await httpClient.post<AdminUserDetailDto>(
+        ADMIN_USERS_URL,
+        payload,
+    );
 
     return response.data;
 }

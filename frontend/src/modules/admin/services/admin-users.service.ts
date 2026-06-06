@@ -2,9 +2,11 @@ import {
     fetchAdminUserDetail,
     fetchAdminUsers,
     patchAdminUser,
+    postAdminUser,
     postAdminUserStatusAction,
 } from "@/modules/admin/api/admin-users.api";
 import {
+    mapAdminUserCreatePayload,
     createAdminUserEditForm,
     mapAdminUserDetail,
     mapAdminUserEditPayload,
@@ -13,6 +15,7 @@ import {
 import type {
     AdminUserDetailDto,
     AdminUserDetailModel,
+    AdminUserCreateForm,
     AdminUserEditForm,
     AdminUserStatusAction,
     AdminUsersFilters,
@@ -45,6 +48,14 @@ export async function getAdminUserForEdit(
         form: createAdminUserEditForm(user),
         model: mapAdminUserDetail(user),
     };
+}
+
+export async function createAdminUser(
+    form: AdminUserCreateForm,
+): Promise<AdminUserDetailModel> {
+    const user = await postAdminUser(mapAdminUserCreatePayload(form));
+
+    return mapAdminUserDetail(user);
 }
 
 export async function saveAdminUserEdit(

@@ -182,6 +182,27 @@ export interface AdminUserEditForm {
     reason: string;
 }
 
+export interface AdminUserCreateForm extends AdminUserEditForm {
+    password: string;
+    roleCode: RoleCode | "";
+    sendInvite: boolean;
+}
+
+export interface AdminUserCreatePayload {
+    email: string;
+    backup_email?: string;
+    phone: string;
+    first_name: string;
+    last_name: string;
+    middle_name?: string;
+    birth_date?: string | null;
+    is_login_allowed: boolean;
+    password?: string;
+    role_code?: RoleCode;
+    send_invite?: boolean;
+    reason?: string;
+}
+
 export interface AdminUserUpdatePayload {
     email?: string;
     backup_email?: string;
