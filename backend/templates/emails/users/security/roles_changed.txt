@@ -1,0 +1,18 @@
+{{ title }}
+
+{{ greeting }}
+
+Для вашего аккаунта изменились роли доступа.
+
+{% if assigned_roles %}
+Назначены роли:
+{% for role in assigned_roles %}- {{ role }}
+{% endfor %}
+{% endif %}
+{% if revoked_roles %}
+Отозваны роли:
+{% for role in revoked_roles %}- {{ role }}
+{% endfor %}
+{% endif %}
+
+{{ signature }}

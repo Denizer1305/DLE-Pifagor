@@ -145,4 +145,10 @@ def reset_password_by_token(*, token: str, password: str):
         ]
     )
 
+    from apps.users.tasks.email_tasks import send_password_changed_task
+
+    transaction.on_commit(
+        lambda: send_password_changed_task.delay(user_id=user.id),
+    )
+
     return user

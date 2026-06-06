@@ -1,0 +1,10 @@
+{{ title }}
+
+{{ greeting }}
+
+Аккаунт восстановлен. Вы снова можете пользоваться доступными разделами платформы.
+
+{% if previous_status %}Предыдущий статус: {{ previous_status }}{% endif %}
+{% if reason %}Комментарий: {{ reason }}{% endif %}
+
+{{ signature }}

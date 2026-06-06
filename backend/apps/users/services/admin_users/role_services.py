@@ -15,6 +15,7 @@ from apps.users.selectors.admin_user_selectors import (
     get_actor_admin_roles_queryset,
 )
 from apps.users.services.admin_users.audit_services import log_admin_user_roles_changed
+from apps.users.tasks.email_tasks import send_user_roles_changed_task
 from django.db import IntegrityError, transaction
 from django.utils import timezone
 from rest_framework.exceptions import PermissionDenied, ValidationError
@@ -647,6 +648,17 @@ def admin_change_user_roles(
         reason=reason,
         bulk_action_id=bulk_action_id,
         request=request,
+    )
+    transaction.on_commit(
+        lambda: send_user_roles_changed_task.delay(
+            user_id=target_user.id,
+            assigned_roles_text=", ".join(
+                user_role.role.name for user_role in created_or_restored_user_roles
+            ),
+            revoked_roles_text=", ".join(
+                user_role.role.name for user_role in revoked_user_roles
+            ),
+        ),
     )
 
     return {

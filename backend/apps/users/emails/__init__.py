@@ -27,8 +27,14 @@ _EMAIL_EXPORTS = {
     "send_guardian_link_approved_email": "apps.users.emails.guardian_emails",
     "send_guardian_link_rejected_email": "apps.users.emails.guardian_emails",
     "send_account_blocked_email": "apps.users.emails.lifecycle_emails",
+    "send_account_unblocked_email": "apps.users.emails.lifecycle_emails",
+    "send_account_archived_email": "apps.users.emails.lifecycle_emails",
+    "send_account_restored_email": "apps.users.emails.lifecycle_emails",
     "send_account_scheduled_for_deletion_email": "apps.users.emails.lifecycle_emails",
     "send_account_anonymized_email": "apps.users.emails.lifecycle_emails",
+    "send_password_changed_email": "apps.users.emails.security_emails",
+    "send_account_contact_changed_email": "apps.users.emails.security_emails",
+    "send_user_roles_changed_email": "apps.users.emails.security_emails",
 }
 
 

@@ -1,0 +1,12 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+    <p class="email-text">Аккаунт восстановлен. Вы снова можете пользоваться доступными разделами платформы.</p>
+    {% if previous_status %}
+        <p class="email-text email-muted">Предыдущий статус: {{ previous_status }}</p>
+    {% endif %}
+    {% if reason %}
+        <div class="notice-card"><strong>Комментарий:</strong><br>{{ reason }}</div>
+    {% endif %}
+{% endblock %}

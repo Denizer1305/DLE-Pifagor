@@ -9,6 +9,12 @@ from apps.users.services.admin_users.audit_services import (
     log_admin_user_restored,
     log_admin_user_unblocked,
 )
+from apps.users.tasks.email_tasks import (
+    send_account_archived_task,
+    send_account_restored_task,
+    send_account_unblocked_task,
+)
+from django.db import transaction
 from rest_framework.exceptions import PermissionDenied, ValidationError
 
 
@@ -239,6 +245,13 @@ def admin_unblock_user(
         request=request,
     )
 
+    transaction.on_commit(
+        lambda: send_account_unblocked_task.delay(
+            user_id=target_user.id,
+            reason=reason,
+        )
+    )
+
     return target_user
 
 
@@ -314,6 +327,13 @@ def admin_archive_user(
         reason=reason,
         bulk_action_id=bulk_action_id,
         request=request,
+    )
+
+    transaction.on_commit(
+        lambda: send_account_archived_task.delay(
+            user_id=target_user.id,
+            reason=reason,
+        )
     )
 
     return target_user
@@ -409,6 +429,14 @@ def admin_restore_user(
         reason=reason,
         bulk_action_id=bulk_action_id,
         request=request,
+    )
+
+    transaction.on_commit(
+        lambda: send_account_restored_task.delay(
+            user_id=target_user.id,
+            previous_status=previous_status,
+            reason=reason,
+        )
     )
 
     return target_user
