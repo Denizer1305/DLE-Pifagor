@@ -100,15 +100,6 @@ export const parentRoutes: RouteRecordRaw[] = [
         },
     },
     {
-        path: "/parent/notifications",
-        name: "parent-notifications",
-        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
-        meta: {
-            ...parentMeta,
-            title: "Уведомления родителя | Пифагор",
-        },
-    },
-    {
         path: "/parent/notes",
         name: "parent-notes",
         component: () => import("@/modules/notes/pages/NotesPage.vue"),

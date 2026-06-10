@@ -54,7 +54,7 @@ export const authRoutes: RouteRecordRaw[] = [
         component: () => import("@/modules/auth/pages/ResetPasswordPage.vue"),
         beforeEnter: guestGuard,
         meta: {
-            title: "Сброс пароля — Пифагор",
+            title: "Сброс пароля | Пифагор",
             layout: "auth",
             guestOnly: true,
         },
@@ -66,7 +66,7 @@ export const authRoutes: RouteRecordRaw[] = [
         component: () => import("@/modules/auth/pages/VerifyEmailPage.vue"),
         beforeEnter: guestGuard,
         meta: {
-            title: "Подтверждение email — Пифагор",
+            title: "Подтверждение email | Пифагор",
             layout: "auth",
             guestOnly: true,
         },

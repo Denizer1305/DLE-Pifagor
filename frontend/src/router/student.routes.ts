@@ -83,15 +83,6 @@ export const studentRoutes: RouteRecordRaw[] = [
         },
     },
     {
-        path: "/student/notifications",
-        name: "student-notifications",
-        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
-        meta: {
-            ...studentMeta,
-            title: "Уведомления студента | Пифагор",
-        },
-    },
-    {
         path: "/student/notes",
         name: "student-notes",
         component: () => import("@/modules/notes/pages/NotesPage.vue"),

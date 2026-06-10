@@ -7,7 +7,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/modules/teacher/pages/TeacherDashboardPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Кабинет преподавателя — ЦОС «Пифагор»",
+            title: "Кабинет преподавателя | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -24,7 +24,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Мои курсы — ЦОС «Пифагор»",
+            title: "Мои курсы | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -41,7 +41,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Курс преподавателя — ЦОС «Пифагор»",
+            title: "Курс преподавателя | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -58,7 +58,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Редактирование курса — ЦОС «Пифагор»",
+            title: "Редактирование курса | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -75,7 +75,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Аналитика курса — ЦОС «Пифагор»",
+            title: "Аналитика курса | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -92,7 +92,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Уроки — ЦОС «Пифагор»",
+            title: "Уроки | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -109,7 +109,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Создание урока — ЦОС «Пифагор»",
+            title: "Создание урока | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -126,7 +126,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Тесты — ЦОС «Пифагор»",
+            title: "Тесты | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -143,7 +143,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Создание теста — ЦОС «Пифагор»",
+            title: "Создание теста | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -160,7 +160,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Практические работы — ЦОС «Пифагор»",
+            title: "Практические работы | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -177,7 +177,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Домашние задания — ЦОС «Пифагор»",
+            title: "Домашние задания | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -194,7 +194,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Создание домашнего задания — ЦОС «Пифагор»",
+            title: "Создание домашнего задания | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -211,7 +211,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Журнал — ЦОС «Пифагор»",
+            title: "Журнал | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -228,7 +228,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Аналитика преподавателя — ЦОС «Пифагор»",
+            title: "Аналитика преподавателя | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -262,7 +262,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/modules/calendar/pages/CalendarPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Календарь преподавателя — ЦОС «Пифагор»",
+            title: "Календарь преподавателя | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -279,24 +279,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/modules/notes/pages/NotesPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Заметки преподавателя — ЦОС «Пифагор»",
-            layout: "dashboard",
-            roles: [
-                "teacher",
-                "curator",
-                "methodist",
-                "organizer",
-                "mentor",
-            ],
-        },
-    },
-    {
-        path: "/teacher/notifications",
-        name: "teacher-notifications",
-        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
-        meta: {
-            requiresAuth: true,
-            title: "Уведомления преподавателя — ЦОС «Пифагор»",
+            title: "Заметки преподавателя | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -313,7 +296,7 @@ export const teacherRoutes: RouteRecordRaw[] = [
         component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Безопасность преподавателя — ЦОС «Пифагор»",
+            title: "Безопасность преподавателя | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",

@@ -123,7 +123,6 @@ function handleAction(action: ErrorPageAction): void {
 
         <ErrorFooter
             :text="localizedContent.footer.text"
-            :address="localizedContent.footer.address"
             :email="localizedContent.footer.email"
             :phone="localizedContent.footer.phone"
         />

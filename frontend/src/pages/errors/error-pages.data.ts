@@ -41,7 +41,6 @@ export interface ErrorPageContent {
     actions: ErrorPageAction[];
     footer: {
         text: string;
-        address: string;
         email: string;
         phone: string;
     };
@@ -49,7 +48,6 @@ export interface ErrorPageContent {
 
 const commonFooter = {
     text: "Цифровая образовательная среда «Пифагор»",
-    address: "Владимирская область, г. Владимир",
     email: "Pifagor-Platform33@yandex.ru",
     phone: "+7 (900) 000-00-00",
 };
