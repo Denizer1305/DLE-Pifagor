@@ -1,0 +1,83 @@
+from .lesson_blocks import (
+    COURSE_LESSON_BLOCK_MUTABLE_FIELDS,
+    create_course_lesson_block,
+    hide_course_lesson_block,
+    show_course_lesson_block,
+    update_course_lesson_block,
+    update_course_lesson_block_by_id,
+    validate_course_lesson_block_can_be_saved,
+)
+from .lessons import (
+    COURSE_LESSON_MUTABLE_FIELDS,
+    archive_course_lesson,
+    create_course_lesson,
+    publish_course_lesson,
+    update_course_lesson,
+    update_course_lesson_by_id,
+    validate_course_lesson_can_be_saved,
+)
+from .material_links import (
+    COURSE_MATERIAL_LINK_MUTABLE_FIELDS,
+    create_course_material_link,
+    hide_course_material_link,
+    show_course_material_link,
+    update_course_material_link,
+    update_course_material_link_by_id,
+    validate_course_material_link_can_be_saved,
+)
+from .ordering import (
+    reorder_course_lessons,
+    reorder_course_material_links,
+    reorder_course_sections,
+    reorder_lesson_blocks,
+)
+from .recalculation import (
+    collect_course_structure_stats,
+    recalculate_course_section_hours,
+    recalculate_course_sections_hours,
+)
+from .sections import (
+    COURSE_SECTION_MUTABLE_FIELDS,
+    archive_course_section,
+    create_course_section,
+    publish_course_section,
+    update_course_section,
+    update_course_section_by_id,
+)
+
+__all__ = [
+    "COURSE_LESSON_BLOCK_MUTABLE_FIELDS",
+    "COURSE_LESSON_MUTABLE_FIELDS",
+    "COURSE_MATERIAL_LINK_MUTABLE_FIELDS",
+    "COURSE_SECTION_MUTABLE_FIELDS",
+    "archive_course_lesson",
+    "archive_course_section",
+    "collect_course_structure_stats",
+    "create_course_lesson",
+    "create_course_lesson_block",
+    "create_course_material_link",
+    "create_course_section",
+    "hide_course_lesson_block",
+    "hide_course_material_link",
+    "publish_course_lesson",
+    "publish_course_section",
+    "recalculate_course_section_hours",
+    "recalculate_course_sections_hours",
+    "reorder_course_lessons",
+    "reorder_course_material_links",
+    "reorder_course_sections",
+    "reorder_lesson_blocks",
+    "show_course_lesson_block",
+    "show_course_material_link",
+    "update_course_lesson",
+    "update_course_lesson_block",
+    "update_course_lesson_block_by_id",
+    "update_course_lesson_by_id",
+    "update_course_material_link",
+    "update_course_material_link_by_id",
+    "update_course_section",
+    "update_course_section_by_id",
+    "validate_course_lesson_block_can_be_saved",
+    "validate_course_lesson_can_be_saved",
+    "validate_course_material_link_can_be_saved",
+]
