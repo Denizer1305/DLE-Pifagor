@@ -1,530 +1,183 @@
-# Образовательная платформа «Пифагор»
+<!-- DLE-Pifagor Root Header -->
+<p align="center">
+  <a href="README.md"><img src="design/logos/main/pifagor-logo-primary.svg" alt="ЦОС Пифагор" width="104" /></a>
+</p>
 
-[![Backend CI](https://github.com/Denizer1305/EDU-Pifagor_2.2/actions/workflows/backend-ci.yml/badge.svg?branch=dev-backend)](https://github.com/Denizer1305/EDU-Pifagor_2.2/actions/workflows/backend-ci.yml)
+<p align="center">
+  <strong>ЦОС "Пифагор"</strong><br />
+  <sub>Корневая документация проекта · README проекта</sub>
+</p>
 
-**«Пифагор»** — дипломная образовательная платформа, которая объединяет пользователей, роли, организации, учебные группы, учебные периоды, курсы, задания, журнал, обратную связь и аналитику в единую цифровую образовательную среду.
-
-Проект ориентирован на масштабируемую backend-архитектуру: доменная логика разнесена по Django-приложениям, бизнес-операции вынесены в `services/`, чтение данных — в `selectors/`, проверки качества автоматизированы через `pre-commit`, `Makefile` и GitHub Actions.
-
----
-
-## Содержание
-
-- [Стек](#стек)
-- [Текущий статус](#текущий-статус)
-- [Структура проекта](#структура-проекта)
-- [Требования](#требования)
-- [Быстрый старт backend](#быстрый-старт-backend)
-- [Frontend](#frontend)
-- [Переменные окружения](#переменные-окружения)
-- [Makefile и проверки качества](#makefile-и-проверки-качества)
-- [Тесты](#тесты)
-- [Миграции](#миграции)
-- [CI / Security / DX](#ci--security--dx)
-- [GitHub Actions](#github-actions)
-- [Pre-commit](#pre-commit)
-- [Backend security](#backend-security)
-- [OpenAPI и документация API](#openapi-и-документация-api)
-- [Текущий backlog](#текущий-backlog)
+<p align="center">
+  <a href="README.md">README проекта</a> ·
+  <a href="docs/README.md">Документация</a> ·
+  <a href="README.en.md">English version</a>
+</p>
 
 ---
+<!-- /DLE-Pifagor Root Header -->
+
+## О проекте
+
+**ЦОС "Пифагор"** - дипломная образовательная платформа, которая объединяет публичный сайт, авторизацию, личные кабинеты администратора, преподавателя, студента и родителя, управление пользователями, образовательными организациями, календарем, заметками, уведомлениями, обращениями и настройками.
+
+Проект строится как единая цифровая образовательная среда: backend отвечает за доменную модель, API, права доступа, уведомления и обработку данных, а frontend предоставляет ролевые рабочие пространства с единой дизайн-системой.
+
+## Быстрые ссылки
+
+| Раздел | Ссылка |
+| --- | --- |
+| Общая документация | [`docs/README.md`](docs/README.md) |
+| Backend | [`backend/README.md`](backend/README.md) |
+| Frontend | [`frontend/README.md`](frontend/README.md) |
+| Дизайн и логотипы | [`design/README.md`](design/README.md) |
+| Инфраструктура | [`infra/README.md`](infra/README.md) |
+| Скрипты | [`scripts/README.md`](scripts/README.md) |
+| GitHub Actions | [`.github/README.md`](.github/README.md) |
+| API архитектура | [`docs/01-architecture/api-architecture.md`](docs/01-architecture/api-architecture.md) |
+| Модули платформы | [`docs/02-modules/`](docs/02-modules/) |
+| Правила разработки | [`docs/04-development/coding-rules.md`](docs/04-development/coding-rules.md) |
 
 ## Стек
 
 ### Backend
 
-- Python 3.12
+- Python 3.12+
 - Django 5
 - Django REST Framework
 - PostgreSQL
-- Redis
-- Celery
+- Redis и Celery для фоновых задач
 - django-filter
 - drf-spectacular
-- django-cors-headers
-- WhiteNoise
-- Ruff
-- pre-commit
-- coverage
-- pip-audit
-- bandit
+- Ruff, Black, isort
+- Django tests, coverage, GitHub Actions
 
 ### Frontend
 
-- Vue.js
+- Vue 3
+- TypeScript
 - Vite
-- JavaScript / TypeScript
-- HTML / CSS
+- Vue Router
+- Pinia
+- Axios
+- Font Awesome
+- CSS modules by feature/domain
 
-### Инфраструктура
+### Инфраструктура и качество
 
-- Git / GitHub
 - GitHub Actions
-- Makefile
-- Docker / Docker Compose, если используется контейнерный запуск
+- Прямые backend-проверки через Django, Ruff, Black и isort
+- Отдельные CI workflow для backend и frontend
+- Документация по модулям, архитектуре и решениям
 
----
+## Реализованные области
 
-## Текущий статус
+- Публичные страницы: главная, о платформе, преподаватели, контакты.
+- Авторизация: вход, регистрация, подтверждение email, восстановление пароля, выход.
+- Личные кабинеты: администратор, преподаватель, студент, родитель.
+- Профиль пользователя: просмотр, редактирование, аватар, контакты, город, приватность.
+- Настройки: внешний вид, темы, язык, уведомления, приватность, роли, безопасность.
+- Администрирование пользователей: список, фильтры, создание, карточка, редактирование.
+- Организации: организации, отделения, группы, предметы, преподаватели, кураторы, заявки, коды.
+- Календарь и заметки: события, план на день, заметки на календаре, отдельная страница заметок.
+- Уведомления: счетчики, dropdown, страница уведомлений, настройки уведомлений.
+- Обращения: форма пользователя, вложения, уведомления, административная обработка.
+- Страницы ошибок и технические заглушки в едином стиле платформы.
 
-На текущем этапе backend имеет рабочую инфраструктуру качества:
-
-- настроены отдельные Django settings: `base.py`, `dev.py`, `prod.py`, `testing.py`;
-- настроен `Makefile` для локальных команд разработки и CI;
-- настроен `pre-commit`;
-- настроен GitHub Actions workflow для backend;
-- миграции проверяются через `makemigrations --check --dry-run`;
-- backend проходит `ruff check`, `ruff format --check`, `manage.py check` и тесты;
-- добавлен production deploy check через `manage.py check --deploy`;
-- добавлен coverage threshold через `coverage report --fail-under`;
-- добавлен dependency audit через `pip-audit`;
-- добавлен статический security-анализ через `bandit`;
-- добавлен scoped throttling для чувствительных auth endpoints.
-
-Основные backend-модули:
-
-- `users` — пользователи, роли, профили, регистрация, onboarding;
-- `organizations` — организации, отделения, группы, предметы, связи преподавателей;
-- `education` — учебные годы, периоды, учебные планы, нагрузки, зачисления;
-- `course` — курсы, модули, уроки, материалы, преподаватели, прогресс;
-- `assignments` — задания, публикации, аудитории, ответы, проверки, оценки;
-- `journal` — уроки журнала, посещаемость, оценки, сводки, прогресс тем;
-- `feedback` — обратная связь, обращения, обработка, вложения;
-- `common`, `api`, `templates` — общие компоненты, API-слой и шаблоны.
-
----
-
-## Структура проекта
+## Структура репозитория
 
 ```text
-EDU-Pifagor_2.2/
-├── .github/
-│   └── workflows/
-│       └── backend-ci.yml
-├── backend/
-│   ├── api/
-│   ├── apps/
-│   │   ├── common/
-│   │   ├── users/
-│   │   ├── organizations/
-│   │   ├── education/
-│   │   ├── course/
-│   │   ├── assignments/
-│   │   ├── journal/
-│   │   └── feedback/
-│   ├── config/
-│   │   ├── settings/
-│   │   │   ├── base.py
-│   │   │   ├── dev.py
-│   │   │   ├── prod.py
-│   │   │   └── testing.py
-│   │   ├── urls.py
-│   │   ├── asgi.py
-│   │   └── wsgi.py
-│   ├── requirements/
-│   │   ├── base.txt
-│   │   └── dev.txt
-│   ├── templates/
-│   ├── Makefile
-│   ├── manage.py
-│   ├── pyproject.toml
-│   ├── .env.example
-│   └── README.md
-├── frontend/
-│   ├── public/
-│   └── src/
-├── docs/
-├── .editorconfig
-├── .gitignore
-├── .pre-commit-config.yaml
-├── .env.example
-├── README.md
-└── README.en.md
+DLE-Pifagor/
+├─ .github/          # GitHub Actions и настройки репозитория
+├─ backend/          # Django backend и API
+├─ design/           # бренд, логотипы, презентации и визуальные материалы
+├─ docs/             # архитектура, модули, дизайн-система, ADR
+├─ frontend/         # Vue frontend
+├─ infra/            # Docker, nginx, deploy и эксплуатационные заметки
+├─ scripts/          # проектные утилиты
+├─ README.md         # русская версия
+└─ README.en.md      # английская версия
 ```
 
----
+## Быстрый старт
 
-## Требования
-
-- Python 3.12+
-- PostgreSQL 15+
-- Redis, если используются Celery-задачи
-- Node.js 20+ для frontend
-- Git
-- GNU Make для работы с `Makefile`
-
-На Windows удобнее запускать `make` через WSL. В PowerShell можно запускать команды напрямую через `python -m ...`, либо установить GNU Make отдельно.
-
----
-
-## Быстрый старт backend
-
-Перейдите в backend:
+### Backend
 
 ```bash
 cd backend
+python manage.py check --settings=config.settings.test
+python manage.py makemigrations --check --dry-run --settings=config.settings.test
+python -m ruff check apps config
+python -m black --check apps config
+python -m isort --profile black -o apps -o config --check-only apps config
+python manage.py test --settings=config.settings.test
 ```
-
-Создайте окружение:
-
-### Windows PowerShell
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements/dev.txt
-```
-
-### Linux / macOS / WSL
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install --upgrade pip
-python3 -m pip install -r requirements/dev.txt
-```
-
-Создайте `.env`:
-
-```bash
-cp .env.example .env
-```
-
-Для Windows PowerShell:
-
-```powershell
-Copy-Item .env.example .env
-```
-
-Примените миграции и запустите сервер:
-
-```bash
-python manage.py migrate --settings=config.settings.dev
-python manage.py createsuperuser --settings=config.settings.dev
-python manage.py runserver --settings=config.settings.dev
-```
-
-Backend будет доступен по адресу:
-
-```text
-http://127.0.0.1:8000/
-```
-
----
-
-## Frontend
+### Frontend
 
 ```bash
 cd frontend
-npm install
-npm run dev
+npm run typecheck
+npm run build
 ```
 
-Обычно frontend доступен по адресу:
+## Документация
 
-```text
-http://127.0.0.1:5173/
-```
+Начните с [`docs/README.md`](docs/README.md). Там собраны ссылки на продуктовые документы, архитектуру, описание модулей, дизайн-систему, правила разработки и ADR.
 
-Для подключения к backend можно использовать `.env.local` во frontend:
+Полезные точки входа:
 
-```env
-VITE_API_BASE_URL=http://127.0.0.1:8000/api
-```
+- [`docs/00-vision/product-vision.md`](docs/00-vision/product-vision.md)
+- [`docs/01-architecture/project-structure.md`](docs/01-architecture/project-structure.md)
+- [`docs/01-architecture/backend-architecture.md`](docs/01-architecture/backend-architecture.md)
+- [`docs/01-architecture/frontend-architecture.md`](docs/01-architecture/frontend-architecture.md)
+- [`docs/02-modules/users.md`](docs/02-modules/users.md)
+- [`docs/02-modules/organizations.md`](docs/02-modules/organizations.md)
+- [`docs/02-modules/calendar-and-notes.md`](docs/02-modules/calendar-and-notes.md)
+- [`docs/02-modules/notifications.md`](docs/02-modules/notifications.md)
+- [`docs/02-modules/feedback.md`](docs/02-modules/feedback.md)
+- [`docs/02-modules/settings.md`](docs/02-modules/settings.md)
 
----
+## Работа с ветками и коммитами
 
-## Переменные окружения
+Соглашение по коммитам описано в [`docs/04-development/commit-convention.md`](docs/04-development/commit-convention.md).
 
-Django загружает переменные из файла `backend/.env`.
-
-Для локального запуска используйте шаблон:
+Примеры:
 
 ```bash
-cd backend
-cp .env.example .env
+git commit -m "feat(frontend): Добавлена страница управления организациями"
+git commit -m "fix(backend): Исправлена выдача уведомлений"
+git commit -m "docs(project): Обновлена корневая документация"
 ```
-
-Важные переменные:
-
-- `DJANGO_SECRET_KEY`
-- `DJANGO_DEBUG`
-- `DJANGO_ALLOWED_HOSTS`
-- `DJANGO_TIME_ZONE`
-- `POSTGRES_DB`
-- `POSTGRES_USER`
-- `POSTGRES_PASSWORD`
-- `DB_HOST`
-- `DB_PORT`
-- `CORS_ALLOWED_ORIGINS`
-- `CSRF_TRUSTED_ORIGINS`
-- `CELERY_BROKER_URL`
-- `CELERY_RESULT_BACKEND`
-- `EMAIL_BACKEND`
-- `DEFAULT_FROM_EMAIL`
-- `FEEDBACK_EMAIL`
-
-Файл `.env` нельзя коммитить в репозиторий.
-
----
-
-## Makefile и проверки качества
-
-Все основные backend-команды собраны в `backend/Makefile`.
-
-```bash
-cd backend
-make help
-```
-
-Основные команды:
-
-```bash
-make install-dev          # установить dev-зависимости
-make run                  # запустить dev-сервер
-make migrate              # применить миграции
-make makemigrations       # создать миграции
-make migrations-check     # проверить, что миграции актуальны
-make lint                 # Ruff lint
-make lint-fix             # Ruff lint с автоисправлениями
-make format               # Ruff format
-make precommit            # все pre-commit hooks
-make check                # Django system check
-make check-prod           # production deploy check
-make test                 # все тесты
-make test-app APP=apps.users
-make test-users
-make test-assignments
-make test-course
-make test-education
-make coverage             # тесты с coverage threshold
-make coverage-html        # HTML coverage report
-make coverage-xml         # XML coverage report
-make audit-deps           # dependency audit через pip-audit
-make audit-code           # static security audit через bandit
-make audit                # полный security audit
-make ci                   # полный набор проверок как в CI
-```
-
-Если в WSL команда `python` недоступна, используйте:
-
-```bash
-make ci PYTHON=python3
-```
-
----
-
-## Тесты
-
-Полный запуск тестов:
-
-```bash
-cd backend
-make test
-```
-
-Или напрямую:
-
-```bash
-python manage.py test --settings=config.settings.testing
-```
-
-Тесты отдельных приложений:
-
-```bash
-make test-users
-make test-assignments
-make test-course
-make test-education
-make test-app APP=apps.feedback
-```
-
----
-
-## Миграции
-
-Миграции Django должны храниться в Git. Они описывают историю схемы базы данных и нужны для одинакового разворачивания проекта у всех участников и в CI.
-
-После изменения моделей:
-
-```bash
-cd backend
-make makemigrations
-make migrate
-make migrations-check
-```
-
-Перед коммитом полезно проверить:
-
-```bash
-make ci
-```
-
----
-
-## CI / Security / DX
-
-Backend-проверки автоматизированы через `Makefile` и GitHub Actions.
-
-Локально основной набор проверок запускается командой:
-
-```bash
-cd backend
-make ci
-```
-
-В состав backend CI входят:
-
-- `ruff check .`;
-- `ruff format . --check`;
-- проверка отсутствия незакоммиченных миграций;
-- `manage.py check` на testing settings;
-- production deploy check через `manage.py check --deploy`;
-- запуск тестов с coverage threshold;
-- security audit зависимостей через `pip-audit`;
-- статический security-анализ Python-кода через `bandit`, если включен в текущий CI-профиль.
-
-Отдельные команды:
-
-```bash
-make check-prod
-make coverage
-make audit-deps
-make audit-code
-make audit
-```
-
-Production check использует безопасные CI-placeholder значения окружения и не требует настоящих production-секретов.
-
----
-
-## GitHub Actions
-
-Backend workflow находится в:
-
-```text
-.github/workflows/backend-ci.yml
-```
-
-CI запускает:
-
-- установку Python-зависимостей;
-- Ruff lint;
-- Ruff format check;
-- проверку миграций;
-- Django system check;
-- production deploy check;
-- тесты backend;
-- coverage threshold;
-- security audit, если включен в workflow.
-
-Перед pull request локально запускайте:
-
-```bash
-cd backend
-make ci
-```
-
----
-
-## Pre-commit
-
-Установка хуков:
-
-```bash
-cd backend
-python -m pre_commit install
-```
-
-Ручной запуск всех хуков:
-
-```bash
-python -m pre_commit run --all-files
-```
-
-Если hooks исправили файлы, нужно повторить команду и затем добавить изменения в Git:
-
-```bash
-git add .
-python -m pre_commit run --all-files
-git commit -m "chore(backend): update documentation and env examples"
-```
-
----
-
-## Backend security
-
-В backend реализованы базовые меры безопасности:
-
-- отдельные настройки для dev/testing/prod;
-- обязательные production env-переменные для секретов, базы данных, Redis и SMTP;
-- secure cookies и HSTS-настройки в production;
-- CORS/CSRF origins через env;
-- `SECURE_CONTENT_TYPE_NOSNIFF`;
-- `X_FRAME_OPTIONS = "DENY"`;
-- session-based authentication через Django/DRF;
-- scoped throttling для auth endpoints:
-  - login;
-  - registration;
-  - password reset request;
-  - password reset confirm;
-  - password change;
-  - email verification;
-- dependency audit через `pip-audit`;
-- статический security-анализ через `bandit`.
-
-Файл `.env` не должен попадать в Git. Для примера используется только `.env.example`.
-
----
-
-## OpenAPI и документация API
-
-Проект использует `drf-spectacular` для генерации OpenAPI-схемы.
-
-Локально документация API обычно доступна по адресам:
-
-```text
-http://127.0.0.1:8000/api/schema/
-http://127.0.0.1:8000/api/docs/
-```
-
-Текущий статус OpenAPI:
-
-- базовая генерация схемы подключена;
-- часть APIView endpoints требует дополнительной аннотации через `serializer_class` или `@extend_schema`;
-- часть operationId и enum naming warnings вынесена в backlog;
-- OpenAPI cleanup планируется отдельным этапом, чтобы не смешивать его с бизнес-разработкой приложений.
-
----
-
-## Текущий backlog
-
-Перед production-ready состоянием остаются задачи:
-
-- вычистить предупреждения `drf-spectacular`;
-- добавить `serializer_class` / `@extend_schema` для APIView endpoints;
-- настроить `ENUM_NAME_OVERRIDES` для повторяющихся enum names;
-- проверить operationId collisions в OpenAPI;
-- расширить coverage threshold по мере роста тестов;
-- добавить Docker build check в CI, если используется контейнерный запуск;
-- обновлять `.env.example` при добавлении новых env-переменных;
-- поддерживать README и backend README синхронными с Makefile и CI.
-
----
 
 ## Безопасность
 
-Нельзя коммитить:
+Не коммитьте реальные секреты и пользовательские данные:
 
 - `.env`;
-- реальные пароли;
-- реальные SMTP-пароли;
 - токены;
-- секретные ключи;
+- пароли;
+- SMTP-ключи;
 - локальные базы данных;
 - `.venv`;
-- `media/`, если там пользовательские файлы;
-- `staticfiles/`, если это результат `collectstatic`.
+- пользовательские файлы из `media/`.
 
-Для публичного репозитория используйте только `.env.example` с безопасными placeholder-значениями.
+Для примеров используйте только `.env.example` с безопасными placeholder-значениями.
+
+## Статус
+
+Проект находится в активной разработке. Документация и README должны обновляться вместе с функциональными модулями, API, настройками CI и изменениями архитектуры.
+---
+
+<!-- DLE-Pifagor Root Footer -->
+---
+
+<p align="center">
+  <sub>ЦОС "Пифагор" · единая цифровая образовательная среда</sub>
+</p>
+
+<p align="center">
+  <a href="README.md">README проекта</a> ·
+  <a href="docs/README.md">Документация</a> ·
+  <a href="README.en.md">English version</a>
+</p>
+<!-- /DLE-Pifagor Root Footer -->

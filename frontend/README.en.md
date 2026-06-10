@@ -1,3 +1,22 @@
+<!-- DLE-Pifagor README Header -->
+<p align="center">
+  <a href="../README.en.md"><img src="../design/logos/main/pifagor-logo-primary.svg" alt="DLE Pifagor" width="104" /></a>
+</p>
+
+<p align="center">
+  <strong>DLE "Pifagor"</strong><br />
+  <sub>Project documentation and development materials</sub>
+</p>
+
+<p align="center">
+  <a href="../README.en.md">Project README</a> ·
+  <a href="../docs/README.en.md">Documentation</a> ·
+  <a href="../README.md">Русская версия</a>
+</p>
+
+---
+<!-- /DLE-Pifagor README Header -->
+
 # Pifagor — frontend
 
 Frontend for the Pifagor educational platform built with Vue 3, TypeScript, and Vite. The app includes public pages, authentication, role dashboards, profile management, settings, notifications, calendar, notes, feedback, and admin tools.
@@ -89,3 +108,18 @@ The interface language is selected in appearance settings. UI copy should live i
 - Convert DTOs in mappers.
 - Use shared `BaseSelect` for selects.
 - Reuse shared dashboard cards before creating new ones.
+---
+
+<!-- DLE-Pifagor README Footer -->
+---
+
+<p align="center">
+  <sub>DLE "Pifagor" · unified digital learning environment</sub>
+</p>
+
+<p align="center">
+  <a href="../README.en.md">Project README</a> ·
+  <a href="../docs/README.en.md">Documentation</a> ·
+  <a href="../README.md">Русская версия</a>
+</p>
+<!-- /DLE-Pifagor README Footer -->

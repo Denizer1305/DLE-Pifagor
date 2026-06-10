@@ -1,3 +1,22 @@
+<!-- DLE-Pifagor README Header -->
+<p align="center">
+  <a href="../README.md"><img src="../design/logos/main/pifagor-logo-primary.svg" alt="ЦОС Пифагор" width="104" /></a>
+</p>
+
+<p align="center">
+  <strong>ЦОС "Пифагор"</strong><br />
+  <sub>Документация проекта и материалы разработки</sub>
+</p>
+
+<p align="center">
+  <a href="../README.md">README проекта</a> ·
+  <a href="../docs/README.md">Документация</a> ·
+  <a href="../README.en.md">English version</a>
+</p>
+
+---
+<!-- /DLE-Pifagor README Header -->
+
 # Пифагор — frontend
 
 Frontend образовательной платформы «Пифагор» на Vue 3, TypeScript и Vite. Приложение включает публичные страницы, авторизацию, личные кабинеты пользователей, профиль, настройки, уведомления, календарь, заметки и административные инструменты.
@@ -89,3 +108,18 @@ Frontend использует REST API для:
 - DTO преобразовывать в mappers.
 - Для select использовать общий кастомный `BaseSelect`.
 - Для dashboard не плодить новые карточки, если подходит общий компонент.
+---
+
+<!-- DLE-Pifagor README Footer -->
+---
+
+<p align="center">
+  <sub>ЦОС "Пифагор" · единая цифровая образовательная среда</sub>
+</p>
+
+<p align="center">
+  <a href="../README.md">README проекта</a> ·
+  <a href="../docs/README.md">Документация</a> ·
+  <a href="../README.en.md">English version</a>
+</p>
+<!-- /DLE-Pifagor README Footer -->

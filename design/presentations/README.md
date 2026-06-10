@@ -1,3 +1,22 @@
+<!-- DLE-Pifagor README Header -->
+<p align="center">
+  <a href="../../README.md"><img src="../../design/logos/main/pifagor-logo-primary.svg" alt="ЦОС Пифагор" width="104" /></a>
+</p>
+
+<p align="center">
+  <strong>ЦОС "Пифагор"</strong><br />
+  <sub>Документация проекта и материалы разработки</sub>
+</p>
+
+<p align="center">
+  <a href="../../README.md">README проекта</a> ·
+  <a href="../../docs/README.md">Документация</a> ·
+  <a href="../../README.en.md">English version</a>
+</p>
+
+---
+<!-- /DLE-Pifagor README Header -->
+
 # Презентационный комплект ЦОС «Пифагор»
 
 Папка `design/presentations/` хранит комплект для оформления презентаций в стиле ЦОС «Пифагор».
@@ -158,3 +177,18 @@ fonts/
 ## Главный принцип
 
 > Презентация Пифагора должна выглядеть спокойно, уверенно и профессионально, не теряя человеческого и вдохновляющего характера проекта.
+---
+
+<!-- DLE-Pifagor README Footer -->
+---
+
+<p align="center">
+  <sub>ЦОС "Пифагор" · единая цифровая образовательная среда</sub>
+</p>
+
+<p align="center">
+  <a href="../../README.md">README проекта</a> ·
+  <a href="../../docs/README.md">Документация</a> ·
+  <a href="../../README.en.md">English version</a>
+</p>
+<!-- /DLE-Pifagor README Footer -->

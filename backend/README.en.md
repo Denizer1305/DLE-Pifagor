@@ -1,3 +1,22 @@
+<!-- DLE-Pifagor README Header -->
+<p align="center">
+  <a href="../README.en.md"><img src="../design/logos/main/pifagor-logo-primary.svg" alt="DLE Pifagor" width="104" /></a>
+</p>
+
+<p align="center">
+  <strong>DLE "Pifagor"</strong><br />
+  <sub>Project documentation and development materials</sub>
+</p>
+
+<p align="center">
+  <a href="../README.en.md">Project README</a> ·
+  <a href="../docs/README.en.md">Documentation</a> ·
+  <a href="../README.md">Русская версия</a>
+</p>
+
+---
+<!-- /DLE-Pifagor README Header -->
+
 # Pifagor — backend
 
 Backend for the Pifagor educational platform built with Django and Django REST Framework. It powers authentication, users, dashboards, profile, settings, calendar, notes, notifications, feedback, and educational domain entities.
@@ -95,3 +114,18 @@ For admin user creation, the frontend sends `POST /api/v1/users/admin/users/`. I
 - Services perform business operations and audit.
 - Permissions enforce role-based access.
 - Tests cover API contracts, permissions, and important service scenarios.
+---
+
+<!-- DLE-Pifagor README Footer -->
+---
+
+<p align="center">
+  <sub>DLE "Pifagor" · unified digital learning environment</sub>
+</p>
+
+<p align="center">
+  <a href="../README.en.md">Project README</a> ·
+  <a href="../docs/README.en.md">Documentation</a> ·
+  <a href="../README.md">Русская версия</a>
+</p>
+<!-- /DLE-Pifagor README Footer -->
