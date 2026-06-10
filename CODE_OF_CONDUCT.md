@@ -1,58 +1,58 @@
 <!-- DLE-Pifagor Root Header -->
 <p align="center">
-  <a href="README.md"><img src="design/logos/main/pifagor-logo-primary.svg" alt="ЦОС Пифагор" width="104" /></a>
+  <a href="README.en.md"><img src="design/logos/main/pifagor-logo-primary.svg" alt="DLE Pifagor" width="104" /></a>
 </p>
 
 <p align="center">
-  <strong>ЦОС "Пифагор"</strong><br />
-  <sub>Корневая документация проекта · Кодекс поведения</sub>
+  <strong>DLE "Pifagor"</strong><br />
+  <sub>Project root documentation · Code of Conduct</sub>
 </p>
 
 <p align="center">
-  <a href="README.md">README проекта</a> ·
-  <a href="docs/README.md">Документация</a> ·
-  <a href="CODE_OF_CONDUCT.en.md">English version</a>
+  <a href="README.en.md">Project README</a> ·
+  <a href="docs/README.en.md">Documentation</a> ·
+  <a href="CODE_OF_CONDUCT.md">Русская версия</a>
 </p>
 
 ---
 <!-- /DLE-Pifagor Root Header -->
 
-# Кодекс поведения
+# Code of Conduct
 
-## Наши принципы
+## Principles
 
-Участники проекта ЦОС "Пифагор" должны поддерживать уважительную, спокойную и профессиональную среду. Обсуждения должны быть направлены на улучшение продукта, качества кода и образовательной ценности проекта.
+Participants of DLE "Pifagor" should maintain a respectful, calm, and professional environment. Discussions should focus on improving the product, code quality, and educational value of the project.
 
-## Ожидаемое поведение
+## Expected behavior
 
-- уважительное общение;
-- конструктивная критика;
-- готовность объяснять решения;
-- аккуратная работа с чужими изменениями;
-- внимание к безопасности и персональным данным.
+- respectful communication;
+- constructive criticism;
+- willingness to explain decisions;
+- careful handling of other contributors changes;
+- attention to security and personal data.
 
-## Недопустимое поведение
+## Unacceptable behavior
 
-- оскорбления и давление;
-- публикация чужих персональных данных;
-- намеренное внесение вредоносных изменений;
-- игнорирование правил безопасности;
-- срыв обсуждений и ревью.
+- insults or pressure;
+- publishing personal data;
+- intentionally harmful changes;
+- ignoring security rules;
+- disrupting discussions and reviews.
 
-## Решение конфликтов
+## Conflict resolution
 
-Конфликты решаются через обсуждение в команде или с ответственным руководителем проекта. Цель - найти понятное техническое или организационное решение без личных нападок.
+Conflicts should be resolved through team discussion or with the responsible project lead. The goal is to find a clear technical or organizational solution without personal attacks.
 
 <!-- DLE-Pifagor Root Footer -->
 ---
 
 <p align="center">
-  <sub>ЦОС "Пифагор" · единая цифровая образовательная среда</sub>
+  <sub>DLE "Pifagor" · unified digital learning environment</sub>
 </p>
 
 <p align="center">
-  <a href="README.md">README проекта</a> ·
-  <a href="docs/README.md">Документация</a> ·
-  <a href="CODE_OF_CONDUCT.en.md">English version</a>
+  <a href="README.en.md">Project README</a> ·
+  <a href="docs/README.en.md">Documentation</a> ·
+  <a href="CODE_OF_CONDUCT.md">Русская версия</a>
 </p>
 <!-- /DLE-Pifagor Root Footer -->
