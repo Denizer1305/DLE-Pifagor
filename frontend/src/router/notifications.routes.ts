@@ -7,7 +7,7 @@ export const notificationsRoutes: RouteRecordRaw[] = [
         component: () => import("@/modules/notifications/pages/NotificationsPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Уведомления — ЦОС «Пифагор»",
+            title: "Уведомления | Пифагор",
             layout: "dashboard",
         },
     },
@@ -22,7 +22,7 @@ export const notificationsRoutes: RouteRecordRaw[] = [
         component: () => import("@/modules/notifications/pages/NotificationsPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Уведомления администратора — ЦОС «Пифагор»",
+            title: "Уведомления администратора | Пифагор",
             layout: "dashboard",
             roles: [
                 "superadmin",
@@ -43,7 +43,7 @@ export const notificationsRoutes: RouteRecordRaw[] = [
         component: () => import("@/modules/notifications/pages/NotificationsPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Уведомления преподавателя — ЦОС «Пифагор»",
+            title: "Уведомления преподавателя | Пифагор",
             layout: "dashboard",
             roles: [
                 "teacher",
@@ -65,7 +65,7 @@ export const notificationsRoutes: RouteRecordRaw[] = [
         component: () => import("@/modules/notifications/pages/NotificationsPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Уведомления студента — ЦОС «Пифагор»",
+            title: "Уведомления студента | Пифагор",
             layout: "dashboard",
             roles: [
                 "learner",
@@ -84,7 +84,7 @@ export const notificationsRoutes: RouteRecordRaw[] = [
         component: () => import("@/modules/notifications/pages/NotificationsPage.vue"),
         meta: {
             requiresAuth: true,
-            title: "Уведомления родителя — ЦОС «Пифагор»",
+            title: "Уведомления родителя | Пифагор",
             layout: "dashboard",
             roles: [
                 "guardian",
