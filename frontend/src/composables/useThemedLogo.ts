@@ -80,11 +80,23 @@ const knownAiLogos = new Set([aiLegacy, ...Object.values(aiLogos)]);
 export function useThemedLogo() {
     const themeStore = useThemeStore();
 
-    const logoSrc = computed(() => logos[themeStore.brandTheme]);
+    const resolvedLogoTheme = computed<BrandTheme>(() => {
+        if (themeStore.isDark) {
+            return "dark";
+        }
 
-    const heroLogoSrc = computed(() => heroLogos[themeStore.brandTheme]);
+        if (themeStore.brandTheme === "dark") {
+            return "light";
+        }
 
-    const logoAISrc = computed(() => aiLogos[themeStore.brandTheme]);
+        return themeStore.brandTheme;
+    });
+
+    const logoSrc = computed(() => logos[resolvedLogoTheme.value]);
+
+    const heroLogoSrc = computed(() => heroLogos[resolvedLogoTheme.value]);
+
+    const logoAISrc = computed(() => aiLogos[resolvedLogoTheme.value]);
 
     function getThemedLogoSrc(src: string): string {
         if (knownLogos.has(src)) {
