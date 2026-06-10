@@ -1,0 +1,9 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">По вашему обращению появился ответ.</p>
+    {% if request_number %}
+        <p class="email-text email-muted">Номер обращения: {{ request_number }}</p>
+    {% endif %}
+    <div class="notice-card">{{ answer_text }}</div>
+{% endblock %}

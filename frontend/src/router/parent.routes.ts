@@ -19,18 +19,9 @@ export const parentRoutes: RouteRecordRaw[] = [
         },
     },
     {
-        path: "/parent/profile",
-        name: "parent-profile",
-        component: () => import("@/modules/parent/pages/ParentPlaceholderPage.vue"),
-        meta: {
-            ...parentMeta,
-            title: "Профиль родителя | Пифагор",
-        },
-    },
-    {
         path: "/parent/child",
         name: "parent-child",
-        component: () => import("@/modules/parent/pages/ParentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...parentMeta,
             title: "Профиль ребенка | Пифагор",
@@ -39,7 +30,7 @@ export const parentRoutes: RouteRecordRaw[] = [
     {
         path: "/parent/grades",
         name: "parent-grades",
-        component: () => import("@/modules/parent/pages/ParentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...parentMeta,
             title: "Успеваемость ребенка | Пифагор",
@@ -48,7 +39,7 @@ export const parentRoutes: RouteRecordRaw[] = [
     {
         path: "/parent/attendance",
         name: "parent-attendance",
-        component: () => import("@/modules/parent/pages/ParentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...parentMeta,
             title: "Посещаемость ребенка | Пифагор",
@@ -57,7 +48,7 @@ export const parentRoutes: RouteRecordRaw[] = [
     {
         path: "/parent/assignments",
         name: "parent-assignments",
-        component: () => import("@/modules/parent/pages/ParentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...parentMeta,
             title: "Домашние задания ребенка | Пифагор",
@@ -66,7 +57,7 @@ export const parentRoutes: RouteRecordRaw[] = [
     {
         path: "/parent/schedule",
         name: "parent-schedule",
-        component: () => import("@/modules/parent/pages/ParentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...parentMeta,
             title: "Расписание ребенка | Пифагор",
@@ -75,7 +66,7 @@ export const parentRoutes: RouteRecordRaw[] = [
     {
         path: "/parent/progress",
         name: "parent-progress",
-        component: () => import("@/modules/parent/pages/ParentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...parentMeta,
             title: "Прогресс ребенка | Пифагор",
@@ -84,46 +75,37 @@ export const parentRoutes: RouteRecordRaw[] = [
     {
         path: "/parent/messages",
         name: "parent-messages",
-        component: () => import("@/modules/parent/pages/ParentPlaceholderPage.vue"),
+        component: () => import("@/components/dashboard/shared/DashboardPlaceholderPage.vue"),
         meta: {
             ...parentMeta,
             title: "Сообщения родителя | Пифагор",
         },
     },
     {
+        path: "/parent/feedback",
+        name: "parent-feedback",
+        component: () => import("@/modules/feedback/pages/FeedbackPage.vue"),
+        meta: {
+            ...parentMeta,
+            title: "Обращения родителя | Пифагор",
+        },
+    },
+    {
         path: "/parent/calendar",
         name: "parent-calendar",
-        component: () => import("@/modules/parent/pages/ParentPlaceholderPage.vue"),
+        component: () => import("@/modules/calendar/pages/CalendarPage.vue"),
         meta: {
             ...parentMeta,
             title: "Календарь ребенка | Пифагор",
         },
     },
     {
-        path: "/parent/notifications",
-        name: "parent-notifications",
-        component: () => import("@/modules/parent/pages/ParentPlaceholderPage.vue"),
-        meta: {
-            ...parentMeta,
-            title: "Уведомления родителя | Пифагор",
-        },
-    },
-    {
         path: "/parent/notes",
         name: "parent-notes",
-        component: () => import("@/modules/parent/pages/ParentPlaceholderPage.vue"),
+        component: () => import("@/modules/notes/pages/NotesPage.vue"),
         meta: {
             ...parentMeta,
             title: "Заметки родителя | Пифагор",
-        },
-    },
-    {
-        path: "/parent/settings",
-        name: "parent-settings",
-        component: () => import("@/modules/parent/pages/ParentPlaceholderPage.vue"),
-        meta: {
-            ...parentMeta,
-            title: "Настройки родителя | Пифагор",
         },
     },
 ];

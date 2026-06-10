@@ -57,6 +57,27 @@ def build_frontend_url(path: str = "") -> str:
     return f"{base_url.rstrip('/')}/{path.lstrip('/')}"
 
 
+def get_email_logo_url() -> str:
+    logo_url = getattr(settings, "EMAIL_LOGO_URL", "") or getattr(
+        settings,
+        "PIFAGOR_EMAIL_LOGO_URL",
+        "",
+    )
+
+    if logo_url:
+        return logo_url
+
+    return build_frontend_url("/email/logo-pifagor.png")
+
+
+def get_support_email() -> str:
+    return getattr(settings, "SUPPORT_EMAIL", "") or getattr(
+        settings,
+        "PIFAGOR_SUPPORT_EMAIL",
+        "",
+    )
+
+
 def get_base_email_context(
     *,
     user=None,
@@ -105,8 +126,8 @@ def get_base_email_context(
         "next_steps": next_steps or [],
         "security_note": security_note
         or "Если вы не выполняли это действие, не переходите по ссылкам из письма и обратитесь в образовательную организацию или службу поддержки.",
-        "support_email": getattr(settings, "SUPPORT_EMAIL", ""),
-        "logo_url": getattr(settings, "EMAIL_LOGO_URL", ""),
+        "support_email": get_support_email(),
+        "logo_url": get_email_logo_url(),
         "signature": "С уважением, команда ЦОС «Пифагор»",
     }
 

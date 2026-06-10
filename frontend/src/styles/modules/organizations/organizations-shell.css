@@ -1,0 +1,102 @@
+.org-admin {
+    min-height: 100%;
+    color: var(--primary);
+}
+
+.org-admin__shell {
+    display: grid;
+    gap: var(--space-6);
+    width: 100%;
+    min-width: 0;
+}
+
+.org-admin__surface {
+    position: relative;
+    overflow: hidden;
+    border: var(--border-subtle);
+    border-radius: var(--radius-38);
+    background:
+        radial-gradient(circle at 8% 0%, var(--accent-10), transparent 28%),
+        radial-gradient(circle at 92% 12%, var(--warning-08), transparent 24%),
+        linear-gradient(180deg, var(--white-94), var(--bg-600-92));
+    box-shadow: var(--shadow-md);
+}
+
+.org-admin__surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(135deg, var(--white-18), transparent 34%),
+        radial-gradient(circle at 50% 0%, var(--white-32), transparent 30%);
+}
+
+.org-admin__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-6);
+    padding: var(--space-7);
+}
+
+.org-admin__layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+    gap: var(--space-5);
+    align-items: start;
+}
+
+.org-admin__sidebar {
+    position: sticky;
+    top: var(--space-5);
+    min-width: 0;
+}
+
+.org-admin__content {
+    display: grid;
+    gap: var(--space-5);
+    min-width: 0;
+}
+
+.org-admin__panel {
+    border: var(--border-subtle);
+    border-radius: var(--radius-32);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: var(--backdrop-glass-soft);
+}
+
+.org-admin__panel--padded {
+    padding: var(--space-5);
+}
+
+.org-admin__divider {
+    width: 100%;
+    height: 1px;
+    background: var(--primary-08);
+}
+
+body.dark-theme .org-admin {
+    color: var(--dark-text);
+}
+
+body.dark-theme .org-admin__surface {
+    border-color: var(--dark-border);
+    background:
+        radial-gradient(circle at 8% 0%, rgba(143, 184, 242, 0.16), transparent 28%),
+        radial-gradient(circle at 92% 12%, rgba(255, 138, 61, 0.1), transparent 24%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.04)),
+        var(--dark-surface);
+    box-shadow: var(--dark-shadow);
+}
+
+body.dark-theme .org-admin__panel {
+    border-color: var(--dark-border);
+    background: var(--dark-surface);
+    box-shadow: none;
+}
+
+body.dark-theme .org-admin__divider {
+    background: var(--dark-border);
+}

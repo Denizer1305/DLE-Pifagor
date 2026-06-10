@@ -1,3 +1,22 @@
+<!-- DLE-Pifagor README Header -->
+<p align="center">
+  <a href="../README.en.md"><img src="../design/logos/main/pifagor-logo-primary.svg" alt="DLE Pifagor" width="104" /></a>
+</p>
+
+<p align="center">
+  <strong>DLE "Pifagor"</strong><br />
+  <sub>Project documentation and development materials</sub>
+</p>
+
+<p align="center">
+  <a href="../README.en.md">Project README</a> ·
+  <a href="../docs/README.en.md">Documentation</a> ·
+  <a href="../README.md">Русская версия</a>
+</p>
+
+---
+<!-- /DLE-Pifagor README Header -->
+
 # Design
 
 The `design/` folder stores design materials for DLE “Pifagor”: logos, color schemes, age-based identity versions, interface mockups, presentation templates, UI kit assets, and brandbook sources.
@@ -266,3 +285,18 @@ Avoid spaces and unstable names in paths.
 ## Main Principle
 
 > `design/` stores design sources and visual materials. Only prepared and actually used assets should be added to the application code.
+---
+
+<!-- DLE-Pifagor README Footer -->
+---
+
+<p align="center">
+  <sub>DLE "Pifagor" · unified digital learning environment</sub>
+</p>
+
+<p align="center">
+  <a href="../README.en.md">Project README</a> ·
+  <a href="../docs/README.en.md">Documentation</a> ·
+  <a href="../README.md">Русская версия</a>
+</p>
+<!-- /DLE-Pifagor README Footer -->

@@ -12,8 +12,11 @@ from apps.users.tasks.emails.join_request_email_tasks import (
 )
 from apps.users.tasks.emails.lifecycle_email_tasks import (
     send_account_anonymized_task,
+    send_account_archived_task,
     send_account_blocked_task,
+    send_account_restored_task,
     send_account_scheduled_for_deletion_task,
+    send_account_unblocked_task,
 )
 from apps.users.tasks.emails.registration_email_tasks import (
     send_email_verification_task,
@@ -22,11 +25,20 @@ from apps.users.tasks.emails.registration_email_tasks import (
     send_password_reset_task,
     send_teacher_registration_pending_task,
 )
+from apps.users.tasks.emails.security_email_tasks import (
+    send_account_contact_changed_task,
+    send_password_changed_task,
+    send_user_roles_changed_task,
+)
 
 __all__ = [
     "send_account_anonymized_task",
+    "send_account_archived_task",
     "send_account_blocked_task",
+    "send_account_contact_changed_task",
+    "send_account_restored_task",
     "send_account_scheduled_for_deletion_task",
+    "send_account_unblocked_task",
     "send_email_verification_task",
     "send_guardian_link_approved_task",
     "send_guardian_link_rejected_task",
@@ -36,6 +48,8 @@ __all__ = [
     "send_join_request_created_for_reviewer_task",
     "send_join_request_rejected_task",
     "send_learner_profile_required_task",
+    "send_password_changed_task",
     "send_password_reset_task",
     "send_teacher_registration_pending_task",
+    "send_user_roles_changed_task",
 ]

@@ -25,7 +25,7 @@
 .dashboard-stat-card.featured,
 .dashboard-stat-card.is-featured {
     grid-column: span 2;
-    background: linear-gradient(135deg, rgba(57, 68, 88, 0.96) 0%, rgba(74, 111, 165, 0.92) 100%);
+    background: linear-gradient(135deg, var(--primary-96) 0%, var(--accent-92) 100%);
     border-color: var(--primary-14);
 }
 

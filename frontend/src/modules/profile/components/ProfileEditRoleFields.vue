@@ -11,7 +11,7 @@ defineProps<Props>();
 </script>
 
 <template>
-    <section class="profile-edit-section fade-in visible">
+    <section class="profile-edit-section profile-edit-section-role fade-in visible">
         <div class="profile-edit-section-head">
             <div>
                 <div class="profile-edit-role-topline">

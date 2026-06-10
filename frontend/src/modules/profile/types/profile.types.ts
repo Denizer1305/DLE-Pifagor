@@ -230,9 +230,15 @@ export interface ProfileAchievementsPageModel {
             label: string;
             value: string | number;
         }[];
+        summaryTitle: string;
+        summarySubtitle: string;
     };
     stats: ProfileAchievementsStatModel[];
     filters: {
+        icon: string;
+        topline: string;
+        title: string;
+        text: string;
         sources: {
             key: string;
             label: string;
@@ -242,7 +248,22 @@ export interface ProfileAchievementsPageModel {
             label: string;
         }[];
         uploadLabel: string;
+        uploadIcon: string;
+        isUploadEnabled: boolean;
+        sourceAriaLabel: string;
     };
+    featuredContent: ProfileAchievementsCollectionContent;
+    documentsContent: ProfileAchievementsCollectionContent;
     featuredDocuments: ProfileAchievementDocumentModel[];
     documents: ProfileAchievementDocumentModel[];
+}
+
+export interface ProfileAchievementsCollectionContent {
+    icon: string;
+    topline: string;
+    title: string;
+    text: string;
+    emptyTitle: string;
+    emptyText: string;
+    emptyIcon: string;
 }

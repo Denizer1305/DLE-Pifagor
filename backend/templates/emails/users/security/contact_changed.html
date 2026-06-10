@@ -1,0 +1,16 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+    <p class="email-text">В аккаунте изменились контактные данные.</p>
+    {% if changed_fields %}
+        <div class="steps-card">
+            <p class="steps-title">Изменённые поля</p>
+            <ol class="steps-list">
+                {% for field in changed_fields %}
+                    <li>{{ field }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+    {% endif %}
+{% endblock %}

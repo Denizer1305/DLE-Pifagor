@@ -23,17 +23,16 @@ const emit = defineEmits<Emits>();
             <div class="achievements-management-head">
                 <div>
                     <div class="achievements-card-topline">
-                        <i class="fas fa-sliders"></i>
-                        Управление коллекцией
+                        <i :class="filters.icon"></i>
+                        {{ filters.topline }}
                     </div>
 
                     <h2 class="achievements-card-title">
-                        Фильтры и представление
+                        {{ filters.title }}
                     </h2>
 
                     <p class="achievements-card-text">
-                        Переключайте источники документов, фильтруйте материалы по категориям
-                        и быстро находите нужные достижения.
+                        {{ filters.text }}
                     </p>
                 </div>
 
@@ -41,9 +40,10 @@ const emit = defineEmits<Emits>();
                     <button
                         type="button"
                         class="achievements-main-btn primary"
+                        :disabled="!filters.isUploadEnabled"
                         @click="emit('upload')"
                     >
-                        <i class="fas fa-paperclip"></i>
+                        <i :class="filters.uploadIcon"></i>
                         {{ filters.uploadLabel }}
                     </button>
                 </div>
@@ -52,7 +52,7 @@ const emit = defineEmits<Emits>();
             <div
                 class="achievements-source-switch"
                 role="tablist"
-                aria-label="Источник достижений"
+                :aria-label="filters.sourceAriaLabel"
             >
                 <button
                     v-for="source in filters.sources"

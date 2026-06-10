@@ -11,6 +11,7 @@
     - аудита.
 """
 
+from apps.users.filters.admin_user_filters import AdminUserFilter
 from apps.users.filters.audit_filters import (
     RegistrationAttemptLogFilter,
     UserAuditLogFilter,
@@ -40,4 +41,5 @@ __all__ = [
     "UserFilter",
     "UserJoinRequestFilter",
     "UserRoleFilter",
+    "AdminUserFilter",
 ]

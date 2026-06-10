@@ -1,0 +1,13 @@
+{{ title }}
+
+{{ greeting }}
+
+В аккаунте изменились контактные данные.
+
+{% if changed_fields %}
+Изменённые поля:
+{% for field in changed_fields %}- {{ field }}
+{% endfor %}
+{% endif %}
+
+{{ signature }}

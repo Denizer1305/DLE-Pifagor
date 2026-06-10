@@ -100,14 +100,40 @@ export function createTeacherNavigation(
             },
         },
         {
+            key: "calendar",
+            label: "Календарь",
+            description: "План, события и дедлайны",
+            icon: "fas fa-calendar-days",
+            to: {
+                name: "teacher-calendar",
+            },
+        },
+        {
+            key: "feedback",
+            label: "Обращения",
+            description: "Вопросы и поддержка платформы",
+            icon: "fas fa-envelope-open-text",
+            to: {
+                name: "teacher-feedback",
+            },
+        },
+        {
+            key: "notes",
+            label: "Заметки",
+            description: "Личные заметки и напоминания",
+            icon: "fas fa-note-sticky",
+            to: {
+                name: "teacher-notes",
+            },
+        },
+        {
             key: "notifications",
             label: "Уведомления",
-            description: "Новые события и сообщения",
+            description: "Задания, проверки, события и напоминания",
             icon: "fas fa-bell",
             to: {
                 name: "teacher-notifications",
             },
-            badge: formatBadge(getStatValue(summary, "notifications")),
         },
         {
             key: "settings",

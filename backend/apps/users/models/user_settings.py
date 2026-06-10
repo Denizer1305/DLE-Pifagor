@@ -73,6 +73,32 @@ class UserSettings(TimeStampedModel):
         default=False,
     )
 
+    appearance_settings = models.JSONField(
+        "Настройки внешнего вида",
+        default=dict,
+        blank=True,
+    )
+    notification_settings = models.JSONField(
+        "Настройки уведомлений",
+        default=dict,
+        blank=True,
+    )
+    privacy_settings = models.JSONField(
+        "Настройки приватности",
+        default=dict,
+        blank=True,
+    )
+    role_settings = models.JSONField(
+        "Ролевые настройки интерфейса",
+        default=dict,
+        blank=True,
+    )
+    security_settings = models.JSONField(
+        "Настройки безопасности",
+        default=dict,
+        blank=True,
+    )
+
     class Meta:
         db_table = "users_user_settings"
         verbose_name = _("Настройки пользователя")

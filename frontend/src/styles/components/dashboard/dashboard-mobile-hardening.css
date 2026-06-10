@@ -1,0 +1,249 @@
+@media (max-width: 1180px) {
+    .dashboard-shell {
+        width: 100%;
+        overflow-x: clip;
+    }
+
+    .dashboard-main,
+    .dashboard-main-inner,
+    .teacher-dashboard-topbar,
+    .dashboard-content-column,
+    .dashboard-card,
+    .dashboard-intro,
+    .dashboard-state-view {
+        min-width: 0;
+    }
+    .teacher-dashboard-topbar {
+        top: 0;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .teacher-dashboard-search {
+        min-width: 0;
+    }
+    .teacher-dashboard-topbar-actions {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(3, 58px) minmax(240px, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+
+    .dashboard-header-control,
+    .dashboard-profile-control,
+    .teacher-dashboard-user {
+        width: 100%;
+    }
+    .dashboard-sidebar {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .dashboard-main {
+        padding: 14px;
+    }
+    .dashboard-intro-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .dashboard-intro-content,
+    .dashboard-intro-copy {
+        max-width: none;
+    }
+    .dashboard-intro-title {
+        font-size: 3.1rem;
+        line-height: 1;
+    }
+
+    .dashboard-day-stats,
+    .dashboard-stats-grid,
+    .dashboard-courses-grid,
+    .dashboard-quick-actions-grid,
+    .admin-dashboard-stat-grid,
+    .student-dashboard-stats,
+    .parent-dashboard-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-content-grid,
+    .dashboard-grid-2,
+    .dashboard-grid-3,
+    .admin-dashboard-bottom-grid,
+    .teacher-dashboard-bottom-grid,
+    .student-dashboard-bottom-grid,
+    .parent-dashboard-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-section-head {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 760px) {
+    .dashboard-main {
+        padding: 10px;
+    }
+    .teacher-dashboard-topbar {
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .teacher-dashboard-search {
+        grid-column: 1 / -1;
+        order: 2;
+    }
+    .teacher-dashboard-topbar-actions {
+        order: 3;
+        grid-template-columns: repeat(3, minmax(48px, 1fr));
+    }
+
+    .dashboard-profile-control {
+        grid-column: 1 / -1;
+    }
+    .teacher-dashboard-user {
+        min-height: 58px;
+    }
+
+    .dashboard-icon-btn,
+    .dashboard-mobile-menu-btn,
+    .dashboard-mobile-toggle,
+    .teacher-dashboard-search input {
+        height: 52px;
+    }
+
+    .dashboard-icon-btn,
+    .dashboard-mobile-menu-btn,
+    .dashboard-mobile-toggle {
+        width: 100%;
+    }
+
+    .dashboard-floating-panel {
+        top: 72px;
+        left: 10px;
+        right: 10px;
+        width: auto;
+        max-width: none;
+        max-height: calc(100dvh - 90px);
+    }
+
+    .dashboard-card:not(:has(.dashboard-card-inner)),
+    .dashboard-card-inner,
+    .dashboard-ai-card,
+    .dashboard-day-card,
+    .dashboard-schedule-card {
+        padding: 20px;
+    }
+
+    .dashboard-section-head,
+    .dashboard-inline-actions,
+    .dashboard-quick-actions,
+    .dashboard-course-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: stretch;
+    }
+
+    .dashboard-stats-grid,
+    .dashboard-courses-grid,
+    .dashboard-day-stats,
+    .dashboard-quick-actions-grid,
+    .student-dashboard-stats,
+    .parent-dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .dashboard-sidebar {
+        width: min(330px, calc(100vw - 18px));
+        padding: 9px;
+    }
+
+    .sidebar-card {
+        max-height: calc(100dvh - 18px);
+        padding: 14px;
+        border-radius: var(--radius-24);
+    }
+
+    .sidebar-brand img,
+    .sidebar-profile-avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .sidebar-profile {
+        grid-template-columns: 48px minmax(0, 1fr);
+        padding: 12px;
+    }
+
+    .sidebar-nav-link {
+        grid-template-columns: 40px minmax(0, 1fr) auto;
+        min-height: 52px;
+        padding: 7px 9px;
+    }
+
+    .sidebar-nav-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .dashboard-intro-grid {
+        padding: 18px;
+    }
+
+    .dashboard-intro-title {
+        font-size: 2.35rem;
+    }
+
+    .dashboard-intro-badge,
+    .dashboard-badge,
+    .dashboard-filter-chip,
+    .dashboard-card-action,
+    .dashboard-quick-btn,
+    .dashboard-course-btn {
+        width: 100%;
+        white-space: normal;
+        text-align: center;
+    }
+
+    .dashboard-note-item,
+    .dashboard-notification-item {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 420px) {
+    .dashboard-main {
+        padding: 6px;
+    }
+    .teacher-dashboard-topbar-actions {
+        grid-template-columns: repeat(3, minmax(44px, 1fr));
+    }
+
+    .teacher-dashboard-user-meta span,
+    .teacher-dashboard-user-copy span {
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .dashboard-card:not(:has(.dashboard-card-inner)),
+    .dashboard-card-inner,
+    .dashboard-ai-card,
+    .dashboard-day-card,
+    .dashboard-schedule-card {
+        padding: 16px;
+        border-radius: var(--radius-22);
+    }
+
+    .dashboard-section-title {
+        font-size: 1.9rem;
+        line-height: 1;
+    }
+}

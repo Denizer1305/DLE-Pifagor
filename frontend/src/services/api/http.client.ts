@@ -181,6 +181,10 @@ httpClient.interceptors.request.use((config) => {
         setAuthorizationHeader(config, token);
     }
 
+    if (config.data instanceof FormData && config.headers instanceof AxiosHeaders) {
+        config.headers.delete("Content-Type");
+    }
+
     return config;
 });
 

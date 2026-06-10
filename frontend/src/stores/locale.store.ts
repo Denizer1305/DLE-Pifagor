@@ -3,10 +3,10 @@ import { defineStore } from "pinia";
 
 import { runDocumentTransition } from "@/utils/document-transition.utils";
 
-export type LocaleCode = "ru" | "en";
+export type LocaleCode = "ru" | "en" | "de" | "fr";
 
 const LOCALE_STORAGE_KEY = "pifagor-locale";
-const SUPPORTED_LOCALES: LocaleCode[] = ["ru", "en"];
+const SUPPORTED_LOCALES: LocaleCode[] = ["ru", "en", "de", "fr"];
 
 function getStoredLocale(): LocaleCode {
     if (typeof localStorage === "undefined") {

@@ -76,6 +76,9 @@ function localizeValue<T>(value: T, isEnglish: boolean): T {
 
 export function useI18n() {
     const localeStore = useLocaleStore();
+    const messageLocale = computed<MessageLocale>(() => {
+        return localeStore.locale === "en" ? "en" : "ru";
+    });
 
     const locale = computed(() => {
         return localeStore.locale;
@@ -89,7 +92,7 @@ export function useI18n() {
         path: string,
         params?: Record<string, string | number>,
     ): string {
-        const message = getNestedMessage(localeStore.locale, path)
+        const message = getNestedMessage(messageLocale.value, path)
             || getNestedMessage("ru", path)
             || path;
 

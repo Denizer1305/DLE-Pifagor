@@ -1,17 +1,21 @@
 from __future__ import annotations
 
 from apps.core.models import TimeStampedModel
+from apps.organizations.managers import OrganizationManager
+from apps.organizations.models.mixins import TeacherRegistrationCodeMixin
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class Organization(TimeStampedModel):
+class Organization(TeacherRegistrationCodeMixin, TimeStampedModel):
     """
     Образовательная организация.
 
     Используется для привязки пользователей, групп, отделений,
     учебных предметов и публичной страницы преподавателей.
     """
+
+    objects = OrganizationManager()
 
     name = models.CharField(
         _("Название"),
@@ -85,7 +89,8 @@ class Organization(TimeStampedModel):
         default=False,
         db_index=True,
         help_text=_(
-            "Используется для незарегистрированных пользователей на странице преподавателей."
+            "Используется для незарегистрированных пользователей "
+            "на странице преподавателей."
         ),
     )
 

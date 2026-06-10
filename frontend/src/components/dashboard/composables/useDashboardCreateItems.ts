@@ -1,9 +1,14 @@
-import { computed, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 
+import {
+    createDashboardItem,
+    getDashboardItems,
+    removeDashboardItem,
+} from "@/components/dashboard/services/dashboard-items.service";
 import type {
     DashboardCalendarDay,
-    DashboardCalendarEventType,
-    DashboardCreateItemKind,
+    DashboardItemCreatePayload,
+    DashboardItemDto,
     DashboardNotesContent,
 } from "@/components/dashboard/types/dashboard.types";
 
@@ -16,51 +21,46 @@ interface DashboardCreateItemsSource {
     value: DashboardCreateItemsViewModel;
 }
 
-interface DashboardCreateItemPayload {
-    kind: DashboardCreateItemKind;
-    title: string;
-    text: string;
-    date: string;
-    eventType: DashboardCalendarEventType;
-}
-
-interface CreatedNoteItem {
-    id: string;
-    date: string;
-    title: string;
-    text: string;
-}
-
-interface CreatedCalendarItem {
-    id: string;
-    date: string;
-    title: string;
-    text: string;
-    eventType: DashboardCalendarEventType;
-}
-
 export function useDashboardCreateItems(
     viewModel: DashboardCreateItemsSource,
 ) {
-    const createModalKind = ref<DashboardCreateItemKind>("calendar");
+    const createModalKind = ref<DashboardItemCreatePayload["kind"]>("calendar");
     const isCreateModalOpen = ref(false);
-
-    const createdNotes = ref<CreatedNoteItem[]>([]);
-    const createdCalendarItems = ref<CreatedCalendarItem[]>([]);
+    const isSaving = ref(false);
+    const saveError = ref("");
+    const persistedItems = ref<DashboardItemDto[]>([]);
+    const persistedNotes = computed(() => {
+        return persistedItems.value.filter((item) => item.kind === "note");
+    });
+    const persistedCalendarItems = computed(() => {
+        return persistedItems.value.filter((item) => {
+            return item.kind === "calendar" || item.kind === "note";
+        });
+    });
 
     const notesContent = computed<DashboardNotesContent>(() => {
+        const items = [
+            ...persistedNotes.value.map((item) => ({
+                id: item.id,
+                itemId: item.id,
+                date: formatShortDate(item.date),
+                title: item.title,
+                text: item.text,
+            })),
+            ...viewModel.value.notes.items,
+        ];
+
         return {
             ...viewModel.value.notes,
-            items: [
-                ...createdNotes.value,
-                ...viewModel.value.notes.items,
-            ],
+            count: items.length,
+            countLabel: viewModel.value.notes.countLabel || "заметок",
+            items,
         };
     });
 
     const calendarDays = computed<DashboardCalendarDay[]>(() => {
         const sourceDays = viewModel.value.calendarDays.map((day) => {
-            const createdItemsForDay = createdCalendarItems.value.filter((item) => {
+            const createdItemsForDay = persistedCalendarItems.value.filter((item) => {
                 return item.date === day.date;
             });
 
@@ -72,13 +72,14 @@ export function useDashboardCreateItems(
 
             return {
                 ...day,
+                itemId: latestItem.id,
                 title: latestItem.title,
                 text: latestItem.text,
                 events: [
                     ...(day.events || []),
                     ...createdItemsForDay.map((item) => {
                         return {
-                            type: item.eventType,
+                            type: item.kind === "note" ? "neutral" : item.event_type,
                         };
                     }),
                 ],
@@ -87,7 +88,7 @@ export function useDashboardCreateItems(
 
         const existingDates = new Set(sourceDays.map((day) => day.date));
 
-        const syntheticDays = createdCalendarItems.value
+        const syntheticDays = persistedCalendarItems.value
             .filter((item) => {
                 return !existingDates.has(item.date);
             })
@@ -95,6 +96,7 @@ export function useDashboardCreateItems(
                 const date = parseDateKey(item.date) || new Date();
 
                 return {
+                    itemId: item.id,
                     date: item.date,
                     day: date.getDate(),
                     dateLabel: formatCalendarDateLabel(item.date),
@@ -106,7 +108,7 @@ export function useDashboardCreateItems(
                     text: item.text,
                     events: [
                         {
-                            type: item.eventType,
+                            type: item.kind === "note" ? "neutral" : item.event_type,
                         },
                     ],
                 };
@@ -118,7 +120,16 @@ export function useDashboardCreateItems(
         ];
     });
 
-    function openCreateModal(kind: DashboardCreateItemKind): void {
+    async function loadItems(): Promise<void> {
+        try {
+            persistedItems.value = await getDashboardItems();
+        } catch {
+            saveError.value = "Не удалось загрузить сохраненные элементы.";
+        }
+    }
+
+    function openCreateModal(kind: DashboardItemCreatePayload["kind"]): void {
+        saveError.value = "";
         createModalKind.value = kind;
         isCreateModalOpen.value = true;
     }
@@ -127,44 +138,84 @@ export function useDashboardCreateItems(
         isCreateModalOpen.value = false;
     }
 
-    function submitCreateModal(payload: DashboardCreateItemPayload): void {
+    async function submitCreateModal(payload: DashboardItemCreatePayload): Promise<boolean> {
         const title = payload.title.trim();
         const text = payload.text.trim();
         const date = payload.date || getTodayDateKey();
 
         if (!title) {
-            return;
+            return false;
         }
 
-        if (payload.kind === "note") {
-            createdNotes.value.unshift({
-                id: `note-${Date.now()}`,
-                date: formatShortDate(date),
+        isSaving.value = true;
+        saveError.value = "";
+
+        try {
+            const item = await createDashboardItem({
+                ...payload,
                 title,
                 text,
+                date,
+                eventType: payload.kind === "note" ? "neutral" : payload.eventType,
             });
 
+            persistedItems.value.unshift(item);
+            window.dispatchEvent(new Event("dashboard-items:changed"));
             closeCreateModal();
-            return;
+
+            return true;
+        } catch (error) {
+            saveError.value = error instanceof Error
+                ? error.message
+                : "Не удалось сохранить элемент.";
+
+            return false;
+        } finally {
+            isSaving.value = false;
         }
-
-        createdCalendarItems.value.unshift({
-            id: `calendar-${Date.now()}`,
-            date,
-            title,
-            text,
-            eventType: payload.eventType,
-        });
-
-        closeCreateModal();
     }
+
+    async function deleteItem(itemId: number): Promise<boolean> {
+        saveError.value = "";
+
+        try {
+            await removeDashboardItem(itemId);
+            persistedItems.value = persistedItems.value.filter((item) => item.id !== itemId);
+            window.dispatchEvent(new Event("dashboard-items:changed"));
+
+            return true;
+        } catch (error) {
+            saveError.value = error instanceof Error
+                ? error.message
+                : "Не удалось удалить элемент.";
+
+            return false;
+        }
+    }
+
+    function handleDashboardItemsChange(): void {
+        void loadItems();
+    }
+
+    onMounted(() => {
+        void loadItems();
+        window.addEventListener("dashboard-items:changed", handleDashboardItemsChange);
+    });
+
+    onBeforeUnmount(() => {
+        window.removeEventListener("dashboard-items:changed", handleDashboardItemsChange);
+    });
 
     return {
         calendarDays,
         createModalKind,
         isCreateModalOpen,
+        isSaving,
         notesContent,
+        saveError,
         closeCreateModal,
+        deleteItem,
+        loadItems,
         openCreateModal,
         submitCreateModal,
     };

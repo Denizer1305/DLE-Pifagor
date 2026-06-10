@@ -1,6 +1,7 @@
-import { computed, ref, type Ref } from "vue";
+import { computed, onMounted, ref, type Ref } from "vue";
 
-import { createParentDashboardModel } from "@/modules/parent/data/parent-dashboard.data";
+import { createParentDashboardModel } from "@/modules/parent/mappers/parent-dashboard-page.mapper";
+import { getParentDashboard } from "@/modules/parent/services/parent-dashboard.service";
 import type {
     ParentDashboardModel,
     ParentDashboardSummary,
@@ -18,10 +19,24 @@ export function useParentDashboard(fallbackName: Ref<string>) {
     const isLoading = ref(false);
     const errorMessage = ref("");
 
-    function loadDashboard(): void {
-        summary.value = null;
+    async function loadDashboard(): Promise<void> {
+        isLoading.value = true;
         errorMessage.value = "";
+
+        try {
+            summary.value = await getParentDashboard();
+        } catch (error) {
+            errorMessage.value = error instanceof Error && error.message
+                ? error.message
+                : "Не удалось загрузить личный кабинет родителя.";
+        } finally {
+            isLoading.value = false;
+        }
     }
+
+    onMounted(() => {
+        void loadDashboard();
+    });
 
     return {
         summary,

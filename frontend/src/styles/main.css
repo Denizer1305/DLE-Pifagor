@@ -2,5 +2,6 @@
 @import "./base/index.css";
 @import "./components/index.css";
 @import "./layout/index.css";
+@import "./modules/index.css";
 @import "./pages/index.css";
 @import "./themes/index.css";

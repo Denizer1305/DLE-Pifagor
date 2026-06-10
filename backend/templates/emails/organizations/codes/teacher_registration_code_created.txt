@@ -1,0 +1,9 @@
+{{ title }}
+
+{{ greeting }}
+
+Создан код регистрации преподавателя{% if organization_name %} для организации {{ organization_name }}{% endif %}.
+Код: {{ code }}
+{% if expires_at %}Действует до: {{ expires_at }}{% endif %}
+
+{{ signature }}

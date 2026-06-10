@@ -144,6 +144,12 @@ export async function redirectAfterLogout(router: Router): Promise<void> {
     });
 }
 
+export async function redirectToLogout(router: Router): Promise<void> {
+    await router.push({
+        name: "logout",
+    });
+}
+
 export async function redirectAfterRegistration(router: Router): Promise<void> {
     await router.push({
         name: "login",

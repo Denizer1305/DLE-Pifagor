@@ -1,0 +1,8 @@
+{{ title }}
+
+{{ greeting }}
+
+С вас снято назначение на предмет: {{ subject_name }}
+{% if organization_name %}Организация: {{ organization_name }}{% endif %}
+
+{{ signature }}

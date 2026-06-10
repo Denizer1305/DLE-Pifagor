@@ -10,6 +10,7 @@ interface Props {
 defineProps<Props>();
 const emit = defineEmits<{
     (event: "create"): void;
+    (event: "open", notificationId: string | number): void;
 }>();
 </script>
 
@@ -17,6 +18,13 @@ const emit = defineEmits<{
     <div class="dashboard-panel-content">
         <div class="dashboard-floating-panel-head">
             <strong>{{ content.title }}</strong>
+            <span
+                v-if="content.count"
+                class="dashboard-panel-count"
+            >
+                <b>{{ content.count }}</b>
+                {{ content.countLabel }}
+            </span>
         </div>
 
         <div
@@ -34,6 +42,16 @@ const emit = defineEmits<{
                 <div>
                     <strong>{{ item.title }}</strong>
                     <span>{{ item.text }}</span>
+
+                    <RouterLink
+                        v-if="item.actionTo && item.actionLabel"
+                        class="dashboard-notification-action"
+                        :to="item.actionTo"
+                        @click="emit('open', item.id)"
+                    >
+                        <i class="fas fa-arrow-right"></i>
+                        {{ item.actionLabel }}
+                    </RouterLink>
                 </div>
             </div>
         </div>

@@ -89,10 +89,27 @@ _SERVICE_EXPORTS = {
     "update_interface_theme": "apps.users.services.user_settings_services",
     "update_language": "apps.users.services.user_settings_services",
     "update_timezone": "apps.users.services.user_settings_services",
+    # user_settings/
+    "build_appearance_settings_payload": "apps.users.services.user_settings",
+    "build_notification_settings_payload": "apps.users.services.user_settings",
+    "build_privacy_settings_payload": "apps.users.services.user_settings",
+    "build_role_settings_payload": "apps.users.services.user_settings",
+    "build_security_sessions_payload": "apps.users.services.user_settings",
+    "build_security_settings_payload": "apps.users.services.user_settings",
+    "build_settings_payload": "apps.users.services.user_settings",
+    "update_all_settings": "apps.users.services.user_settings",
+    "update_appearance_settings": "apps.users.services.user_settings",
+    "update_notification_settings": "apps.users.services.user_settings",
+    "update_privacy_settings": "apps.users.services.user_settings",
+    "update_role_settings": "apps.users.services.user_settings",
+    "update_security_settings": "apps.users.services.user_settings",
+    # current_profile_services.py
     "build_current_profile_payload": "apps.users.services.current_profile_services",
     "delete_current_profile_avatar": "apps.users.services.current_profile_services",
+    "suggest_cities": "apps.users.services.current_profile_services",
     "update_current_profile": "apps.users.services.current_profile_services",
     "update_current_profile_avatar": "apps.users.services.current_profile_services",
+    # admin_users/
 }
 
 
@@ -175,6 +192,21 @@ if TYPE_CHECKING:
     )
     from apps.users.services.auth_services import (
         set_refresh_token_cookie as set_refresh_token_cookie,
+    )
+    from apps.users.services.current_profile_services import (
+        build_current_profile_payload as build_current_profile_payload,
+    )
+    from apps.users.services.current_profile_services import (
+        delete_current_profile_avatar as delete_current_profile_avatar,
+    )
+    from apps.users.services.current_profile_services import (
+        suggest_cities as suggest_cities,
+    )
+    from apps.users.services.current_profile_services import (
+        update_current_profile as update_current_profile,
+    )
+    from apps.users.services.current_profile_services import (
+        update_current_profile_avatar as update_current_profile_avatar,
     )
     from apps.users.services.email_verification_services import (
         build_email_verification_url as build_email_verification_url,
@@ -267,6 +299,45 @@ if TYPE_CHECKING:
     )
     from apps.users.services.user_lifecycle_services import (
         schedule_user_deletion_after_rejection as schedule_user_deletion_after_rejection,
+    )
+    from apps.users.services.user_settings import (
+        build_appearance_settings_payload as build_appearance_settings_payload,
+    )
+    from apps.users.services.user_settings import (
+        build_notification_settings_payload as build_notification_settings_payload,
+    )
+    from apps.users.services.user_settings import (
+        build_privacy_settings_payload as build_privacy_settings_payload,
+    )
+    from apps.users.services.user_settings import (
+        build_role_settings_payload as build_role_settings_payload,
+    )
+    from apps.users.services.user_settings import (
+        build_security_sessions_payload as build_security_sessions_payload,
+    )
+    from apps.users.services.user_settings import (
+        build_security_settings_payload as build_security_settings_payload,
+    )
+    from apps.users.services.user_settings import (
+        build_settings_payload as build_settings_payload,
+    )
+    from apps.users.services.user_settings import (
+        update_all_settings as update_all_settings,
+    )
+    from apps.users.services.user_settings import (
+        update_appearance_settings as update_appearance_settings,
+    )
+    from apps.users.services.user_settings import (
+        update_notification_settings as update_notification_settings,
+    )
+    from apps.users.services.user_settings import (
+        update_privacy_settings as update_privacy_settings,
+    )
+    from apps.users.services.user_settings import (
+        update_role_settings as update_role_settings,
+    )
+    from apps.users.services.user_settings import (
+        update_security_settings as update_security_settings,
     )
     from apps.users.services.user_settings_services import (
         create_default_user_settings as create_default_user_settings,

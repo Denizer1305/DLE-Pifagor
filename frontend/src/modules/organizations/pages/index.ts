@@ -1,0 +1,9 @@
+export { default as OrganizationAdminPage } from "./OrganizationAdminPage.vue";
+export { default as OrganizationsPage } from "./OrganizationsPage.vue";
+export { default as DepartmentsPage } from "./DepartmentsPage.vue";
+export { default as StudyGroupsPage } from "./StudyGroupsPage.vue";
+export { default as SubjectsPage } from "./SubjectsPage.vue";
+export { default as TeacherOrganizationsPage } from "./TeacherOrganizationsPage.vue";
+export { default as TeacherSubjectsPage } from "./TeacherSubjectsPage.vue";
+export { default as GroupCuratorsPage } from "./GroupCuratorsPage.vue";
+export { default as JoinRequestsPage } from "./JoinRequestsPage.vue";

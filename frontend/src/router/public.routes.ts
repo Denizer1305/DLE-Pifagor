@@ -24,7 +24,7 @@ export const publicRoutes: RouteRecordRaw[] = [
         name: "teachers",
         component: () => import("@/modules/public/pages/TeachersPage.vue"),
         meta: {
-            title: "Преподаватели  | Пифагор",
+            title: "Преподаватели | Пифагор",
             layout: "public",
         },
     },

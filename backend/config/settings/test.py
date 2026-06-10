@@ -17,8 +17,10 @@ PASSWORD_HASHERS = [
 # -----------------------------------------------------------------------------
 
 FRONTEND_BASE_URL = "http://testserver"
-PIFAGOR_EMAIL_LOGO_URL = "http://testserver/static/emails/pifagor-logo-primary.png"
-PIFAGOR_SUPPORT_EMAIL = "support@example.com"
+EMAIL_LOGO_URL = "http://testserver/email/logo-pifagor.png"
+SUPPORT_EMAIL = "support@example.com"
+PIFAGOR_EMAIL_LOGO_URL = EMAIL_LOGO_URL
+PIFAGOR_SUPPORT_EMAIL = SUPPORT_EMAIL
 
 EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 

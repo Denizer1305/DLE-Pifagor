@@ -1,0 +1,235 @@
+:root[data-brand-theme] {
+    --color-primary-900: var(--brand-primary-900);
+    --color-primary-800: var(--brand-primary-800);
+    --color-primary-700: var(--brand-primary-700);
+    --color-primary-600: var(--brand-primary-600);
+    --color-info: var(--brand-primary-700);
+    --color-ai-primary: var(--brand-primary-600);
+    --color-ai-secondary: var(--brand-primary-700);
+    --accent: rgb(var(--brand-accent-rgb));
+    --accent-light: var(--brand-primary-600);
+    --dark-accent: var(--brand-dark-accent);
+    --dark-accent-strong: var(--brand-dark-accent-strong);
+    --dark-border-strong: rgba(var(--brand-accent-rgb), 0.3);
+    --dark-glow: rgba(var(--brand-accent-rgb), 0.28);
+    --ai-04: rgba(var(--brand-accent-rgb), 0.04);
+    --ai-08: rgba(var(--brand-accent-rgb), 0.08);
+    --ai-10: rgba(var(--brand-accent-rgb), 0.1);
+    --ai-16: rgba(var(--brand-accent-rgb), 0.16);
+    --ai-20: rgba(var(--brand-accent-rgb), 0.2);
+    --ai-24: rgba(var(--brand-accent-rgb), 0.24);
+    --primary-03: rgba(var(--brand-primary-rgb), 0.03);
+    --primary-04: rgba(var(--brand-primary-rgb), 0.04);
+    --primary-05: rgba(var(--brand-primary-rgb), 0.05);
+    --primary-06: rgba(var(--brand-primary-rgb), 0.06);
+    --primary-08: rgba(var(--brand-primary-rgb), 0.08);
+    --primary-10: rgba(var(--brand-primary-rgb), 0.1);
+    --primary-12: rgba(var(--brand-primary-rgb), 0.12);
+    --primary-14: rgba(var(--brand-primary-rgb), 0.14);
+    --primary-15: rgba(var(--brand-primary-rgb), 0.15);
+    --primary-16: rgba(var(--brand-primary-rgb), 0.16);
+    --primary-18: rgba(var(--brand-primary-rgb), 0.18);
+    --primary-20: rgba(var(--brand-primary-rgb), 0.2);
+    --primary-22: rgba(var(--brand-primary-rgb), 0.22);
+    --primary-24: rgba(var(--brand-primary-rgb), 0.24);
+    --primary-28: rgba(var(--brand-primary-rgb), 0.28);
+    --primary-34: rgba(var(--brand-primary-rgb), 0.34);
+    --primary-56: rgba(var(--brand-primary-rgb), 0.56);
+    --primary-96: rgba(var(--brand-primary-rgb), 0.96);
+    --primary-solid: rgb(var(--brand-primary-rgb));
+    --accent-04: rgba(var(--brand-accent-rgb), 0.04);
+    --accent-06: rgba(var(--brand-accent-rgb), 0.06);
+    --accent-07: rgba(var(--brand-accent-rgb), 0.07);
+    --accent-08: rgba(var(--brand-accent-rgb), 0.08);
+    --accent-09: rgba(var(--brand-accent-rgb), 0.09);
+    --accent-10: rgba(var(--brand-accent-rgb), 0.1);
+    --accent-12: rgba(var(--brand-accent-rgb), 0.12);
+    --accent-14: rgba(var(--brand-accent-rgb), 0.14);
+    --accent-16: rgba(var(--brand-accent-rgb), 0.16);
+    --accent-18: rgba(var(--brand-accent-rgb), 0.18);
+    --accent-20: rgba(var(--brand-accent-rgb), 0.2);
+    --accent-22: rgba(var(--brand-accent-rgb), 0.22);
+    --accent-24: rgba(var(--brand-accent-rgb), 0.24);
+    --accent-26: rgba(var(--brand-accent-rgb), 0.26);
+    --accent-28: rgba(var(--brand-accent-rgb), 0.28);
+    --accent-30: rgba(var(--brand-accent-rgb), 0.3);
+    --accent-32: rgba(var(--brand-accent-rgb), 0.32);
+    --accent-34: rgba(var(--brand-accent-rgb), 0.34);
+    --accent-36: rgba(var(--brand-accent-rgb), 0.36);
+    --accent-40: rgba(var(--brand-accent-rgb), 0.4);
+    --accent-92: rgba(var(--brand-accent-rgb), 0.92);
+    --accent-solid: rgb(var(--brand-accent-rgb));
+    --accent-light-06: rgba(var(--brand-light-rgb), 0.06);
+    --accent-light-07: rgba(var(--brand-light-rgb), 0.07);
+    --accent-light-08: rgba(var(--brand-light-rgb), 0.08);
+    --accent-light-10: rgba(var(--brand-light-rgb), 0.1);
+    --gradient-accent-solid: linear-gradient(
+        135deg,
+        rgb(var(--brand-primary-rgb)) 0%,
+        rgb(var(--brand-accent-rgb)) 58%,
+        rgb(var(--brand-primary-rgb)) 100%
+    );
+    --gradient-hero-line-v: linear-gradient(
+        180deg,
+        transparent,
+        rgba(var(--brand-primary-rgb), 0.16),
+        transparent
+    );
+    --gradient-hero-line-h: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--brand-primary-rgb), 0.16),
+        transparent
+    );
+    --gradient-accent-line: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--brand-accent-rgb), 0.32),
+        transparent
+    );
+    --border-color-subtle: rgba(var(--brand-primary-rgb), 0.08);
+    --border-color-soft: rgba(var(--brand-primary-rgb), 0.14);
+    --border-color-strong: rgba(var(--brand-primary-rgb), 0.18);
+    --border-color-accent-subtle: rgba(var(--brand-accent-rgb), 0.16);
+    --border-color-accent-soft: rgba(var(--brand-accent-rgb), 0.22);
+    --border-color-accent-strong: rgba(var(--brand-accent-rgb), 0.34);
+    --border-focus-accent: rgba(var(--brand-accent-rgb), 0.34);
+    --surface-muted: rgba(var(--brand-primary-rgb), 0.04);
+    --surface-muted-strong: rgba(var(--brand-primary-rgb), 0.08);
+    --surface-muted-accent: rgba(var(--brand-accent-rgb), 0.1);
+    --shadow-xs: 0 2px 10px rgba(var(--brand-primary-rgb), 0.06);
+    --shadow-sm: 0 4px 20px rgba(var(--brand-primary-rgb), 0.08);
+    --shadow-md: 0 12px 34px rgba(var(--brand-primary-rgb), 0.12);
+    --shadow-lg: 0 24px 60px rgba(var(--brand-primary-rgb), 0.16);
+    --shadow-xl: 0 26px 60px rgba(var(--brand-primary-rgb), 0.18);
+    --shadow-2xl: 0 28px 60px rgba(var(--brand-primary-rgb), 0.18);
+    --shadow-3xl: 0 32px 72px rgba(var(--brand-primary-rgb), 0.2);
+    --shadow-modal: 0 24px 60px rgba(var(--brand-primary-rgb), 0.18);
+    --shadow-focus-accent-sm: 0 0 0 3px rgba(var(--brand-accent-rgb), 0.08);
+    --shadow-focus-accent: 0 0 0 4px rgba(var(--brand-accent-rgb), 0.08);
+    --shadow-focus-accent-md: 0 0 0 3px rgba(var(--brand-accent-rgb), 0.12);
+    --shadow-ring-accent: 0 0 0 10px rgba(var(--brand-accent-rgb), 0.1);
+    --shadow-inner-subtle: inset 0 0 0 1px rgba(var(--brand-primary-rgb), 0.03);
+    --filter-logo-soft: drop-shadow(0 18px 34px rgba(var(--brand-primary-rgb), 0.14));
+    --filter-avatar-soft: drop-shadow(0 10px 18px rgba(var(--brand-primary-rgb), 0.14));
+}
+
+:root[data-brand-theme="light"] {
+    --brand-primary-900: #2f394b;
+    --brand-primary-800: #394458;
+    --brand-primary-700: #4a6fa5;
+    --brand-primary-600: #6a8cc5;
+    --brand-primary-rgb: 57, 68, 88;
+    --brand-accent-rgb: 74, 111, 165;
+    --brand-light-rgb: 106, 140, 197;
+    --brand-dark-accent: #8fb8f2;
+    --brand-dark-accent-strong: #b8d2ff;
+}
+
+:root[data-brand-theme="blue"] {
+    --brand-primary-900: #172e65;
+    --brand-primary-800: #1e3a8a;
+    --brand-primary-700: #2563eb;
+    --brand-primary-600: #3b82f6;
+    --brand-primary-rgb: 30, 58, 138;
+    --brand-accent-rgb: 59, 130, 246;
+    --brand-light-rgb: 96, 165, 250;
+    --brand-dark-accent: #73a9ff;
+    --brand-dark-accent-strong: #b6d3ff;
+}
+
+:root[data-brand-theme="light-blue"] {
+    --brand-primary-900: #214b78;
+    --brand-primary-800: #326a9e;
+    --brand-primary-700: #4f94d4;
+    --brand-primary-600: #7eb9ec;
+    --brand-primary-rgb: 50, 106, 158;
+    --brand-accent-rgb: 79, 148, 212;
+    --brand-light-rgb: 126, 185, 236;
+    --brand-dark-accent: #8fd0ff;
+    --brand-dark-accent-strong: #cdeaff;
+}
+
+:root[data-brand-theme="green"] {
+    --brand-primary-900: #15392b;
+    --brand-primary-800: #1f4d3a;
+    --brand-primary-700: #2d7a58;
+    --brand-primary-600: #65b48b;
+    --brand-primary-rgb: 31, 77, 58;
+    --brand-accent-rgb: 45, 122, 88;
+    --brand-light-rgb: 101, 180, 139;
+    --brand-dark-accent: #74d59f;
+    --brand-dark-accent-strong: #b3efcd;
+}
+
+:root[data-brand-theme="orange"] {
+    --brand-primary-900: #633214;
+    --brand-primary-800: #803d18;
+    --brand-primary-700: #c56820;
+    --brand-primary-600: #e79c53;
+    --brand-primary-rgb: 128, 61, 24;
+    --brand-accent-rgb: 197, 104, 32;
+    --brand-light-rgb: 231, 156, 83;
+    --brand-dark-accent: #ffad5d;
+    --brand-dark-accent-strong: #ffd09a;
+}
+
+:root[data-brand-theme="pinki"] {
+    --brand-primary-900: #682244;
+    --brand-primary-800: #86345e;
+    --brand-primary-700: #c5538b;
+    --brand-primary-600: #e489b4;
+    --brand-primary-rgb: 134, 52, 94;
+    --brand-accent-rgb: 197, 83, 139;
+    --brand-light-rgb: 228, 137, 180;
+    --brand-dark-accent: #f29ac4;
+    --brand-dark-accent-strong: #ffd0e5;
+}
+
+:root[data-brand-theme="violet"] {
+    --brand-primary-900: #33244e;
+    --brand-primary-800: #49336e;
+    --brand-primary-700: #7652b8;
+    --brand-primary-600: #aa8de3;
+    --brand-primary-rgb: 73, 51, 110;
+    --brand-accent-rgb: 118, 82, 184;
+    --brand-light-rgb: 170, 141, 227;
+    --brand-dark-accent: #bd9aff;
+    --brand-dark-accent-strong: #decfff;
+}
+
+:root[data-brand-theme="red"] {
+    --brand-primary-900: #4d1b24;
+    --brand-primary-800: #66232c;
+    --brand-primary-700: #b63b4b;
+    --brand-primary-600: #df7c87;
+    --brand-primary-rgb: 102, 35, 44;
+    --brand-accent-rgb: 182, 59, 75;
+    --brand-light-rgb: 223, 124, 135;
+    --brand-dark-accent: #fb8d9a;
+    --brand-dark-accent-strong: #ffc5cd;
+}
+
+:root[data-brand-theme="yellow"] {
+    --brand-primary-900: #59420d;
+    --brand-primary-800: #735716;
+    --brand-primary-700: #ae8518;
+    --brand-primary-600: #dfbd4c;
+    --brand-primary-rgb: 115, 87, 22;
+    --brand-accent-rgb: 174, 133, 24;
+    --brand-light-rgb: 223, 189, 76;
+    --brand-dark-accent: #f3cf5d;
+    --brand-dark-accent-strong: #ffeba7;
+}
+
+:root[data-brand-theme="dark"] {
+    --brand-primary-900: #111722;
+    --brand-primary-800: #202737;
+    --brand-primary-700: #39475e;
+    --brand-primary-600: #65748d;
+    --brand-primary-rgb: 32, 39, 55;
+    --brand-accent-rgb: 57, 71, 94;
+    --brand-light-rgb: 101, 116, 141;
+    --brand-dark-accent: #a8bbda;
+    --brand-dark-accent-strong: #d8e3f7;
+}

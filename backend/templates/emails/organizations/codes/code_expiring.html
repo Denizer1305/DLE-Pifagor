@@ -1,0 +1,7 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+    <p class="email-text">Срок действия кода скоро истечёт.</p>
+    <div class="danger-card"><strong>Код:</strong> {{ code }}{% if code_type %}<br><strong>Тип:</strong> {{ code_type }}{% endif %}{% if expires_at %}<br><strong>Действует до:</strong> {{ expires_at }}{% endif %}</div>
+{% endblock %}

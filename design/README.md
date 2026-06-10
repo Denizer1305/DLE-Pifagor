@@ -1,4 +1,23 @@
-# Design
+<!-- DLE-Pifagor README Header -->
+<p align="center">
+  <a href="../README.md"><img src="../design/logos/main/pifagor-logo-primary.svg" alt="ЦОС Пифагор" width="104" /></a>
+</p>
+
+<p align="center">
+  <strong>ЦОС "Пифагор"</strong><br />
+  <sub>Документация проекта и материалы разработки</sub>
+</p>
+
+<p align="center">
+  <a href="../README.md">README проекта</a> ·
+  <a href="../docs/README.md">Документация</a> ·
+  <a href="../README.en.md">English version</a>
+</p>
+
+---
+<!-- /DLE-Pifagor README Header -->
+
+# Дизайн-система
 
 Папка `design/` хранит дизайн-материалы ЦОС «Пифагор»: логотипы, цветовые схемы, возрастные версии айдентики, макеты интерфейсов, презентационные шаблоны, UI-kit и брендбук.
 
@@ -280,3 +299,18 @@ pifagor-presentation-guide.pdf
 ## Главный принцип
 
 > `design/` хранит дизайн-источники и визуальные материалы. В код приложения попадают только подготовленные и реально используемые ассеты.
+---
+
+<!-- DLE-Pifagor README Footer -->
+---
+
+<p align="center">
+  <sub>ЦОС "Пифагор" · единая цифровая образовательная среда</sub>
+</p>
+
+<p align="center">
+  <a href="../README.md">README проекта</a> ·
+  <a href="../docs/README.md">Документация</a> ·
+  <a href="../README.en.md">English version</a>
+</p>
+<!-- /DLE-Pifagor README Footer -->

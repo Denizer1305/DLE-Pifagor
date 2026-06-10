@@ -1,0 +1,40 @@
+@media (max-width: 980px) {
+    .notification-page-header {
+        grid-template-columns: 1fr;
+    }
+
+    .notification-page-header__actions {
+        flex-wrap: wrap;
+    }
+
+    .notification-page-filter-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .notification-item,
+    .notification-item.is-compact {
+        grid-template-columns: 1fr;
+    }
+
+    .notification-item__head,
+    .notification-item__footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .notification-dropdown {
+        right: -12px;
+    }
+}
+
+@media (max-width: 520px) {
+    .notification-page-header {
+        padding: 24px;
+    }
+
+    .notification-page-header h1 {
+        font-size: clamp(2.1rem, 14vw, 3.2rem);
+    }
+}

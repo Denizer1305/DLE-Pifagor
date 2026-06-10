@@ -1,5 +1,5 @@
 import { fetchStudentDashboardSummary } from "@/modules/student/api/student-dashboard.api";
-import { createStudentDashboardModel } from "@/modules/student/data/student-dashboard.data";
+import { createStudentDashboardModel } from "@/modules/student/mappers/student-dashboard-page.mapper";
 import { mapStudentDashboardSummary } from "@/modules/student/mappers/student-dashboard.mapper";
 import type {
     StudentDashboardModel,

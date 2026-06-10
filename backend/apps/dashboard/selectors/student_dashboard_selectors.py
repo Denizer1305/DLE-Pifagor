@@ -7,6 +7,10 @@ from apps.dashboard.selectors.calendar_selectors import (
     get_calendar_start_date,
     get_month_label,
 )
+from apps.dashboard.selectors.notification_selectors import (
+    get_dashboard_notifications_payload,
+    get_dashboard_unread_notifications_count,
+)
 from apps.dashboard.selectors.profile_selectors import get_user_avatar_url
 from apps.users.constants.roles import ROLE_LABELS, RoleCode
 from django.utils import timezone
@@ -14,6 +18,7 @@ from django.utils import timezone
 
 def get_student_dashboard_summary(*, user, request=None) -> dict:
     today = timezone.localdate()
+    unread_notifications = get_dashboard_unread_notifications_count(user)
 
     return {
         "profile": get_student_profile_payload(user, request=request),
@@ -21,7 +26,7 @@ def get_student_dashboard_summary(*, user, request=None) -> dict:
         "day_stats": {
             "lessons": 0,
             "assignments": 0,
-            "notifications": 0,
+            "notifications": unread_notifications,
         },
         "schedule": [],
         "calendar": build_student_calendar_payload(today),
@@ -30,7 +35,7 @@ def get_student_dashboard_summary(*, user, request=None) -> dict:
         "activity_items": [],
         "grade_rows": [],
         "goals": [],
-        "notifications": [],
+        "notifications": get_dashboard_notifications_payload(user),
         "notes": [],
     }
 

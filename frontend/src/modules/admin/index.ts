@@ -1,5 +1,22 @@
 export { fetchAdminDashboardSummary } from "@/modules/admin/api/admin-dashboard.api";
+export {
+    fetchAdminFeedbackRequests,
+    patchAdminFeedbackStatus,
+} from "@/modules/admin/api/admin-feedback.api";
+export {
+    fetchAdminUserDetail,
+    fetchAdminUsers,
+    patchAdminUser,
+    postAdminUser,
+    postAdminUserStatusAction,
+} from "@/modules/admin/api/admin-users.api";
 export { useAdminDashboard } from "@/modules/admin/composables/useAdminDashboard";
+export { useAdminDashboardPresentation } from "@/modules/admin/composables/useAdminDashboardPresentation";
+export { useAdminFeedback } from "@/modules/admin/composables/useAdminFeedback";
+export { useAdminUserDetail } from "@/modules/admin/composables/useAdminUserDetail";
+export { useAdminUserEdit } from "@/modules/admin/composables/useAdminUserEdit";
+export { useAdminUserCreate } from "@/modules/admin/composables/useAdminUserCreate";
+export { useAdminUsers } from "@/modules/admin/composables/useAdminUsers";
 
 export {
     adminAiCardContent,
@@ -14,6 +31,11 @@ export {
 } from "@/modules/admin/data/admin-dashboard.data";
 
 export { createAdminNavigation } from "@/modules/admin/data/admin-navigation.data";
+export {
+    adminFeedbackContent,
+    adminFeedbackStatusOptions,
+    adminFeedbackTopicOptions,
+} from "@/modules/admin/data/admin-feedback.data";
 
 export {
     mapAdminDashboardSummary,
@@ -24,6 +46,18 @@ export {
     mapRecentUsersToSection,
     mapSystemHealthToSection,
 } from "@/modules/admin/mappers/admin-dashboard.mapper";
+export {
+    mapAdminFeedbackList,
+    mapAdminFeedbackRequest,
+} from "@/modules/admin/mappers/admin-feedback.mapper";
+export {
+    createAdminUserCreateForm,
+    createAdminUserEditForm,
+    mapAdminUserDetail,
+    mapAdminUserCreatePayload,
+    mapAdminUserEditPayload,
+    mapAdminUsersList,
+} from "@/modules/admin/mappers/admin-users.mapper";
 
 export type {
     AdminDashboardAuditActor,
@@ -43,3 +77,26 @@ export type {
     AdminDashboardViewModel,
     AdminSystemStatus,
 } from "@/modules/admin/types/admin-dashboard.types";
+export type {
+    AdminFeedbackFilters,
+    AdminFeedbackList,
+    AdminFeedbackRequest,
+    AdminFeedbackStatus,
+    AdminFeedbackSummary,
+    AdminFeedbackTopic,
+} from "@/modules/admin/types/admin-feedback.types";
+export type {
+    AdminUserCreateForm,
+    AdminUserCreatePayload,
+    AdminUserDetailDto,
+    AdminUserDetailModel,
+    AdminUserEditForm,
+    AdminUserListDto,
+    AdminUserRoleDto,
+    AdminUserRoleGroup,
+    AdminUsersFilters,
+    AdminUsersListItem,
+    AdminUsersListModel,
+    AdminUserStatusAction,
+    AdminUserUpdatePayload,
+} from "@/modules/admin/types/admin-users.types";

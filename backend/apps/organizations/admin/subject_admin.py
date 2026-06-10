@@ -17,6 +17,7 @@ class SubjectAdmin(admin.ModelAdmin):
         "code",
         "is_active",
         "created_at",
+        "updated_at",
     )
     list_filter = ("is_active",)
     search_fields = (
@@ -28,6 +29,7 @@ class SubjectAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
+    ordering = ("name",)
     fieldsets = (
         (
             _("Основная информация"),

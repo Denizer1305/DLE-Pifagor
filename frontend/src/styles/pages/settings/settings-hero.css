@@ -1,0 +1,208 @@
+.settings-hero-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-38);
+    border: var(--border-subtle);
+    background: linear-gradient(180deg, var(--white-94) 0%, var(--bg-600-92) 100%);
+    box-shadow: var(--shadow-md);
+}
+
+.settings-hero-bg {
+    display: none;
+}
+
+.settings-hero-circle,
+.settings-hero-glow {
+    position: absolute;
+    border-radius: var(--radius-round);
+}
+
+.settings-hero-circle {
+    border: 1px solid var(--accent-12);
+    animation: circleDrift 18s ease-in-out infinite;
+}
+
+.settings-hero-circle.one {
+    width: 340px;
+    height: 340px;
+    top: -120px;
+    right: -90px;
+}
+
+.settings-hero-circle.two {
+    width: 230px;
+    height: 230px;
+    left: -70px;
+    bottom: -70px;
+    animation-delay: 4s;
+}
+
+.settings-hero-glow {
+    filter: var(--blur-3xl);
+    background: var(--accent-10);
+    animation: glowMove 16s ease-in-out infinite;
+}
+
+.settings-hero-glow.one {
+    width: 180px;
+    height: 180px;
+    top: 18%;
+    right: 18%;
+}
+
+.settings-hero-glow.two {
+    width: 150px;
+    height: 150px;
+    left: 12%;
+    bottom: 12%;
+    animation-delay: 5s;
+}
+
+.settings-hero-layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    gap: 28px;
+    align-items: stretch;
+    padding: 34px;
+}
+
+.settings-hero-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 320px;
+    max-width: 780px;
+}
+
+.settings-hero-topline {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 10px;
+    min-height: 38px;
+    padding: 8px 14px;
+    margin-bottom: 18px;
+    border-radius: var(--radius-pill);
+    background: var(--accent-10);
+    border: var(--border-accent-subtle);
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.settings-hero-title {
+    max-width: 780px;
+    margin: 0 0 16px;
+    font-family: var(--font-forum);
+    font-size: 4.2rem;
+    line-height: 0.94;
+    color: var(--primary);
+    letter-spacing: 0;
+}
+
+.settings-hero-text {
+    max-width: 720px;
+    margin: 0 0 22px;
+    color: var(--secondary);
+    font-size: 1rem;
+    line-height: 1.85;
+}
+
+.settings-hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.settings-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 40px;
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--white-84);
+    border: var(--border-subtle);
+    color: var(--primary);
+    font-size: 0.84rem;
+    font-weight: 800;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-soft);
+}
+
+.settings-hero-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.settings-hero-side {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+}
+
+.settings-hero-summary {
+    width: 100%;
+    min-height: 100%;
+    padding: 22px;
+    border-radius: var(--radius-30);
+    background: var(--white-82);
+    border: var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+    display: grid;
+    align-content: start;
+    backdrop-filter: var(--blur-md);
+}
+
+.settings-hero-summary-head {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.settings-hero-summary-head strong {
+    color: var(--primary);
+    font-size: 1.05rem;
+}
+
+.settings-hero-summary-head span {
+    color: var(--secondary);
+    font-size: 0.86rem;
+}
+
+.settings-hero-summary-list {
+    display: grid;
+    gap: 10px;
+}
+
+.settings-hero-summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 52px;
+    padding: 12px 14px;
+    border-radius: var(--radius-18);
+    background: var(--primary-04);
+    border: var(--border-subtle);
+    transition: var(--transition-fast);
+}
+
+.settings-hero-summary-row:hover {
+    background: var(--accent-06);
+    border-color: var(--accent-16);
+}
+
+.settings-hero-summary-row span {
+    color: var(--secondary);
+    font-size: 0.86rem;
+}
+
+.settings-hero-summary-row strong {
+    color: var(--primary);
+    font-size: 0.92rem;
+    text-align: right;
+}

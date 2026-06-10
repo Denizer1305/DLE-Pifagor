@@ -1,0 +1,8 @@
+{{ title }}
+
+{{ greeting }}
+
+Вы назначены куратором группы: {{ group_name }}
+{% if organization_name %}Организация: {{ organization_name }}{% endif %}
+
+{{ signature }}

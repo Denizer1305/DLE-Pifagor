@@ -60,6 +60,11 @@ LOCAL_APPS = [
     "apps.users.apps.UsersConfig",
     "apps.feedback.apps.FeedbackConfig",
     "apps.dashboard.apps.DashboardConfig",
+    "apps.notifications.apps.NotificationsConfig",
+    "apps.education.apps.EducationConfig",
+    "apps.course.apps.CourseConfig",
+    "apps.materials.apps.MaterialsConfig",
+    "apps.testing.apps.TestingConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -205,6 +210,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "apps.core.permissions.IsAuthenticatedAndActive",
@@ -340,8 +346,10 @@ PASSWORD_RESET_PATH = get_env(
 
 EMAIL_LOGO_URL = get_env(
     "EMAIL_LOGO_URL",
-    "",
+    f"{FRONTEND_BASE_URL.rstrip('/')}/email/logo-pifagor.png",
 )
+
+SUPPORT_EMAIL = get_env("SUPPORT_EMAIL", "Pifagor-Platform33@yandex.ru")
 
 DADATA_API_TOKEN = get_env("DADATA_API_TOKEN", "")
 DADATA_SUGGESTIONS_URL = get_env(
@@ -395,6 +403,7 @@ CELERY_IMPORTS = (
     "apps.users.tasks.emails.join_request_email_tasks",
     "apps.users.tasks.emails.guardian_email_tasks",
     "apps.users.tasks.emails.lifecycle_email_tasks",
+    "apps.users.tasks.emails.security_email_tasks",
 )
 
 # -----------------------------------------------------------------------------

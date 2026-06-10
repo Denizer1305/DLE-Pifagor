@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 import type {
     DashboardSearchConfig,
     DashboardTopbarLabels,
     DashboardTopbarUser,
 } from "@/components/dashboard/types/dashboard.types";
+import { useNotificationsStore } from "@/modules/notifications/stores/notifications.store";
 
 interface Props {
     search: DashboardSearchConfig;
     labels: DashboardTopbarLabels;
     user: DashboardTopbarUser;
+    notesCount?: number;
 }
 
 interface Emits {
@@ -20,17 +22,28 @@ interface Emits {
 defineProps<Props>();
 defineEmits<Emits>();
 
+const notificationsStore = useNotificationsStore();
 const activePanel = ref<string | null>(null);
+const unreadCount = computed(() => notificationsStore.unreadCount);
 
 function togglePanel(panelName: string): void {
     activePanel.value = activePanel.value === panelName
         ? null
         : panelName;
+
+    if (activePanel.value === "notifications") {
+        void notificationsStore.loadFeed();
+        void notificationsStore.loadUnreadCount();
+    }
 }
 
 function closePanels(): void {
     activePanel.value = null;
 }
+
+onMounted(() => {
+    void notificationsStore.loadUnreadCount();
+});
 </script>
 
 <template>
@@ -86,7 +99,12 @@ function closePanels(): void {
                     @click="togglePanel('notifications')"
                 >
                     <i class="fas fa-bell"></i>
-                    <span class="dashboard-icon-badge">0</span>
+                    <span
+                        v-if="unreadCount"
+                        class="dashboard-icon-badge"
+                    >
+                        {{ unreadCount > 99 ? "99+" : unreadCount }}
+                    </span>
                 </button>
 
                 <div
@@ -108,6 +126,12 @@ function closePanels(): void {
                     @click="togglePanel('notes')"
                 >
                     <i class="fas fa-note-sticky"></i>
+                    <span
+                        v-if="notesCount"
+                        class="dashboard-icon-badge"
+                    >
+                        {{ notesCount > 99 ? "99+" : notesCount }}
+                    </span>
                 </button>
 
                 <div

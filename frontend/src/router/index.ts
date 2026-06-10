@@ -1,16 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import { authRoutes } from "@/router/auth.routes";
-import { publicRoutes } from "@/router/public.routes";
-import { authGuard, roleGuard } from "@/router/guards";
 import type { RoleCode } from "@/app/constants/roles.constants";
+import { authRoutes } from "@/router/auth.routes";
+import { authGuard, roleGuard } from "@/router/guards";
+import { publicRoutes } from "@/router/public.routes";
 
 import { adminRoutes } from "./admin.routes";
+import { notificationsRoutes } from "./notifications.routes";
 import { parentRoutes } from "./parent.routes";
+import { profileRoutes } from "./profile.routes";
+import { settingsRoutes } from "./settings.routes";
 import { studentRoutes } from "./student.routes";
 import { teacherRoutes } from "./teacher.routes";
-
-import { profileRoutes } from "./profile.routes";
 
 const routes = [
     ...publicRoutes,
@@ -20,6 +21,8 @@ const routes = [
     ...studentRoutes,
     ...teacherRoutes,
     ...profileRoutes,
+    ...settingsRoutes,
+    ...notificationsRoutes,
 
     {
         path: "/forbidden",
@@ -34,6 +37,9 @@ const routes = [
         path: "/:pathMatch(.*)*",
         name: "not-found",
         component: () => import("@/pages/errors/NotFoundPage.vue"),
+        meta: {
+            title: "Страница не найдена | Пифагор",
+        },
     },
 ];
 

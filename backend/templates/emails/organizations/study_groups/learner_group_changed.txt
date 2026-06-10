@@ -1,0 +1,8 @@
+{{ title }}
+
+{{ greeting }}
+
+Ваша учебная группа изменена: {{ group_name }}
+{% if organization_name %}Организация: {{ organization_name }}{% endif %}
+
+{{ signature }}

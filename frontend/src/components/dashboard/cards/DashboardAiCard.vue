@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 
+import { useThemedLogo } from "@/composables/useThemedLogo";
 import type { DashboardAiCardContent } from "@/components/dashboard/types/dashboard.types";
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 defineProps<Props>();
+const { getThemedLogoSrc } = useThemedLogo();
 </script>
 
 <template>
@@ -16,7 +18,7 @@ defineProps<Props>();
             <div class="dashboard-ai-top">
                 <div class="dashboard-ai-logo">
                     <img
-                        :src="content.image.src"
+                        :src="getThemedLogoSrc(content.image.src)"
                         :alt="content.image.alt"
                     />
                 </div>

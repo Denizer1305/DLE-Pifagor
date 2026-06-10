@@ -1,0 +1,94 @@
+.dashboard-page-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-24);
+    background: var(--white-82);
+    box-shadow: var(--shadow-sm);
+}
+
+.dashboard-page-nav__links,
+.dashboard-page-nav__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.dashboard-page-nav__actions {
+    justify-content: flex-end;
+}
+
+.dashboard-page-nav__item,
+.dashboard-page-nav__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 40px;
+    padding: 0 14px;
+    border: 1px solid var(--primary-08);
+    border-radius: var(--radius-pill);
+    background: var(--white-88);
+    color: var(--primary);
+    font-size: 0.86rem;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    transition: var(--transition-soft);
+}
+
+.dashboard-page-nav__item:hover,
+.dashboard-page-nav__action:hover,
+.dashboard-page-nav__item.is-active {
+    border-color: var(--accent-32);
+    background: var(--accent-10);
+    color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.dashboard-page-nav__action {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: var(--white);
+}
+
+.dashboard-page-nav__action:hover {
+    border-color: var(--primary);
+    background: var(--color-primary-900);
+    color: var(--white);
+}
+
+.dashboard-page-nav mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 8px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-08);
+    color: currentColor;
+    font-size: 0.76rem;
+    font-weight: 900;
+}
+
+@media (max-width: 760px) {
+    .dashboard-page-nav {
+        display: grid;
+    }
+
+    .dashboard-page-nav__links,
+    .dashboard-page-nav__actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-page-nav__item,
+    .dashboard-page-nav__action {
+        width: 100%;
+    }
+}

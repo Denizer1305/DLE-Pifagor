@@ -54,7 +54,7 @@
     min-width: 0;
     padding: 0 20px 0 50px;
     border-radius: 20px;
-    border: 1px solid rgba(57, 68, 88, 0.08);
+    border: 1px solid var(--primary-08);
     background: rgba(255, 255, 255, 0.88);
     color: var(--primary-text);
     font-size: 0.95rem;
@@ -64,14 +64,19 @@
 }
 
 .teacher-dashboard-search input:focus {
-    border-color: rgba(74, 111, 165, 0.22);
-    box-shadow: 0 0 0 4px rgba(74, 111, 165, 0.08);
+    border-color: var(--accent-22);
+    box-shadow: 0 0 0 4px var(--accent-08);
     background: rgba(255, 255, 255, 0.96);
 }
 
 .dashboard-header-control {
     position: relative;
+    z-index: 1;
     flex-shrink: 0;
+}
+
+.dashboard-header-control:has(.dashboard-floating-panel.is-open) {
+    z-index: 80;
 }
 
 .dashboard-profile-control {
@@ -105,7 +110,7 @@
 .dashboard-icon-btn.is-active,
 .dashboard-icon-btn[aria-expanded="true"] {
     transform: translateY(-2px);
-    border-color: rgba(74, 111, 165, 0.22);
+    border-color: var(--accent-22);
     box-shadow: var(--shadow-md);
 }
 

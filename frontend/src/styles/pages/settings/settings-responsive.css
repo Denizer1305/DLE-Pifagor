@@ -1,0 +1,128 @@
+@media (max-width: 1180px) {
+    .settings-hero-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-hero-copy {
+        min-height: auto;
+    }
+
+    .settings-hero-side {
+        justify-content: stretch;
+    }
+
+    .appearance-theme-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .role-settings-role-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .security-password-form .settings-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 860px) {
+    .settings-center-grid,
+    .settings-form-grid,
+    .notifications-channel-grid,
+    .private-settings-matrix {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-card-head,
+    .security-sessions-head {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .settings-center-card {
+        grid-template-columns: 52px minmax(0, 1fr);
+    }
+
+    .settings-center-card-arrow {
+        grid-column: 1 / -1;
+        justify-self: end;
+    }
+
+    .settings-hero-layout,
+    .settings-card {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 640px) {
+    .settings-hero-layout,
+    .settings-card {
+        padding: 22px;
+    }
+
+    .settings-hero-title {
+        font-size: 2.4rem;
+        line-height: 1;
+    }
+
+    .settings-hero-summary-row,
+    .settings-toggle-row,
+    .settings-select-row,
+    .security-session-item {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-select-row .custom-select,
+    .settings-select-row .custom-select-trigger,
+    .settings-time-input {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .appearance-theme-grid,
+    .role-settings-role-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-center-card {
+        min-height: 0;
+        padding: 18px;
+    }
+
+    .settings-info-card {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-card-title {
+        font-size: 2rem;
+    }
+
+    .settings-card-text,
+    .settings-hero-text {
+        font-size: 0.9rem;
+        line-height: 1.65;
+    }
+
+    .security-sessions-head .security-danger-btn,
+    .settings-actions-row .settings-primary-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 420px) {
+    .settings-hero-layout,
+    .settings-card {
+        padding: 18px;
+        border-radius: var(--radius-24);
+    }
+
+    .settings-toggle-row,
+    .settings-select-row,
+    .security-session-item {
+        padding: 13px;
+        gap: 12px;
+    }
+
+    .settings-hero-summary {
+        padding: 16px;
+    }
+}

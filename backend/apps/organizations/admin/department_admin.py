@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from apps.organizations.models import Department
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 
 
 @admin.register(Department)
@@ -44,4 +45,31 @@ class DepartmentAdmin(admin.ModelAdmin):
     ordering = (
         "organization",
         "name",
+    )
+    fieldsets = (
+        (
+            _("Основная информация"),
+            {
+                "fields": (
+                    "organization",
+                    "name",
+                    "short_name",
+                    "code",
+                    "description",
+                )
+            },
+        ),
+        (
+            _("Состояние"),
+            {"fields": ("is_active",)},
+        ),
+        (
+            _("Служебная информация"),
+            {
+                "fields": (
+                    "created_at",
+                    "updated_at",
+                )
+            },
+        ),
     )

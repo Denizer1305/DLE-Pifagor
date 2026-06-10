@@ -4,8 +4,20 @@ import { defineStore } from "pinia";
 import { runDocumentTransition } from "@/utils/document-transition.utils";
 
 type ThemeMode = "light" | "dark" | "system";
+export type BrandTheme =
+    | "light"
+    | "blue"
+    | "light-blue"
+    | "green"
+    | "orange"
+    | "pinki"
+    | "violet"
+    | "red"
+    | "yellow"
+    | "dark";
 
 const THEME_STORAGE_KEY = "pifagor-theme-mode";
+const BRAND_THEME_STORAGE_KEY = "pifagor-brand-theme";
 
 function getSystemPrefersDark(): boolean {
     if (typeof window === "undefined") {
@@ -17,7 +29,7 @@ function getSystemPrefersDark(): boolean {
 
 function getStoredThemeMode(): ThemeMode {
     if (typeof localStorage === "undefined") {
-        return "light";
+        return "system";
     }
 
     const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
@@ -26,7 +38,7 @@ function getStoredThemeMode(): ThemeMode {
         return savedTheme;
     }
 
-    return "light";
+    return "system";
 }
 
 function saveThemeMode(mode: ThemeMode): void {
@@ -37,7 +49,29 @@ function saveThemeMode(mode: ThemeMode): void {
     localStorage.setItem(THEME_STORAGE_KEY, mode);
 }
 
-function applyThemeToDocument(isDark: boolean): void {
+function getStoredBrandTheme(): BrandTheme {
+    if (typeof localStorage === "undefined") {
+        return "light";
+    }
+
+    const savedTheme = localStorage.getItem(BRAND_THEME_STORAGE_KEY);
+
+    if (["light", "blue", "light-blue", "green", "orange", "pinki", "violet", "red", "yellow", "dark"].includes(savedTheme || "")) {
+        return savedTheme as BrandTheme;
+    }
+
+    return "light";
+}
+
+function saveBrandTheme(theme: BrandTheme): void {
+    if (typeof localStorage === "undefined") {
+        return;
+    }
+
+    localStorage.setItem(BRAND_THEME_STORAGE_KEY, theme);
+}
+
+function applyThemeToDocument(isDark: boolean, brandTheme: BrandTheme): void {
     if (typeof document === "undefined") {
         return;
     }
@@ -55,10 +89,13 @@ function applyThemeToDocument(isDark: boolean): void {
 
     root.dataset.theme = isDark ? "dark" : "light";
     body.dataset.theme = isDark ? "dark" : "light";
+    root.dataset.brandTheme = brandTheme;
+    body.dataset.brandTheme = brandTheme;
 }
 
 export const useThemeStore = defineStore("theme", () => {
     const mode = ref<ThemeMode>(getStoredThemeMode());
+    const brandTheme = ref<BrandTheme>(getStoredBrandTheme());
     const systemPrefersDark = ref(getSystemPrefersDark());
 
     const isSystemMode = computed(() => mode.value === "system");
@@ -82,7 +119,17 @@ export const useThemeStore = defineStore("theme", () => {
 
         mode.value = nextMode;
         saveThemeMode(nextMode);
-        applyThemeToDocument(isDark.value);
+        applyThemeToDocument(isDark.value, brandTheme.value);
+    }
+
+    function setBrandTheme(nextTheme: BrandTheme): void {
+        if (nextTheme !== brandTheme.value) {
+            runDocumentTransition("is-theme-switching");
+        }
+
+        brandTheme.value = nextTheme;
+        saveBrandTheme(nextTheme);
+        applyThemeToDocument(isDark.value, nextTheme);
     }
 
     function setLightTheme(): void {
@@ -108,7 +155,7 @@ export const useThemeStore = defineStore("theme", () => {
 
     function initTheme(): void {
         systemPrefersDark.value = getSystemPrefersDark();
-        applyThemeToDocument(isDark.value);
+        applyThemeToDocument(isDark.value, brandTheme.value);
 
         if (typeof window === "undefined") {
             return;
@@ -120,7 +167,7 @@ export const useThemeStore = defineStore("theme", () => {
             systemPrefersDark.value = event.matches;
 
             if (mode.value === "system") {
-                applyThemeToDocument(isDark.value);
+                applyThemeToDocument(isDark.value, brandTheme.value);
             }
         };
 
@@ -130,7 +177,7 @@ export const useThemeStore = defineStore("theme", () => {
     watch(
         isDark,
         (value) => {
-            applyThemeToDocument(value);
+            applyThemeToDocument(value, brandTheme.value);
         },
         {
             immediate: true,
@@ -139,12 +186,14 @@ export const useThemeStore = defineStore("theme", () => {
 
     return {
         mode,
+        brandTheme,
         isDark,
         isSystemMode,
         currentTheme,
 
         initTheme,
         setThemeMode,
+        setBrandTheme,
         setLightTheme,
         setDarkTheme,
         setSystemTheme,

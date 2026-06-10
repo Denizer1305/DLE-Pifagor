@@ -6,6 +6,7 @@ from apps.organizations.selectors import (
     get_user_organization,
 )
 from apps.organizations.serializers import PublicOrganizationSerializer
+from django.http import JsonResponse
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -65,7 +66,10 @@ class DefaultPublicOrganizationAPIView(APIView):
         organization = get_default_public_organization()
 
         if not organization:
-            return Response(None)
+            return JsonResponse(
+                None,
+                safe=False,
+            )
 
         serializer = PublicOrganizationSerializer(
             organization,
@@ -99,7 +103,10 @@ class CurrentUserOrganizationAPIView(APIView):
         organization = get_user_organization(request.user)
 
         if not organization:
-            return Response(None)
+            return JsonResponse(
+                None,
+                safe=False,
+            )
 
         serializer = PublicOrganizationSerializer(
             organization,

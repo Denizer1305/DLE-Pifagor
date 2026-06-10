@@ -72,3 +72,78 @@ export interface ProfileCitySuggestionDto {
     value: string;
     unrestricted_value: string;
 }
+
+export interface ProfileEditActionContent {
+    label: string;
+    icon?: string;
+    pendingLabel?: string;
+    to?: {
+        name: string;
+    };
+}
+
+export interface ProfileEditHeroContent {
+    icon: string;
+    topline: string;
+    title: string;
+    text: string;
+    badges: {
+        icon: string;
+        label: string;
+    }[];
+    primaryAction: ProfileEditActionContent;
+    secondaryAction: ProfileEditActionContent;
+}
+
+export interface ProfileEditSubmitContent {
+    title: string;
+    text: string;
+    cancelAction: ProfileEditActionContent;
+    submitAction: ProfileEditActionContent;
+}
+
+export interface ProfileEditPageContent {
+    hero: ProfileEditHeroContent;
+    submit: ProfileEditSubmitContent;
+    successTitle: string;
+    successIcon: string;
+}
+
+export interface ProfileEditSectionHeading {
+    icon: string;
+    topline: string;
+    title: string;
+    text: string;
+}
+
+export interface ProfileEditSelectOption {
+    value: string;
+    label: string;
+}
+
+export interface ProfileEditFormContent {
+    identity: {
+        heading: ProfileEditSectionHeading;
+        labels: Record<"lastName" | "firstName" | "middleName" | "birthDate" | "gender" | "city" | "about", string>;
+        aboutPlaceholder: string;
+        genderAriaLabel: string;
+        genderOptions: ProfileEditSelectOption[];
+    };
+    contacts: {
+        heading: ProfileEditSectionHeading;
+        labels: Record<"email" | "phone" | "backupEmail" | "vkUrl" | "maxUrl" | "preferredContactMethod", string>;
+        emailStatus: string;
+        phonePlaceholder: string;
+        backupEmailPlaceholder: string;
+        contactMethodAriaLabel: string;
+        contactMethodOptions: ProfileEditSelectOption[];
+    };
+    display: {
+        heading: ProfileEditSectionHeading;
+        toggles: {
+            key: "showEmail" | "showPhone" | "emailNotifications" | "pushNotifications";
+            label: string;
+            text: string;
+        }[];
+    };
+}

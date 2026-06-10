@@ -1,6 +1,6 @@
 import { computed, onMounted, ref, type Ref } from "vue";
 
-import { createStudentDashboardModel } from "@/modules/student/data/student-dashboard.data";
+import { createStudentDashboardModel } from "@/modules/student/mappers/student-dashboard-page.mapper";
 import { getStudentDashboard } from "@/modules/student/services/student-dashboard.service";
 import type {
     StudentDashboardModel,

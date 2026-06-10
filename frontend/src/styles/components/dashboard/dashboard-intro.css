@@ -181,3 +181,60 @@
     font-size: 0.78rem;
     line-height: 1.4;
 }
+
+.dashboard-schedule-list {
+    display: grid;
+    gap: 10px;
+}
+
+.dashboard-schedule-item {
+    display: grid;
+    grid-template-columns: minmax(72px, auto) minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    padding: 12px;
+    border-radius: var(--radius-18);
+    background: var(--primary-04);
+    border: 1px solid var(--primary-08);
+}
+
+.dashboard-schedule-time {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 6px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--white-86);
+    color: var(--accent);
+    font-size: 0.76rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.dashboard-schedule-copy {
+    min-width: 0;
+}
+
+.dashboard-schedule-copy strong,
+.dashboard-schedule-copy span {
+    display: block;
+}
+
+.dashboard-schedule-copy strong {
+    color: var(--primary);
+    font-size: 0.92rem;
+    font-weight: 800;
+    line-height: 1.35;
+    margin-bottom: 4px;
+    overflow-wrap: anywhere;
+}
+
+.dashboard-schedule-copy span {
+    color: var(--secondary);
+    font-size: 0.82rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}

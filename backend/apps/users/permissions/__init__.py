@@ -9,6 +9,13 @@ Permissions отвечают только на вопрос:
     Изменение состояния выполняется в users/services/.
 """
 
+from apps.users.permissions.admin_user_permissions import (
+    CanAccessAdminUsers,
+    CanBulkManageAdminUsers,
+    CanManageAdminUser,
+    CanManageAdminUserRoles,
+    CanManageAdminUserStatus,
+)
 from apps.users.permissions.base import IsActiveUser, IsSuperAdminRole
 from apps.users.permissions.guardian_profile_permissions import (
     CanGuardianAccessLearner,
@@ -74,6 +81,11 @@ from apps.users.permissions.user_permissions import (
 )
 
 __all__ = [
+    "CanAccessAdminUsers",
+    "CanBulkManageAdminUsers",
+    "CanManageAdminUser",
+    "CanManageAdminUserRoles",
+    "CanManageAdminUserStatus",
     "CanAnonymizeUser",
     "CanArchiveUser",
     "CanAssignUserRole",

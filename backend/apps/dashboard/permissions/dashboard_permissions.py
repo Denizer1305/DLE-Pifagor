@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from apps.users.constants.lifecycle import UserRoleStatus
 from apps.users.constants.roles import (
+    GUARDIAN_ROLE_CODES,
     LEARNER_ROLE_CODES,
     PLATFORM_ADMIN_ROLE_CODES,
     STAFF_ROLE_CODES,
@@ -73,8 +74,36 @@ class IsStudentDashboardUser(BasePermission):
         if user.is_superuser:
             return True
 
-        return user.user_roles.filter(
+        has_active_learner_role = user.user_roles.filter(
             role__code__in=LEARNER_ROLE_CODES,
+            status=UserRoleStatus.ACTIVE,
+            role__is_active=True,
+        ).exists()
+
+        if has_active_learner_role:
+            return True
+
+        return (
+            user.is_email_verified
+            and user.is_login_allowed
+            and hasattr(user, "learner_profile")
+        )
+
+
+class IsParentDashboardUser(BasePermission):
+    message = "Недостаточно прав для доступа к кабинету родителя."
+
+    def has_permission(self, request, view) -> bool:
+        user = request.user
+
+        if not user or not user.is_authenticated:
+            return False
+
+        if user.is_superuser:
+            return True
+
+        return user.user_roles.filter(
+            role__code__in=GUARDIAN_ROLE_CODES,
             status=UserRoleStatus.ACTIVE,
             role__is_active=True,
         ).exists()

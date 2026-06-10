@@ -1,0 +1,9 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{% if full_name %}Здравствуйте, {{ full_name }}!{% else %}Здравствуйте!{% endif %}</p>
+    <p class="email-text">Мы получили ваше обращение и передали его ответственному сотруднику.</p>
+    {% if request_number %}
+        <div class="notice-card"><strong>Номер обращения:</strong> {{ request_number }}</div>
+    {% endif %}
+{% endblock %}

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { RouterLink, useRoute } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 
 import PublicMobileMenu from "@/modules/public/components/layout/PublicMobileMenu.vue";
 import PublicAccountMenu from "@/modules/public/components/layout/PublicAccountMenu.vue";
@@ -15,6 +15,7 @@ import {
 } from "@/modules/public/data/public-navigation.data";
 import { useThemedLogo } from "@/composables/useThemedLogo";
 import { useAuthStore } from "@/stores/auth.store";
+import { redirectToLogout } from "@/modules/auth/utils/auth-redirect.utils";
 
 interface Props {
     isDarkTheme: boolean;
@@ -28,6 +29,7 @@ const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const route = useRoute();
+const router = useRouter();
 const authStore = useAuthStore();
 const { localizePublicContent, t } = useI18n();
 
@@ -70,8 +72,8 @@ function isActiveRoute(routeName: string): boolean {
 }
 
 async function logout(): Promise<void> {
-    await authStore.logout();
     closeMobileMenu();
+    await redirectToLogout(router);
 }
 </script>
 

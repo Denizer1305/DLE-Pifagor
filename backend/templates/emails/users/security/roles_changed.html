@@ -1,0 +1,24 @@
+{% extends "emails/users/base_email.html" %}
+
+{% block content %}
+    <p class="email-text">{{ greeting }}</p>
+    <p class="email-text">Для вашего аккаунта изменились роли доступа.</p>
+    {% if assigned_roles %}
+        <div class="steps-card">
+            <p class="steps-title">Назначены роли</p>
+            <ol class="steps-list">
+                {% for role in assigned_roles %}
+                    <li>{{ role }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+    {% endif %}
+    {% if revoked_roles %}
+        <div class="danger-card">
+            <strong>Отозваны роли:</strong><br>
+            {% for role in revoked_roles %}
+                {{ role }}{% if not forloop.last %}<br>{% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

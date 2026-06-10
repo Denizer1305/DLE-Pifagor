@@ -206,6 +206,14 @@
         grid-template-columns: 1fr;
     }
 
+    .dashboard-schedule-item {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-schedule-time {
+        justify-self: start;
+    }
+
     .dashboard-stats-grid,
     .dashboard-courses-grid,
     .dashboard-grid-2,

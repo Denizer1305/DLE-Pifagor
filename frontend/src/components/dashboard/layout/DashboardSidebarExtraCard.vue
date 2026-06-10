@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 
+import { useThemedLogo } from "@/composables/useThemedLogo";
 import type { DashboardSidebarExtraCard } from "@/components/dashboard/types/dashboard.types";
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+const { getThemedLogoSrc } = useThemedLogo();
 
 function getCardClass(): string {
     if (props.card.variant === "ai") {
@@ -59,7 +61,7 @@ function getActionClass(): string[] {
             <div :class="getIconClass()">
                 <img
                     v-if="card.image"
-                    :src="card.image.src"
+                    :src="getThemedLogoSrc(card.image.src)"
                     :alt="card.image.alt"
                 />
 

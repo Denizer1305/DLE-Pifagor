@@ -97,6 +97,7 @@ GUARDIAN_REVIEWER_ROLE_CODES = {
 
 PLATFORM_ADMIN_ROLE_CODES = {
     RoleCode.SUPERADMIN,
+    RoleCode.PLATFORM_ADMIN,
 }
 """Роли уровня всей платформы."""
 
@@ -113,6 +114,9 @@ ROLE_LABELS = {
     RoleCode.DIRECTOR: "Директор",
     RoleCode.ORG_ADMIN: "Администратор организации",
     RoleCode.SUPERADMIN: "Суперадминистратор",
+    RoleCode.PLATFORM_ADMIN: "Администратор платформы",
+    RoleCode.MODERATOR: "Модератор",
+    RoleCode.SUPPORT: "Техническая поддержка",
 }
 """Словарь русских названий ролей."""
 
