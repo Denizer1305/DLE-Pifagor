@@ -10,7 +10,6 @@ from apps.organizations.selectors import (
 from django.db import IntegrityError, transaction
 from rest_framework.exceptions import PermissionDenied, ValidationError
 
-
 ORGANIZATION_EDITABLE_FIELDS = [
     "name",
     "short_name",
@@ -55,10 +54,10 @@ def validate_actor_can_manage_organization(
     if organization is None:
         available_queryset = get_admin_organizations_queryset_for_actor(actor=actor)
 
-        if not available_queryset.exists() and not getattr(actor, "is_superuser", False):
-            raise PermissionDenied(
-                "У пользователя нет прав управлять организациями."
-            )
+        if not available_queryset.exists() and not getattr(
+            actor, "is_superuser", False
+        ):
+            raise PermissionDenied("У пользователя нет прав управлять организациями.")
 
         return
 
@@ -66,9 +65,7 @@ def validate_actor_can_manage_organization(
         actor=actor,
         organization_id=organization.id,
     ):
-        raise PermissionDenied(
-            "Организация недоступна для текущего пользователя."
-        )
+        raise PermissionDenied("Организация недоступна для текущего пользователя.")
 
 
 def normalize_organization_data(*, data: dict[str, Any]) -> dict[str, Any]:
@@ -84,9 +81,7 @@ def normalize_organization_data(*, data: dict[str, Any]) -> dict[str, Any]:
     """
 
     return {
-        field: data[field]
-        for field in ORGANIZATION_EDITABLE_FIELDS
-        if field in data
+        field: data[field] for field in ORGANIZATION_EDITABLE_FIELDS if field in data
     }
 
 

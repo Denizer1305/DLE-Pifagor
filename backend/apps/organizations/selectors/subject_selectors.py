@@ -46,9 +46,13 @@ def get_subject_by_id(*, subject_id: int | None) -> Subject | None:
     if not subject_id:
         return None
 
-    return get_subjects_base_queryset().filter(
-        id=subject_id,
-    ).first()
+    return (
+        get_subjects_base_queryset()
+        .filter(
+            id=subject_id,
+        )
+        .first()
+    )
 
 
 def get_active_subject_by_id(*, subject_id: int | None) -> Subject | None:
@@ -66,9 +70,13 @@ def get_active_subject_by_id(*, subject_id: int | None) -> Subject | None:
     if not subject_id:
         return None
 
-    return get_active_subjects_queryset().filter(
-        id=subject_id,
-    ).first()
+    return (
+        get_active_subjects_queryset()
+        .filter(
+            id=subject_id,
+        )
+        .first()
+    )
 
 
 def get_active_subject_by_code(*, code: str) -> Subject | None:
@@ -88,9 +96,13 @@ def get_active_subject_by_code(*, code: str) -> Subject | None:
     if not normalized_code:
         return None
 
-    return get_active_subjects_queryset().filter(
-        code=normalized_code,
-    ).first()
+    return (
+        get_active_subjects_queryset()
+        .filter(
+            code=normalized_code,
+        )
+        .first()
+    )
 
 
 def get_admin_subjects_queryset_for_actor(*, actor) -> QuerySet:

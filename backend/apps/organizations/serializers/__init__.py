@@ -27,6 +27,12 @@ from apps.organizations.serializers.study_group_serializers import (
     StudyGroupShortSerializer,
     StudyGroupWriteSerializer,
 )
+from apps.organizations.serializers.subject_serializers import (
+    SubjectDetailSerializer,
+    SubjectListSerializer,
+    SubjectShortSerializer,
+    SubjectWriteSerializer,
+)
 from apps.organizations.serializers.teacher_organization_serializers import (
     TeacherOrganizationDetailSerializer,
     TeacherOrganizationListSerializer,
@@ -36,19 +42,13 @@ from apps.organizations.serializers.teacher_serializers import (
     PublicTeacherSerializer,
     PublicTeacherSubjectSerializer,
 )
-from apps.organizations.serializers.teachers_page_serializers import (
-    PublicTeachersPageSerializer,
-)
-from apps.organizations.serializers.subject_serializers import (
-    SubjectDetailSerializer,
-    SubjectListSerializer,
-    SubjectShortSerializer,
-    SubjectWriteSerializer,
-)
 from apps.organizations.serializers.teacher_subject_serializers import (
     TeacherSubjectDetailSerializer,
     TeacherSubjectListSerializer,
     TeacherSubjectWriteSerializer,
+)
+from apps.organizations.serializers.teachers_page_serializers import (
+    PublicTeachersPageSerializer,
 )
 
 __all__ = [

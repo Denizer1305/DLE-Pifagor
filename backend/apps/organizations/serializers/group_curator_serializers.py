@@ -50,9 +50,7 @@ class GroupCuratorDetailSerializer(GroupCuratorListSerializer):
     """
 
     class Meta(GroupCuratorListSerializer.Meta):
-        fields = GroupCuratorListSerializer.Meta.fields + (
-            "notes",
-        )
+        fields = GroupCuratorListSerializer.Meta.fields + ("notes",)
         read_only_fields = fields
 
 

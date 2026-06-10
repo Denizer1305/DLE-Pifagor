@@ -38,9 +38,7 @@ class TeacherOrganizationManager(
     """
 
 
-class GroupCuratorManager(
-    models.Manager.from_queryset(CurrentDateRangeQuerySet)
-):
+class GroupCuratorManager(models.Manager.from_queryset(CurrentDateRangeQuerySet)):
     """
     Менеджер кураторов групп.
     """

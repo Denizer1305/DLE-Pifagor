@@ -6,13 +6,8 @@ from apps.organizations.services import (
     restore_subject,
     update_subject,
 )
-from apps.organizations.tests.factories import (
-    create_subject as create_test_subject,
-)
-from apps.organizations.tests.factories import (
-    create_superadmin,
-    create_test_user,
-)
+from apps.organizations.tests.factories import create_subject as create_test_subject
+from apps.organizations.tests.factories import create_superadmin, create_test_user
 from django.test import TestCase
 from rest_framework.exceptions import PermissionDenied, ValidationError
 

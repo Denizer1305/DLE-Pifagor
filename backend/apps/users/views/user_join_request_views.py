@@ -129,9 +129,7 @@ class UserJoinRequestViewSet(viewsets.ReadOnlyModelViewSet):
             actor=request.user,
             join_request=join_request,
         ):
-            raise PermissionDenied(
-                "У пользователя нет прав подтвердить эту заявку."
-            )
+            raise PermissionDenied("У пользователя нет прав подтвердить эту заявку.")
 
         serializer = JoinRequestReviewSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -174,9 +172,7 @@ class UserJoinRequestViewSet(viewsets.ReadOnlyModelViewSet):
             actor=request.user,
             join_request=join_request,
         ):
-            raise PermissionDenied(
-                "У пользователя нет прав отклонить эту заявку."
-            )
+            raise PermissionDenied("У пользователя нет прав отклонить эту заявку.")
 
         serializer = JoinRequestReviewSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

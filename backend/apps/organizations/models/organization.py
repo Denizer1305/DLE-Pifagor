@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from apps.core.models import TimeStampedModel
-from apps.organizations.models.mixins import TeacherRegistrationCodeMixin
 from apps.organizations.managers import OrganizationManager
+from apps.organizations.models.mixins import TeacherRegistrationCodeMixin
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 

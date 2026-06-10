@@ -1,9 +1,6 @@
 from __future__ import annotations
 
-from apps.organizations.tests.factories import (
-    create_organization,
-    create_teacher,
-)
+from apps.organizations.tests.factories import create_organization, create_teacher
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status

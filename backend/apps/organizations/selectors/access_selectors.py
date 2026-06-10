@@ -5,7 +5,6 @@ from apps.users.constants.roles import RoleCode
 from apps.users.models import UserRole
 from django.db.models import QuerySet
 
-
 ORGANIZATION_ADMIN_ROLE_CODES = {
     RoleCode.ORG_ADMIN,
     RoleCode.DIRECTOR,
@@ -32,11 +31,7 @@ def is_authenticated_active_actor(*, actor) -> bool:
         bool: True, если пользователь авторизован и активен.
     """
 
-    return bool(
-        actor
-        and actor.is_authenticated
-        and actor.is_active
-    )
+    return bool(actor and actor.is_authenticated and actor.is_active)
 
 
 def is_superadmin_actor(*, actor) -> bool:
@@ -51,10 +46,7 @@ def is_superadmin_actor(*, actor) -> bool:
         bool: True, если пользователь является суперадминистратором.
     """
 
-    return bool(
-        is_authenticated_active_actor(actor=actor)
-        and actor.is_superuser
-    )
+    return bool(is_authenticated_active_actor(actor=actor) and actor.is_superuser)
 
 
 def get_actor_active_roles_queryset(*, actor) -> QuerySet:

@@ -65,9 +65,13 @@ def get_teacher_subject_by_id(
     if not teacher_subject_id:
         return None
 
-    return get_teacher_subjects_base_queryset().filter(
-        id=teacher_subject_id,
-    ).first()
+    return (
+        get_teacher_subjects_base_queryset()
+        .filter(
+            id=teacher_subject_id,
+        )
+        .first()
+    )
 
 
 def get_active_teacher_subject_by_id(
@@ -88,9 +92,13 @@ def get_active_teacher_subject_by_id(
     if not teacher_subject_id:
         return None
 
-    return get_active_teacher_subjects_queryset().filter(
-        id=teacher_subject_id,
-    ).first()
+    return (
+        get_active_teacher_subjects_queryset()
+        .filter(
+            id=teacher_subject_id,
+        )
+        .first()
+    )
 
 
 def get_teacher_subjects_for_teacher(*, teacher) -> QuerySet:
@@ -257,9 +265,13 @@ def actor_can_access_teacher_subject(
     if is_superadmin_actor(actor=actor):
         return True
 
-    return get_admin_teacher_subjects_queryset_for_actor(actor=actor).filter(
-        id=teacher_subject.id,
-    ).exists()
+    return (
+        get_admin_teacher_subjects_queryset_for_actor(actor=actor)
+        .filter(
+            id=teacher_subject.id,
+        )
+        .exists()
+    )
 
 
 def actor_can_manage_teacher_subject(

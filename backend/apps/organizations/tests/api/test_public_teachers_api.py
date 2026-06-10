@@ -142,10 +142,7 @@ class PublicTeachersApiTestCase(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        teacher_ids = {
-            teacher["id"]
-            for teacher in response.json()["teachers"]
-        }
+        teacher_ids = {teacher["id"] for teacher in response.json()["teachers"]}
 
         self.assertIn(self.teacher.id, teacher_ids)
         self.assertNotIn(self.hidden_teacher.id, teacher_ids)
@@ -161,10 +158,7 @@ class PublicTeachersApiTestCase(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        teacher_ids = {
-            teacher["id"]
-            for teacher in response.json()["teachers"]
-        }
+        teacher_ids = {teacher["id"] for teacher in response.json()["teachers"]}
 
         self.assertIn(self.teacher.id, teacher_ids)
         self.assertNotIn(self.unverified_teacher.id, teacher_ids)
@@ -265,10 +259,7 @@ class PublicTeachersApiTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         payload = response.json()
-        subject_codes = {
-            subject["code"]
-            for subject in payload["subjects"]
-        }
+        subject_codes = {subject["code"] for subject in payload["subjects"]}
 
         self.assertEqual(subject_codes, {"math", "physics"})
         self.assertEqual(payload["meta"]["subjects_count"], 2)

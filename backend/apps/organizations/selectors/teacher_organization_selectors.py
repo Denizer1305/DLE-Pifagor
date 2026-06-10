@@ -63,9 +63,13 @@ def get_current_teacher_organizations_queryset() -> QuerySet:
 
     today = timezone.localdate()
 
-    return get_active_teacher_organizations_queryset().filter(
-        Q(ends_at__isnull=True) | Q(ends_at__gte=today),
-    ).distinct()
+    return (
+        get_active_teacher_organizations_queryset()
+        .filter(
+            Q(ends_at__isnull=True) | Q(ends_at__gte=today),
+        )
+        .distinct()
+    )
 
 
 def get_teacher_organization_by_id(
@@ -86,9 +90,13 @@ def get_teacher_organization_by_id(
     if not teacher_organization_id:
         return None
 
-    return get_teacher_organizations_base_queryset().filter(
-        id=teacher_organization_id,
-    ).first()
+    return (
+        get_teacher_organizations_base_queryset()
+        .filter(
+            id=teacher_organization_id,
+        )
+        .first()
+    )
 
 
 def get_current_teacher_organization_by_id(
@@ -109,9 +117,13 @@ def get_current_teacher_organization_by_id(
     if not teacher_organization_id:
         return None
 
-    return get_current_teacher_organizations_queryset().filter(
-        id=teacher_organization_id,
-    ).first()
+    return (
+        get_current_teacher_organizations_queryset()
+        .filter(
+            id=teacher_organization_id,
+        )
+        .first()
+    )
 
 
 def get_teacher_organizations_for_teacher(*, teacher) -> QuerySet:
@@ -255,9 +267,13 @@ def actor_can_access_teacher_organization(
     if is_superadmin_actor(actor=actor):
         return True
 
-    return get_admin_teacher_organizations_queryset_for_actor(actor=actor).filter(
-        id=teacher_organization.id,
-    ).exists()
+    return (
+        get_admin_teacher_organizations_queryset_for_actor(actor=actor)
+        .filter(
+            id=teacher_organization.id,
+        )
+        .exists()
+    )
 
 
 def actor_can_manage_teacher_organization(

@@ -9,10 +9,7 @@ from apps.organizations.services import (
 from apps.organizations.tests.factories import (
     create_organization as create_test_organization,
 )
-from apps.organizations.tests.factories import (
-    create_superadmin,
-    create_test_user,
-)
+from apps.organizations.tests.factories import create_superadmin, create_test_user
 from django.test import TestCase
 from rest_framework.exceptions import PermissionDenied, ValidationError
 

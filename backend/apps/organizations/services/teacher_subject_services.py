@@ -10,7 +10,6 @@ from apps.organizations.services.teacher_organization_services import (
 from django.db import IntegrityError, transaction
 from rest_framework.exceptions import PermissionDenied, ValidationError
 
-
 TEACHER_SUBJECT_EDITABLE_FIELDS = [
     "subject",
     "is_primary",
@@ -116,9 +115,7 @@ def normalize_teacher_subject_data(*, data: dict[str, Any]) -> dict[str, Any]:
     """
 
     return {
-        field: data[field]
-        for field in TEACHER_SUBJECT_EDITABLE_FIELDS
-        if field in data
+        field: data[field] for field in TEACHER_SUBJECT_EDITABLE_FIELDS if field in data
     }
 
 

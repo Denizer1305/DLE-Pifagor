@@ -102,9 +102,13 @@ def get_study_group_by_id(*, group_id: int | None) -> StudyGroup | None:
     if not group_id:
         return None
 
-    return get_study_groups_base_queryset().filter(
-        id=group_id,
-    ).first()
+    return (
+        get_study_groups_base_queryset()
+        .filter(
+            id=group_id,
+        )
+        .first()
+    )
 
 
 def get_active_study_group_by_id(
@@ -125,9 +129,13 @@ def get_active_study_group_by_id(
     if not group_id:
         return None
 
-    return get_active_study_groups_queryset().filter(
-        id=group_id,
-    ).first()
+    return (
+        get_active_study_groups_queryset()
+        .filter(
+            id=group_id,
+        )
+        .first()
+    )
 
 
 def get_admin_study_groups_queryset_for_actor(*, actor) -> QuerySet:
@@ -190,10 +198,14 @@ def get_admin_active_study_groups_queryset_for_actor(*, actor) -> QuerySet:
         QuerySet: Активные доступные группы.
     """
 
-    return get_admin_study_groups_queryset_for_actor(actor=actor).filter(
-        is_active=True,
-        organization__is_active=True,
-    ).distinct()
+    return (
+        get_admin_study_groups_queryset_for_actor(actor=actor)
+        .filter(
+            is_active=True,
+            organization__is_active=True,
+        )
+        .distinct()
+    )
 
 
 def get_admin_study_groups_for_organization(
@@ -268,9 +280,13 @@ def actor_can_access_study_group(*, actor, group: StudyGroup | None) -> bool:
     if is_superadmin_actor(actor=actor):
         return True
 
-    return get_admin_study_groups_queryset_for_actor(actor=actor).filter(
-        id=group.id,
-    ).exists()
+    return (
+        get_admin_study_groups_queryset_for_actor(actor=actor)
+        .filter(
+            id=group.id,
+        )
+        .exists()
+    )
 
 
 def actor_can_manage_study_group(*, actor, group: StudyGroup | None) -> bool:

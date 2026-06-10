@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from apps.core.models import TimeStampedModel
 from apps.organizations.constants import TeacherEmploymentType
-from apps.organizations.validators import validate_date_range
 from apps.organizations.managers import TeacherOrganizationManager
+from apps.organizations.validators import validate_date_range
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models

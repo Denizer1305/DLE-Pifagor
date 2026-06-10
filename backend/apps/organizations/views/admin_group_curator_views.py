@@ -3,7 +3,7 @@ from __future__ import annotations
 from apps.organizations.filters import filter_group_curators_queryset
 from apps.organizations.models import GroupCurator
 from apps.organizations.permissions import CanManageGroupCurators
-from apps.organizations.selectors import get_group_curators_base_queryset
+from apps.organizations.selectors import get_admin_group_curators_queryset_for_actor
 from apps.organizations.serializers import (
     GroupCuratorDetailSerializer,
     GroupCuratorListSerializer,
@@ -15,7 +15,6 @@ from apps.organizations.services import (
     set_primary_group_curator,
     update_group_curator,
 )
-from apps.organizations.selectors import get_admin_group_curators_queryset_for_actor
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response

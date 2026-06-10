@@ -36,9 +36,7 @@ def validate_actor_can_manage_group_join_code(
         actor=actor,
         group=group,
     ):
-        raise PermissionDenied(
-            "У пользователя нет прав управлять кодом этой группы."
-        )
+        raise PermissionDenied("У пользователя нет прав управлять кодом этой группы.")
 
 
 @transaction.atomic

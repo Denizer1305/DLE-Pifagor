@@ -10,7 +10,6 @@ from apps.organizations.selectors import (
 from django.db import IntegrityError, transaction
 from rest_framework.exceptions import PermissionDenied, ValidationError
 
-
 DEPARTMENT_EDITABLE_FIELDS = [
     "organization",
     "name",
@@ -82,9 +81,7 @@ def validate_actor_can_update_department(
         actor=actor,
         department=department,
     ):
-        raise PermissionDenied(
-            "Отделение недоступно для текущего пользователя."
-        )
+        raise PermissionDenied("Отделение недоступно для текущего пользователя.")
 
 
 def normalize_department_data(*, data: dict[str, Any]) -> dict[str, Any]:
@@ -99,11 +96,7 @@ def normalize_department_data(*, data: dict[str, Any]) -> dict[str, Any]:
         dict: Очищенные данные.
     """
 
-    return {
-        field: data[field]
-        for field in DEPARTMENT_EDITABLE_FIELDS
-        if field in data
-    }
+    return {field: data[field] for field in DEPARTMENT_EDITABLE_FIELDS if field in data}
 
 
 def apply_department_fields(
@@ -346,11 +339,7 @@ def restore_department(
 
     if not department.organization.is_active:
         raise ValidationError(
-            {
-                "organization": (
-                    "Нельзя восстановить отделение неактивной организации."
-                )
-            }
+            {"organization": ("Нельзя восстановить отделение неактивной организации.")}
         )
 
     department.is_active = True

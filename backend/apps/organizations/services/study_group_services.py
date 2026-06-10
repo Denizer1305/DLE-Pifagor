@@ -11,7 +11,6 @@ from apps.organizations.selectors import (
 from django.db import IntegrityError, transaction
 from rest_framework.exceptions import PermissionDenied, ValidationError
 
-
 STUDY_GROUP_EDITABLE_FIELDS = [
     "organization",
     "department",
@@ -40,11 +39,7 @@ def validate_department_belongs_to_organization(
 
     if department.organization_id != organization.id:
         raise ValidationError(
-            {
-                "department": (
-                    "Отделение должно принадлежать выбранной организации."
-                )
-            }
+            {"department": ("Отделение должно принадлежать выбранной организации.")}
         )
 
 
@@ -86,9 +81,7 @@ def validate_actor_can_update_study_group(
         actor=actor,
         group=group,
     ):
-        raise PermissionDenied(
-            "Учебная группа недоступна для текущего пользователя."
-        )
+        raise PermissionDenied("Учебная группа недоступна для текущего пользователя.")
 
 
 def normalize_study_group_data(*, data: dict[str, Any]) -> dict[str, Any]:
@@ -97,9 +90,7 @@ def normalize_study_group_data(*, data: dict[str, Any]) -> dict[str, Any]:
     """
 
     return {
-        field: data[field]
-        for field in STUDY_GROUP_EDITABLE_FIELDS
-        if field in data
+        field: data[field] for field in STUDY_GROUP_EDITABLE_FIELDS if field in data
     }
 
 
@@ -218,9 +209,7 @@ def update_study_group(
             actor=actor,
             organization_id=new_organization.id,
         ):
-            raise PermissionDenied(
-                "Нельзя перенести группу в недоступную организацию."
-            )
+            raise PermissionDenied("Нельзя перенести группу в недоступную организацию.")
 
     validate_department_belongs_to_organization(
         organization=new_organization,
@@ -302,11 +291,7 @@ def restore_study_group(
 
     if not group.organization.is_active:
         raise ValidationError(
-            {
-                "organization": (
-                    "Нельзя восстановить группу неактивной организации."
-                )
-            }
+            {"organization": ("Нельзя восстановить группу неактивной организации.")}
         )
 
     group.status = StudyGroupStatus.ACTIVE

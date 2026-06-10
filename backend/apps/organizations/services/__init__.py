@@ -29,6 +29,12 @@ from apps.organizations.services.study_group_services import (
     restore_study_group,
     update_study_group,
 )
+from apps.organizations.services.subject_services import (
+    create_subject,
+    deactivate_subject,
+    restore_subject,
+    update_subject,
+)
 from apps.organizations.services.teacher_organization_services import (
     attach_teacher_to_organization,
     detach_teacher_from_organization,
@@ -42,12 +48,6 @@ from apps.organizations.services.teacher_registration_code_services import (
     generate_teacher_registration_code,
     set_teacher_registration_code,
     verify_teacher_registration_code,
-)
-from apps.organizations.services.subject_services import (
-    create_subject,
-    deactivate_subject,
-    restore_subject,
-    update_subject,
 )
 from apps.organizations.services.teacher_subject_services import (
     assign_subject_to_teacher,

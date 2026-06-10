@@ -61,11 +61,7 @@ class DepartmentAdmin(admin.ModelAdmin):
         ),
         (
             _("Состояние"),
-            {
-                "fields": (
-                    "is_active",
-                )
-            },
+            {"fields": ("is_active",)},
         ),
         (
             _("Служебная информация"),

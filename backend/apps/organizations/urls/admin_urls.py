@@ -5,8 +5,8 @@ from apps.organizations.views import (
     AdminGroupCuratorViewSet,
     AdminOrganizationViewSet,
     AdminStudyGroupViewSet,
-    AdminTeacherOrganizationViewSet,
     AdminSubjectViewSet,
+    AdminTeacherOrganizationViewSet,
     AdminTeacherSubjectViewSet,
 )
 from rest_framework.routers import DefaultRouter

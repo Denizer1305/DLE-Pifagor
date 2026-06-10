@@ -6,7 +6,6 @@ from apps.organizations.validators import (
     validate_raw_group_join_code,
 )
 from django.contrib.auth.hashers import check_password, make_password
-from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _

@@ -7,13 +7,11 @@ from apps.organizations.services import (
     restore_study_group,
     update_study_group,
 )
+from apps.organizations.tests.factories import create_department, create_organization
 from apps.organizations.tests.factories import (
-    create_department,
-    create_organization,
     create_study_group as create_test_study_group,
-    create_superadmin,
-    create_test_user,
 )
+from apps.organizations.tests.factories import create_superadmin, create_test_user
 from django.test import TestCase
 from rest_framework.exceptions import PermissionDenied, ValidationError
 

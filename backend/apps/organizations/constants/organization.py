@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 DEFAULT_TEACHER_REGISTRATION_CODE_TTL_DAYS = 30
 """
 Срок действия кода регистрации преподавателя в днях.

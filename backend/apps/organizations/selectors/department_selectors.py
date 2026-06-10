@@ -79,9 +79,13 @@ def get_department_by_id(*, department_id: int | None) -> Department | None:
     if not department_id:
         return None
 
-    return get_departments_base_queryset().filter(
-        id=department_id,
-    ).first()
+    return (
+        get_departments_base_queryset()
+        .filter(
+            id=department_id,
+        )
+        .first()
+    )
 
 
 def get_active_department_by_id(
@@ -102,9 +106,13 @@ def get_active_department_by_id(
     if not department_id:
         return None
 
-    return get_active_departments_queryset().filter(
-        id=department_id,
-    ).first()
+    return (
+        get_active_departments_queryset()
+        .filter(
+            id=department_id,
+        )
+        .first()
+    )
 
 
 def get_admin_departments_queryset_for_actor(*, actor) -> Q:
@@ -162,10 +170,14 @@ def get_admin_active_departments_queryset_for_actor(*, actor) -> Q:
         QuerySet: Активные доступные отделения.
     """
 
-    return get_admin_departments_queryset_for_actor(actor=actor).filter(
-        is_active=True,
-        organization__is_active=True,
-    ).distinct()
+    return (
+        get_admin_departments_queryset_for_actor(actor=actor)
+        .filter(
+            is_active=True,
+            organization__is_active=True,
+        )
+        .distinct()
+    )
 
 
 def actor_can_access_department(*, actor, department: Department | None) -> bool:
@@ -188,9 +200,13 @@ def actor_can_access_department(*, actor, department: Department | None) -> bool
     if is_superadmin_actor(actor=actor):
         return True
 
-    return get_admin_departments_queryset_for_actor(actor=actor).filter(
-        id=department.id,
-    ).exists()
+    return (
+        get_admin_departments_queryset_for_actor(actor=actor)
+        .filter(
+            id=department.id,
+        )
+        .exists()
+    )
 
 
 def actor_can_manage_department(*, actor, department: Department | None) -> bool:

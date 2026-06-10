@@ -3,9 +3,7 @@ from __future__ import annotations
 from apps.organizations.filters import filter_teacher_subjects_queryset
 from apps.organizations.models import TeacherSubject
 from apps.organizations.permissions import CanManageTeacherSubjects
-from apps.organizations.selectors import (
-    get_admin_teacher_subjects_queryset_for_actor,
-)
+from apps.organizations.selectors import get_admin_teacher_subjects_queryset_for_actor
 from apps.organizations.serializers import (
     TeacherSubjectDetailSerializer,
     TeacherSubjectListSerializer,

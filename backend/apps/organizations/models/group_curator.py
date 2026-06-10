@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from apps.core.models import TimeStampedModel
-from apps.organizations.validators import validate_date_range
 from apps.organizations.managers import GroupCuratorManager
+from apps.organizations.validators import validate_date_range
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -130,9 +130,5 @@ class GroupCurator(TimeStampedModel):
 
         if self.is_primary and not self.is_active:
             raise ValidationError(
-                {
-                    "is_primary": _(
-                        "Основной куратор должен быть активным."
-                    )
-                }
+                {"is_primary": _("Основной куратор должен быть активным.")}
             )

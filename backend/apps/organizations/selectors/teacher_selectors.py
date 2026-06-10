@@ -104,8 +104,7 @@ def filter_public_teachers_queryset(
 
     if position:
         queryset = queryset.filter(
-            Q(position__icontains=position)
-            | Q(public_title__icontains=position)
+            Q(position__icontains=position) | Q(public_title__icontains=position)
         )
 
     return queryset.distinct()

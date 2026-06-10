@@ -62,9 +62,13 @@ def get_join_request_by_id(request_id: int | None) -> UserJoinRequest | None:
     if not request_id:
         return None
 
-    return get_join_requests_queryset().filter(
-        id=request_id,
-    ).first()
+    return (
+        get_join_requests_queryset()
+        .filter(
+            id=request_id,
+        )
+        .first()
+    )
 
 
 def get_user_join_requests_queryset(*, user) -> QuerySet:
@@ -87,9 +91,13 @@ def get_user_join_requests_queryset(*, user) -> QuerySet:
     if not user:
         return UserJoinRequest.objects.none()
 
-    return get_join_requests_queryset().filter(
-        Q(user=user) | Q(target_user=user),
-    ).distinct()
+    return (
+        get_join_requests_queryset()
+        .filter(
+            Q(user=user) | Q(target_user=user),
+        )
+        .distinct()
+    )
 
 
 def get_user_pending_join_requests(user) -> QuerySet:
@@ -107,9 +115,13 @@ def get_user_pending_join_requests(user) -> QuerySet:
     if not user:
         return UserJoinRequest.objects.none()
 
-    return get_pending_join_requests_queryset().filter(
-        Q(user=user) | Q(target_user=user),
-    ).distinct()
+    return (
+        get_pending_join_requests_queryset()
+        .filter(
+            Q(user=user) | Q(target_user=user),
+        )
+        .distinct()
+    )
 
 
 def get_pending_teacher_requests_for_organization(organization) -> QuerySet:
@@ -372,9 +384,13 @@ def get_join_request_by_id_for_actor(
     if not request_id:
         return None
 
-    return get_join_requests_queryset_for_actor(actor=actor).filter(
-        id=request_id,
-    ).first()
+    return (
+        get_join_requests_queryset_for_actor(actor=actor)
+        .filter(
+            id=request_id,
+        )
+        .first()
+    )
 
 
 def get_reviewable_join_request_by_id_for_actor(
@@ -398,9 +414,13 @@ def get_reviewable_join_request_by_id_for_actor(
     if not request_id:
         return None
 
-    return get_reviewable_join_requests_queryset_for_actor(actor=actor).filter(
-        id=request_id,
-    ).first()
+    return (
+        get_reviewable_join_requests_queryset_for_actor(actor=actor)
+        .filter(
+            id=request_id,
+        )
+        .first()
+    )
 
 
 def actor_can_access_join_request(
@@ -427,9 +447,13 @@ def actor_can_access_join_request(
     if is_superadmin_actor(actor=actor):
         return True
 
-    return get_join_requests_queryset_for_actor(actor=actor).filter(
-        id=join_request.id,
-    ).exists()
+    return (
+        get_join_requests_queryset_for_actor(actor=actor)
+        .filter(
+            id=join_request.id,
+        )
+        .exists()
+    )
 
 
 def actor_can_review_join_request(
@@ -466,9 +490,13 @@ def actor_can_review_join_request(
     if join_request.user_id == getattr(actor, "id", None):
         return False
 
-    return get_reviewable_join_requests_queryset_for_actor(actor=actor).filter(
-        id=join_request.id,
-    ).exists()
+    return (
+        get_reviewable_join_requests_queryset_for_actor(actor=actor)
+        .filter(
+            id=join_request.id,
+        )
+        .exists()
+    )
 
 
 def user_has_pending_join_request(

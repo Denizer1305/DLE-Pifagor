@@ -7,7 +7,6 @@ from apps.organizations.selectors import actor_has_organization_admin_access
 from django.db import IntegrityError, transaction
 from rest_framework.exceptions import PermissionDenied, ValidationError
 
-
 SUBJECT_EDITABLE_FIELDS = [
     "name",
     "short_name",
@@ -34,9 +33,7 @@ def validate_actor_can_manage_subjects(*, actor) -> None:
     """
 
     if not actor_has_organization_admin_access(actor=actor):
-        raise PermissionDenied(
-            "У пользователя нет прав управлять учебными предметами."
-        )
+        raise PermissionDenied("У пользователя нет прав управлять учебными предметами.")
 
 
 def normalize_subject_data(*, data: dict[str, Any]) -> dict[str, Any]:
@@ -51,11 +48,7 @@ def normalize_subject_data(*, data: dict[str, Any]) -> dict[str, Any]:
         dict: Очищенные данные.
     """
 
-    return {
-        field: data[field]
-        for field in SUBJECT_EDITABLE_FIELDS
-        if field in data
-    }
+    return {field: data[field] for field in SUBJECT_EDITABLE_FIELDS if field in data}
 
 
 def apply_subject_fields(

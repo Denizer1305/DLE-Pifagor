@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 from apps.organizations.models import Subject, TeacherSubject
-from apps.organizations.serializers.subject_serializers import (
-    SubjectShortSerializer,
-)
+from apps.organizations.serializers.subject_serializers import SubjectShortSerializer
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 

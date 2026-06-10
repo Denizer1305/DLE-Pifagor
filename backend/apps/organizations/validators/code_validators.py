@@ -85,9 +85,7 @@ def validate_raw_teacher_registration_code(raw_code: str) -> None:
         max_length=MAX_TEACHER_REGISTRATION_CODE_LENGTH,
         field_name="teacher_registration_code",
         empty_message="Код регистрации преподавателя не может быть пустым.",
-        min_length_message=(
-            "Код регистрации преподавателя короче минимальной длины."
-        ),
+        min_length_message=("Код регистрации преподавателя короче минимальной длины."),
         max_length_message=(
             "Код регистрации преподавателя превышает максимальную длину."
         ),

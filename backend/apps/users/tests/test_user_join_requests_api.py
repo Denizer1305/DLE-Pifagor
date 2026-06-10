@@ -189,10 +189,7 @@ class UserJoinRequestsApiTestCase(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        request_ids = {
-            item["id"]
-            for item in get_response_items(response)
-        }
+        request_ids = {item["id"] for item in get_response_items(response)}
 
         self.assertIn(self.learner_request.id, request_ids)
         self.assertNotIn(self.teacher_request.id, request_ids)
@@ -211,10 +208,7 @@ class UserJoinRequestsApiTestCase(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        request_ids = {
-            item["id"]
-            for item in get_response_items(response)
-        }
+        request_ids = {item["id"] for item in get_response_items(response)}
 
         self.assertIn(self.teacher_request.id, request_ids)
         self.assertIn(self.learner_request.id, request_ids)
@@ -233,10 +227,7 @@ class UserJoinRequestsApiTestCase(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        request_ids = {
-            item["id"]
-            for item in get_response_items(response)
-        }
+        request_ids = {item["id"] for item in get_response_items(response)}
 
         self.assertIn(self.learner_request.id, request_ids)
         self.assertNotIn(self.teacher_request.id, request_ids)

@@ -53,9 +53,7 @@ class TeacherOrganizationDetailSerializer(TeacherOrganizationListSerializer):
     """
 
     class Meta(TeacherOrganizationListSerializer.Meta):
-        fields = TeacherOrganizationListSerializer.Meta.fields + (
-            "notes",
-        )
+        fields = TeacherOrganizationListSerializer.Meta.fields + ("notes",)
         read_only_fields = fields
 
 

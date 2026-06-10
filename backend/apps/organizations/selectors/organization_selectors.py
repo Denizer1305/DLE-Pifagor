@@ -55,11 +55,7 @@ def get_default_public_organization() -> Organization | None:
         Organization | None: Организация по умолчанию.
     """
 
-    return (
-        get_public_organizations_queryset()
-        .filter(is_default_public=True)
-        .first()
-    )
+    return get_public_organizations_queryset().filter(is_default_public=True).first()
 
 
 def get_user_teacher_profile_organization(user) -> Organization | None:

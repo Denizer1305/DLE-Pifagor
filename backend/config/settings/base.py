@@ -61,6 +61,10 @@ LOCAL_APPS = [
     "apps.feedback.apps.FeedbackConfig",
     "apps.dashboard.apps.DashboardConfig",
     "apps.notifications.apps.NotificationsConfig",
+    "apps.education.apps.EducationConfig",
+    "apps.course.apps.CourseConfig",
+    "apps.materials.apps.MaterialsConfig",
+    "apps.testing.apps.TestingConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

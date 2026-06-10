@@ -10,7 +10,6 @@ from apps.organizations.services.teacher_organization_services import (
 from django.db import IntegrityError, transaction
 from rest_framework.exceptions import PermissionDenied, ValidationError
 
-
 GROUP_CURATOR_EDITABLE_FIELDS = [
     "is_primary",
     "is_active",
@@ -90,9 +89,7 @@ def normalize_group_curator_data(*, data: dict[str, Any]) -> dict[str, Any]:
     """
 
     return {
-        field: data[field]
-        for field in GROUP_CURATOR_EDITABLE_FIELDS
-        if field in data
+        field: data[field] for field in GROUP_CURATOR_EDITABLE_FIELDS if field in data
     }
 
 

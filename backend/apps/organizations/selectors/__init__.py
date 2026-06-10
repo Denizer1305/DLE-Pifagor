@@ -13,23 +13,6 @@ from apps.organizations.selectors.access_selectors import (
     is_authenticated_active_actor,
     is_superadmin_actor,
 )
-from apps.organizations.selectors.organization_selectors import (
-    get_active_organizations_queryset,
-    get_admin_organizations_queryset_for_actor,
-    get_default_public_organization,
-    get_organizations_base_queryset,
-    get_public_organizations_queryset,
-    get_user_organization,
-    get_user_role_organization,
-    get_user_teacher_profile_organization,
-    resolve_public_teachers_organization,
-)
-from apps.organizations.selectors.teacher_selectors import (
-    filter_public_teachers_queryset,
-    get_public_teacher_subjects_queryset,
-    get_public_teachers_base_queryset,
-    get_public_teachers_queryset,
-)
 from apps.organizations.selectors.department_selectors import (
     actor_can_access_department,
     actor_can_manage_department,
@@ -40,6 +23,31 @@ from apps.organizations.selectors.department_selectors import (
     get_department_by_id,
     get_departments_base_queryset,
     get_departments_for_organization,
+)
+from apps.organizations.selectors.group_curator_selectors import (
+    actor_is_group_curator,
+    actor_is_primary_group_curator,
+    get_active_group_curators_queryset,
+    get_admin_group_curators_queryset_for_actor,
+    get_curated_group_ids_for_actor,
+    get_curated_groups_queryset_for_actor,
+    get_curators_for_group,
+    get_current_group_curator_by_id,
+    get_current_group_curators_queryset,
+    get_group_curator_by_id,
+    get_group_curators_base_queryset,
+    get_primary_curator_for_group,
+)
+from apps.organizations.selectors.organization_selectors import (
+    get_active_organizations_queryset,
+    get_admin_organizations_queryset_for_actor,
+    get_default_public_organization,
+    get_organizations_base_queryset,
+    get_public_organizations_queryset,
+    get_user_organization,
+    get_user_role_organization,
+    get_user_teacher_profile_organization,
+    resolve_public_teachers_organization,
 )
 from apps.organizations.selectors.study_group_selectors import (
     actor_can_access_study_group,
@@ -55,19 +63,14 @@ from apps.organizations.selectors.study_group_selectors import (
     get_study_groups_for_department,
     get_study_groups_for_organization,
 )
-from apps.organizations.selectors.group_curator_selectors import (
-    actor_is_group_curator,
-    actor_is_primary_group_curator,
-    get_current_group_curator_by_id,
-    get_current_group_curators_queryset,
-    get_curated_group_ids_for_actor,
-    get_curated_groups_queryset_for_actor,
-    get_curators_for_group,
-    get_group_curator_by_id,
-    get_group_curators_base_queryset,
-    get_active_group_curators_queryset,
-    get_primary_curator_for_group,
-    get_admin_group_curators_queryset_for_actor,
+from apps.organizations.selectors.subject_selectors import (
+    get_active_subject_by_code,
+    get_active_subject_by_id,
+    get_active_subjects_queryset,
+    get_admin_active_subjects_queryset_for_actor,
+    get_admin_subjects_queryset_for_actor,
+    get_subject_by_id,
+    get_subjects_base_queryset,
 )
 from apps.organizations.selectors.teacher_organization_selectors import (
     actor_can_access_teacher_organization,
@@ -83,14 +86,11 @@ from apps.organizations.selectors.teacher_organization_selectors import (
     get_teacher_organizations_for_teacher,
     get_teachers_for_organization,
 )
-from apps.organizations.selectors.subject_selectors import (
-    get_active_subject_by_code,
-    get_active_subject_by_id,
-    get_active_subjects_queryset,
-    get_admin_active_subjects_queryset_for_actor,
-    get_admin_subjects_queryset_for_actor,
-    get_subject_by_id,
-    get_subjects_base_queryset,
+from apps.organizations.selectors.teacher_selectors import (
+    filter_public_teachers_queryset,
+    get_public_teacher_subjects_queryset,
+    get_public_teachers_base_queryset,
+    get_public_teachers_queryset,
 )
 from apps.organizations.selectors.teacher_subject_selectors import (
     actor_can_access_teacher_subject,

@@ -13,7 +13,6 @@ from apps.users.models import UserRole
 from django.db import IntegrityError, transaction
 from rest_framework.exceptions import PermissionDenied, ValidationError
 
-
 TEACHER_ORGANIZATION_EDITABLE_FIELDS = [
     "organization",
     "position",

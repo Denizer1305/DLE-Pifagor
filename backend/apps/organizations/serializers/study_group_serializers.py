@@ -184,11 +184,7 @@ class StudyGroupWriteSerializer(serializers.Serializer):
         admission_year = attrs.get("admission_year")
         graduation_year = attrs.get("graduation_year")
 
-        if (
-            admission_year
-            and graduation_year
-            and graduation_year < admission_year
-        ):
+        if admission_year and graduation_year and graduation_year < admission_year:
             raise serializers.ValidationError(
                 {
                     "graduation_year": (

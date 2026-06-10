@@ -7,9 +7,7 @@ class UserEmailSubject:
     """
 
     EMAIL_VERIFICATION = "Подтверждение email в ЦОС «Пифагор»"
-    TEACHER_REGISTRATION_PENDING = (
-        "Заявка преподавателя отправлена на проверку"
-    )
+    TEACHER_REGISTRATION_PENDING = "Заявка преподавателя отправлена на проверку"
     LEARNER_PROFILE_REQUIRED = "Завершите настройку профиля учащегося"
     GUARDIAN_REGISTRATION_COMPLETED = "Регистрация родителя в ЦОС «Пифагор»"
 

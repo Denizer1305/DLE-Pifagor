@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 from apps.organizations.models import GroupCurator, StudyGroup
-from apps.organizations.selectors.access_selectors import (
-    is_authenticated_active_actor,
-)
+from apps.organizations.selectors.access_selectors import is_authenticated_active_actor
 from apps.organizations.selectors.study_group_selectors import (
     get_admin_study_groups_queryset_for_actor,
 )
@@ -67,9 +65,13 @@ def get_current_group_curators_queryset() -> QuerySet:
 
     today = timezone.localdate()
 
-    return get_active_group_curators_queryset().filter(
-        Q(ends_at__isnull=True) | Q(ends_at__gte=today),
-    ).distinct()
+    return (
+        get_active_group_curators_queryset()
+        .filter(
+            Q(ends_at__isnull=True) | Q(ends_at__gte=today),
+        )
+        .distinct()
+    )
 
 
 def get_curators_for_group(*, group) -> QuerySet:
@@ -107,11 +109,7 @@ def get_primary_curator_for_group(*, group) -> GroupCurator | None:
     if group is None:
         return None
 
-    return (
-        get_curators_for_group(group=group)
-        .filter(is_primary=True)
-        .first()
-    )
+    return get_curators_for_group(group=group).filter(is_primary=True).first()
 
 
 def get_group_curator_by_id(
@@ -132,9 +130,13 @@ def get_group_curator_by_id(
     if not group_curator_id:
         return None
 
-    return get_group_curators_base_queryset().filter(
-        id=group_curator_id,
-    ).first()
+    return (
+        get_group_curators_base_queryset()
+        .filter(
+            id=group_curator_id,
+        )
+        .first()
+    )
 
 
 def get_current_group_curator_by_id(
@@ -155,9 +157,13 @@ def get_current_group_curator_by_id(
     if not group_curator_id:
         return None
 
-    return get_current_group_curators_queryset().filter(
-        id=group_curator_id,
-    ).first()
+    return (
+        get_current_group_curators_queryset()
+        .filter(
+            id=group_curator_id,
+        )
+        .first()
+    )
 
 
 def get_curated_groups_queryset_for_actor(*, actor) -> QuerySet:
@@ -241,10 +247,14 @@ def actor_is_group_curator(*, actor, group) -> bool:
     if group is None:
         return False
 
-    return get_current_group_curators_queryset().filter(
-        teacher=actor,
-        group=group,
-    ).exists()
+    return (
+        get_current_group_curators_queryset()
+        .filter(
+            teacher=actor,
+            group=group,
+        )
+        .exists()
+    )
 
 
 def actor_is_primary_group_curator(*, actor, group) -> bool:
@@ -267,11 +277,15 @@ def actor_is_primary_group_curator(*, actor, group) -> bool:
     if group is None:
         return False
 
-    return get_current_group_curators_queryset().filter(
-        teacher=actor,
-        group=group,
-        is_primary=True,
-    ).exists()
+    return (
+        get_current_group_curators_queryset()
+        .filter(
+            teacher=actor,
+            group=group,
+            is_primary=True,
+        )
+        .exists()
+    )
 
 
 def get_admin_group_curators_queryset_for_actor(*, actor) -> QuerySet:

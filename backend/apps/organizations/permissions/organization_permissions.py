@@ -6,7 +6,7 @@ from apps.organizations.selectors import (
     is_authenticated_active_actor,
     is_superadmin_actor,
 )
-from rest_framework.permissions import BasePermission, SAFE_METHODS
+from rest_framework.permissions import SAFE_METHODS, BasePermission
 
 
 class IsActiveAuthenticatedUser(BasePermission):
@@ -55,10 +55,9 @@ class CanAccessOrganizationsAdmin(BasePermission):
         if is_superadmin_actor(actor=user):
             return True
 
-        return (
-            actor_has_organization_admin_access(actor=user)
-            or actor_has_department_admin_access(actor=user)
-        )
+        return actor_has_organization_admin_access(
+            actor=user
+        ) or actor_has_department_admin_access(actor=user)
 
 
 class CanManageOrganizations(BasePermission):
@@ -107,10 +106,9 @@ class CanManageDepartments(BasePermission):
         if request.method in SAFE_METHODS:
             return CanAccessOrganizationsAdmin().has_permission(request, view)
 
-        return (
-            actor_has_organization_admin_access(actor=user)
-            or actor_has_department_admin_access(actor=user)
-        )
+        return actor_has_organization_admin_access(
+            actor=user
+        ) or actor_has_department_admin_access(actor=user)
 
 
 class CanManageStudyGroups(BasePermission):
@@ -133,10 +131,9 @@ class CanManageStudyGroups(BasePermission):
         if request.method in SAFE_METHODS:
             return CanAccessOrganizationsAdmin().has_permission(request, view)
 
-        return (
-            actor_has_organization_admin_access(actor=user)
-            or actor_has_department_admin_access(actor=user)
-        )
+        return actor_has_organization_admin_access(
+            actor=user
+        ) or actor_has_department_admin_access(actor=user)
 
 
 class CanManageTeacherOrganizations(BasePermission):
@@ -182,10 +179,9 @@ class CanManageGroupCurators(BasePermission):
         if request.method in SAFE_METHODS:
             return CanAccessOrganizationsAdmin().has_permission(request, view)
 
-        return (
-            actor_has_organization_admin_access(actor=user)
-            or actor_has_department_admin_access(actor=user)
-        )
+        return actor_has_organization_admin_access(
+            actor=user
+        ) or actor_has_department_admin_access(actor=user)
 
 
 class CanManageOrganizationCodes(BasePermission):
@@ -209,10 +205,10 @@ class CanManageOrganizationCodes(BasePermission):
         if not is_authenticated_active_actor(actor=user):
             return False
 
-        return (
-            actor_has_organization_admin_access(actor=user)
-            or actor_has_department_admin_access(actor=user)
-        )
+        return actor_has_organization_admin_access(
+            actor=user
+        ) or actor_has_department_admin_access(actor=user)
+
 
 class CanManageSubjects(BasePermission):
     """

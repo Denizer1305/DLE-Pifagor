@@ -8,8 +8,8 @@ from apps.organizations.constants import (
     StudyGroupStatus,
 )
 from apps.organizations.managers import StudyGroupManager
-from apps.organizations.validators import validate_year_order
 from apps.organizations.models.mixins import GroupJoinCodeMixin
+from apps.organizations.validators import validate_year_order
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -162,11 +162,7 @@ class StudyGroup(GroupJoinCodeMixin, TimeStampedModel):
             MIN_COURSE_NUMBER <= self.course_number <= MAX_COURSE_NUMBER
         ):
             raise ValidationError(
-                {
-                    "course_number": _(
-                        "Номер курса должен быть в допустимом диапазоне."
-                    )
-                }
+                {"course_number": _("Номер курса должен быть в допустимом диапазоне.")}
             )
 
     def save(self, *args, **kwargs) -> None:
