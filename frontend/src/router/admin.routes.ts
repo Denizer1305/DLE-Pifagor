@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from "vue-router";
+import { adminOrganizationRoutes } from "./organizations.routes";
 
 export const adminRoutes: RouteRecordRaw[] = [
     {
@@ -245,4 +246,6 @@ export const adminRoutes: RouteRecordRaw[] = [
             title: "Создание курса | Пифагор",
         },
     },
+
+    ...adminOrganizationRoutes,
 ];

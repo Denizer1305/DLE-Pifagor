@@ -1,0 +1,244 @@
+@media (max-width: 1280px) {
+    .org-summary__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .org-page__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .org-page__aside {
+        position: static;
+    }
+
+    .org-filters__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1100px) {
+    .org-admin__layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .org-admin__sidebar {
+        position: static;
+    }
+
+    .org-admin-nav {
+        overflow-x: auto;
+    }
+
+    .org-admin-nav__list {
+        display: flex;
+        min-width: max-content;
+    }
+
+    .org-admin-nav__link {
+        min-width: 220px;
+    }
+}
+
+@media (max-width: 900px) {
+    .org-admin__inner {
+        padding: var(--space-5);
+    }
+
+    .org-page__header {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .org-page__actions {
+        justify-content: flex-start;
+    }
+
+    .org-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .org-toolbar__main {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .org-toolbar__search {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .org-toolbar__actions {
+        justify-content: flex-start;
+    }
+
+    .org-form__grid,
+    .org-form__grid--three {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .org-request-card__meta {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .org-admin__surface {
+        border-radius: var(--radius-28);
+    }
+
+    .org-admin__inner {
+        gap: var(--space-5);
+        padding: var(--space-4);
+    }
+
+    .org-page__title {
+        font-size: clamp(1.85rem, 9vw, 2.7rem);
+    }
+
+    .org-page__description {
+        font-size: var(--font-size-base-sm);
+    }
+
+    .org-summary__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .org-summary-card {
+        padding: var(--space-4);
+    }
+
+    .org-filters__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .org-filters__field--wide {
+        grid-column: auto;
+    }
+
+    .org-filters__footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .org-filters__actions {
+        justify-content: flex-start;
+    }
+
+    .org-details__top,
+    .org-code-card__header,
+    .org-request-card__header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .org-details__actions,
+    .org-request-card__actions {
+        justify-content: flex-start;
+    }
+
+    .org-details__item {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 5px;
+    }
+
+    .org-code-card__value {
+        flex-direction: column;
+    }
+
+    .org-code-card__copy {
+        min-height: var(--control-height-md);
+        border-left: 0;
+        border-top: var(--border-subtle);
+    }
+
+    .org-code-card__actions,
+    .org-form__footer,
+    .org-request-card__footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .org-form__actions,
+    .org-code-card__actions,
+    .org-request-review__actions {
+        justify-content: stretch;
+    }
+
+    .org-form__button,
+    .org-code-card__button,
+    .org-request-review__button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    .org-admin__inner {
+        padding: var(--space-3);
+    }
+
+    .org-admin__surface,
+    .org-admin__panel,
+    .org-toolbar,
+    .org-filters,
+    .org-table,
+    .org-form__section,
+    .org-details,
+    .org-code-card,
+    .org-request-card,
+    .org-empty {
+        border-radius: var(--radius-22);
+    }
+
+    .org-page {
+        gap: var(--space-4);
+    }
+
+    .org-page__eyebrow {
+        min-height: 30px;
+        padding: 5px 10px;
+        font-size: 0.7rem;
+    }
+
+    .org-page__section-head {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .org-toolbar__actions,
+    .org-page__actions {
+        width: 100%;
+    }
+
+    .org-toolbar__button,
+    .org-page__actions > * {
+        flex: 1 1 auto;
+    }
+
+    .org-admin-nav__link {
+        min-width: 190px;
+    }
+
+    .org-table__footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .org-details__header,
+    .org-details__body,
+    .org-form__section,
+    .org-code-card,
+    .org-request-card {
+        padding: var(--space-4);
+    }
+
+    .org-empty {
+        min-height: 260px;
+        padding: var(--space-5);
+    }
+
+    .org-empty__icon {
+        width: 62px;
+        height: 62px;
+        border-radius: var(--radius-20);
+    }
+}

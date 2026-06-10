@@ -1,0 +1,15 @@
+@import "./organizations-shell.css";
+@import "./organizations-navigation.css";
+@import "./organizations-dashboard.css";
+@import "./organizations-page.css";
+@import "./organizations-summary.css";
+@import "./organizations-toolbar.css";
+@import "./organizations-filters.css";
+@import "./organizations-table.css";
+@import "./organizations-forms.css";
+@import "./organizations-details.css";
+@import "./organizations-codes.css";
+@import "./organizations-join-requests.css";
+@import "./organizations-empty-states.css";
+@import "./organizations-responsive.css";
+@import "./organizations-mobile-hardening.css";

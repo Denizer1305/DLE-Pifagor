@@ -1,13 +1,6 @@
-import {
-    fetchPublicOrganizationTeachers,
-    fetchPublicOrganizations,
-} from "@/api/modules/organizations.api";
+import { fetchPublicTeachersPage } from "@/modules/public/api/public-teachers.api";
 
-import {
-    chooseDefaultOrganization,
-    mapPublicOrganizationFromApi,
-    mapPublicTeacherFromApi,
-} from "../mappers/publicTeachers.mapper";
+import { mapPublicTeachersPage } from "../mappers/publicTeachers.mapper";
 import type {
     PublicOrganization,
     PublicTeacher,
@@ -20,24 +13,27 @@ export interface PublicTeachersInitialData {
 }
 
 export async function getPublicOrganizations(): Promise<PublicOrganization[]> {
-    const organizations = await fetchPublicOrganizations();
+    const response = await fetchPublicTeachersPage();
+    const pageData = mapPublicTeachersPage(response);
 
-    return organizations.map(mapPublicOrganizationFromApi);
+    return pageData.organization ? [pageData.organization] : [];
 }
 
 export async function getPublicTeachersByOrganization(
-    organizationSlug: string,
+    _organizationSlug: string,
 ): Promise<PublicTeacher[]> {
-    const teachers = await fetchPublicOrganizationTeachers(organizationSlug);
+    const response = await fetchPublicTeachersPage();
+    const pageData = mapPublicTeachersPage(response);
 
-    return teachers.map(mapPublicTeacherFromApi);
+    return pageData.teachers;
 }
 
 export async function getPublicTeachersInitialData(): Promise<PublicTeachersInitialData> {
-    const organizations = await getPublicOrganizations();
-    const defaultOrganization = chooseDefaultOrganization(organizations);
+    const response = await fetchPublicTeachersPage();
+    const pageData = mapPublicTeachersPage(response);
+    const organizations = pageData.organization ? [pageData.organization] : [];
 
-    if (!defaultOrganization) {
+    if (!pageData.organization) {
         return {
             organizations: [],
             defaultOrganizationSlug: "",
@@ -45,11 +41,9 @@ export async function getPublicTeachersInitialData(): Promise<PublicTeachersInit
         };
     }
 
-    const teachers = await getPublicTeachersByOrganization(defaultOrganization.slug);
-
     return {
         organizations,
-        defaultOrganizationSlug: defaultOrganization.slug,
-        teachers,
+        defaultOrganizationSlug: pageData.organization.slug,
+        teachers: pageData.teachers,
     };
 }

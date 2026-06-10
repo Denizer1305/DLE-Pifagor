@@ -100,6 +100,16 @@ export function createAdminNavigation(
             badge: formatBadge(getStatValue(stats, "feedback")),
         },
         {
+            key: "organizations",
+            label: "Организации",
+            description: "Школы, отделения, предметы",
+            icon: "fa-solid fa-building-flag",
+            to: {
+                name: "admin-organizations",
+            },
+            badge: formatBadge(getStatValue(stats, "organizations")),
+        },
+        {
             key: "analytics",
             label: "Аналитика",
             description: "Посещаемость, активность, рост",

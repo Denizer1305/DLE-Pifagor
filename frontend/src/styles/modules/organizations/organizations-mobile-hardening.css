@@ -1,0 +1,219 @@
+@media (max-width: 768px) {
+    .org-admin,
+    .org-admin__shell,
+    .org-admin__surface,
+    .org-admin__inner,
+    .org-admin__content,
+    .org-page,
+    .org-page__body,
+    .org-page__section {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .org-admin__surface {
+        overflow: hidden;
+    }
+
+    .org-toolbar {
+        position: sticky;
+        top: 0;
+        z-index: var(--z-index-sticky);
+    }
+
+    .org-toolbar__button,
+    .org-filters__button,
+    .org-form__button,
+    .org-code-card__button,
+    .org-request-card__button,
+    .org-request-review__button,
+    .org-empty__button {
+        min-height: 44px;
+    }
+
+    .org-table {
+        border-radius: var(--radius-24);
+    }
+
+    .org-table__scroll {
+        overflow-x: visible;
+    }
+
+    .org-table__table,
+    .org-table__head,
+    .org-table__body,
+    .org-table__row,
+    .org-table__cell {
+        display: block;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .org-table__head {
+        display: none;
+    }
+
+    .org-table__body {
+        display: grid;
+        gap: var(--space-3);
+        padding: var(--space-3);
+    }
+
+    .org-table__row {
+        display: grid;
+        gap: var(--space-3);
+        padding: var(--space-4);
+        border: var(--border-subtle);
+        border-radius: var(--radius-22);
+        background: var(--white-84);
+    }
+
+    .org-table__row:last-child {
+        border-bottom: var(--border-subtle);
+    }
+
+    .org-table__cell {
+        display: grid;
+        grid-template-columns: minmax(100px, 0.35fr) minmax(0, 1fr);
+        gap: var(--space-3);
+        padding: 0;
+        border: 0;
+    }
+
+    .org-table__cell::before {
+        content: attr(data-label);
+        color: var(--secondary);
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-bold);
+        letter-spacing: var(--letter-spacing-uppercase);
+        text-transform: uppercase;
+    }
+
+    .org-table__cell--actions {
+        grid-template-columns: minmax(0, 1fr);
+        text-align: left;
+    }
+
+    .org-table__cell--actions::before {
+        display: none;
+    }
+
+    .org-table__actions {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .org-table__action {
+        width: 42px;
+        height: 42px;
+    }
+
+    .org-table__title,
+    .org-table__subtitle {
+        max-width: 100%;
+        white-space: normal;
+    }
+
+    .org-table__entity {
+        align-items: flex-start;
+    }
+
+    .org-table__meta {
+        align-items: flex-start;
+    }
+
+    .org-admin-nav {
+        margin-inline: calc(var(--space-3) * -1);
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .org-admin-nav__list {
+        padding-inline: var(--space-3);
+        scroll-snap-type: x mandatory;
+    }
+
+    .org-admin-nav__link {
+        scroll-snap-align: start;
+    }
+}
+
+@media (max-width: 560px) {
+    .org-table__cell {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 4px;
+    }
+
+    .org-table__cell::before {
+        font-size: 0.68rem;
+    }
+
+    .org-table__entity {
+        flex-direction: row;
+    }
+
+    .org-table__avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-14);
+    }
+
+    .org-table__actions {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .org-table__action {
+        width: 100%;
+    }
+
+    .org-request-card__actions,
+    .org-empty__actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+    }
+
+    .org-request-card__button,
+    .org-empty__button {
+        width: 100%;
+    }
+
+    .org-details__identity,
+    .org-request-card__identity {
+        align-items: flex-start;
+    }
+
+    .org-details__meta,
+    .org-code-card__meta {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .org-details__meta-item,
+    .org-code-card__meta-item {
+        width: 100%;
+    }
+
+    .org-filters__chips {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .org-filters__chip {
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+body.dark-theme .org-table__row {
+    border-color: var(--dark-border);
+    background: var(--dark-surface-soft);
+}
+
+body.dark-theme .org-table__cell::before {
+    color: var(--dark-text-muted);
+}

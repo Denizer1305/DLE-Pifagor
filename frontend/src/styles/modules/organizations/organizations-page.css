@@ -1,0 +1,125 @@
+.org-page {
+    display: grid;
+    gap: var(--space-5);
+    min-width: 0;
+}
+
+.org-page__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-5);
+    align-items: start;
+}
+
+.org-page__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    min-height: 34px;
+    padding: 7px 12px;
+    margin-bottom: var(--space-3);
+    border: var(--border-accent-subtle);
+    border-radius: var(--radius-pill);
+    color: var(--accent);
+    background: var(--accent-08);
+    font-size: 0.78rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-uppercase);
+    text-transform: uppercase;
+}
+
+.org-page__title {
+    margin: 0;
+    color: var(--primary);
+    font-family: var(--font-heading);
+    font-size: clamp(2.1rem, 4vw, 4.1rem);
+    line-height: var(--line-height-heading);
+}
+
+.org-page__description {
+    max-width: 760px;
+    margin: var(--space-3) 0 0;
+    color: var(--secondary);
+    font-size: 0.98rem;
+    line-height: 1.8;
+}
+
+.org-page__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+.org-page__body {
+    display: grid;
+    gap: var(--space-5);
+    min-width: 0;
+}
+
+.org-page__section {
+    display: grid;
+    gap: var(--space-4);
+    min-width: 0;
+}
+
+.org-page__section-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+}
+
+.org-page__section-title {
+    margin: 0;
+    color: var(--primary);
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.35;
+}
+
+.org-page__section-text {
+    margin: 6px 0 0;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    line-height: 1.65;
+}
+
+.org-page__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+    gap: var(--space-5);
+    align-items: start;
+}
+
+.org-page__main {
+    display: grid;
+    gap: var(--space-5);
+    min-width: 0;
+}
+
+.org-page__aside {
+    position: sticky;
+    top: var(--space-5);
+    display: grid;
+    gap: var(--space-4);
+    min-width: 0;
+}
+
+body.dark-theme .org-page__title,
+body.dark-theme .org-page__section-title {
+    color: var(--dark-text);
+}
+
+body.dark-theme .org-page__description,
+body.dark-theme .org-page__section-text {
+    color: var(--dark-text-muted);
+}
+
+body.dark-theme .org-page__eyebrow {
+    color: var(--dark-accent-strong);
+    border-color: var(--dark-border-strong);
+    background: rgba(143, 184, 242, 0.1);
+}
