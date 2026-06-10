@@ -37,6 +37,7 @@
 | API архитектура | [`docs/01-architecture/api-architecture.md`](docs/01-architecture/api-architecture.md) |
 | Модули платформы | [`docs/02-modules/`](docs/02-modules/) |
 | Правила разработки | [`docs/04-development/coding-rules.md`](docs/04-development/coding-rules.md) |
+| Регламенты проекта | [`docs/governance/`](docs/governance/) |
 
 ## Стек
 
