@@ -8,9 +8,6 @@
 
 from __future__ import annotations
 
-from django.db import IntegrityError, transaction
-from django.utils import timezone
-
 from apps.notifications.constants import (
     NotificationCategory,
     NotificationDeliveryChannel,
@@ -29,6 +26,8 @@ from apps.notifications.services.notification_preference_services import (
     resolve_delivery_channels_for_recipient,
     should_create_notification_for_recipient,
 )
+from django.db import IntegrityError, transaction
+from django.utils import timezone
 
 
 @transaction.atomic

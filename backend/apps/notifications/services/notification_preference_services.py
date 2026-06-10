@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from django.core.exceptions import ObjectDoesNotExist
-
 from apps.notifications.constants import (
     CRITICAL_NOTIFICATION_CATEGORIES,
     CRITICAL_NOTIFICATION_LEVELS,
@@ -15,6 +13,7 @@ from apps.users.services.user_settings.defaults import get_default_notification_
 from apps.users.services.user_settings.payloads import (
     build_notification_settings_payload,
 )
+from django.core.exceptions import ObjectDoesNotExist
 
 CATEGORY_FREQUENCY_KEYS = {
     NotificationCategory.DAILY_SUMMARY: "digest",

@@ -7,9 +7,6 @@ from __future__ import annotations
 from datetime import date, datetime
 from unittest.mock import patch
 
-from django.utils import timezone
-from rest_framework.test import APITestCase
-
 from apps.notifications.constants import (
     NotificationCategory,
     NotificationLevel,
@@ -27,6 +24,8 @@ from apps.notifications.services import (
 )
 from apps.notifications.tests.factories import create_test_user
 from apps.users.models import UserSettings
+from django.utils import timezone
+from rest_framework.test import APITestCase
 
 
 class NotificationGenerationTestCase(APITestCase):
