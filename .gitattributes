@@ -1,0 +1,24 @@
+# Keep repository text files stable across Windows, WSL, and CI.
+* text=auto eol=lf
+
+# Windows command scripts should keep CRLF line endings.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# PowerShell works with LF, but CRLF is friendlier for Windows editors.
+*.ps1 text eol=crlf
+
+# Binary assets must not be normalized.
+*.avif binary
+*.gif binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.pdf binary
+*.png binary
+*.pptx binary
+*.ttf binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.zip binary
