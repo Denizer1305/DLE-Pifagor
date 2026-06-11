@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 from apps.testing.constants import (
+    BANK_ITEM_DIFFICULTY_CHOICES,
     QUESTION_CHECK_MODE_CHOICES,
     QUESTION_TYPE_CHOICES,
+    BankItemDifficulty,
     QuestionCheckMode,
     QuestionType,
 )
@@ -20,6 +22,15 @@ class TestQuestion(models.Model):
         on_delete=models.CASCADE,
         related_name="questions",
         verbose_name="Тест",
+    )
+
+    source_bank_item = models.ForeignKey(
+        "testing.QuestionBankItem",
+        on_delete=models.SET_NULL,
+        related_name="created_test_questions",
+        null=True,
+        blank=True,
+        verbose_name="Источник из банка заданий",
     )
 
     question_type = models.CharField(
@@ -74,6 +85,22 @@ class TestQuestion(models.Model):
         verbose_name="Балл",
     )
 
+    difficulty = models.CharField(
+        max_length=32,
+        choices=BANK_ITEM_DIFFICULTY_CHOICES,
+        default=BankItemDifficulty.MEDIUM,
+        verbose_name="Сложность",
+    )
+    tags_data = models.JSONField(
+        default=list,
+        blank=True,
+        verbose_name="Теги",
+    )
+    is_reusable = models.BooleanField(
+        default=False,
+        verbose_name="Можно переиспользовать",
+    )
+
     is_required = models.BooleanField(
         default=True,
         verbose_name="Обязательный",
@@ -112,6 +139,9 @@ class TestQuestion(models.Model):
             models.Index(fields=("question_type",), name="tst_question_type_idx"),
             models.Index(fields=("check_mode",), name="tst_question_check_idx"),
             models.Index(fields=("is_active",), name="tst_question_active_idx"),
+            models.Index(fields=("source_bank_item",), name="tst_question_bank_idx"),
+            models.Index(fields=("difficulty",), name="tst_question_diff_idx"),
+            models.Index(fields=("is_reusable",), name="tst_question_reuse_idx"),
         )
 
     def __str__(self) -> str:

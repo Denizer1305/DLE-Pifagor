@@ -6,6 +6,11 @@ from .option import TestQuestionOption
 from .question import TestQuestion
 from .result import TestLearnerResult
 from .test import Test
+from .bank import (
+    QuestionBankItem,
+    QuestionBankOption,
+)
+from .integrity import TestAttemptIntegrityReport
 
 __all__ = [
     "Test",
@@ -14,4 +19,7 @@ __all__ = [
     "TestLearnerResult",
     "TestQuestion",
     "TestQuestionOption",
+    "QuestionBankItem",
+    "QuestionBankOption",
+    "TestAttemptIntegrityReport",
 ]
