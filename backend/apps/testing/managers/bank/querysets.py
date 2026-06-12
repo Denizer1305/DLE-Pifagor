@@ -1,11 +1,7 @@
 from __future__ import annotations
 
+from apps.testing.constants import BankItemStatus, BankItemVisibility
 from django.db import models
-
-from apps.testing.constants import (
-    BankItemStatus,
-    BankItemVisibility,
-)
 
 
 class QuestionBankItemQuerySet(models.QuerySet):

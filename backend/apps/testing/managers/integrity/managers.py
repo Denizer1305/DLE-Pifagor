@@ -1,10 +1,7 @@
 from __future__ import annotations
 
+from apps.testing.managers.integrity.querysets import TestAttemptIntegrityReportQuerySet
 from django.db import models
-
-from apps.testing.managers.integrity.querysets import (
-    TestAttemptIntegrityReportQuerySet,
-)
 
 
 class TestAttemptIntegrityReportManager(

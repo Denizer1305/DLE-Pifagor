@@ -8,6 +8,8 @@ class TestAttemptStatus(models.TextChoices):
     Статусы попытки прохождения теста.
     """
 
+    __test__ = False
+
     STARTED = "started", "Начата"
     SUBMITTED = "submitted", "Отправлена"
     NEEDS_REVIEW = "needs_review", "Требует проверки"

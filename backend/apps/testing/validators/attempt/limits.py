@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from apps.testing.constants import TestAttemptStatus
-from apps.testing.models import TestAttempt
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+
+from apps.testing.constants import TestAttemptStatus
 
 
 def validate_attempt_limit(
@@ -14,6 +14,8 @@ def validate_attempt_limit(
     """
     Проверяет, что лимит попыток теста не исчерпан.
     """
+
+    from apps.testing.models import TestAttempt
 
     attempts_count = (
         TestAttempt.objects.filter(
@@ -26,7 +28,9 @@ def validate_attempt_limit(
 
     if attempts_count >= test.max_attempts:
         raise ValidationError(
-            {"attempts": _("Лимит попыток прохождения теста исчерпан.")}
+            {
+                "attempts": _("Лимит попыток прохождения теста исчерпан.")
+            }
         )
 
 
@@ -39,6 +43,8 @@ def validate_no_active_attempt(
     Проверяет, что у обучающегося нет активной незавершённой попытки.
     """
 
+    from apps.testing.models import TestAttempt
+
     has_active_attempt = TestAttempt.objects.filter(
         test=test,
         learner=learner,
@@ -47,7 +53,9 @@ def validate_no_active_attempt(
 
     if has_active_attempt:
         raise ValidationError(
-            {"attempt": _("У обучающегося уже есть незавершённая попытка.")}
+            {
+                "attempt": _("У обучающегося уже есть незавершённая попытка.")
+            }
         )
 
 
@@ -62,10 +70,14 @@ def validate_attempt_number(
 
     if attempt_number < 1:
         raise ValidationError(
-            {"attempt_number": _("Номер попытки должен быть не меньше 1.")}
+            {
+                "attempt_number": _("Номер попытки должен быть не меньше 1.")
+            }
         )
 
     if attempt_number > test.max_attempts:
         raise ValidationError(
-            {"attempt_number": _("Номер попытки превышает лимит теста.")}
+            {
+                "attempt_number": _("Номер попытки превышает лимит теста.")
+            }
         )

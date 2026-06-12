@@ -1,16 +1,13 @@
 from __future__ import annotations
 
-from django.db import models
-
 from apps.testing.managers.bank.querysets import (
     QuestionBankItemQuerySet,
     QuestionBankOptionQuerySet,
 )
+from django.db import models
 
 
-class QuestionBankItemManager(
-    models.Manager.from_queryset(QuestionBankItemQuerySet)
-):
+class QuestionBankItemManager(models.Manager.from_queryset(QuestionBankItemQuerySet)):
     """
     Менеджер шаблонов вопросов банка тестовых заданий.
     """

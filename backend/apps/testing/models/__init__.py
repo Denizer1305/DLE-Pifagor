@@ -2,15 +2,12 @@ from __future__ import annotations
 
 from .answer import TestAttemptAnswer
 from .attempt import TestAttempt
+from .bank import QuestionBankItem, QuestionBankOption
+from .integrity import TestAttemptIntegrityReport
 from .option import TestQuestionOption
 from .question import TestQuestion
 from .result import TestLearnerResult
 from .test import Test
-from .bank import (
-    QuestionBankItem,
-    QuestionBankOption,
-)
-from .integrity import TestAttemptIntegrityReport
 
 __all__ = [
     "Test",

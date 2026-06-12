@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-from django.db import models
-
 from apps.testing.constants import IntegrityRiskLevel
+from django.db import models
 
 
 class TestAttemptIntegrityReportQuerySet(models.QuerySet):

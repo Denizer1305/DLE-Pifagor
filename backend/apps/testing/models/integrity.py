@@ -1,13 +1,9 @@
 from __future__ import annotations
 
+from apps.testing.constants import INTEGRITY_RISK_LEVEL_CHOICES, IntegrityRiskLevel
+from apps.testing.managers import TestAttemptIntegrityReportManager
 from django.db import models
 from django.utils import timezone
-
-from apps.testing.constants import (
-    INTEGRITY_RISK_LEVEL_CHOICES,
-    IntegrityRiskLevel,
-)
-from apps.testing.managers import TestAttemptIntegrityReportManager
 
 
 class TestAttemptIntegrityReport(models.Model):
@@ -76,3 +72,14 @@ class TestAttemptIntegrityReport(models.Model):
         """
 
         return f"{self.attempt} — {self.risk_level}"
+
+    def clean(self) -> None:
+        """
+        Валидирует отчёт добросовестности попытки.
+        """
+
+        super().clean()
+
+        from apps.testing.validators import validate_integrity_report
+
+        validate_integrity_report(report=self)

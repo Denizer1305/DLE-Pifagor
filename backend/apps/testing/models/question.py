@@ -159,6 +159,8 @@ class TestQuestion(models.Model):
         Запускает доменную валидацию вопроса.
         """
 
-        from apps.testing.validators import validate_question
+        super().clean()
 
-        validate_question(question=self)
+        from apps.testing.validators import validate_question_bank_source
+
+        validate_question_bank_source(question=self)

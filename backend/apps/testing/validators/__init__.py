@@ -16,6 +16,9 @@ from .attempt import (
     validate_attempt_number,
     validate_confirmation_values,
     validate_no_active_attempt,
+    validate_attempt_can_accept_answers_by_time,
+    validate_attempt_can_be_submitted_by_time,
+    validate_attempt_time_limit,
 )
 from .question import (
     validate_question,
@@ -23,6 +26,7 @@ from .question import (
     validate_question_options_for_publish,
     validate_question_score,
     validate_question_type_rules,
+    validate_question_bank_source
 )
 from .result import (
     validate_result,
@@ -36,6 +40,24 @@ from .test import (
     validate_test_attempt_settings,
     validate_test_scores,
     validate_test_structure,
+)
+from .bank import (
+    validate_bank_item,
+    validate_bank_item_can_be_archived,
+    validate_bank_item_can_be_published,
+    validate_bank_item_can_be_restored,
+    validate_bank_item_expected_answers,
+    validate_bank_item_score,
+    validate_bank_item_tags,
+    validate_bank_item_type_rules,
+    validate_bank_option,
+    validate_bank_option_relations,
+    validate_bank_option_score,
+)
+from .integrity import (
+    validate_integrity_report,
+    validate_integrity_report_flags,
+    validate_integrity_report_score,
 )
 
 __all__ = [
@@ -66,4 +88,22 @@ __all__ = [
     "validate_test_attempt_settings",
     "validate_test_scores",
     "validate_test_structure",
+    "validate_bank_item",
+    "validate_bank_item_can_be_archived",
+    "validate_bank_item_can_be_published",
+    "validate_bank_item_can_be_restored",
+    "validate_bank_item_expected_answers",
+    "validate_bank_item_score",
+    "validate_bank_item_tags",
+    "validate_bank_item_type_rules",
+    "validate_bank_option",
+    "validate_bank_option_relations",
+    "validate_bank_option_score",
+    "validate_attempt_can_accept_answers_by_time",
+    "validate_attempt_can_be_submitted_by_time",
+    "validate_attempt_time_limit",
+    "validate_integrity_report",
+    "validate_integrity_report_flags",
+    "validate_integrity_report_score",
+    "validate_question_bank_source",
 ]

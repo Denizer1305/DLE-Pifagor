@@ -45,7 +45,12 @@ export const useLocaleStore = defineStore("locale", () => {
     const locale = ref<LocaleCode>(getStoredLocale());
 
     const isEnglish = computed(() => locale.value === "en");
-    const nextLocale = computed<LocaleCode>(() => locale.value === "en" ? "ru" : "en");
+    const nextLocale = computed<LocaleCode>(() => {
+        const currentIndex = SUPPORTED_LOCALES.indexOf(locale.value);
+        const nextIndex = (currentIndex + 1) % SUPPORTED_LOCALES.length;
+
+        return SUPPORTED_LOCALES[nextIndex] || "ru";
+    });
 
     function setLocale(nextValue: LocaleCode): void {
         if (nextValue !== locale.value) {

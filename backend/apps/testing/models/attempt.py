@@ -138,23 +138,7 @@ class TestAttempt(models.Model):
 
     def clean(self) -> None:
         """
-        Запускает базовую доменную валидацию попытки.
+        Валидирует попытку прохождения теста.
         """
 
-        from apps.testing.validators import (
-            validate_attempt_number,
-            validate_confirmation_values,
-        )
-
-        if self.test_id:
-            validate_attempt_number(
-                attempt_number=self.attempt_number,
-                test=self.test,
-            )
-
-            if self.is_confirmed_by_teacher:
-                validate_confirmation_values(
-                    final_score=self.final_score,
-                    final_grade=self.final_grade,
-                    max_score=self.test.max_score,
-                )
+        super().clean()

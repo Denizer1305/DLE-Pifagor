@@ -1,8 +1,5 @@
 from __future__ import annotations
 
-from django.conf import settings
-from django.db import models
-
 from apps.testing.constants import (
     BANK_ITEM_DIFFICULTY_CHOICES,
     BANK_ITEM_STATUS_CHOICES,
@@ -15,10 +12,9 @@ from apps.testing.constants import (
     QuestionCheckMode,
     QuestionType,
 )
-from apps.testing.managers import (
-    QuestionBankItemManager,
-    QuestionBankOptionManager,
-)
+from apps.testing.managers import QuestionBankItemManager, QuestionBankOptionManager
+from django.conf import settings
+from django.db import models
 
 
 class QuestionBankItem(models.Model):
@@ -166,6 +162,17 @@ class QuestionBankItem(models.Model):
 
         return self.title
 
+    def clean(self) -> None:
+        """
+        Валидирует вариант шаблона вопроса.
+        """
+
+        super().clean()
+
+        from apps.testing.validators import validate_bank_option
+
+        validate_bank_option(option=self)
+
 
 class QuestionBankOption(models.Model):
     """
@@ -243,3 +250,14 @@ class QuestionBankOption(models.Model):
         """
 
         return self.text[:80]
+
+    def clean(self) -> None:
+        """
+        Валидирует вариант шаблона вопроса.
+        """
+
+        super().clean()
+
+        from apps.testing.validators import validate_bank_option
+
+        validate_bank_option(option=self)
