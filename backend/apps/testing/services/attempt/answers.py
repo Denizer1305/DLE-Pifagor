@@ -4,12 +4,13 @@ from typing import Any
 
 from apps.testing.constants import TestAttemptStatus
 from apps.testing.models import TestAttemptAnswer
+from apps.testing.services.attempt.time_limit import (
+    ensure_attempt_accepts_answers_by_time,
+)
 from apps.testing.validators import validate_answer
 from django.db import transaction
 
 ANSWER_MUTABLE_FIELDS = {
-    "attempt",
-    "attempt_id",
     "question",
     "question_id",
     "selected_option",
@@ -31,6 +32,7 @@ def save_attempt_answer(
     """
 
     _validate_attempt_accepts_answers(attempt=attempt)
+    ensure_attempt_accepts_answers_by_time(attempt=attempt)
 
     question_id = data["question_id"]
 

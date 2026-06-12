@@ -6,12 +6,19 @@ from .attempt import (
     TestAttemptPermission,
     TestAttemptReviewPermission,
 )
+from .bank import (
+    QuestionBankItemPermission,
+    QuestionBankOptionPermission,
+    QuestionBankStatusPermission,
+)
+from .integrity import TestAttemptIntegrityReportPermission
 from .question import (
     QuestionOrderingPermission,
     TestQuestionOptionPermission,
     TestQuestionPermission,
 )
 from .result import TestLearnerResultPermission, TestResultPublicationPermission
+from .review import TestReviewActionPermission, TestReviewQueuePermission
 from .shared import (
     is_authenticated_user,
     is_guardian,
@@ -29,6 +36,7 @@ from .shared import (
     user_can_track_attempt_object,
     user_has_role_code,
 )
+from .taking import TestTakingAttemptPermission, TestTakingPermission
 from .test import TestPermission, TestStatusPermission
 
 __all__ = [
@@ -59,4 +67,12 @@ __all__ = [
     "user_can_read_test_object",
     "user_can_track_attempt_object",
     "user_has_role_code",
+    "QuestionBankItemPermission",
+    "QuestionBankOptionPermission",
+    "QuestionBankStatusPermission",
+    "TestAttemptIntegrityReportPermission",
+    "TestReviewActionPermission",
+    "TestReviewQueuePermission",
+    "TestTakingAttemptPermission",
+    "TestTakingPermission",
 ]

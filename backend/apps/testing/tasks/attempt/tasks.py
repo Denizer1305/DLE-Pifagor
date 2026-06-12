@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from apps.testing.selectors import get_attempt_for_update
-from apps.testing.services import auto_check_attempt
+from apps.testing.services.attempt.time_limit import expire_attempt_if_needed
+from apps.testing.services.checking import auto_check_attempt
 from django.db import transaction
 
 
@@ -9,11 +10,19 @@ from django.db import transaction
 def auto_check_attempt_task(*, attempt_id: int):
     """
     Запускает автопроверку попытки теста.
-
-    Сейчас задача вызывается синхронно. При подключении Celery/RQ
-    эту функцию можно будет обернуть в shared_task без изменения сервисов.
     """
 
     attempt = get_attempt_for_update(attempt_id)
 
     return auto_check_attempt(attempt=attempt)
+
+
+@transaction.atomic
+def expire_attempt_task(*, attempt_id: int):
+    """
+    Помечает попытку истёкшей, если время прохождения закончилось.
+    """
+
+    attempt = get_attempt_for_update(attempt_id)
+
+    return expire_attempt_if_needed(attempt=attempt)

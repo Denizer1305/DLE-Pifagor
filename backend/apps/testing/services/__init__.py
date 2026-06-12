@@ -1,12 +1,28 @@
 from __future__ import annotations
 
 from .attempt import (
+    calculate_attempt_expires_at,
     cancel_test_attempt,
+    ensure_attempt_accepts_answers_by_time,
+    ensure_attempt_can_be_submitted_by_time,
+    expire_attempt_if_needed,
     save_attempt_answer,
     save_attempt_answers,
+    set_attempt_expires_at,
     start_test_attempt,
     submit_test_attempt,
     update_test_attempt,
+)
+from .bank import (
+    archive_bank_item,
+    copy_bank_item_to_test,
+    create_bank_item,
+    create_bank_option,
+    duplicate_bank_item,
+    publish_bank_item,
+    restore_bank_item,
+    update_bank_item,
+    update_bank_option,
 )
 from .checking import (
     auto_check_answer,
@@ -16,7 +32,15 @@ from .checking import (
     confirm_attempt_result,
     review_attempt_answer,
 )
-from .integrity import IntegrityFlag, IntegrityReport, build_attempt_integrity_report
+from .integrity import (
+    IntegrityFlag,
+    IntegrityReport,
+    build_and_save_attempt_integrity_report,
+    build_attempt_integrity_report,
+    build_attempt_integrity_report_payload,
+    calculate_integrity_risk_level,
+    save_attempt_integrity_report,
+)
 from .question import (
     create_question,
     create_question_option,
@@ -30,6 +54,18 @@ from .result import (
     publish_attempt_result,
     publish_learner_result,
     recalculate_learner_result,
+)
+from .review import (
+    build_teacher_testing_summary,
+    build_test_review_summary,
+    get_teacher_review_queue,
+    get_teacher_review_queue_count,
+    recalculate_attempt_score_from_answers,
+)
+from .taking import (
+    build_taking_test_payload,
+    ensure_learner_can_continue_attempt,
+    ensure_learner_can_take_test,
 )
 from .test import archive_test, create_test, publish_test, restore_test, update_test
 
@@ -64,4 +100,30 @@ __all__ = [
     "publish_attempt_result",
     "publish_learner_result",
     "recalculate_learner_result",
+    "archive_bank_item",
+    "copy_bank_item_to_test",
+    "create_bank_item",
+    "create_bank_option",
+    "duplicate_bank_item",
+    "publish_bank_item",
+    "restore_bank_item",
+    "update_bank_item",
+    "update_bank_option",
+    "build_and_save_attempt_integrity_report",
+    "build_attempt_integrity_report_payload",
+    "calculate_attempt_expires_at",
+    "calculate_integrity_risk_level",
+    "ensure_attempt_accepts_answers_by_time",
+    "ensure_attempt_can_be_submitted_by_time",
+    "expire_attempt_if_needed",
+    "save_attempt_integrity_report",
+    "set_attempt_expires_at",
+    "build_teacher_testing_summary",
+    "build_taking_test_payload",
+    "build_test_review_summary",
+    "ensure_learner_can_continue_attempt",
+    "ensure_learner_can_take_test",
+    "get_teacher_review_queue",
+    "get_teacher_review_queue_count",
+    "recalculate_attempt_score_from_answers",
 ]
