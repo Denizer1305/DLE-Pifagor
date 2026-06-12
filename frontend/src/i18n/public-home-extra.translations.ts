@@ -36,7 +36,7 @@
     "Партнёрство в действии": "Partnership in action",
     "Сильная цифровая среда появляется там, где образование, технологии и реальные пользователи работают вместе.": "A strong digital environment appears where education, technology, and real users work together.",
     "Технологический партнёр": "Technology partner",
-    "ООО «ЭЛРОС»": "ELROS LLC",
+    "ООО «ЭлРос»": "ElRos LLC",
     "Технологическое партнёрство и поддержка развития цифровой образовательной среды.": "Technology partnership and support for the development of the digital learning environment.",
     "Образовательный партнёр": "Educational partner",
     "ГАПОУ ВО «ВлГК им. Советкина»": "Vladimir College named after D.K. Sovetkin",

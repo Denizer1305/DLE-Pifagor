@@ -374,3 +374,44 @@
     color: var(--primary);
     background: var(--white-96);
 }
+
+.mobile-header-actions .language-select {
+    z-index: 3;
+}
+
+.mobile-header-actions .language-select__menu {
+    z-index: 4;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-header {
+        align-items: center;
+        gap: 10px;
+    }
+
+    .mobile-logo-text {
+        display: none;
+    }
+
+    .mobile-header-actions {
+        gap: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-menu-header {
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+
+    .mobile-logo img {
+        height: 36px;
+    }
+}
+
+@media (max-width: 360px) {
+    .mobile-menu-header {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}

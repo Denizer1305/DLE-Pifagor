@@ -1,6 +1,6 @@
 .auth-public-header {
     position: relative;
-    z-index: 20;
+    z-index: 1200;
     width: 100%;
     padding: 18px 0 0;
     pointer-events: none;
@@ -9,7 +9,7 @@
 .auth-public-header__shell {
     pointer-events: auto;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     width: min(100% - calc(var(--container-padding) * 2), var(--container-width));
     min-height: 80px;
     margin-inline: auto;
@@ -97,7 +97,13 @@
 }
 
 .auth-public-header__actions {
+    position: relative;
+    z-index: 2;
     display: inline-flex;
     align-items: center;
     gap: 10px;
+}
+
+.auth-public-header .language-select__menu {
+    z-index: 1300;
 }

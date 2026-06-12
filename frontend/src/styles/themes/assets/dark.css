@@ -653,6 +653,32 @@ body.dark-theme {
     color: var(--dark-text-muted);
 }
 
+.theme-dark .language-select__menu,
+.dark-theme .language-select__menu {
+    border-color: var(--dark-border);
+    background: rgba(13, 19, 31, 0.94);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+}
+
+.theme-dark .language-select__option,
+.dark-theme .language-select__option {
+    color: var(--dark-text-soft);
+}
+
+.theme-dark .language-select__option:hover,
+.theme-dark .language-select__option:focus-visible,
+.dark-theme .language-select__option:hover,
+.dark-theme .language-select__option:focus-visible {
+    color: var(--dark-text);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.theme-dark .language-select__option.is-active,
+.dark-theme .language-select__option.is-active {
+    color: var(--white);
+    background: var(--primary);
+}
+
 /* Home page real class overrides */
 
 .theme-dark .hero,
