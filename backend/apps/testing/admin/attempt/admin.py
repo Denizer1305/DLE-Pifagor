@@ -24,6 +24,7 @@ class TestAttemptAdmin(admin.ModelAdmin):
         "final_grade",
         "is_confirmed_by_teacher",
         "is_visible_to_learner",
+        "expires_at",
         "updated_at",
     )
     list_filter = (
@@ -56,6 +57,8 @@ class TestAttemptAdmin(admin.ModelAdmin):
         "published_at",
         "created_at",
         "updated_at",
+        "expires_at",
+        "expired_at",
     )
     fieldsets = (
         (
@@ -115,6 +118,8 @@ class TestAttemptAdmin(admin.ModelAdmin):
                     "published_at",
                     "created_at",
                     "updated_at",
+                    "expires_at",
+                    "expired_at",
                 )
             },
         ),

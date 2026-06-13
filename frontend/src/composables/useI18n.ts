@@ -1,7 +1,8 @@
 import { computed } from "vue";
 
 import { messages, type MessageLocale } from "@/i18n/messages";
-import { publicContentTranslations } from "@/i18n/public-content.translations";
+import { publicContentTranslationsByLocale } from "@/i18n/public-content.translations";
+import type { LocaleCode } from "@/stores/locale.store";
 import { useLocaleStore } from "@/stores/locale.store";
 
 type JsonLike =
@@ -45,18 +46,26 @@ function interpolate(
     }, message);
 }
 
-function localizeValue<T>(value: T, isEnglish: boolean): T {
-    if (!isEnglish) {
+function localizeValue<T>(value: T, locale: LocaleCode): T {
+    if (locale === "ru") {
         return value;
     }
 
     if (typeof value === "string") {
-        return (publicContentTranslations[value] || value) as T;
+        const translations = publicContentTranslationsByLocale[locale] as
+            | Record<string, string>
+            | undefined;
+
+        return (
+            translations?.[value]
+            || publicContentTranslationsByLocale.en[value]
+            || value
+        ) as T;
     }
 
     if (Array.isArray(value)) {
         return value.map((item) => {
-            return localizeValue(item, isEnglish);
+            return localizeValue(item, locale);
         }) as T;
     }
 
@@ -65,7 +74,7 @@ function localizeValue<T>(value: T, isEnglish: boolean): T {
             Object.entries(value).map(([key, item]) => {
                 return [
                     key,
-                    localizeValue(item as JsonLike, isEnglish),
+                    localizeValue(item as JsonLike, locale),
                 ];
             }),
         ) as T;
@@ -77,7 +86,9 @@ function localizeValue<T>(value: T, isEnglish: boolean): T {
 export function useI18n() {
     const localeStore = useLocaleStore();
     const messageLocale = computed<MessageLocale>(() => {
-        return localeStore.locale === "en" ? "en" : "ru";
+        return localeStore.locale in messages
+            ? localeStore.locale as MessageLocale
+            : "ru";
     });
 
     const locale = computed(() => {
@@ -100,11 +111,11 @@ export function useI18n() {
     }
 
     function localizePublicContent<T>(content: T): T {
-        return localizeValue(content, localeStore.isEnglish);
+        return localizeValue(content, localeStore.locale);
     }
 
     function tr(value: string): string {
-        return localizeValue(value, localeStore.isEnglish);
+        return localizeValue(value, localeStore.locale);
     }
 
     return {

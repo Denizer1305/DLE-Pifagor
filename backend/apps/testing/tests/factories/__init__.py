@@ -10,12 +10,22 @@ from apps.course.tests.factories import (
     create_teacher,
 )
 from apps.testing.tests.factories.attempts import create_answer, create_attempt
+from apps.testing.tests.factories.bank import (
+    create_bank_item,
+    create_bank_item_with_options,
+    create_bank_option,
+    create_published_bank_item,
+)
 from apps.testing.tests.factories.common import (
     extract_results,
     get_choice_value,
     unique_code,
     unique_email,
     unique_title,
+)
+from apps.testing.tests.factories.integrity import (
+    create_integrity_report,
+    create_risky_integrity_report,
 )
 from apps.testing.tests.factories.results import create_result, create_visible_result
 from apps.testing.tests.factories.structure import (
@@ -46,4 +56,10 @@ __all__ = [
     "unique_code",
     "unique_email",
     "unique_title",
+    "create_bank_item",
+    "create_bank_item_with_options",
+    "create_bank_option",
+    "create_integrity_report",
+    "create_published_bank_item",
+    "create_risky_integrity_report",
 ]

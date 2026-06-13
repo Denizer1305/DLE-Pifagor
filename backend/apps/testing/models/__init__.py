@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from .answer import TestAttemptAnswer
 from .attempt import TestAttempt
+from .bank import QuestionBankItem, QuestionBankOption
+from .integrity import TestAttemptIntegrityReport
 from .option import TestQuestionOption
 from .question import TestQuestion
 from .result import TestLearnerResult
@@ -14,4 +16,7 @@ __all__ = [
     "TestLearnerResult",
     "TestQuestion",
     "TestQuestionOption",
+    "QuestionBankItem",
+    "QuestionBankOption",
+    "TestAttemptIntegrityReport",
 ]

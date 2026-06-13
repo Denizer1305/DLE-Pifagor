@@ -1,18 +1,23 @@
 from __future__ import annotations
 
+from django.db import models
 
-class TestAttemptStatus:
+
+class TestAttemptStatus(models.TextChoices):
     """
     Статусы попытки прохождения теста.
     """
 
-    STARTED = "started"
-    SUBMITTED = "submitted"
-    AUTO_CHECKED = "auto_checked"
-    NEEDS_REVIEW = "needs_review"
-    CONFIRMED = "confirmed"
-    PUBLISHED = "published"
-    CANCELLED = "cancelled"
+    __test__ = False
+
+    STARTED = "started", "Начата"
+    SUBMITTED = "submitted", "Отправлена"
+    NEEDS_REVIEW = "needs_review", "Требует проверки"
+    AUTO_CHECKED = "auto_checked", "Проверена автоматически"
+    CONFIRMED = "confirmed", "Подтверждена преподавателем"
+    PUBLISHED = "published", "Опубликована"
+    EXPIRED = "expired", "Время истекло"
+    CANCELLED = "cancelled", "Отменена"
 
 
 TEST_ATTEMPT_STATUS_CHOICES = (
@@ -26,15 +31,15 @@ TEST_ATTEMPT_STATUS_CHOICES = (
 )
 
 
-class AttemptCheckStatus:
+class AttemptCheckStatus(models.TextChoices):
     """
-    Статусы проверки ответа/попытки.
+    Статусы проверки попытки.
     """
 
-    NOT_CHECKED = "not_checked"
-    AUTO_CHECKED = "auto_checked"
-    NEEDS_REVIEW = "needs_review"
-    CHECKED = "checked"
+    NOT_CHECKED = "not_checked", "Не проверена"
+    NEEDS_REVIEW = "needs_review", "Требует проверки"
+    AUTO_CHECKED = "auto_checked", "Проверена автоматически"
+    CHECKED = "checked", "Проверена"
 
 
 ATTEMPT_CHECK_STATUS_CHOICES = (

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from .bank_source import validate_question_bank_source
 from .option_rules import validate_question_options_for_publish
 from .score_rules import validate_question_score
 from .type_rules import validate_question_expected_answers, validate_question_type_rules
@@ -21,4 +22,5 @@ __all__ = [
     "validate_question_options_for_publish",
     "validate_question_score",
     "validate_question_type_rules",
+    "validate_question_bank_source",
 ]

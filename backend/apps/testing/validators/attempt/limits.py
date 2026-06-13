@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from apps.testing.constants import TestAttemptStatus
-from apps.testing.models import TestAttempt
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -14,6 +13,8 @@ def validate_attempt_limit(
     """
     Проверяет, что лимит попыток теста не исчерпан.
     """
+
+    from apps.testing.models import TestAttempt
 
     attempts_count = (
         TestAttempt.objects.filter(
@@ -38,6 +39,8 @@ def validate_no_active_attempt(
     """
     Проверяет, что у обучающегося нет активной незавершённой попытки.
     """
+
+    from apps.testing.models import TestAttempt
 
     has_active_attempt = TestAttempt.objects.filter(
         test=test,

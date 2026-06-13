@@ -10,6 +10,11 @@ class TestQuestionReadSerializer(serializers.ModelSerializer):
     Read-сериализатор вопроса теста.
     """
 
+    source_bank_item_title = serializers.CharField(
+        source="source_bank_item.title",
+        read_only=True,
+        allow_null=True,
+    )
     test_title = serializers.CharField(
         source="test.title",
         read_only=True,
@@ -25,6 +30,8 @@ class TestQuestionReadSerializer(serializers.ModelSerializer):
             "id",
             "test",
             "test_title",
+            "source_bank_item",
+            "source_bank_item_title",
             "question_type",
             "check_mode",
             "title",
@@ -35,9 +42,13 @@ class TestQuestionReadSerializer(serializers.ModelSerializer):
             "case_sensitive",
             "order",
             "score",
+            "difficulty",
+            "tags_data",
+            "is_reusable",
             "is_required",
             "is_active",
-            "options",
             "created_at",
             "updated_at",
+            "options",
         )
+        read_only_fields = fields

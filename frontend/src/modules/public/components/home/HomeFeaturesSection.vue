@@ -26,7 +26,7 @@ defineProps<Props>();
                 <div class="features-col main">
                     <HomeFeatureCard
                         v-for="card in content.mainCards"
-                        :key="card.title"
+                        :key="card.variant || card.icon"
                         :card="card"
                     />
                 </div>
@@ -34,7 +34,7 @@ defineProps<Props>();
                 <div class="features-col side">
                     <HomeFeatureCard
                         v-for="card in content.sideCards"
-                        :key="card.title"
+                        :key="card.variant || card.icon"
                         :card="card"
                     />
                 </div>

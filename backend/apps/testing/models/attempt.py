@@ -52,6 +52,17 @@ class TestAttempt(models.Model):
     confirmed_at = models.DateTimeField(null=True, blank=True)
     published_at = models.DateTimeField(null=True, blank=True)
 
+    expires_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name="Время истечения попытки",
+    )
+    expired_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name="Дата истечения попытки",
+    )
+
     auto_score = models.DecimalField(
         max_digits=8,
         decimal_places=2,
@@ -115,6 +126,7 @@ class TestAttempt(models.Model):
                 fields=("is_confirmed_by_teacher",), name="tst_attempt_conf_idx"
             ),
             models.Index(fields=("is_visible_to_learner",), name="tst_attempt_vis_idx"),
+            models.Index(fields=("expires_at",), name="tst_attempt_expires_idx"),
         )
 
     def __str__(self) -> str:
@@ -126,23 +138,7 @@ class TestAttempt(models.Model):
 
     def clean(self) -> None:
         """
-        Запускает базовую доменную валидацию попытки.
+        Валидирует попытку прохождения теста.
         """
 
-        from apps.testing.validators import (
-            validate_attempt_number,
-            validate_confirmation_values,
-        )
-
-        if self.test_id:
-            validate_attempt_number(
-                attempt_number=self.attempt_number,
-                test=self.test,
-            )
-
-            if self.is_confirmed_by_teacher:
-                validate_confirmation_values(
-                    final_score=self.final_score,
-                    final_grade=self.final_grade,
-                    max_score=self.test.max_score,
-                )
+        super().clean()

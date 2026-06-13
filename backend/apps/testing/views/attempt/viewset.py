@@ -226,6 +226,7 @@ class TestAttemptViewSet(ModelViewSet):
         report = build_attempt_integrity_report_task(
             attempt_id=self.get_object().id,
         )
+        report.setdefault("flags", report.get("flags_data", []))
 
         return Response(report)
 

@@ -31,12 +31,12 @@ export const homePartners: HomePartnersContent = {
         {
             variant: "left",
             tag: "Технологический партнёр",
-            name: "ООО «ЭЛРОС»",
+            name: "ООО «ЭлРос»",
             text:
                 "Технологическое партнёрство и поддержка развития цифровой образовательной среды.",
             image: {
                 src: elros,
-                alt: "ООО «ЭЛРОС»",
+                alt: "ООО «ЭлРос»",
             },
         },
         {

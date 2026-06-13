@@ -3,6 +3,10 @@ from __future__ import annotations
 from apps.testing.constants import AttemptCheckStatus, TestAttemptStatus, TestStatus
 from apps.testing.models import TestAttempt
 from apps.testing.services.attempt.payloads import apply_attempt_payload
+from apps.testing.services.attempt.time_limit import (
+    calculate_attempt_expires_at,
+    ensure_attempt_can_be_submitted_by_time,
+)
 from apps.testing.validators import (
     validate_attempt_can_be_cancelled,
     validate_attempt_can_be_submitted,
@@ -53,6 +57,8 @@ def start_test_attempt(
         started_at=timezone.now(),
     )
 
+    attempt.expires_at = calculate_attempt_expires_at(attempt=attempt)
+
     attempt.full_clean()
     attempt.save()
 
@@ -69,6 +75,7 @@ def submit_test_attempt(
     """
 
     validate_attempt_can_be_submitted(attempt=attempt)
+    ensure_attempt_can_be_submitted_by_time(attempt=attempt)
 
     attempt.status = TestAttemptStatus.SUBMITTED
     attempt.submitted_at = timezone.now()

@@ -1,5 +1,18 @@
 from __future__ import annotations
 
+from apps.testing.constants.bank import (
+    BANK_ITEM_DIFFICULTY_CHOICES,
+    BANK_ITEM_STATUS_CHOICES,
+    BANK_ITEM_VISIBILITY_CHOICES,
+    BankItemDifficulty,
+    BankItemStatus,
+    BankItemVisibility,
+)
+from apps.testing.constants.integrity import (
+    INTEGRITY_RISK_LEVEL_CHOICES,
+    IntegrityRiskLevel,
+)
+
 from .attempt import (
     ATTEMPT_CHECK_STATUS_CHOICES,
     TEST_ATTEMPT_STATUS_CHOICES,
@@ -42,4 +55,12 @@ __all__ = [
     "TestAttemptStatus",
     "TestStatus",
     "TestVisibility",
+    "BANK_ITEM_DIFFICULTY_CHOICES",
+    "BANK_ITEM_STATUS_CHOICES",
+    "BANK_ITEM_VISIBILITY_CHOICES",
+    "BankItemDifficulty",
+    "BankItemStatus",
+    "BankItemVisibility",
+    "INTEGRITY_RISK_LEVEL_CHOICES",
+    "IntegrityRiskLevel",
 ]
