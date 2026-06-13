@@ -24,6 +24,16 @@ from apps.testing.tests.factories.structure import (
     create_question,
     create_test,
 )
+from apps.testing.tests.factories.bank import (
+    create_bank_item,
+    create_bank_item_with_options,
+    create_bank_option,
+    create_published_bank_item,
+)
+from apps.testing.tests.factories.integrity import (
+    create_integrity_report,
+    create_risky_integrity_report,
+)
 
 __all__ = [
     "create_answer",
@@ -46,4 +56,10 @@ __all__ = [
     "unique_code",
     "unique_email",
     "unique_title",
+    "create_bank_item",
+    "create_bank_item_with_options",
+    "create_bank_option",
+    "create_integrity_report",
+    "create_published_bank_item",
+    "create_risky_integrity_report",
 ]

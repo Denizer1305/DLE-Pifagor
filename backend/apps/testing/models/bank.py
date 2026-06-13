@@ -164,14 +164,14 @@ class QuestionBankItem(models.Model):
 
     def clean(self) -> None:
         """
-        Валидирует вариант шаблона вопроса.
+        Валидирует шаблон вопроса банка тестовых заданий.
         """
 
         super().clean()
 
-        from apps.testing.validators import validate_bank_option
+        from apps.testing.validators import validate_bank_item
 
-        validate_bank_option(option=self)
+        validate_bank_item(item=self)
 
 
 class QuestionBankOption(models.Model):
