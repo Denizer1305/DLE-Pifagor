@@ -8,10 +8,7 @@ from .codes import (
 )
 from .dates import now_plus_days
 from .hashing import hash_value
-from .masking import (
-    mask_email,
-    mask_phone,
-)
+from .masking import mask_email, mask_phone
 from .request import get_client_ip
 
 __all__ = [

@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from django.db import models
-
 from apps.core.managers.querysets import (
     ArchivableQuerySet,
     LifecycleQuerySet,
@@ -9,6 +7,7 @@ from apps.core.managers.querysets import (
     SoftDeleteQuerySet,
     TimeStampedQuerySet,
 )
+from django.db import models
 
 
 class TimeStampedManager(models.Manager.from_queryset(TimeStampedQuerySet)):

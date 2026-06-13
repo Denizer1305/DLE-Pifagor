@@ -18,10 +18,7 @@ def is_active_user(user) -> bool:
     Проверяет, что пользователь авторизован и активен.
     """
 
-    return bool(
-        is_authenticated_user(user)
-        and getattr(user, "is_active", False)
-    )
+    return bool(is_authenticated_user(user) and getattr(user, "is_active", False))
 
 
 def is_authenticated_active_user(user) -> bool:

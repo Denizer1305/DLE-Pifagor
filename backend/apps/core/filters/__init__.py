@@ -1,14 +1,7 @@
 from __future__ import annotations
 
-from .dates import (
-    CreatedAtRangeFilterMixin,
-    UpdatedAtRangeFilterMixin,
-)
-from .lifecycle import (
-    IsActiveFilterMixin,
-    IsArchivedFilterMixin,
-    IsDeletedFilterMixin,
-)
+from .dates import CreatedAtRangeFilterMixin, UpdatedAtRangeFilterMixin
+from .lifecycle import IsActiveFilterMixin, IsArchivedFilterMixin, IsDeletedFilterMixin
 from .publication import IsPublishedFilterMixin
 from .status import StatusFilterMixin
 

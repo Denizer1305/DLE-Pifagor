@@ -24,10 +24,7 @@ class PermissionByActionMixin:
         поведение родительского класса.
         """
 
-        if (
-            hasattr(self, "action")
-            and self.action in self.permission_action_classes
-        ):
+        if hasattr(self, "action") and self.action in self.permission_action_classes:
             return [
                 permission()
                 for permission in self.permission_action_classes[self.action]

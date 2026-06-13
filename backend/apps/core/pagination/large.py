@@ -1,9 +1,6 @@
 from __future__ import annotations
 
-from apps.core.constants import (
-    LARGE_PAGE_SIZE,
-    MAX_LARGE_PAGE_SIZE,
-)
+from apps.core.constants import LARGE_PAGE_SIZE, MAX_LARGE_PAGE_SIZE
 from apps.core.pagination.page_number import DefaultPageNumberPagination
 
 

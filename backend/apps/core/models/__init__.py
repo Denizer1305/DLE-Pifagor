@@ -1,15 +1,7 @@
 from __future__ import annotations
 
-from .audit import (
-    AuditFieldsModel,
-    CreatedByModel,
-    UpdatedByModel,
-)
-from .lifecycle import (
-    ArchivableModel,
-    LifecycleModel,
-    SoftDeleteModel,
-)
+from .audit import AuditFieldsModel, CreatedByModel, UpdatedByModel
+from .lifecycle import ArchivableModel, LifecycleModel, SoftDeleteModel
 from .publication import PublishableModel
 from .timestamped import TimeStampedModel
 

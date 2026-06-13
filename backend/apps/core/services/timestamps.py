@@ -20,7 +20,9 @@ def clear_field(instance: models.Model, field_name: str) -> None:
     setattr(instance, field_name, None)
 
 
-def clear_fields(instance: models.Model, field_names: list[str] | tuple[str, ...]) -> None:
+def clear_fields(
+    instance: models.Model, field_names: list[str] | tuple[str, ...]
+) -> None:
     """
     Очищает несколько полей модели.
     """
@@ -34,7 +36,4 @@ def has_model_field(instance: models.Model, field_name: str) -> bool:
     Проверяет, есть ли поле у модели.
     """
 
-    return any(
-        field.name == field_name
-        for field in instance._meta.fields
-    )
+    return any(field.name == field_name for field in instance._meta.fields)

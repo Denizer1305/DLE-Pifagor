@@ -14,12 +14,7 @@ def normalize_phone_number(value: str) -> str:
     Нормализует номер телефона для проверки.
     """
 
-    return (
-        value.replace(" ", "")
-        .replace("-", "")
-        .replace("(", "")
-        .replace(")", "")
-    )
+    return value.replace(" ", "").replace("-", "").replace("(", "").replace(")", "")
 
 
 def validate_phone_number(value: str) -> None:

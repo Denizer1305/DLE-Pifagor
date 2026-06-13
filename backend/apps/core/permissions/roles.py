@@ -1,12 +1,7 @@
 from __future__ import annotations
 
+from apps.core.permissions.predicates import has_any_role, has_role, is_active_user
 from rest_framework.permissions import BasePermission
-
-from apps.core.permissions.predicates import (
-    has_any_role,
-    has_role,
-    is_active_user,
-)
 
 
 class RoleRequiredPermission(BasePermission):

@@ -1,9 +1,6 @@
 from __future__ import annotations
 
-from .common import (
-    validate_max_length,
-    validate_required_text,
-)
+from .common import validate_max_length, validate_required_text
 from .dates import (
     validate_birth_date_not_future,
     validate_date_not_past,
@@ -22,11 +19,7 @@ from .numbers import (
     validate_positive_integer,
     validate_positive_number,
 )
-from .phones import (
-    PHONE_PATTERN,
-    normalize_phone_number,
-    validate_phone_number,
-)
+from .phones import PHONE_PATTERN, normalize_phone_number, validate_phone_number
 
 __all__ = [
     "IMAGE_EXTENSIONS",

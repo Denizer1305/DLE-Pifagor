@@ -3,14 +3,9 @@ from __future__ import annotations
 from collections.abc import Iterable
 from typing import Any, TypeVar
 
-from django.db import models
-
 from apps.core.services.models import clean_and_save_model
-from apps.core.services.timestamps import (
-    clear_field,
-    clear_fields,
-    set_now,
-)
+from apps.core.services.timestamps import clear_field, clear_fields, set_now
+from django.db import models
 
 ModelT = TypeVar("ModelT", bound=models.Model)
 

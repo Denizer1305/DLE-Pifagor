@@ -1,16 +1,7 @@
 from __future__ import annotations
 
-from .base import (
-    IsAuthenticatedAndActive,
-    IsReadOnly,
-    IsSuperUser,
-)
-from .ownership import (
-    IsOwner,
-    IsOwnerOrReadOnly,
-    get_object_owner,
-    is_object_owner,
-)
+from .base import IsAuthenticatedAndActive, IsReadOnly, IsSuperUser
+from .ownership import IsOwner, IsOwnerOrReadOnly, get_object_owner, is_object_owner
 from .predicates import (
     has_any_role,
     has_role,

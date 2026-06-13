@@ -2,10 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from apps.core.constants import (
-    API_META_KEY,
-    API_SUCCESS_KEY,
-)
+from apps.core.constants import API_META_KEY, API_SUCCESS_KEY
 from rest_framework import status
 from rest_framework.response import Response
 

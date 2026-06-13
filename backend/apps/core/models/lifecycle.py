@@ -1,10 +1,9 @@
 from __future__ import annotations
 
+from apps.core.models.timestamped import TimeStampedModel
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-
-from apps.core.models.timestamped import TimeStampedModel
 
 
 class ArchivableModel(models.Model):

@@ -1,11 +1,7 @@
 from __future__ import annotations
 
+from apps.core.permissions.predicates import is_active_user, is_safe_method
 from rest_framework.permissions import BasePermission
-
-from apps.core.permissions.predicates import (
-    is_active_user,
-    is_safe_method,
-)
 
 
 class IsAuthenticatedAndActive(BasePermission):
@@ -55,7 +51,5 @@ class IsSuperUser(BasePermission):
         user = request.user
 
         return bool(
-            user
-            and user.is_authenticated
-            and getattr(user, "is_superuser", False)
+            user and user.is_authenticated and getattr(user, "is_superuser", False)
         )

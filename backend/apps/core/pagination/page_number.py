@@ -1,9 +1,6 @@
 from __future__ import annotations
 
-from apps.core.constants import (
-    DEFAULT_PAGE_SIZE,
-    MAX_PAGE_SIZE,
-)
+from apps.core.constants import DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE
 from apps.core.pagination.base import paginated_response
 from rest_framework.pagination import PageNumberPagination
 

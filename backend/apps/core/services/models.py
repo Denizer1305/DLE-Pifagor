@@ -3,9 +3,8 @@ from __future__ import annotations
 from collections.abc import Iterable, Mapping
 from typing import Any, TypeVar
 
-from django.db import models
-
 from apps.core.services.timestamps import has_model_field
+from django.db import models
 
 ModelT = TypeVar("ModelT", bound=models.Model)
 

@@ -30,11 +30,7 @@ def mask_phone(phone: str) -> str:
     if not phone:
         return ""
 
-    cleaned_phone = "".join(
-        char
-        for char in phone
-        if char.isdigit() or char == "+"
-    )
+    cleaned_phone = "".join(char for char in phone if char.isdigit() or char == "+")
 
     if len(cleaned_phone) <= 4:
         return "****"

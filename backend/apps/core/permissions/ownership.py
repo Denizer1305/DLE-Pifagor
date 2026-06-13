@@ -1,12 +1,7 @@
 from __future__ import annotations
 
+from apps.core.permissions.predicates import is_authenticated_user, is_safe_method
 from rest_framework.permissions import BasePermission
-
-from apps.core.permissions.predicates import (
-    is_authenticated_user,
-    is_safe_method,
-)
-
 
 OWNER_FIELD_NAMES = (
     "user",

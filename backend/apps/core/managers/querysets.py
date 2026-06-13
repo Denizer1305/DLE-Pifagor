@@ -111,8 +111,7 @@ class LifecycleQuerySet(ArchivableQuerySet, SoftDeleteQuerySet):
         """
 
         return self.filter(
-            models.Q(archived_at__isnull=False)
-            | models.Q(deleted_at__isnull=False)
+            models.Q(archived_at__isnull=False) | models.Q(deleted_at__isnull=False)
         )
 
 

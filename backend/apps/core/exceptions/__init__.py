@@ -1,9 +1,6 @@
 from __future__ import annotations
 
-from .base import (
-    ApplicationError,
-    ErrorDetail,
-)
+from .base import ApplicationError, ErrorDetail
 from .types import (
     ConflictApplicationError,
     ExternalServiceApplicationError,

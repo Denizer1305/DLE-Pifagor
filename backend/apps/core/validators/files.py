@@ -62,17 +62,14 @@ def validate_file_extension(
     """
 
     normalized_extensions = {
-        extension.lower().lstrip(".")
-        for extension in allowed_extensions
+        extension.lower().lstrip(".") for extension in allowed_extensions
     }
     extension = get_file_extension(value)
 
     if extension not in normalized_extensions:
         raise ValidationError(
             message
-            or _(
-                "Недопустимый формат файла. Разрешённые форматы: %(extensions)s."
-            )
+            or _("Недопустимый формат файла. Разрешённые форматы: %(extensions)s.")
             % {
                 "extensions": ", ".join(sorted(normalized_extensions)),
             }

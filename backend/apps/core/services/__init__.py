@@ -15,12 +15,7 @@ from .status import (
     set_status,
     set_status_with_timestamp,
 )
-from .timestamps import (
-    clear_field,
-    clear_fields,
-    has_model_field,
-    set_now,
-)
+from .timestamps import clear_field, clear_fields, has_model_field, set_now
 
 __all__ = [
     "apply_model_fields",

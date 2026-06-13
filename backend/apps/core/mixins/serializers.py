@@ -25,10 +25,7 @@ class SerializerByActionMixin:
         serializer_class родительского класса.
         """
 
-        if (
-            hasattr(self, "action")
-            and self.action in self.serializer_action_classes
-        ):
+        if hasattr(self, "action") and self.action in self.serializer_action_classes:
             return self.serializer_action_classes[self.action]
 
         return super().get_serializer_class()
