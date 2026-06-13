@@ -1,21 +1,15 @@
 from __future__ import annotations
 
-from django.test import TestCase
-
-from apps.testing.constants import (
-    BankItemStatus,
-    BankItemVisibility,
-)
-from apps.testing.models import (
-    QuestionBankItem as BankItemModel,
-    QuestionBankOption as BankOptionModel,
-)
+from apps.testing.constants import BankItemStatus, BankItemVisibility
+from apps.testing.models import QuestionBankItem as BankItemModel
+from apps.testing.models import QuestionBankOption as BankOptionModel
 from apps.testing.tests.factories import (
     create_bank_item,
     create_bank_item_with_options,
     create_bank_option,
     create_published_bank_item,
 )
+from django.test import TestCase
 
 
 class QuestionBankModelsTestCase(TestCase):

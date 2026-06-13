@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from django.test import TestCase
-
 from apps.testing.constants import (
     BankItemDifficulty,
     BankItemStatus,
@@ -21,6 +19,7 @@ from apps.testing.tests.factories import (
     create_published_bank_item,
     create_teacher,
 )
+from django.test import TestCase
 
 
 class QuestionBankItemSelectorsTestCase(TestCase):

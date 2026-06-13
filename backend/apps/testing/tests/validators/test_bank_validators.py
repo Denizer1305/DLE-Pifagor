@@ -1,13 +1,6 @@
 from __future__ import annotations
 
-from django.core.exceptions import ValidationError
-from django.test import TestCase
-
-from apps.testing.constants import (
-    BankItemStatus,
-    QuestionCheckMode,
-    QuestionType,
-)
+from apps.testing.constants import BankItemStatus, QuestionCheckMode, QuestionType
 from apps.testing.tests.factories import (
     create_bank_item,
     create_bank_item_with_options,
@@ -20,6 +13,8 @@ from apps.testing.validators import (
     validate_bank_item_can_be_restored,
     validate_bank_option,
 )
+from django.core.exceptions import ValidationError
+from django.test import TestCase
 
 
 class QuestionBankItemValidatorsTestCase(TestCase):

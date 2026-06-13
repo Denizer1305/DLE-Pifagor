@@ -1,13 +1,6 @@
 from __future__ import annotations
 
-from django.urls import reverse
-from rest_framework import status
-from rest_framework.test import APITestCase
-
-from apps.testing.constants import (
-    TestAttemptStatus,
-    TestStatus,
-)
+from apps.testing.constants import TestAttemptStatus, TestStatus
 from apps.testing.tests.factories import (
     create_attempt,
     create_choice_question_with_options,
@@ -16,6 +9,9 @@ from apps.testing.tests.factories import (
     create_learner,
     create_test,
 )
+from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase
 
 
 class LearnerTakingApiTestCase(APITestCase):

@@ -2,12 +2,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from django.test import TestCase
-
-from apps.testing.constants import (
-    AttemptCheckStatus,
-    TestAttemptStatus,
-)
+from apps.testing.constants import AttemptCheckStatus, TestAttemptStatus
 from apps.testing.services.review import (
     build_teacher_testing_summary,
     build_test_review_summary,
@@ -23,6 +18,7 @@ from apps.testing.tests.factories import (
     create_teacher,
     create_test,
 )
+from django.test import TestCase
 
 
 class ReviewQueueServicesTestCase(TestCase):

@@ -2,14 +2,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from django.urls import reverse
-from rest_framework import status
-from rest_framework.test import APITestCase
-
-from apps.testing.constants import (
-    AttemptCheckStatus,
-    TestAttemptStatus,
-)
+from apps.testing.constants import AttemptCheckStatus, TestAttemptStatus
 from apps.testing.tests.factories import (
     create_answer,
     create_attempt,
@@ -17,6 +10,9 @@ from apps.testing.tests.factories import (
     create_teacher,
     create_test,
 )
+from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase
 
 
 class TeacherReviewApiTestCase(APITestCase):
@@ -61,10 +57,7 @@ class TeacherReviewApiTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        attempt_ids = {
-            item["id"]
-            for item in response.json()
-        }
+        attempt_ids = {item["id"] for item in response.json()}
 
         self.assertIn(attempt.id, attempt_ids)
         self.assertNotIn(foreign_attempt.id, attempt_ids)
@@ -99,10 +92,7 @@ class TeacherReviewApiTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        attempt_ids = {
-            item["id"]
-            for item in response.json()
-        }
+        attempt_ids = {item["id"] for item in response.json()}
 
         self.assertIn(attempt.id, attempt_ids)
         self.assertNotIn(another_attempt.id, attempt_ids)
@@ -192,10 +182,7 @@ class TeacherReviewApiTestCase(APITestCase):
         self.client.force_authenticate(user=self.teacher)
 
         response = self.client.post(
-            reverse(
-                "testing_teacher:"
-                "testing-teacher-review-recalculate-attempt"
-            ),
+            reverse("testing_teacher:" "testing-teacher-review-recalculate-attempt"),
             {
                 "attempt_id": attempt.id,
                 "confirm": True,
@@ -221,10 +208,7 @@ class TeacherReviewApiTestCase(APITestCase):
         self.client.force_authenticate(user=self.teacher)
 
         response = self.client.post(
-            reverse(
-                "testing_teacher:"
-                "testing-teacher-review-recalculate-attempt"
-            ),
+            reverse("testing_teacher:" "testing-teacher-review-recalculate-attempt"),
             {
                 "attempt_id": attempt.id,
                 "confirm": True,

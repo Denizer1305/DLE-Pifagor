@@ -1,28 +1,25 @@
 from __future__ import annotations
 
-from django.core.exceptions import ValidationError
-from django.test import TestCase
-
 from apps.testing.constants import BankItemStatus
 from apps.testing.models import TestQuestion as QuestionModel
+from apps.testing.services.bank import archive_bank_item, copy_bank_item_to_test
+from apps.testing.services.bank import create_bank_item as create_bank_item_service
+from apps.testing.services.bank import create_bank_option as create_bank_option_service
 from apps.testing.services.bank import (
-    archive_bank_item,
-    copy_bank_item_to_test,
-    create_bank_item as create_bank_item_service,
-    create_bank_option as create_bank_option_service,
     duplicate_bank_item,
     publish_bank_item,
     restore_bank_item,
     update_bank_item,
     update_bank_option,
 )
+from apps.testing.tests.factories import create_bank_item as create_bank_item_factory
+from apps.testing.tests.factories import create_bank_item_with_options
 from apps.testing.tests.factories import (
-    create_bank_item as create_bank_item_factory,
-    create_bank_item_with_options,
     create_bank_option as create_bank_option_factory,
-    create_published_bank_item,
-    create_test,
 )
+from apps.testing.tests.factories import create_published_bank_item, create_test
+from django.core.exceptions import ValidationError
+from django.test import TestCase
 
 
 class QuestionBankMutationServicesTestCase(TestCase):

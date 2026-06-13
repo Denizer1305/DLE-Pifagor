@@ -1,16 +1,13 @@
 from __future__ import annotations
 
-from django.test import TestCase
-
 from apps.testing.constants import IntegrityRiskLevel
-from apps.testing.models import (
-    TestAttemptIntegrityReport as IntegrityReportModel,
-)
+from apps.testing.models import TestAttemptIntegrityReport as IntegrityReportModel
 from apps.testing.tests.factories import (
     create_attempt,
     create_integrity_report,
     create_risky_integrity_report,
 )
+from django.test import TestCase
 
 
 class IntegrityReportModelsTestCase(TestCase):

@@ -1,11 +1,6 @@
 from __future__ import annotations
 
-from django.test import TestCase
-
-from apps.testing.constants import (
-    TestAttemptStatus,
-    TestStatus,
-)
+from apps.testing.constants import TestAttemptStatus, TestStatus
 from apps.testing.selectors import (
     get_active_attempt_for_taking,
     get_taking_attempt_by_id,
@@ -23,6 +18,7 @@ from apps.testing.tests.factories import (
     create_question,
     create_test,
 )
+from django.test import TestCase
 
 
 class TakingTestSelectorsTestCase(TestCase):

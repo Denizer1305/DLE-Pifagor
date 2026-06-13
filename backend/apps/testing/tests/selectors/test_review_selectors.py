@@ -2,8 +2,6 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from django.test import TestCase
-
 from apps.testing.constants import (
     AttemptCheckStatus,
     LearnerResultStatus,
@@ -13,6 +11,8 @@ from apps.testing.selectors import (
     get_review_queue_count,
     review_queue_queryset,
     teacher_testing_summary,
+)
+from apps.testing.selectors import (
     test_review_summary as build_test_review_summary_selector,
 )
 from apps.testing.tests.factories import (
@@ -23,6 +23,7 @@ from apps.testing.tests.factories import (
     create_teacher,
     create_test,
 )
+from django.test import TestCase
 
 
 class ReviewQueueSelectorsTestCase(TestCase):

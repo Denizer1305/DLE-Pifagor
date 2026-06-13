@@ -2,10 +2,6 @@ from __future__ import annotations
 
 from datetime import timedelta
 
-from django.core.exceptions import ValidationError
-from django.test import TestCase
-from django.utils import timezone
-
 from apps.testing.constants import TestAttemptStatus
 from apps.testing.services.attempt.time_limit import (
     calculate_attempt_expires_at,
@@ -14,10 +10,10 @@ from apps.testing.services.attempt.time_limit import (
     expire_attempt_if_needed,
     set_attempt_expires_at,
 )
-from apps.testing.tests.factories import (
-    create_attempt,
-    create_test,
-)
+from apps.testing.tests.factories import create_attempt, create_test
+from django.core.exceptions import ValidationError
+from django.test import TestCase
+from django.utils import timezone
 
 
 class AttemptTimeLimitServicesTestCase(TestCase):

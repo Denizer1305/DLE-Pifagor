@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from django.test import TestCase
-
 from apps.testing.constants import IntegrityRiskLevel
 from apps.testing.selectors import (
     get_integrity_report_by_attempt_id,
@@ -14,6 +12,7 @@ from apps.testing.tests.factories import (
     create_integrity_report,
     create_risky_integrity_report,
 )
+from django.test import TestCase
 
 
 class IntegrityReportSelectorsTestCase(TestCase):

@@ -1,9 +1,5 @@
 from __future__ import annotations
 
-from django.urls import reverse
-from rest_framework import status
-from rest_framework.test import APITestCase
-
 from apps.testing.constants import BankItemStatus
 from apps.testing.tests.factories import (
     create_bank_item,
@@ -13,6 +9,9 @@ from apps.testing.tests.factories import (
     create_test,
     extract_results,
 )
+from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase
 
 
 class TeacherQuestionBankApiTestCase(APITestCase):
@@ -55,10 +54,7 @@ class TeacherQuestionBankApiTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        item_ids = {
-            item["id"]
-            for item in extract_results(response.json())
-        }
+        item_ids = {item["id"] for item in extract_results(response.json())}
 
         self.assertIn(self.bank_item.id, item_ids)
         self.assertNotIn(self.foreign_bank_item.id, item_ids)

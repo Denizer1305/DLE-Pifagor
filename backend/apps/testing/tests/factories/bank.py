@@ -9,10 +9,7 @@ from apps.testing.constants import (
     QuestionCheckMode,
     QuestionType,
 )
-from apps.testing.models import (
-    QuestionBankItem,
-    QuestionBankOption,
-)
+from apps.testing.models import QuestionBankItem, QuestionBankOption
 from apps.testing.tests.factories.common import unique_title
 from apps.testing.tests.factories.structure import create_test
 

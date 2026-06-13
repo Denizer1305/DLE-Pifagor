@@ -1,8 +1,5 @@
 from __future__ import annotations
 
-from django.core.exceptions import ValidationError
-from django.test import TestCase
-
 from apps.testing.tests.factories import (
     create_integrity_report,
     create_risky_integrity_report,
@@ -12,6 +9,8 @@ from apps.testing.validators import (
     validate_integrity_report_flags,
     validate_integrity_report_score,
 )
+from django.core.exceptions import ValidationError
+from django.test import TestCase
 
 
 class IntegrityReportValidatorsTestCase(TestCase):

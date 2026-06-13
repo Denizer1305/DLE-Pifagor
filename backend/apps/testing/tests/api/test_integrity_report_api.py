@@ -1,13 +1,6 @@
 from __future__ import annotations
 
-from django.urls import reverse
-from rest_framework import status
-from rest_framework.test import APITestCase
-
-from apps.testing.constants import (
-    IntegrityRiskLevel,
-    TestAttemptStatus,
-)
+from apps.testing.constants import IntegrityRiskLevel, TestAttemptStatus
 from apps.testing.tests.factories import (
     create_attempt,
     create_integrity_report,
@@ -17,6 +10,9 @@ from apps.testing.tests.factories import (
     create_test,
     extract_results,
 )
+from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase
 
 
 class TeacherIntegrityReportApiTestCase(APITestCase):
@@ -61,18 +57,12 @@ class TeacherIntegrityReportApiTestCase(APITestCase):
         self.client.force_authenticate(user=self.teacher)
 
         response = self.client.get(
-            reverse(
-                "testing_teacher:"
-                "testing-teacher-integrity-reports-list"
-            )
+            reverse("testing_teacher:" "testing-teacher-integrity-reports-list")
         )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        report_ids = {
-            item["id"]
-            for item in extract_results(response.json())
-        }
+        report_ids = {item["id"] for item in extract_results(response.json())}
 
         self.assertIn(self.report.id, report_ids)
         self.assertNotIn(self.foreign_report.id, report_ids)
@@ -86,8 +76,7 @@ class TeacherIntegrityReportApiTestCase(APITestCase):
 
         response = self.client.get(
             reverse(
-                "testing_teacher:"
-                "testing-teacher-integrity-reports-detail",
+                "testing_teacher:" "testing-teacher-integrity-reports-detail",
                 args=[self.report.id],
             )
         )
@@ -112,10 +101,7 @@ class TeacherIntegrityReportApiTestCase(APITestCase):
         self.client.force_authenticate(user=self.teacher)
 
         response = self.client.get(
-            reverse(
-                "testing_teacher:"
-                "testing-teacher-integrity-reports-list"
-            ),
+            reverse("testing_teacher:" "testing-teacher-integrity-reports-list"),
             {
                 "risk_level": IntegrityRiskLevel.HIGH,
             },
@@ -123,10 +109,7 @@ class TeacherIntegrityReportApiTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        report_ids = {
-            item["id"]
-            for item in extract_results(response.json())
-        }
+        report_ids = {item["id"] for item in extract_results(response.json())}
 
         self.assertIn(risky_report.id, report_ids)
         self.assertNotIn(self.report.id, report_ids)
@@ -144,10 +127,7 @@ class TeacherIntegrityReportApiTestCase(APITestCase):
         self.client.force_authenticate(user=self.teacher)
 
         response = self.client.post(
-            reverse(
-                "testing_teacher:"
-                "testing-teacher-integrity-reports-build"
-            ),
+            reverse("testing_teacher:" "testing-teacher-integrity-reports-build"),
             {
                 "attempt_id": attempt.id,
             },
@@ -169,8 +149,7 @@ class TeacherIntegrityReportApiTestCase(APITestCase):
 
         response = self.client.get(
             reverse(
-                "testing_teacher:"
-                "testing-teacher-integrity-reports-detail",
+                "testing_teacher:" "testing-teacher-integrity-reports-detail",
                 args=[self.foreign_report.id],
             )
         )
@@ -187,10 +166,7 @@ class TeacherIntegrityReportApiTestCase(APITestCase):
         self.client.force_authenticate(user=self.teacher)
 
         response = self.client.post(
-            reverse(
-                "testing_teacher:"
-                "testing-teacher-integrity-reports-build"
-            ),
+            reverse("testing_teacher:" "testing-teacher-integrity-reports-build"),
             {
                 "attempt_id": self.foreign_attempt.id,
             },
@@ -228,18 +204,12 @@ class AdminIntegrityReportApiTestCase(APITestCase):
         self.client.force_authenticate(user=self.superadmin)
 
         response = self.client.get(
-            reverse(
-                "testing_admin:"
-                "testing-admin-integrity-reports-list"
-            )
+            reverse("testing_admin:" "testing-admin-integrity-reports-list")
         )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        report_ids = {
-            item["id"]
-            for item in extract_results(response.json())
-        }
+        report_ids = {item["id"] for item in extract_results(response.json())}
 
         self.assertIn(self.report.id, report_ids)
 
@@ -252,8 +222,7 @@ class AdminIntegrityReportApiTestCase(APITestCase):
 
         response = self.client.get(
             reverse(
-                "testing_admin:"
-                "testing-admin-integrity-reports-detail",
+                "testing_admin:" "testing-admin-integrity-reports-detail",
                 args=[self.report.id],
             )
         )
@@ -279,10 +248,7 @@ class AdminIntegrityReportApiTestCase(APITestCase):
         self.client.force_authenticate(user=self.superadmin)
 
         response = self.client.get(
-            reverse(
-                "testing_admin:"
-                "testing-admin-integrity-reports-list"
-            ),
+            reverse("testing_admin:" "testing-admin-integrity-reports-list"),
             {
                 "min_score": 50,
                 "max_score": 100,
@@ -291,10 +257,7 @@ class AdminIntegrityReportApiTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        report_ids = {
-            item["id"]
-            for item in extract_results(response.json())
-        }
+        report_ids = {item["id"] for item in extract_results(response.json())}
 
         self.assertIn(self.report.id, report_ids)
         self.assertNotIn(low_report.id, report_ids)
@@ -312,10 +275,7 @@ class AdminIntegrityReportApiTestCase(APITestCase):
         self.client.force_authenticate(user=self.superadmin)
 
         response = self.client.post(
-            reverse(
-                "testing_admin:"
-                "testing-admin-integrity-reports-build"
-            ),
+            reverse("testing_admin:" "testing-admin-integrity-reports-build"),
             {
                 "attempt_id": attempt.id,
             },

@@ -1,8 +1,5 @@
 from __future__ import annotations
 
-from django.core.exceptions import ValidationError
-from django.test import TestCase
-
 from apps.testing.constants import TestAttemptStatus, TestStatus
 from apps.testing.services.taking import (
     build_taking_test_payload,
@@ -21,6 +18,8 @@ from apps.testing.tests.factories import (
     create_learner,
     create_test,
 )
+from django.core.exceptions import ValidationError
+from django.test import TestCase
 
 
 class TakingAccessServicesTestCase(TestCase):
