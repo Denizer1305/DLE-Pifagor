@@ -53,7 +53,7 @@ Scope указывает модуль: `auth`, `users`, `organizations`, `course
 ## Правила
 
 Один коммит — одна логическая задача. Не смешивать refactor и feature без необходимости. Не коммитить `.env`, временные файлы и большие бинарные файлы без необходимости.
----
+
 ---
 <!-- DLE-Pifagor Documentation Footer -->
 <p align="center">

@@ -166,7 +166,7 @@
 **Сделано во Владимире.**
 
 **Создано для России.**
----
+
 ---
 <!-- DLE-Pifagor Documentation Footer -->
 <p align="center">

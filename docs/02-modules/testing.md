@@ -175,3 +175,11 @@ apps/testing/tests/validators/
 - selectors;
 - service tests;
 - API tests соответствующей ролевой зоны.
+
+---
+<!-- DLE-Pifagor Documentation Footer -->
+<p align="center">
+  <sub>DLE-Pifagor · единая цифровая образовательная среда</sub><br />
+  <sub><a href="../../docs/README.md">К индексу документации</a> · <a href="../../README.md">К README проекта</a></sub>
+</p>
+<!-- /DLE-Pifagor Documentation Footer -->

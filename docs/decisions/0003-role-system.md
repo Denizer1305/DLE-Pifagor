@@ -49,7 +49,7 @@ OrganizationMembership
 ## Rule
 
 Любая проверка доступа должна учитывать пользователя, роль, организацию и объект доступа.
----
+
 ---
 <!-- DLE-Pifagor Documentation Footer -->
 <p align="center">

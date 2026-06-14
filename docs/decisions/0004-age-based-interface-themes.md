@@ -56,7 +56,7 @@ university
 ## Rule
 
 Возрастная тема может менять подачу, но не должна ломать структуру платформы и узнаваемость бренда.
----
+
 ---
 <!-- DLE-Pifagor Documentation Footer -->
 <p align="center">

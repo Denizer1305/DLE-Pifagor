@@ -75,7 +75,7 @@ Production должен иметь `DEBUG=false`, сильный `SECRET_KEY`, H
 ## Главный принцип
 
 > Деплой должен быть повторяемым: если сервер потерян, проект можно поднять заново по документации.
----
+
 ---
 <!-- DLE-Pifagor Documentation Footer -->
 <p align="center">
