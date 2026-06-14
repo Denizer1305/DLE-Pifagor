@@ -13,174 +13,19 @@
 <!-- /DLE-Pifagor Documentation Header -->
 # API Architecture
 
-## Общий подход
+API ЦОС "Пифагор" строится как REST API на Django REST Framework. Frontend на
+Vue работает с backend только через HTTP-контракты, а OpenAPI-схема выступает
+общей точкой синхронизации backend и frontend.
 
-API ЦОС «Пифагор» строится как REST API на базе Django REST Framework.
+## Версионирование
 
-Frontend на Vue общается с backend только через API. Это позволяет разделить пользовательский интерфейс и бизнес-логику, а в будущем подключить мобильное приложение или внешние интеграции.
-
----
-
-## Версионирование API
-
-Все endpoints должны иметь версию.
+Основной префикс прикладных маршрутов:
 
 ```text
 /api/v1/
 ```
 
----
-
-## Принципы проектирования API
-
-API должен быть предсказуемым, единообразным, документированным, защищённым, ролевым, пагинированным и удобным для frontend.
-
----
-
-## Основные endpoints
-
-### Auth
-
-```text
-POST /api/v1/auth/login/
-POST /api/v1/auth/refresh/
-POST /api/v1/auth/logout/
-GET  /api/v1/auth/me/
-```
-
-### Users
-
-```text
-GET    /api/v1/users/me/
-PATCH  /api/v1/users/me/
-GET    /api/v1/users/
-GET    /api/v1/users/{id}/
-```
-
-### Organizations
-
-```text
-GET    /api/v1/organizations/
-POST   /api/v1/organizations/
-GET    /api/v1/organizations/{id}/
-PATCH  /api/v1/organizations/{id}/
-GET    /api/v1/organizations/{id}/groups/
-```
-
-### Courses
-
-```text
-GET    /api/v1/courses/
-POST   /api/v1/courses/
-GET    /api/v1/courses/{id}/
-PATCH  /api/v1/courses/{id}/
-DELETE /api/v1/courses/{id}/
-GET    /api/v1/courses/{id}/lessons/
-```
-
-### Lessons
-
-```text
-GET    /api/v1/lessons/
-POST   /api/v1/lessons/
-GET    /api/v1/lessons/{id}/
-PATCH  /api/v1/lessons/{id}/
-DELETE /api/v1/lessons/{id}/
-GET    /api/v1/lessons/{id}/materials/
-GET    /api/v1/lessons/{id}/assignments/
-```
-
-### Assignments
-
-```text
-GET    /api/v1/assignments/
-POST   /api/v1/assignments/
-GET    /api/v1/assignments/{id}/
-PATCH  /api/v1/assignments/{id}/
-POST   /api/v1/assignments/{id}/submit/
-GET    /api/v1/assignments/{id}/submissions/
-POST   /api/v1/submissions/{id}/review/
-```
-
-### Journal
-
-```text
-GET    /api/v1/journal/
-GET    /api/v1/journal/groups/{group_id}/
-POST   /api/v1/grades/
-PATCH  /api/v1/grades/{id}/
-GET    /api/v1/students/{id}/grades/
-```
-
-### Schedule
-
-```text
-GET    /api/v1/schedule/
-POST   /api/v1/schedule/
-GET    /api/v1/schedule/{id}/
-PATCH  /api/v1/schedule/{id}/
-DELETE /api/v1/schedule/{id}/
-POST   /api/v1/schedule/check-conflicts/
-```
-
-### AI Anastasia
-
-```text
-POST /api/v1/ai/chat/
-POST /api/v1/ai/generate-lesson-plan/
-POST /api/v1/ai/generate-assignment/
-POST /api/v1/ai/explain-topic/
-GET  /api/v1/ai/conversations/
-```
-
----
-
-## Формат ответа
-
-Успешный ответ:
-
-```json
-{
-    "data": {},
-    "meta": {}
-}
-```
-
-Ошибка:
-
-```json
-{
-    "error": {
-        "code": "permission_denied",
-        "message": "У вас нет доступа к этому ресурсу.",
-        "details": {}
-    }
-}
-```
-
----
-
-## Авторизация
-
-Основной вариант: access token, refresh token, ролевые права и объектные права.
-
-Frontend отправляет access token в заголовке:
-
-```text
-Authorization: Bearer <token>
-```
-
----
-
-## Ролевой доступ
-
-API должен учитывать роль пользователя, организацию, группу, связь родителя с ребёнком, назначение преподавателя и права администратора.
-
----
-
-## Документация API
-
-API должен описываться через OpenAPI. Рекомендуемый инструмент — `drf-spectacular`.
+Служебная документация схемы доступна отдельно:
 
 ```text
 /api/schema/
@@ -188,12 +33,81 @@ API должен описываться через OpenAPI. Рекомендуе
 /api/redoc/
 ```
 
----
+## Основные домены API
 
-## Главный принцип API
+Фактические маршруты сгруппированы вокруг доменных модулей:
 
-API должен отражать реальные сценарии пользователей, а не только структуру таблиц базы данных.
----
+- `/api/v1/users/...` - auth, пользователи, роли, профили, настройки;
+- `/api/v1/organizations/...` - организации, группы, предметы, кураторы,
+  публичные данные организаций и преподавателей;
+- `/api/v1/courses/...` - курсы, доступ, уроки и прогресс;
+- `/api/v1/materials/...` - учебные материалы;
+- `/api/v1/testing/...` - тесты, банк вопросов, попытки, результаты, review и
+  integrity reports;
+- `/api/v1/dashboard/...` - сводки личных кабинетов и элементы dashboard;
+- `/api/v1/notifications/...` - уведомления, счетчики, прочтение и настройки;
+- `/api/v1/feedback/...` - публичные обращения и административная обработка.
+
+Точные маршруты фиксируются в `docs/06-api/openapi.yaml`.
+
+## Разделение ответственности
+
+Backend:
+
+- `views` принимают HTTP-запрос, применяют permissions и вызывают serializer или
+  service;
+- `serializers` валидируют вход и описывают API-представление;
+- `services` выполняют бизнес-операции и изменения состояния;
+- `selectors` отвечают за чтение и оптимизированные queryset;
+- `permissions` фиксируют правила доступа по ролям и объектным связям.
+
+Frontend:
+
+- `api` выполняет HTTP-запросы;
+- `services` собирают сценарии работы с backend;
+- `mappers` преобразуют DTO в UI-модели;
+- `types` синхронизируются с backend serializers и OpenAPI.
+
+## Авторизация
+
+API использует JWT access/refresh token. Защищенные запросы передают access
+token в заголовке:
+
+```text
+Authorization: Bearer <token>
+```
+
+Клиент должен обрабатывать:
+
+- `401` - токен отсутствует, истек или refresh невозможен;
+- `403` - пользователь авторизован, но не имеет прав на действие;
+- `404` - объект недоступен или отсутствует;
+- `409` - действие конфликтует с текущим состоянием объекта.
+
+## OpenAPI
+
+Схема формируется через `drf-spectacular`.
+
+Актуальные endpoint:
+
+- `/api/schema/` - машинно-читаемая схема;
+- `/api/docs/` - Swagger UI;
+- `/api/redoc/` - ReDoc.
+
+Snapshot схемы хранится в `docs/06-api/openapi.yaml`. Обновлять его нужно после
+изменения routes, serializers, permissions или формата ответов.
+
+## Правила проектирования
+
+- API должен отражать пользовательские сценарии, а не только структуру таблиц.
+- Изменения serializer-полей считаются изменением контракта и требуют обновления
+  frontend DTO/types.
+- Нестандартные actions должны иметь явные request/response serializers.
+- Для OpenAPI нужно добавлять `@extend_schema`, `@extend_schema_view`,
+  `OpenApiParameter`, `OpenApiResponse` и уникальные `ref_name`, когда
+  автоматического вывода недостаточно.
+- Публичные endpoint не должны раскрывать внутренние административные поля.
+
 ---
 <!-- DLE-Pifagor Documentation Footer -->
 <p align="center">
