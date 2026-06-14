@@ -113,10 +113,8 @@ When a new functional module is added, update:
 - this index and `README.md`;
 - architecture documents if layers, API, or data models changed;
 - an ADR in `decisions/` if a notable architecture decision was made.
----
----
----
 
+---
 <!-- DLE-Pifagor README Footer -->
 ---
 

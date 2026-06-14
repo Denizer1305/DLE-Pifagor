@@ -58,7 +58,7 @@ Stores: `assignments.store.ts`, `auth.store.ts`.
 ## Главный принцип
 
 > Код должен быть написан так, чтобы через месяц его можно было понять без археологии.
----
+
 ---
 <!-- DLE-Pifagor Documentation Footer -->
 <p align="center">

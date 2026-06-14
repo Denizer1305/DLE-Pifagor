@@ -230,3 +230,11 @@ Frontend должен:
 - отправлять попытку только один раз через `/taking/submit/`;
 - учитывать `expires_at` из payload попытки;
 - не показывать правильные ответы до публикации/разрешения backend.
+
+---
+<!-- DLE-Pifagor Documentation Footer -->
+<p align="center">
+  <sub>DLE-Pifagor · единая цифровая образовательная среда</sub><br />
+  <sub><a href="../../docs/README.md">К индексу документации</a> · <a href="../../README.md">К README проекта</a></sub>
+</p>
+<!-- /DLE-Pifagor Documentation Footer -->

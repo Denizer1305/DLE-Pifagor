@@ -16,110 +16,102 @@
 
 ---
 <!-- /DLE-Pifagor README Header -->
-
 # Документация DLE-Pifagor
 
-Эта папка содержит продуктовую, архитектурную, интерфейсную и инженерную документацию образовательной платформы **DLE-Pifagor**.
+Эта папка хранит продуктовую, архитектурную, пользовательскую и инженерную
+документацию образовательной платформы **ЦОС "Пифагор"**.
 
-Документация помогает быстро понять, зачем существует проект, как он устроен, какие модули уже описаны и какие правила используются при разработке.
+Документация нужна как рабочая карта проекта: где лежат модули, как устроены
+backend и frontend, какие API-контракты доступны, как запускать проверки и где
+фиксировать архитектурные решения.
 
 ## Структура
 
 ```text
 docs/
-├─ 00-vision/          # продуктовая идея, миссия, позиционирование и roadmap
-├─ 01-architecture/    # архитектура backend, frontend, API и данных
-├─ 02-modules/         # описание функциональных модулей платформы
-├─ 03-design-system/   # визуальные и интерфейсные принципы
-├─ 04-development/     # правила разработки, тестирования, git и deployment
-├─ decisions/          # архитектурные решения в формате ADR
-├─ README.md           # русская навигация по документации
-└─ README.en.md        # английская навигация по документации
+  00-vision/          продуктовая идея, миссия, позиционирование и roadmap
+  01-architecture/    архитектура backend, frontend, API, данных и репозитория
+  02-modules/         описание функциональных модулей платформы
+  03-design-system/   UI-принципы, цвета, типографика, компоненты и темы
+  04-development/     локальный запуск, правила разработки, CI, git и deploy
+  05-user-guides/     пользовательские инструкции по ролям
+  06-api/             OpenAPI, API-правила и snapshot схемы
+  07-operations/      release checklist и troubleshooting
+  decisions/          ADR: принятые архитектурные решения
 ```
 
-## 00-vision
+## Быстрые входные точки
 
-- `product-vision.md` - продуктовое видение платформы.
-- `mission.md` - миссия и философия проекта.
-- `positioning.md` - позиционирование и отличие от альтернатив.
-- `roadmap-after-mvp.md` - план развития после дипломного MVP.
+| Раздел | Файл |
+| --- | --- |
+| Видение продукта | `00-vision/product-vision.md` |
+| Структура проекта | `01-architecture/project-structure.md` |
+| Backend-архитектура | `01-architecture/backend-architecture.md` |
+| Frontend-архитектура | `01-architecture/frontend-architecture.md` |
+| API-архитектура | `01-architecture/api-architecture.md` |
+| OpenAPI | `06-api/openapi.md` |
+| Локальный запуск | `04-development/local-setup.md` |
+| Правила разработки | `04-development/coding-rules.md` |
+| Стратегия тестирования | `04-development/testing-strategy.md` |
+| Release checklist | `07-operations/release-checklist.md` |
 
-## 01-architecture
+## Модули платформы
 
-- `project-structure.md` - общая структура репозитория.
-- `backend-architecture.md` - архитектура backend на Django.
-- `frontend-architecture.md` - архитектура frontend на Vue.
-- `api-architecture.md` - принципы REST API и структура endpoints.
-- `database-schema.md` - ключевые сущности базы данных и связи.
+Основные продуктовые модули описаны в `02-modules/`:
 
-## 02-modules
+- `users.md` - пользователи, роли, профили и настройки аккаунта;
+- `organizations.md` - организации, отделения, группы, предметы и связи;
+- `courses.md` - курсы, уроки, материалы и прогресс;
+- `testing.md` - тесты, попытки, результаты и роли участников;
+- `testing-question-bank.md` - банк вопросов и варианты ответов;
+- `testing-learner-flow.md` - прохождение тестов учеником;
+- `testing-integrity.md` - контроль целостности попыток и отчеты;
+- `calendar-and-notes.md` - календарь, план на день и заметки;
+- `notifications.md` - уведомления, счетчики и пользовательские настройки;
+- `feedback.md` - публичные обращения и административная обработка;
+- `settings.md` - внешний вид, язык, приватность, безопасность и роли;
+- `assignments.md`, `journal.md`, `schedule.md`, `olympiads.md`,
+  `ai-anastasia.md` - расширяемые учебные и сервисные направления.
 
-- `users.md` - пользователи, роли и профили.
-- `organizations.md` - образовательные организации и связи с пользователями.
-- `courses.md` - курсы, учебные материалы, занятия и прогресс.
-- `assignments.md` - задания, сдача работ и проверка.
-- `journal.md` - электронный журнал, оценки и посещаемость.
-- `schedule.md` - расписание, слоты и замены.
-- `calendar-and-notes.md` - календарь, план на день и личные заметки.
-- `notifications.md` - уведомления, счетчики и пользовательские настройки.
-- `feedback.md` - обращения пользователей, вложения и администрирование заявок.
-- `settings.md` - настройки внешнего вида, уведомлений, приватности, ролей и безопасности.
-- `ai-anastasia.md` - ИИ-помощник «Анастасия».
-- `olympiads.md` - олимпиады, конкурсы и прозрачная проверка.
+## API и OpenAPI
 
-## 03-design-system
+Backend публикует документацию API через `drf-spectacular`:
 
-- `ui-principles.md` - базовые принципы интерфейса.
-- `colors.md` - цветовая система.
-- `typography.md` - типографика и тон текстов.
-- `components.md` - базовые UI-компоненты.
-- `age-themes.md` - возрастные темы интерфейса.
+- `/api/schema/` - машинно-читаемая OpenAPI-схема;
+- `/api/docs/` - Swagger UI;
+- `/api/redoc/` - ReDoc.
 
-## 04-development
+Snapshot схемы хранится в `06-api/openapi.yaml`. Правила обновления описаны в
+`06-api/openapi.md`.
 
-- `coding-rules.md` - правила написания кода.
-- `commit-convention.md` - соглашение о коммитах.
-- `git-workflow.md` - процесс работы с ветками.
-- `testing-strategy.md` - стратегия тестирования.
-- `deployment.md` - базовые принципы развертывания.
+## Разработка
 
-## decisions
+Для локального запуска и проверок используйте корневой `Makefile`:
 
-- `0001-use-modular-monolith.md` - решение использовать модульный монолит.
-- `0002-use-vue-and-django.md` - решение использовать Vue и Django.
-- `0003-role-system.md` - решение о гибкой ролевой системе.
-- `0004-age-based-interface-themes.md` - решение о возрастных темах интерфейса.
+```sh
+make backend-run
+make frontend-run
+make backend-ci
+make frontend-ci
+make check
+```
 
-## Рекомендуемый порядок чтения
-
-1. `00-vision/product-vision.md`
-2. `00-vision/mission.md`
-3. `01-architecture/project-structure.md`
-4. `01-architecture/backend-architecture.md`
-5. `01-architecture/frontend-architecture.md`
-6. `02-modules/users.md`
-7. `02-modules/organizations.md`
-8. `02-modules/courses.md`
-9. `02-modules/calendar-and-notes.md`
-10. `02-modules/notifications.md`
-11. `02-modules/feedback.md`
-12. `04-development/coding-rules.md`
+Точечные команды для Windows PowerShell, backend и frontend приведены в
+`04-development/local-setup.md`.
 
 ## Поддержание порядка
 
-При добавлении нового функционального модуля обновляйте:
+При изменении функциональности обновляйте:
 
 - соответствующий файл в `02-modules/`;
-- этот индекс и `README.en.md`;
-- архитектурные документы, если меняются слои, API или модель данных;
-- ADR в `decisions/`, если принято заметное архитектурное решение.
----
----
----
+- `06-api/openapi.yaml`, если изменились маршруты, serializers или responses;
+- архитектурные документы из `01-architecture/`, если изменились слои,
+  зависимости или структура модулей;
+- ADR в `decisions/`, если принято заметное архитектурное решение;
+- пользовательские инструкции в `05-user-guides/`, если изменился сценарий роли.
 
+---
 <!-- DLE-Pifagor README Footer -->
----
-
 <p align="center">
   <sub>ЦОС "Пифагор" · единая цифровая образовательная среда</sub>
 </p>

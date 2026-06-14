@@ -168,3 +168,11 @@ apps/testing/tests/validators/test_integrity_validators.py
 - API serializer;
 - тесты persistence и API;
 - frontend mapping для отображения признаков.
+
+---
+<!-- DLE-Pifagor Documentation Footer -->
+<p align="center">
+  <sub>DLE-Pifagor · единая цифровая образовательная среда</sub><br />
+  <sub><a href="../../docs/README.md">К индексу документации</a> · <a href="../../README.md">К README проекта</a></sub>
+</p>
+<!-- /DLE-Pifagor Documentation Footer -->

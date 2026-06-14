@@ -66,7 +66,7 @@ git push origin v1.1.0
 ## Главный принцип
 
 > Стабильная ветка всегда должна запускаться.
----
+
 ---
 <!-- DLE-Pifagor Documentation Footer -->
 <p align="center">
