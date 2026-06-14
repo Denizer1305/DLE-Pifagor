@@ -58,6 +58,7 @@ LOCAL_APPS = [
     "apps.core.apps.CoreConfig",
     "apps.organizations.apps.OrganizationsConfig",
     "apps.users.apps.UsersConfig",
+    "apps.backoffice.apps.BackofficeConfig",
     "apps.feedback.apps.FeedbackConfig",
     "apps.dashboard.apps.DashboardConfig",
     "apps.notifications.apps.NotificationsConfig",
