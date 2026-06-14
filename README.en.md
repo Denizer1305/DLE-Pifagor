@@ -37,6 +37,7 @@ The project is designed as a unified digital learning environment: the backend o
 | API architecture | [`docs/01-architecture/api-architecture.md`](docs/01-architecture/api-architecture.md) |
 | Platform modules | [`docs/02-modules/`](docs/02-modules/) |
 | Coding rules | [`docs/04-development/coding-rules.md`](docs/04-development/coding-rules.md) |
+| Governance documents | [`docs/governance/`](docs/governance/) |
 
 ## Stack
 

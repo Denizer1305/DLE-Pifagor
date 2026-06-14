@@ -49,6 +49,14 @@
 | Локальный запуск | `docs/04-development/local-setup.md` |
 | Правила разработки | `docs/04-development/coding-rules.md` |
 | Release checklist | `docs/07-operations/release-checklist.md` |
+| Backend | [`backend/README.md`](backend/README.md) |
+| Frontend | [`frontend/README.md`](frontend/README.md) |
+| Дизайн и логотипы | [`design/README.md`](design/README.md) |
+| Инфраструктура | [`infra/README.md`](infra/README.md) |
+| Скрипты | [`scripts/README.md`](scripts/README.md) |
+| Модули платформы | [`docs/02-modules/`](docs/02-modules/) |
+| GitHub Actions | [`.github/README.ru.md`](.github/README.ru.md) |
+| Регламенты проекта | [`docs/governance/`](docs/governance/) |
 
 ## Стек
 
