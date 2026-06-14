@@ -5,12 +5,13 @@
 
 <p align="center">
   <strong>ЦОС "Пифагор"</strong><br />
-  <sub>Корневая документация проекта · README проекта</sub>
+  <sub>Единая цифровая образовательная среда</sub>
 </p>
 
 <p align="center">
-  <a href="README.md">README проекта</a> ·
   <a href="docs/README.md">Документация</a> ·
+  <a href="frontend/README.md">Frontend</a> ·
+  <a href="backend/README.md">Backend</a> ·
   <a href="README.en.md">English version</a>
 </p>
 
@@ -19,40 +20,49 @@
 
 ## О проекте
 
-**ЦОС "Пифагор"** - дипломная образовательная платформа, которая объединяет публичный сайт, авторизацию, личные кабинеты администратора, преподавателя, студента и родителя, управление пользователями, образовательными организациями, календарем, заметками, уведомлениями, обращениями и настройками.
+**ЦОС "Пифагор"** - образовательная платформа, которая объединяет публичный
+сайт, авторизацию, личные кабинеты администратора, преподавателя, ученика и
+родителя, учебные материалы, курсы, тестирование, организации, уведомления,
+обращения и настройки пользователя.
 
-Проект строится как единая цифровая образовательная среда: backend отвечает за доменную модель, API, права доступа, уведомления и обработку данных, а frontend предоставляет ролевые рабочие пространства с единой дизайн-системой.
+Проект ведется как монорепозиторий:
+
+- `backend` отвечает за доменную модель, REST API, роли, права доступа,
+  уведомления, фоновые задачи и обработку данных;
+- `frontend` предоставляет ролевые интерфейсы на Vue 3 и TypeScript;
+- `docs` хранит продуктовую, архитектурную, API и эксплуатационную
+  документацию;
+- `design`, `infra`, `scripts` содержат визуальные материалы, инфраструктуру и
+  проектные утилиты.
 
 ## Быстрые ссылки
 
 | Раздел | Ссылка |
 | --- | --- |
-| Общая документация | [`docs/README.md`](docs/README.md) |
-| Backend | [`backend/README.md`](backend/README.md) |
-| Frontend | [`frontend/README.md`](frontend/README.md) |
-| Дизайн и логотипы | [`design/README.md`](design/README.md) |
-| Инфраструктура | [`infra/README.md`](infra/README.md) |
-| Скрипты | [`scripts/README.md`](scripts/README.md) |
-| GitHub Actions | [`.github/README.md`](.github/README.md) |
-| API архитектура | [`docs/01-architecture/api-architecture.md`](docs/01-architecture/api-architecture.md) |
-| Модули платформы | [`docs/02-modules/`](docs/02-modules/) |
-| Правила разработки | [`docs/04-development/coding-rules.md`](docs/04-development/coding-rules.md) |
+| Документация проекта | `docs/README.md` |
+| Структура проекта | `docs/01-architecture/project-structure.md` |
+| Backend-архитектура | `docs/01-architecture/backend-architecture.md` |
+| Frontend-архитектура | `docs/01-architecture/frontend-architecture.md` |
+| API-архитектура | `docs/01-architecture/api-architecture.md` |
+| OpenAPI | `docs/06-api/openapi.md` |
+| OpenAPI snapshot | `docs/06-api/openapi.yaml` |
+| Локальный запуск | `docs/04-development/local-setup.md` |
+| Правила разработки | `docs/04-development/coding-rules.md` |
+| Release checklist | `docs/07-operations/release-checklist.md` |
 
 ## Стек
 
-### Backend
+Backend:
 
 - Python 3.12+
 - Django 5
 - Django REST Framework
-- PostgreSQL
-- Redis и Celery для фоновых задач
-- django-filter
 - drf-spectacular
-- Ruff, Black, isort
-- Django tests, coverage, GitHub Actions
+- Celery и Redis
+- PostgreSQL/SQLite по окружению
+- Ruff, Black, isort, pytest
 
-### Frontend
+Frontend:
 
 - Vue 3
 - TypeScript
@@ -61,123 +71,95 @@
 - Pinia
 - Axios
 - Font Awesome
-- CSS modules by feature/domain
-
-### Инфраструктура и качество
-
-- GitHub Actions
-- Прямые backend-проверки через Django, Ruff, Black и isort
-- Отдельные CI workflow для backend и frontend
-- Документация по модулям, архитектуре и решениям
 
 ## Реализованные области
 
-- Публичные страницы: главная, о платформе, преподаватели, контакты.
-- Авторизация: вход, регистрация, подтверждение email, восстановление пароля, выход.
-- Личные кабинеты: администратор, преподаватель, студент, родитель.
-- Профиль пользователя: просмотр, редактирование, аватар, контакты, город, приватность.
-- Настройки: внешний вид, темы, язык, уведомления, приватность, роли, безопасность.
-- Администрирование пользователей: список, фильтры, создание, карточка, редактирование.
-- Организации: организации, отделения, группы, предметы, преподаватели, кураторы, заявки, коды.
-- Календарь и заметки: события, план на день, заметки на календаре, отдельная страница заметок.
-- Уведомления: счетчики, dropdown, страница уведомлений, настройки уведомлений.
-- Обращения: форма пользователя, вложения, уведомления, административная обработка.
-- Страницы ошибок и технические заглушки в едином стиле платформы.
+- публичные страницы и форма обратной связи;
+- авторизация, регистрация, refresh token, восстановление пароля;
+- пользователи, роли, профили, настройки и безопасность;
+- организации, отделения, группы, предметы, преподаватели и кураторы;
+- dashboard для ролей администратора, преподавателя, ученика и родителя;
+- курсы, учебные материалы и прогресс;
+- тестирование: банк вопросов, тесты, попытки, ответы, проверка и результаты;
+- уведомления, счетчики, прочтение и настройки доставки;
+- календарь, заметки, журнал, расписание и расширяемые учебные модули;
+- OpenAPI-схема и Swagger/ReDoc.
 
-## Структура репозитория
+## Запуск
 
-```text
-DLE-Pifagor/
-├─ .github/          # GitHub Actions и настройки репозитория
-├─ backend/          # Django backend и API
-├─ design/           # бренд, логотипы, презентации и визуальные материалы
-├─ docs/             # архитектура, модули, дизайн-система, ADR
-├─ frontend/         # Vue frontend
-├─ infra/            # Docker, nginx, deploy и эксплуатационные заметки
-├─ scripts/          # проектные утилиты
-├─ README.md         # русская версия
-└─ README.en.md      # английская версия
+Из корня репозитория можно использовать `Makefile`.
+
+```sh
+make env-copy
+make backend-install
+make frontend-install
+make backend-run
+make frontend-run
 ```
 
-## Быстрый старт
+Ручной запуск backend:
 
-### Backend
-
-```bash
+```sh
 cd backend
-python manage.py check --settings=config.settings.test
-python manage.py makemigrations --check --dry-run --settings=config.settings.test
-python -m ruff check apps config
-python -m black --check apps config
-python -m isort --profile black -o apps -o config --check-only apps config
-python manage.py test --settings=config.settings.test
+python -m venv .venv
+.venv/bin/python -m pip install -r requirements/local.txt
+.venv/bin/python manage.py migrate
+.venv/bin/python manage.py runserver
 ```
-### Frontend
 
-```bash
+Ручной запуск frontend:
+
+```sh
 cd frontend
-npm run typecheck
-npm run build
+npm install
+npm run dev
 ```
+
+## Проверки
+
+Backend:
+
+```sh
+make backend-ci
+```
+
+Frontend:
+
+```sh
+make frontend-ci
+```
+
+Полная локальная проверка с pre-commit:
+
+```sh
+make check
+```
+
+## API
+
+Backend публикует OpenAPI через `drf-spectacular`:
+
+- `/api/schema/` - машинно-читаемая схема;
+- `/api/docs/` - Swagger UI;
+- `/api/redoc/` - ReDoc.
+
+Snapshot схемы хранится в `docs/06-api/openapi.yaml`.
 
 ## Документация
 
-Начните с [`docs/README.md`](docs/README.md). Там собраны ссылки на продуктовые документы, архитектуру, описание модулей, дизайн-систему, правила разработки и ADR.
-
-Полезные точки входа:
-
-- [`docs/00-vision/product-vision.md`](docs/00-vision/product-vision.md)
-- [`docs/01-architecture/project-structure.md`](docs/01-architecture/project-structure.md)
-- [`docs/01-architecture/backend-architecture.md`](docs/01-architecture/backend-architecture.md)
-- [`docs/01-architecture/frontend-architecture.md`](docs/01-architecture/frontend-architecture.md)
-- [`docs/02-modules/users.md`](docs/02-modules/users.md)
-- [`docs/02-modules/organizations.md`](docs/02-modules/organizations.md)
-- [`docs/02-modules/calendar-and-notes.md`](docs/02-modules/calendar-and-notes.md)
-- [`docs/02-modules/notifications.md`](docs/02-modules/notifications.md)
-- [`docs/02-modules/feedback.md`](docs/02-modules/feedback.md)
-- [`docs/02-modules/settings.md`](docs/02-modules/settings.md)
-
-## Работа с ветками и коммитами
-
-Соглашение по коммитам описано в [`docs/04-development/commit-convention.md`](docs/04-development/commit-convention.md).
-
-Примеры:
-
-```bash
-git commit -m "feat(frontend): Добавлена страница управления организациями"
-git commit -m "fix(backend): Исправлена выдача уведомлений"
-git commit -m "docs(project): Обновлена корневая документация"
-```
+Начните с `docs/README.md`. Там собраны ссылки на видение продукта,
+архитектуру, модули, дизайн-систему, правила разработки, пользовательские
+инструкции, API и эксплуатационные материалы.
 
 ## Безопасность
 
 Не коммитьте реальные секреты и пользовательские данные:
 
 - `.env`;
-- токены;
-- пароли;
+- токены и пароли;
 - SMTP-ключи;
 - локальные базы данных;
 - `.venv`;
 - пользовательские файлы из `media/`.
 
-Для примеров используйте только `.env.example` с безопасными placeholder-значениями.
-
-## Статус
-
-Проект находится в активной разработке. Документация и README должны обновляться вместе с функциональными модулями, API, настройками CI и изменениями архитектуры.
----
-
-<!-- DLE-Pifagor Root Footer -->
----
-
-<p align="center">
-  <sub>ЦОС "Пифагор" · единая цифровая образовательная среда</sub>
-</p>
-
-<p align="center">
-  <a href="README.md">README проекта</a> ·
-  <a href="docs/README.md">Документация</a> ·
-  <a href="README.en.md">English version</a>
-</p>
-<!-- /DLE-Pifagor Root Footer -->
+Для примеров используйте только `.env.example` с безопасными placeholder.
